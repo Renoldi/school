@@ -14,7 +14,17 @@ class Teachers extends Model
     protected $returnType       = \App\Entities\Teachers::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'nip' ,
+        'name' ,
+        'gender' ,
+        'position' ,
+        'dob' ,
+        'subjectId' ,
+        'email' ,
+        'image' ,
+        'status' ,
+    ];
 
     // Dates
     protected $useTimestamps = false;
@@ -24,7 +34,17 @@ class Teachers extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'nip' => 'required|min_length[15]|alpha_numeric|is_unique[teachers.nip,id,{id}]',
+        'name' => 'required|alpha|min_length[4]',
+        'gender' => 'required|integer',
+        'position' => 'required|',
+        'dob' => 'required|',
+        'subjectId' => 'required|integer',
+        'email' => 'required|valid_email',
+        // 'image' => 'required|',
+        'status' => 'required|integer',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

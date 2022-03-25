@@ -14,7 +14,12 @@ class Hoomrooms extends Model
     protected $returnType       = \App\Entities\Hoomrooms::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'roomId',
+        'classId',
+        'teacherId',
+        'status',
+    ];
 
     // Dates
     protected $useTimestamps = false;
@@ -24,7 +29,12 @@ class Hoomrooms extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'roomId' => 'required|integer',
+        'classId' => 'required|integer',
+        'teacherId' => 'required|integer',
+        'status' => 'required|integer',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

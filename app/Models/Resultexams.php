@@ -14,7 +14,12 @@ class Resultexams extends Model
     protected $returnType       = \App\Entities\Resultexams::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'studentId',
+        'examId',
+        'choise',
+        'date',
+    ];
 
     // Dates
     protected $useTimestamps = false;
@@ -24,7 +29,12 @@ class Resultexams extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'studentId' => 'required|integer',
+        'examId' => 'required|integer',
+        'choise' => 'required|string',
+        'date' => 'required|valid_date[Y-m-d H:m:s]',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

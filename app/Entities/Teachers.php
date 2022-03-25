@@ -3,10 +3,65 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
-
+/**
+ * @OA\Schema(
+ *   schema="Teachers",
+ * @OA\Property(
+ *      property="id",
+ *      type="integer",
+ *    ),
+ * @OA\Property(
+ *      property="name",
+ *      type="string",
+ *    ), 
+ * @OA\Property(
+ *      property="gender",
+ *      type="integer",
+ *    ), 
+ * @OA\Property(
+ *      property="position",
+ *      type="string",
+ *    ), 
+ * @OA\Property(
+ *      property="dob",
+ *      type="date",
+ *    ), 
+ * @OA\Property(
+ *      property="subjectId",
+ *      type="integer",
+ *    ), 
+ * @OA\Property(
+ *      property="classId",
+ *      type="integer",
+ *    ),  
+ * @OA\Property(
+ *      property="status",
+ *      type="integer",
+ *    ), 
+ * @OA\Property(
+ *      property="image",
+ *      type="string",
+ *    ), 
+ * @OA\Property(
+ *      property="email",
+ *      type="string",
+ *    ), 
+ * )
+ */
 class Teachers extends Entity
 {
     protected $datamap = [];
     protected $dates   = ['created_at', 'updated_at', 'deleted_at'];
     protected $casts   = [];
+    protected $attributes = [
+        'nip' => null,
+        'name' => null,
+        'gender' => null,
+        'position' => null,
+        'dob' => null,
+        'subjectId' => null,
+        'email' => null,
+        'image' => null,
+        'status' => null,
+    ];
 }

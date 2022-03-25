@@ -14,7 +14,10 @@ class Rooms extends Model
     protected $returnType       = \App\Entities\Rooms::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'name',
+        'status',
+    ];
 
     // Dates
     protected $useTimestamps = false;
@@ -24,7 +27,10 @@ class Rooms extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'name' => 'required|alpha|is_unique[rooms.name,id,{id}]',
+        'status' => 'required|integer',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

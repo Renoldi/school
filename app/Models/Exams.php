@@ -14,7 +14,19 @@ class Exams extends Model
     protected $returnType       = \App\Entities\Exams::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'classId',
+        'subjectId',
+        'question',
+        'questionImage',
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'correct',
+        'status',
+    ];
 
     // Dates
     protected $useTimestamps = false;
@@ -24,7 +36,19 @@ class Exams extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'classId' => 'required|integer',
+        'subjectId' => 'required|integer',
+        // 'question' => 'required',
+        // 'questionImage' => 'required',
+        'a' => 'required',
+        'b' => 'required',
+        'c' => 'required',
+        'd' => 'required',
+        'e' => 'required',
+        'correct' => 'required',
+        'status' => 'required|integer',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

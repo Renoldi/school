@@ -14,7 +14,13 @@ class Scheduleexams extends Model
     protected $returnType       = \App\Entities\Scheduleexams::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'subjectId' => null,
+        'classId' => null,
+        'start' => null,
+        'end' => null,
+        'status' => null,
+    ];
 
     // Dates
     protected $useTimestamps = false;
@@ -24,7 +30,13 @@ class Scheduleexams extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'subjectId' => 'required|integer',
+        'classId' => 'required|integer',
+        'start' => 'required',
+        'end' => 'required',
+        'status' => 'required|integer',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

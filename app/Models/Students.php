@@ -14,7 +14,18 @@ class Students extends Model
     protected $returnType       = \App\Entities\Students::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'nisn' => null,
+        'name' => null,
+        'gender' => null,
+        'password' => null,
+        'datetime' => null,
+        'updatedAt' => null,
+        'status' => null,
+        'classId' => null,
+        'roomId' => null,
+        'image' => null,
+    ];
 
     // Dates
     protected $useTimestamps = false;
@@ -24,7 +35,18 @@ class Students extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'nisn' => 'required|min_length[15]|alpha_numeric|is_unique[students.nisn,id,{id}]',
+        'name' => 'required|',
+        'gender' => 'required|',
+        'password' => 'required|min_length[5]',
+        'datetime' => 'required|',
+        'updatedAt' => 'required|',
+        'status' => 'required|integer',
+        'classId' => 'required|integer',
+        'roomId' => 'required|integer',
+        // 'image' => 'required|',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
