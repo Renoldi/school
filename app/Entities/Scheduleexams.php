@@ -19,7 +19,7 @@ use CodeIgniter\Entity\Entity;
  *      type="datetime",
  *    ), 
  * @OA\Property(
- *      property="start",
+ *      property="end",
  *      type="datetime",
  *    ), 
  * @OA\Property(
