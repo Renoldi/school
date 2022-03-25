@@ -32,6 +32,18 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->group('api', ['filter' => 'Auth'], function ($routes) {
+    $routes->resource('Classes');
+    $routes->resource('Exams');
+    $routes->resource('Hoomrooms');
+    $routes->resource('Privileges');
+    $routes->resource('Resultexams');
+    $routes->resource('Rooms');
+    $routes->resource('Scheduleexams');
+    $routes->resource('Students');
+    $routes->resource('Subjects');
+    $routes->resource('Teachers');
+});
 
 /*
  * --------------------------------------------------------------------
