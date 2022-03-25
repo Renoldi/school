@@ -4,27 +4,19 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Teachers extends Model
+class Privileges extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'teachers';
+    protected $table            = 'privileges';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Teachers::class;
+    protected $returnType       = \App\Entities\Privileges::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nip' ,
-        'name' ,
-        'gender' ,
-        'position' ,
-        'dob' ,
-        'subjectId' ,
-        'email' ,
-        'image' ,
-        'status' ,
-        'privilegeId' ,
+        'name',
+        'status',
     ];
 
     // Dates
@@ -36,16 +28,8 @@ class Teachers extends Model
 
     // Validation
     protected $validationRules      = [
-        'nip' => 'required|min_length[15]|alpha_numeric|is_unique[teachers.nip,id,{id}]',
-        'name' => 'required|alpha|min_length[4]',
-        'gender' => 'required|integer',
-        'position' => 'required|',
-        'dob' => 'required|',
-        'subjectId' => 'required|integer',
-        'email' => 'required|valid_email',
-        // 'image' => 'required|',
+        'name' => 'required|alpha|is_unique[privileges.name,id,{id}]',
         'status' => 'required|integer',
-        'privilegeId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

@@ -46,6 +46,10 @@ use CodeIgniter\Entity\Entity;
  *      property="email",
  *      type="string",
  *    ), 
+ * @OA\Property(
+ *      property="privilegeId",
+ *      type="integer",
+ *    ), 
  * )
  */
 class Teachers extends Entity
@@ -63,5 +67,6 @@ class Teachers extends Entity
         'email' => null,
         'image' => null,
         'status' => null,
+        'privilegeId' => null,
     ];
 }
