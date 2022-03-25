@@ -57,6 +57,7 @@ class ComposerStaticInit40afe42a8916f0fb01d0c6b7928a27af
         ),
         'F' => 
         array (
+            'Firebase\\JWT\\' => 13,
             'Faker\\' => 6,
         ),
         'D' => 
@@ -139,6 +140,10 @@ class ComposerStaticInit40afe42a8916f0fb01d0c6b7928a27af
         'Kint\\' => 
         array (
             0 => __DIR__ . '/..' . '/kint-php/kint/src',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'Faker\\' => 
         array (

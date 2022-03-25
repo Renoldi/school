@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '481fe0d7441c0dd6548509ca532d0ce00735e4c2',
+        'reference' => 'a46fd946a917b625ccd41dfe1e9d2e21b3ec0f6e',
         'name' => 'codeigniter4/appstarter',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '481fe0d7441c0dd6548509ca532d0ce00735e4c2',
+            'reference' => 'a46fd946a917b625ccd41dfe1e9d2e21b3ec0f6e',
             'dev_requirement' => false,
         ),
         'codeigniter4/framework' => array(
@@ -63,6 +63,15 @@
             'aliases' => array(),
             'reference' => 'd7f08a622b3346766325488aa32ddc93ccdecc75',
             'dev_requirement' => true,
+        ),
+        'firebase/php-jwt' => array(
+            'pretty_version' => 'v6.1.0',
+            'version' => '6.1.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../firebase/php-jwt',
+            'aliases' => array(),
+            'reference' => 'fbb2967a3a68b07e37678c00c0cf51165051495f',
+            'dev_requirement' => false,
         ),
         'kint-php/kint' => array(
             'pretty_version' => '4.1.2',
