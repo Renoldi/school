@@ -25,7 +25,7 @@ class Classes extends Model
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';
-
+    
     // Validation
     protected $validationRules      = [
         'name' => 'required|alpha_numeric_space|is_unique[classes.name,id,{id}]',
