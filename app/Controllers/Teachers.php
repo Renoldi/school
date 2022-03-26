@@ -44,7 +44,7 @@ class Teachers extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->findAll());
+        return $this->respond($this->model->where('status', 1)->findAll());
     }
 
     /**
@@ -546,7 +546,7 @@ class Teachers extends ResourceController
             $this->model->transRollback();
         } else {
             $this->model->transCommit();
-            return $this->respondCreated(["success upload"]);
+            return $this->respondCreated(["result" => "success upload"]);
         }
     }
 }

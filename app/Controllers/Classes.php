@@ -86,10 +86,10 @@ class Classes extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->find($id);
+        $record = $this->model->where('status',1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
-                'user with id %d not found',
+                'class with id %d not found',
                 $id
             ));
         }
@@ -199,7 +199,7 @@ class Classes extends ResourceController
         $data = $this->request->getVar();
         if ($data == null) {
             return $this->fail("data null");
-        }       
+        }
 
         if ($data == null) {
             return $this->fail("data null");
@@ -277,7 +277,54 @@ class Classes extends ResourceController
             return $this->failNotFound('No Data Found with id ' . $id);
         }
     }
-    
+
+    /**
+     * @OA\Post(
+     *   path="/api/Classes/fromXl",
+     *   summary="fleet document",
+     *   description="fleet document",
+     *   tags={"Classes"},
+     *   @OA\RequestBody(
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           description="file to upload",
+     *           property="userfile",
+     *           type="string",
+     *           format="binary",
+     *         ),
+     *       )
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 200),
+     *      @OA\Property(property="error", type="double", example = null),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "Data Deleted"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
     public function fromXl()
     {
         $validationRule = [
@@ -327,8 +374,7 @@ class Classes extends ResourceController
             $this->model->transRollback();
         } else {
             $this->model->transCommit();
-            return $this->respondCreated(["success upload"]);
-
+            return $this->respondCreated(["result" => "success upload"]);
         }
     }
 }

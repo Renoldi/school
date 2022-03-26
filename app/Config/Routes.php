@@ -35,6 +35,16 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->post('api/BaseApi/fromXl', 'BaseApi::fromXl');
 $routes->group('api',function ($routes) {
+    $routes->post('Classes/fromXl','Classes::fromXl');
+    $routes->post('Exams/fromXl','Exams::fromXl');
+    $routes->post('Hoomrooms/fromXl','Hoomrooms::fromXl');
+    $routes->post('Privileges/fromXl','Privileges::fromXl');
+    $routes->post('Resultexams/fromXl','Resultexams::fromXl');
+    $routes->post('Rooms/fromXl','Rooms::fromXl');
+    $routes->post('Scheduleexams/fromXl','Scheduleexams::fromXl');
+    $routes->post('Students/fromXl','Students::fromXl');
+    $routes->post('Subjects/fromXl','Subjects::fromXl');
+    $routes->post('Teachers/fromXl','Teachers::fromXl');
     $routes->resource('Classes');
     $routes->resource('Exams');
     $routes->resource('Hoomrooms');

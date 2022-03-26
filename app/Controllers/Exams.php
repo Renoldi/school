@@ -41,7 +41,7 @@ class Exams extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->findAll());
+        return $this->respond($this->model->where('status', 1)->findAll());
     }
 
     /**
@@ -83,7 +83,7 @@ class Exams extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->find($id);
+        $record = $this->model->where('status', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -334,7 +334,7 @@ class Exams extends ResourceController
             $this->model->transRollback();
         } else {
             $this->model->transCommit();
-            return $this->respondCreated(["success upload"]);
+            return $this->respondCreated(["result" => "success upload"]);
 
         }
     }

@@ -325,7 +325,7 @@ class Resultexams extends ResourceController
             $this->model->transRollback();
         } else {
             $this->model->transCommit();
-            return $this->respondCreated(["success upload"]);
+            return $this->respondCreated(["result" => "success upload"]);
 
         }
     }

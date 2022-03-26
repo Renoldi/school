@@ -1,1 +1,7 @@
  php spark make:scaffold acc_account_name --restful --return entity
+
+ * template 
+    - subject
+    - class
+    - privilage
+    - room
