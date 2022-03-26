@@ -5,3 +5,40 @@
     - class
     - privilage
     - room
+    - student
+    - exam
+
+
+    SELECT 
+        s.name, e.answer,  re.choise, if(e.answer= re.choise,1,0) res 
+    FROM 
+        resultexams re 
+    JOIN exams e on e.id = re.examId 
+    JOIN students s on s.id = re.studentId WHERE re.studentId = 1;
+
+    SELECT 
+        s.name,  SUM( if(e.answer= re.choise,1,0)) res 
+    FROM 
+        resultexams re 
+    JOIN exams e on e.id = re.examId 
+    JOIN students s on s.id = re.studentId  
+    GROUP BY re.studentId;
+
+    SELECT s.name, su.name, c.name,r.name, 
+            SUM( if(e.answer= re.choise,1,0)) tot 
+    FROM resultexams re 
+    JOIN exams e on e.id = re.examId 
+    JOIN subjects su on su.id = e.subjectId
+    JOIN classes c on c.id = e.classId
+    JOIN students s on s.id = re.studentId  
+    JOIN rooms r on r.id = s.roomId
+    GROUP BY re.studentId;
+
+    SELECT s.name, su.name, c.name,r.name, SUM( if(e.answer= re.choise,1,0)) tot 
+    FROM resultexams re 
+    JOIN exams e on e.id = re.examId 
+    JOIN subjects su on su.id = e.subjectId
+    JOIN classes c on c.id = e.classId
+    JOIN students s on s.id = re.studentId  AND s.id = e.classId
+    JOIN rooms r on r.id = s.roomId
+    GROUP BY re.studentId;

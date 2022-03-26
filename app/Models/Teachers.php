@@ -37,9 +37,10 @@ class Teachers extends Model
 
     // Validation
     protected $validationRules      = [
-        'nip' => 'required|min_length[15]|alpha_numeric|is_unique[teachers.nip,id,{id}]',
-        'name' => 'required|alpha|min_length[4]',
-        'gender' => 'required|integer',
+        'nip' => 'required|min_length[10]|alpha_numeric|is_unique[teachers.nip,id,{id}]',
+        'name' => 'required|min_length[4]',
+        'password' => 'required|min_length[5]',
+        'gender' => 'required|alpha',
         'position' => 'required|',
         'dob' => 'required|',
         'subjectId' => 'required|integer',

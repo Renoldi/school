@@ -34,7 +34,7 @@ class Students extends Model
 
     // Validation
     protected $validationRules      = [
-        'nisn' => 'required|min_length[15]|alpha_numeric|is_unique[students.nisn,id,{id}]',
+        'nisn' => 'required|min_length[10]|alpha_numeric|is_unique[students.nisn,id,{id}]',
         'name' => 'required|',
         'gender' => 'required|',
         'password' => 'required|min_length[5]',

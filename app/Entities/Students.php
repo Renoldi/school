@@ -59,4 +59,11 @@ class Students extends Entity
         'roomId' => null,
         'image' => null,
     ];
+    
+    public function setPassword(string $pass)
+    {
+        $this->attributes['password'] = password_hash($pass, PASSWORD_BCRYPT);
+
+        return $this;
+    }
 }

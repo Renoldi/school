@@ -488,6 +488,53 @@ class Teachers extends ResourceController
         return $this->respond($response);
     }
 
+    /**
+     * @OA\Post(
+     *   path="/api/Teachers/fromXl",
+     *   summary="fleet document",
+     *   description="fleet document",
+     *   tags={"Teachers"},
+     *   @OA\RequestBody(
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           description="file to upload",
+     *           property="userfile",
+     *           type="string",
+     *           format="binary",
+     *         ),
+     *       )
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 200),
+     *      @OA\Property(property="error", type="double", example = null),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "Data Deleted"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
     public function fromXl()
     {
         $validationRule = [
@@ -531,6 +578,7 @@ class Teachers extends ResourceController
             $subjectEntity->image = $row[7];
             $subjectEntity->status = $row[8];
             $subjectEntity->privilegeId = $row[9];
+            $subjectEntity->password = $row[10];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(

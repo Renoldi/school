@@ -71,4 +71,11 @@ class Teachers extends Entity
         'privilegeId' => null,
         'password' => null,
     ];
+
+    public function setPassword(string $pass)
+    {
+        $this->attributes['password'] = password_hash($pass, PASSWORD_BCRYPT);
+
+        return $this;
+    }
 }
