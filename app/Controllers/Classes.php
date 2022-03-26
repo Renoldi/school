@@ -327,7 +327,8 @@ class Classes extends ResourceController
             $this->model->transRollback();
         } else {
             $this->model->transCommit();
-            return $this->respond("sdfsd");
+            return $this->respondCreated(["success upload"]);
+
         }
     }
 }
