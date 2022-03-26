@@ -274,4 +274,58 @@ class Scheduleexams extends ResourceController
             return $this->failNotFound('No Data Found with id ' . $id);
         }
     }
+
+    public function fromXl()
+    {
+        $validationRule = [
+            'userfile' => [
+                'label' => 'xls File',
+                'rules' => 'uploaded[userfile]'
+                    . '|mime_in[userfile,application/xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]'
+            ],
+        ];
+        if (!$this->validate($validationRule)) {
+            return $this->failValidationErrors($this->validator->getErrors());
+        }
+
+        $file_excel = $this->request->getFile('userfile');
+        // $file_excel->getMimeType();
+
+        $ext = $file_excel->getClientExtension();
+        if ($ext == 'xls') {
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+        } else {
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        }
+        $spreadsheet = $render->load($file_excel);
+
+        $data =  $spreadsheet->getActiveSheet()->toArray();
+
+        $subject = new Subjects();
+        $subjectEntity = new EntitiesScheduleexams();
+        $this->model->transStart();
+        foreach ($data as $x => $row) {
+            if ($x == 0) {
+                continue;
+            }
+            $subjectEntity->name = $row[0];
+            $subjectEntity->status = $row[1];
+
+            if (!$this->model->save($subjectEntity)) {
+                return $this->failValidationErrors(
+                    [
+                        $x + 1,
+                        $this->model->errors()
+                    ]
+                );
+            }
+        }
+
+        if ($this->model->transStatus() === false) {
+            $this->model->transRollback();
+        } else {
+            $this->model->transCommit();
+            return $this->respond("sdfsd");
+        }
+    }
 }

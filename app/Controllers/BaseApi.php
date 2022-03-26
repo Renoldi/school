@@ -106,9 +106,7 @@ class BaseApi extends ResourceController
             ],
         ];
         if (!$this->validate($validationRule)) {
-            $data = ['errors' => $this->validator->getErrors()];
-
-            return $this->respond($data);
+            return $this->failValidationErrors($this->validator->getErrors());
         }
 
         $file_excel = $this->request->getFile('userfile');
@@ -136,10 +134,10 @@ class BaseApi extends ResourceController
 
             if (!$subject->save($subjectEntity)) {
                 return $this->failValidationErrors(
-                    // [
-                    //     $x+1,
+                    [
+                        $x + 1,
                         $subject->errors()
-                    // ]
+                    ]
                 );
             }
         }
@@ -148,7 +146,7 @@ class BaseApi extends ResourceController
             $subject->transRollback();
         } else {
             $subject->transCommit();
-            return $this->respondCreated("sdfsd");
+            return $this->respond("sdfsd");
         }
     }
 }
