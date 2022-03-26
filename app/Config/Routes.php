@@ -33,6 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 //  ['filter' => 'Auth'], 
 $routes->get('/', 'Home::index');
+$routes->post('api/BaseApi/fromXl', 'BaseApi::fromXl');
 $routes->group('api',function ($routes) {
     $routes->resource('Classes');
     $routes->resource('Exams');

@@ -144,7 +144,7 @@ class Classes extends ResourceController
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->save($entity)) {
-            return $this->fail($this->model->errors());
+            return $this->failValidationErrors($this->model->errors());
         }
 
         return $this->respondCreated($entity, 'post created');
@@ -208,7 +208,7 @@ class Classes extends ResourceController
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->update($id, $entity)) {
-            return $this->fail($this->model->errors());
+            return $this->failValidationErrors($this->model->errors());
         }
 
         return $this->respondUpdated($data, "updated");

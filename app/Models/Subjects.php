@@ -28,7 +28,7 @@ class Subjects extends Model
 
     // Validation
     protected $validationRules      = [
-        'name' => 'required|alpha|is_unique[classes.name,id,{id}]',
+        'name' => 'required|alpha_numeric_space|is_unique[subjects.name,id,{id}]',
         'status' => 'required|integer',
     ];
     protected $validationMessages   = [];
