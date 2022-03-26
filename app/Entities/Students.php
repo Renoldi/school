@@ -54,8 +54,6 @@ class Students extends Entity
         'name' => null,
         'gender' => null,
         'password' => null,
-        'datetime' => null,
-        'updatedAt' => null,
         'status' => null,
         'classId' => null,
         'roomId' => null,

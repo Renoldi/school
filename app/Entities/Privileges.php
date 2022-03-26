@@ -26,7 +26,7 @@ class Privileges extends Entity
     protected $dates   = ['createdAt', 'updatedAt', 'deletedAt'];
     protected $casts   = [];
     protected $attributes = [
-        'classId' => null,
+        'name' => null,
         'status' => null,
     ];
 }

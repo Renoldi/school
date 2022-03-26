@@ -15,14 +15,14 @@ class Students extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nisn' => null,
-        'name' => null,
-        'gender' => null,
-        'password' => null,
-        'status' => null,
-        'classId' => null,
-        'roomId' => null,
-        'image' => null,
+        'nisn',
+        'name',
+        'gender',
+        'password',
+        'status',
+        'classId',
+        'roomId',
+        'image',
     ];
 
     // Dates

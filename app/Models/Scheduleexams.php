@@ -15,11 +15,11 @@ class Scheduleexams extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'subjectId' => null,
-        'classId' => null,
-        'start' => null,
-        'end' => null,
-        'status' => null,
+        'subjectId',
+        'classId',
+        'start',
+        'end',
+        'status',
     ];
 
     // Dates
