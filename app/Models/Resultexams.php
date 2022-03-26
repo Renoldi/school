@@ -18,22 +18,20 @@ class Resultexams extends Model
         'studentId',
         'examId',
         'choise',
-        'date',
     ];
 
     // Dates
     protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    protected $createdField  = 'createdAt';
+    protected $updatedField  = 'updatedAt';
+    protected $deletedField  = 'deletedAt';
 
     // Validation
     protected $validationRules      = [
         'studentId' => 'required|integer',
         'examId' => 'required|integer',
         'choise' => 'required|string',
-        'date' => 'required|valid_date[Y-m-d H:m:s]',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

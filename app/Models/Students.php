@@ -19,8 +19,6 @@ class Students extends Model
         'name' => null,
         'gender' => null,
         'password' => null,
-        'datetime' => null,
-        'updatedAt' => null,
         'status' => null,
         'classId' => null,
         'roomId' => null,
@@ -30,9 +28,9 @@ class Students extends Model
     // Dates
     protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    protected $createdField  = 'createdAt';
+    protected $updatedField  = 'updatedAt';
+    protected $deletedField  = 'deletedAt';
 
     // Validation
     protected $validationRules      = [
@@ -40,8 +38,6 @@ class Students extends Model
         'name' => 'required|',
         'gender' => 'required|',
         'password' => 'required|min_length[5]',
-        'datetime' => 'required|',
-        'updatedAt' => 'required|',
         'status' => 'required|integer',
         'classId' => 'required|integer',
         'roomId' => 'required|integer',
