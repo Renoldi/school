@@ -355,7 +355,7 @@ class Teachers extends ResourceController
             return $this->respondCreated($response);
         } else {
 
-            $user =  $this->model->where('email', $email)->first();
+            $user =  $this->model->where('email', $email)->join('privileges',"privileges.id=".$this->model->primaryKey)->first();
 
             if (is_null($user)) {
                 return $this->respond(['error' => 'Invalid username '], 401);
@@ -380,26 +380,25 @@ class Teachers extends ResourceController
                 $payload = array(
                     "iss" => base_url(),
                     "aud" => array(
-                        "my-api-User",
+                        "my-api-Teachers",
                         base_url('api/Teachers/details'),
                         $this->request->getServer('REMOTE_ADDR')
                     ),
-                    "sub" => "login " . $user->email . "" . $lastLogin,
+                    "sub" => "login ",
                     "iat" => $iat, //Time the JWT issued at
                     "exp" =>  $exp, // Expiration time of token,
                     "user" => array(
-                        "id" => "9",
-                        "firstname" => $user->firstname,
-                        "lastname" =>  $user->lastname,
-                        "about" =>  $user->about,
-                        "email" =>  $user->email,
-                        "image" =>  $user->image,
-                        "status" => $user->status,
-                        "lastLogin" => $lastLogin,
-                        "lastLogout" => $user->lastLogout,
-                        "ipAddress" => $user->ipAddress,
-                        "isAdmin" => $user->isAdmin,
-                        "companyId" => $user->companyId,
+                        "id" => $user->id,
+                        'nip' => $user->nip,
+                        'name' => $user->name,
+                        'gender' => $user->gender,
+                        'position' => $user->position,
+                        'dob' => $user->dob,
+                        'subjectId' => $user->subjectId,
+                        'email' => $user->email,
+                        'image' => $user->image,
+                        'status' => $user->status,
+                        'privilegeId' => $user->privilegeId,
                     ),
                 );
 

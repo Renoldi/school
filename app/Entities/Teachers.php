@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
+
 /**
  * @OA\Schema(
  *   schema="Teachers",
@@ -68,5 +69,6 @@ class Teachers extends Entity
         'image' => null,
         'status' => null,
         'privilegeId' => null,
+        'password' => null,
     ];
 }
