@@ -55,7 +55,7 @@ use CodeIgniter\Entity\Entity;
 class Teachers extends Entity
 {
     protected $datamap = [];
-    protected $dates   = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates   = ['createdAt', 'updatedAt', 'deletedAt'];
     protected $casts   = [];
     protected $attributes = [
         'nip' => null,

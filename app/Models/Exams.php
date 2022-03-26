@@ -24,7 +24,7 @@ class Exams extends Model
         'c',
         'd',
         'e',
-        'correct',
+        'answer',
         'status',
     ];
 
@@ -46,7 +46,7 @@ class Exams extends Model
         'c' => 'required',
         'd' => 'required',
         'e' => 'required',
-        'correct' => 'required',
+        'answer' => 'required',
         'status' => 'required|integer',
     ];
     protected $validationMessages   = [];

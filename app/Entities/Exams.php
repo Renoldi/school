@@ -47,7 +47,7 @@ use CodeIgniter\Entity\Entity;
  *      type="string",
  *    ),  
  * @OA\Property(
- *      property="correct",
+ *      property="answer",
  *      type="string",
  *    ),  
  * @OA\Property(
@@ -59,7 +59,7 @@ use CodeIgniter\Entity\Entity;
 class Exams extends Entity
 {
     protected $datamap = [];
-    protected $dates   = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates   = ['createdAt', 'updatedAt', 'deletedAt'];
     protected $casts   = [];
     protected $attributes = [
         'classId' => null,
@@ -71,7 +71,7 @@ class Exams extends Entity
         'c' => null,
         'd' => null,
         'e' => null,
-        'correct' => null,
+        'answer' => null,
         'status' => null,
     ];
 }

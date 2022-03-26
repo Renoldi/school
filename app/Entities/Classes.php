@@ -24,10 +24,10 @@ use CodeIgniter\Entity\Entity;
 class Classes extends Entity
 {
     protected $datamap = [];
-    protected $dates   = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates   = ['createdAt', 'updatedAt', 'deletedAt'];
     protected $casts   = [];
     protected $attributes = [
-        'classId' => null,
+        'name' => null,
         'status' => null,
     ];
      
