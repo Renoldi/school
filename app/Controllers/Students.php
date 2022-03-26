@@ -521,8 +521,14 @@ class Students extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->name = $row[0];
-            $subjectEntity->status = $row[1];
+            $subjectEntity->nisn = $row[0];
+            $subjectEntity->name = $row[1];
+            $subjectEntity->gender = $row[2];
+            $subjectEntity->password = $row[3];
+            $subjectEntity->status = $row[4];
+            $subjectEntity->classId = $row[5];
+            $subjectEntity->roomId = $row[6];
+            $subjectEntity->image = $row[7];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(

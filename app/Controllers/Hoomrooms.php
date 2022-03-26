@@ -196,7 +196,7 @@ class Hoomrooms extends ResourceController
         $data = $this->request->getVar();
         if ($data == null) {
             return $this->fail("data null");
-        }       
+        }
 
         if ($data == null) {
             return $this->fail("data null");
@@ -308,8 +308,10 @@ class Hoomrooms extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->name = $row[0];
-            $subjectEntity->status = $row[1];
+            $subjectEntity->roomId = $row[0];
+            $subjectEntity->classId = $row[1];
+            $subjectEntity->teacherId = $row[2];
+            $subjectEntity->status = $row[3];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(
@@ -326,7 +328,6 @@ class Hoomrooms extends ResourceController
         } else {
             $this->model->transCommit();
             return $this->respondCreated(["success upload"]);
-
         }
     }
 }

@@ -308,8 +308,11 @@ class Scheduleexams extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->name = $row[0];
-            $subjectEntity->status = $row[1];
+            $subjectEntity->subjectId = $row[0];
+            $subjectEntity->classId = $row[1];
+            $subjectEntity->start = $row[2];
+            $subjectEntity->end = $row[3]; 
+            $subjectEntity->status = $row[4];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(

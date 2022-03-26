@@ -522,8 +522,16 @@ class Teachers extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->name = $row[0];
-            $subjectEntity->status = $row[1];
+            $subjectEntity->nip = $row[0];
+            $subjectEntity->name = $row[1];
+            $subjectEntity->gender = $row[2];
+            $subjectEntity->position = $row[3];
+            $subjectEntity->dob = $row[4];
+            $subjectEntity->subjectId = $row[5];
+            $subjectEntity->email = $row[6];
+            $subjectEntity->image = $row[7];
+            $subjectEntity->status = $row[8];
+            $subjectEntity->privilegeId = $row[9];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(
@@ -540,7 +548,6 @@ class Teachers extends ResourceController
         } else {
             $this->model->transCommit();
             return $this->respondCreated(["success upload"]);
-
         }
     }
 }
