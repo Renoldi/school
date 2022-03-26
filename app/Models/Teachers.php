@@ -42,7 +42,7 @@ class Teachers extends Model
         'position' => 'required|',
         'dob' => 'required|',
         'subjectId' => 'required|integer',
-        'email' => 'required|valid_email',
+        'email' => 'required|valid_email|is_unique[teachers.email,id,{id}]',
         // 'image' => 'required|',
         'status' => 'required|integer',
         'privilegeId' => 'required|integer',

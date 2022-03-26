@@ -25,15 +25,7 @@ use CodeIgniter\Entity\Entity;
  * @OA\Property(
  *      property="password",
  *      type="string",
- *    ), 
- * @OA\Property(
- *      property="datetime",
- *      type="datetime",
- *    ), 
- * @OA\Property(
- *      property="updatedAt",
- *      type="datetime",
- *    ), 
+ *    ),  
  * @OA\Property(
  *      property="classId",
  *      type="integer",

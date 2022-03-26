@@ -33,8 +33,8 @@ class Scheduleexams extends Model
     protected $validationRules      = [
         'subjectId' => 'required|integer',
         'classId' => 'required|integer',
-        'start' => 'required|valid_date[Y-m-d\TH:m-s]',
-        'end' => 'required',
+        'start' => 'required|valid_date',
+        'end' => 'required|valid_date',
         'status' => 'required|integer',
     ];
     protected $validationMessages   = [];

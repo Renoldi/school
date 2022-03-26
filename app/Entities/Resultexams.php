@@ -22,10 +22,6 @@ use CodeIgniter\Entity\Entity;
  *      property="choise",
  *      type="string",
  *    ),    
- * @OA\Property(
- *      property="date",
- *      type="datetime",
- *    ), 
  * )
  */
 class Resultexams extends Entity
@@ -37,6 +33,5 @@ class Resultexams extends Entity
         'studentId' => null,
         'examId' => null,
         'choise' => null,
-        'date' => null,
     ];
 }

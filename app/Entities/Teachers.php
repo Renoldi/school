@@ -11,6 +11,10 @@ use CodeIgniter\Entity\Entity;
  *      type="integer",
  *    ),
  * @OA\Property(
+ *      property="nip",
+ *      type="string",
+ *    ), 
+ * @OA\Property(
  *      property="name",
  *      type="string",
  *    ), 
@@ -28,10 +32,6 @@ use CodeIgniter\Entity\Entity;
  *    ), 
  * @OA\Property(
  *      property="subjectId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="classId",
  *      type="integer",
  *    ),  
  * @OA\Property(

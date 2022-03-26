@@ -15,6 +15,10 @@ use CodeIgniter\Entity\Entity;
  *      type="integer",
  *    ), 
  * @OA\Property(
+ *      property="classId",
+ *      type="integer",
+ *    ), 
+ * @OA\Property(
  *      property="start",
  *      type="datetime",
  *    ), 
