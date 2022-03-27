@@ -23,6 +23,7 @@ class Students extends Model
         'classId',
         'roomId',
         'image',
+        'privilegeId',
     ];
 
     // Dates
@@ -41,7 +42,7 @@ class Students extends Model
         'status' => 'required|integer',
         'classId' => 'required|integer',
         'roomId' => 'required|integer',
-        // 'image' => 'required|',
+        'privilegeId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

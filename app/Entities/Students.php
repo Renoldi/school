@@ -39,6 +39,10 @@ use CodeIgniter\Entity\Entity;
  *      type="integer",
  *    ), 
  * @OA\Property(
+ *      property="privilegeId",
+ *      type="integer",
+ *    ), 
+ * @OA\Property(
  *      property="image",
  *      type="string",
  *    ), 
@@ -58,6 +62,7 @@ class Students extends Entity
         'classId' => null,
         'roomId' => null,
         'image' => null,
+        'privilegeId' => null,
     ];
     
     public function setPassword(string $pass)

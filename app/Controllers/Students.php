@@ -575,6 +575,7 @@ class Students extends ResourceController
             $subjectEntity->status = $row[4];
             $subjectEntity->classId = $row[5];
             $subjectEntity->roomId = $row[6];
+            $subjectEntity->privilegeId = $row[7];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(
