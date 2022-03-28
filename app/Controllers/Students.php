@@ -472,7 +472,7 @@ class Students extends ResourceController
         try {
             $decoded = JWT::decode($token, new Key($key, 'HS256'));
             $response = [
-                'message' => 'detail user',
+                'message' => 'detail student',
                 'decoded' => $decoded,
             ];
             return $this->respond($response);
