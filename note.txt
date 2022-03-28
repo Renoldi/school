@@ -51,3 +51,5 @@
     JOIN students s on s.id = re.studentId  and s.classId = e.classId and c.id = s.classId
     JOIN rooms r on r.id = s.roomId
     GROUP BY re.studentId;
+
+    SELECT * FROM `subjects` where FIND_IN_SET(2,departmentId);
