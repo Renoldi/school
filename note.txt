@@ -53,3 +53,12 @@
     GROUP BY re.studentId;
 
     SELECT * FROM `subjects` where FIND_IN_SET(2,departmentId);
+    SELECT s.name,s.roomId, r.name, d.name FROM students s 
+    JOIN rooms r on r.id = s.roomId 
+    JOIN departments d on d.id = r.id;
+
+    SELECT s.name, s.roomId, r.name, d.id, d.name
+    FROM students s 
+    JOIN rooms r on r.id= s.roomId
+    JOIN departments d on d.id = r.departmentId
+    where s.id = 1; 
