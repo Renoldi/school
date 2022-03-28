@@ -44,7 +44,7 @@ class Students extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->where('status',1)->findAll());
+        return $this->respond($this->model->where('status', 1)->findAll());
     }
 
     /**
@@ -86,7 +86,7 @@ class Students extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->where('status',1)->find($id);
+        $record = $this->model->where('status', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -199,7 +199,7 @@ class Students extends ResourceController
         $data = $this->request->getVar();
         if ($data == null) {
             return $this->fail("data null");
-        }       
+        }
 
         if ($data == null) {
             return $this->fail("data null");
@@ -355,7 +355,7 @@ class Students extends ResourceController
             return $this->respondCreated($response);
         } else {
 
-            $user =  $this->model->where('email', $email)->first();
+            $user =  $this->model->join('rooms', 'rooms.id=students.roomId')->join('departments', 'departments.id=rooms.id')->join()->where('email', $email)->first();
 
             if (is_null($user)) {
                 return $this->respond(['error' => 'Invalid username '], 401);
@@ -484,7 +484,7 @@ class Students extends ResourceController
         $response = [
             'password' => $data,
             'origin' => $pass,
-            'length'=>strlen($data)
+            'length' => strlen($data)
         ];
         return $this->respond($response);
     }
@@ -592,7 +592,6 @@ class Students extends ResourceController
         } else {
             $this->model->transCommit();
             return $this->respondCreated(["result" => "success upload"]);
-
         }
     }
 }
