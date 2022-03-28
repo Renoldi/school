@@ -387,20 +387,21 @@ class Students extends ResourceController
                     "sub" => "login " . $user->email . "" . $lastLogin,
                     "iat" => $iat, //Time the JWT issued at
                     "exp" =>  $exp, // Expiration time of token,
-                    "user" => array(
-                        "id" => "9",
-                        "firstname" => $user->firstname,
-                        "lastname" =>  $user->lastname,
-                        "about" =>  $user->about,
-                        "email" =>  $user->email,
-                        "image" =>  $user->image,
-                        "status" => $user->status,
-                        "lastLogin" => $lastLogin,
-                        "lastLogout" => $user->lastLogout,
-                        "ipAddress" => $user->ipAddress,
-                        "isAdmin" => $user->isAdmin,
-                        "companyId" => $user->companyId,
-                    ),
+                    "user" => $user
+                    // array(
+                    //     "id" => "9",
+                    //     "firstname" => $user->firstname,
+                    //     "lastname" =>  $user->lastname,
+                    //     "about" =>  $user->about,
+                    //     "email" =>  $user->email,
+                    //     "image" =>  $user->image,
+                    //     "status" => $user->status,
+                    //     "lastLogin" => $lastLogin,
+                    //     "lastLogout" => $user->lastLogout,
+                    //     "ipAddress" => $user->ipAddress,
+                    //     "isAdmin" => $user->isAdmin,
+                    //     "companyId" => $user->companyId,
+                    // ),
                 );
 
                 $token = JWT::encode($payload, $key, 'HS256');
@@ -569,19 +570,20 @@ class Students extends ResourceController
                 continue;
             }
             $subjectEntity->nisn = $row[0];
-            $subjectEntity->name = $row[1];
-            $subjectEntity->gender = $row[2];
-            $subjectEntity->password = $row[3];
-            $subjectEntity->status = $row[4];
-            $subjectEntity->classId = $row[5];
-            $subjectEntity->roomId = $row[6];
+            $subjectEntity->email = $row[1];
+            $subjectEntity->name = $row[2];
+            $subjectEntity->gender = $row[3];
+            $subjectEntity->password = $row[4];
+            $subjectEntity->status = $row[5];
+            $subjectEntity->classId = $row[6];
+            $subjectEntity->roomId = $row[7];
             $subjectEntity->privilegeId = $row[7];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(
                     [
-                        $x + 1,
-                        $this->model->errors()
+                        'row' => $x + 1,
+                        'fields' => $this->model->errors()
                     ]
                 );
             }

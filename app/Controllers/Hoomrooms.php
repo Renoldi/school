@@ -316,8 +316,8 @@ class Hoomrooms extends ResourceController
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(
                     [
-                        $x + 1,
-                        $this->model->errors()
+                        'row' => $x + 1,
+                        'fields' => $this->model->errors()
                     ]
                 );
             }
