@@ -355,7 +355,7 @@ class Students extends ResourceController
             return $this->respondCreated($response);
         } else {
 
-            $user =  $this->model->join('rooms', 'rooms.id=students.roomId')->join('departments', 'departments.id=rooms.id')->join()->where('email', $email)->first();
+            $user =  $this->model->select("students.* , r.departmentId")->join('rooms r', 'r.id=students.roomId')->join('departments d', 'd.id=r.departmentId')->where('email', $email)->first();
 
             if (is_null($user)) {
                 return $this->respond(['error' => 'Invalid username '], 401);
@@ -368,49 +368,51 @@ class Students extends ResourceController
             }
             $iat = time(); // current timestamp value
 
-            $entity = new EntitiesStudents();
-            $lastLogin = Date('Y-m-d H:i:s', $iat);
-            $entity->lastLogin = $lastLogin;
-            $entity->ipAddress = $this->request->getServer('REMOTE_ADDR');
-            $entity->about = "login";
+            $key = $this->getKey();
+            $exp = $iat + (3600 * 24 * (365 / 12));
+            $payload = array(
+                "iss" => base_url(),
+                "aud" => array(
+                    "my-api-User",
+                    base_url('api/Students/details'),
+                    $this->request->getServer('REMOTE_ADDR')
+                ),
+                "sub" => "login " . $user->email,
+                "iat" => $iat, //Time the JWT issued at
+                "exp" =>  $exp, // Expiration time of token,
+                "user" =>
+                array(
+                    "id" =>  $user->id,
+                    "name" => $user->name,
+                    "email" =>  $user->email,
+                    "image" =>  $user->image,
+                    "status" => $user->status,
+                    "createdAt" => $user->createdAt,
+                    "updatedAt" => $user->updatedAt,
+                    "roomId" => $user->roomId,
+                    "departmentId" => $user->departmentId,
+                    "privilegeId" => $user->privilegeId,
+                ),
+            );
 
-            if ($this->model->update($user->id, $entity)) {
-                $key = $this->getKey();
-                $exp = $iat + (3600 * 24 * (365 / 12));
-                $payload = array(
-                    "iss" => base_url(),
-                    "aud" => array(
-                        "my-api-User",
-                        base_url('api/Students/details'),
-                        $this->request->getServer('REMOTE_ADDR')
-                    ),
-                    "sub" => "login " . $user->email . "" . $lastLogin,
-                    "iat" => $iat, //Time the JWT issued at
-                    "exp" =>  $exp, // Expiration time of token,
-                    "user" => $user
-                    // array(
-                    //     "id" => "9",
-                    //     "firstname" => $user->firstname,
-                    //     "lastname" =>  $user->lastname,
-                    //     "about" =>  $user->about,
-                    //     "email" =>  $user->email,
-                    //     "image" =>  $user->image,
-                    //     "status" => $user->status,
-                    //     "lastLogin" => $lastLogin,
-                    //     "lastLogout" => $user->lastLogout,
-                    //     "ipAddress" => $user->ipAddress,
-                    //     "isAdmin" => $user->isAdmin,
-                    //     "companyId" => $user->companyId,
-                    // ),
-                );
+            $token = JWT::encode($payload, $key, 'HS256');
 
-                $token = JWT::encode($payload, $key, 'HS256');
-                $response = [
-                    'message' => 'Login Succesful',
-                    "token" => $token,
-                ];
-                return $this->respond($response);
-            }
+            // try {
+            //     $decoded = JWT::decode($token, new Key($key, 'HS256'));
+            //     $response = [
+            //         'message' => 'detail user',
+            //         'decoded' => $decoded,
+            //     ];
+            //     return $this->respond($response);
+            // } catch (Exception $ex) {
+            //     return $this->failUnauthorized();
+            // }
+
+            $response = [
+                'message' => 'Login Succesful',
+                "token" => $token,
+            ];
+            return $this->respond($response);
         }
     }
 
@@ -477,6 +479,7 @@ class Students extends ResourceController
         } catch (Exception $ex) {
             return $this->failUnauthorized();
         }
+        // var_dump("SDFSDFSDF");
     }
 
     public function setPassword($pass = null)

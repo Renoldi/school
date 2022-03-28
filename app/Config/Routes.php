@@ -33,18 +33,25 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 //  ['filter' => 'Auth'], 
 $routes->get('/', 'Home::index');
-$routes->post('api/BaseApi/fromXl', 'BaseApi::fromXl');
-$routes->group('api',function ($routes) {
-    $routes->post('Classes/fromXl','Classes::fromXl');
-    $routes->post('Exams/fromXl','Exams::fromXl');
-    $routes->post('Hoomrooms/fromXl','Hoomrooms::fromXl');
-    $routes->post('Privileges/fromXl','Privileges::fromXl');
-    $routes->post('Resultexams/fromXl','Resultexams::fromXl');
-    $routes->post('Rooms/fromXl','Rooms::fromXl');
-    $routes->post('Scheduleexams/fromXl','Scheduleexams::fromXl');
-    $routes->post('Students/fromXl','Students::fromXl');
-    $routes->post('Subjects/fromXl','Subjects::fromXl');
-    $routes->post('Teachers/fromXl','Teachers::fromXl');
+
+$routes->group('api', function ($routes) {
+    $routes->post('Teachers/login', 'Teachers::login');
+    $routes->post('Students/login', 'Students::login');
+});
+
+$routes->group('api', ['filter' => 'Auth'], function ($routes) {
+    $routes->post('Classes/fromXl', 'Classes::fromXl');
+    $routes->post('Exams/fromXl', 'Exams::fromXl');
+    $routes->post('Hoomrooms/fromXl', 'Hoomrooms::fromXl');
+    $routes->post('Privileges/fromXl', 'Privileges::fromXl');
+    $routes->post('Resultexams/fromXl', 'Resultexams::fromXl');
+    $routes->post('Rooms/fromXl', 'Rooms::fromXl');
+    $routes->post('Scheduleexams/fromXl', 'Scheduleexams::fromXl');
+    $routes->get('Students/details', 'Students::details');
+    $routes->post('Students/fromXl', 'Students::fromXl');
+    $routes->post('Subjects/fromXl', 'Subjects::fromXl');
+    $routes->get('Teachers/details', 'Teachers::details');
+    $routes->post('Teachers/fromXl', 'Teachers::fromXl');
     $routes->resource('Classes');
     $routes->resource('Exams');
     $routes->resource('Hoomrooms');
