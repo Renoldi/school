@@ -48,7 +48,7 @@ class Auth implements FilterInterface
                         'status'   => 401,
                         'error'    => true,
                         'messages' => [
-                            'error' =>   'Token Required'
+                            'error' => 'Unauthorized'
                         ],
                     ]
                 )
@@ -63,7 +63,7 @@ class Auth implements FilterInterface
                     'status'   => 401,
                     'error'    => true,
                     'messages' => [
-                        'error' =>   'Token Required'
+                        'error' => 'Unauthorized'
                     ]
                 ])
                 ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);

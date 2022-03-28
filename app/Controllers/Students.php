@@ -369,7 +369,8 @@ class Students extends ResourceController
             $iat = time(); // current timestamp value
 
             $key = $this->getKey();
-            $exp = $iat + (3600 * 24 * (365 / 12));
+            $exp = $iat +  100  ;
+            // $exp = $iat + (3600 * 24 * (365 / 12));
             $payload = array(
                 "iss" => base_url(),
                 "aud" => array(
@@ -380,6 +381,7 @@ class Students extends ResourceController
                 "sub" => "login " . $user->email,
                 "iat" => $iat, //Time the JWT issued at
                 "exp" =>  $exp, // Expiration time of token,
+                "exps"=> Date('Y-m-d H:i:s', $exp),
                 "user" =>
                 array(
                     "id" =>  $user->id,
@@ -399,9 +401,16 @@ class Students extends ResourceController
 
             // try {
             //     $decoded = JWT::decode($token, new Key($key, 'HS256'));
+            //     $currentTime = Time();
+            //     $expireTime = $decoded->exp;
+            //     // if()
+            //     // Date('Y-m-d H:i:s', $iat);
             //     $response = [
+            //         $token,
             //         'message' => 'detail user',
             //         'decoded' => $decoded,
+            //         Date('Y-m-d H:i:s', $currentTime),
+            //         Date('Y-m-d H:i:s', $expireTime)
             //     ];
             //     return $this->respond($response);
             // } catch (Exception $ex) {
@@ -476,6 +485,7 @@ class Students extends ResourceController
                 'decoded' => $decoded,
             ];
             return $this->respond($response);
+            
         } catch (Exception $ex) {
             return $this->failUnauthorized();
         }

@@ -7,6 +7,9 @@ use App\Libraries\StdobjeToArray;
 use App\Models\Subjects as ModelsSubjects;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
+use Exception;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class Subjects extends ResourceController
 {
@@ -372,6 +375,36 @@ class Subjects extends ResourceController
         } else {
             $this->model->transCommit();
             return $this->respondCreated(["result" => "success upload"]);
+        }
+    }
+
+    public function getSubject()
+    {
+        $key = getenv('JWT_SECRET');
+        $header = $this->request->getServer('HTTP_AUTHORIZATION');
+        $token = null;
+
+        // extract the token from the header
+        if (!empty($header)) {
+            if (preg_match('/Bearer\s(\S+)/', $header, $matches)) {
+                $token = $matches[1];
+            }
+        }
+
+        // // check if token is null or empty
+        if (is_null($token) || empty($token)) {
+            return $this->failUnauthorized();
+        }
+        try {
+            $decoded = JWT::decode($token, new Key($key, 'HS256'));
+            $response = [
+                'message' => 'detail student',
+                'decoded' => $decoded,
+            ];
+            return $this->respond($response);
+            
+        } catch (Exception $ex) {
+            return $this->failUnauthorized();
         }
     }
 }
