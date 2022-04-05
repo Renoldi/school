@@ -1,4 +1,7 @@
  php spark make:scaffold acc_account_name --restful --return entity
+ php spark serve
+
+ https://onlinewebtutorblog.com/how-to-enable-cors-in-codeigniter-4-for-rest-apis/
 
  * template 
     - subject
