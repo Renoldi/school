@@ -355,7 +355,7 @@ class Teachers extends ResourceController
             return $this->respondCreated($response);
         } else {
 
-            $user =  $this->model->where('email', $email)->join('privileges',"privileges.id=".$this->model->primaryKey)->first();
+            $user =  $this->model->where('email', $email)->join('privileges', "privileges.id=" . $this->model->primaryKey)->first();
 
             if (is_null($user)) {
                 return $this->respond(['error' => 'Invalid username '], 401);
@@ -402,7 +402,8 @@ class Teachers extends ResourceController
                     ),
                 );
 
-                $token = JWT::encode($payload, $key, 'HS256');
+                helper('jwt');
+                $token = generate($payload);
                 $response = [
                     'message' => 'Login Succesful',
                     "token" => $token,
@@ -450,25 +451,12 @@ class Teachers extends ResourceController
      */
     public function details()
     {
-        $key = getenv('JWT_SECRET');
         $header = $this->request->getServer('HTTP_AUTHORIZATION');
-        $token = null;
-
-        // extract the token from the header
-        if (!empty($header)) {
-            if (preg_match('/Bearer\s(\S+)/', $header, $matches)) {
-                $token = $matches[1];
-            }
-        }
-
-        // // check if token is null or empty
-        if (is_null($token) || empty($token)) {
-            return $this->failUnauthorized();
-        }
         try {
-            $decoded = JWT::decode($token, new Key($key, 'HS256'));
+            helper('jwt');
+            $decoded = detailJwt($header);
             $response = [
-                'message' => 'detail user',
+                'message' => 'detail teacher',
                 'decoded' => $decoded,
             ];
             return $this->respond($response);
@@ -477,16 +465,16 @@ class Teachers extends ResourceController
         }
     }
 
-    public function setPassword($pass = null)
-    {
-        $data = password_hash($pass, PASSWORD_BCRYPT);
-        $response = [
-            'password' => $data,
-            'origin' => $pass,
-            'length' => strlen($data)
-        ];
-        return $this->respond($response);
-    }
+    // public function setPassword($pass = null)
+    // {
+    //     $data = password_hash($pass, PASSWORD_BCRYPT);
+    //     $response = [
+    //         'password' => $data,
+    //         'origin' => $pass,
+    //         'length' => strlen($data)
+    //     ];
+    //     return $this->respond($response);
+    // }
 
     /**
      * @OA\Post(

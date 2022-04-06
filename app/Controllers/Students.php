@@ -7,9 +7,7 @@ use App\Libraries\StdobjeToArray;
 use App\Models\Students as ModelsStudents;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
-use Exception;
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
+use Exception; 
 
 class Students extends ResourceController
 {
@@ -368,8 +366,6 @@ class Students extends ResourceController
             }
             $iat = time(); // current timestamp value
 
-            $key = $this->getKey();
-            // $exp = $iat +  100  ;
             $exp = $iat + (3600 * 24 * (365 / 12));
             $payload = array(
                 "iss" => base_url(),
@@ -381,9 +377,7 @@ class Students extends ResourceController
                 "sub" => "login " . $user->email,
                 "iat" => $iat, //Time the JWT issued at
                 "exp" =>  $exp, // Expiration time of token,
-                "exps"=> Date('Y-m-d H:i:s', $exp),
-                "data" =>
-                array(
+                "data" => array(
                     "id" =>  $user->id,
                     "name" => $user->name,
                     "email" =>  $user->email,
@@ -397,26 +391,8 @@ class Students extends ResourceController
                 ),
             );
 
-            $token = JWT::encode($payload, $key, 'HS256');
-
-            // try {
-            //     $decoded = JWT::decode($token, new Key($key, 'HS256'));
-            //     $currentTime = Time();
-            //     $expireTime = $decoded->exp;
-            //     // if()
-            //     // Date('Y-m-d H:i:s', $iat);
-            //     $response = [
-            //         $token,
-            //         'message' => 'detail user',
-            //         'decoded' => $decoded,
-            //         Date('Y-m-d H:i:s', $currentTime),
-            //         Date('Y-m-d H:i:s', $expireTime)
-            //     ];
-            //     return $this->respond($response);
-            // } catch (Exception $ex) {
-            //     return $this->failUnauthorized();
-            // }
-
+            helper('jwt');
+            $token = generate($payload);
             $response = [
                 'message' => 'Login Succesful',
                 "token" => $token,
@@ -463,35 +439,20 @@ class Students extends ResourceController
      */
     public function details()
     {
-        $key = getenv('JWT_SECRET');
         $header = $this->request->getServer('HTTP_AUTHORIZATION');
-        $token = null;
 
-        // extract the token from the header
-        if (!empty($header)) {
-            if (preg_match('/Bearer\s(\S+)/', $header, $matches)) {
-                $token = $matches[1];
-            }
-        }
-
-        // // check if token is null or empty
-        if (is_null($token) || empty($token)) {
-            return $this->failUnauthorized();
-        }
         try {
-            $decoded = JWT::decode($token, new Key($key, 'HS256'));
+
+            helper('jwt');
+            $decoded = detailJwt($header);
             $response = [
                 'message' => 'detail student',
-                'decoded' => $decoded,
-                'decodeds' => $decoded->data->privilegeId,
-
+                'decoded' => $decoded
             ];
             return $this->respond($response);
-            
         } catch (Exception $ex) {
             return $this->failUnauthorized();
         }
-        // var_dump("SDFSDFSDF");
     }
 
     public function setPassword($pass = null)
