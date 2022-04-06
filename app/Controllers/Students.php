@@ -369,8 +369,8 @@ class Students extends ResourceController
             $iat = time(); // current timestamp value
 
             $key = $this->getKey();
-            $exp = $iat +  100  ;
-            // $exp = $iat + (3600 * 24 * (365 / 12));
+            // $exp = $iat +  100  ;
+            $exp = $iat + (3600 * 24 * (365 / 12));
             $payload = array(
                 "iss" => base_url(),
                 "aud" => array(
@@ -382,7 +382,7 @@ class Students extends ResourceController
                 "iat" => $iat, //Time the JWT issued at
                 "exp" =>  $exp, // Expiration time of token,
                 "exps"=> Date('Y-m-d H:i:s', $exp),
-                "user" =>
+                "data" =>
                 array(
                     "id" =>  $user->id,
                     "name" => $user->name,
@@ -483,6 +483,8 @@ class Students extends ResourceController
             $response = [
                 'message' => 'detail student',
                 'decoded' => $decoded,
+                'decodeds' => $decoded->data->privilegeId,
+
             ];
             return $this->respond($response);
             
