@@ -39,8 +39,8 @@ $routes->group('api', function ($routes) {
     $routes->post('Students/login', 'Students::login');
     $routes->get('Subjects', 'Subjects::index');
 });
-
-$routes->group('api', ['filter' => ['Auth','Role:2']], function ($routes) {
+// $routes->group('api', ['filter' => ['Auth','Role:5']], function ($routes) {
+$routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->post('Classes/fromXl', 'Classes::fromXl');
     $routes->post('Exams/fromXl', 'Exams::fromXl');
     $routes->post('Hoomrooms/fromXl', 'Hoomrooms::fromXl');
@@ -48,7 +48,8 @@ $routes->group('api', ['filter' => ['Auth','Role:2']], function ($routes) {
     $routes->post('Resultexams/fromXl', 'Resultexams::fromXl');
     $routes->post('Rooms/fromXl', 'Rooms::fromXl');
     $routes->post('Scheduleexams/fromXl', 'Scheduleexams::fromXl');
-    $routes->get('Students/details', 'Students::details');
+    // $routes->get('Students/details', 'Students::details', ['filter' => 'Role:1']);
+    $routes->get('Students/details', 'Students::details', ['filter' => 'Role:1']);
     $routes->post('Students/fromXl', 'Students::fromXl');
     $routes->post('Subjects/fromXl', 'Subjects::fromXl');
     $routes->get('Teachers/details', 'Teachers::details');
