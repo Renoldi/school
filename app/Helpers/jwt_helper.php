@@ -23,7 +23,7 @@ function detailJwt($header)
                     'status'   => 401,
                     'error'    => true,
                     'messages' => [
-                        'error' => 'Unauthorized dsds'
+                        'error' => 'Unauthorized'
                     ],
                 ]
             )
@@ -38,7 +38,7 @@ function detailJwt($header)
                 'status'   => 401,
                 'error'    => true,
                 'messages' => [
-                    'error' => 'Unauthorized tyry'
+                    'error' => 'Unauthorized'
                 ]
             ])
             ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
