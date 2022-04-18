@@ -86,7 +86,7 @@ class Classes extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->where('status',1)->find($id);
+        $record = $this->model->where('status', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'class with id %d not found',
@@ -146,8 +146,9 @@ class Classes extends ResourceController
         if (!$this->model->save($entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
+        $record = $this->model->find($this->model->getInsertID());
 
-        return $this->respondCreated($entity, 'post created');
+        return $this->respondCreated($record, 'post created');
     }
 
     /**
