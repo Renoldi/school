@@ -107,12 +107,16 @@ class Students extends ResourceController
             $model = $this->model;
         }
 
-        $data = $model->select('nisn,name,gender,status,classId,roomId,CONCAT("'.base_url('assets').'/",image) as image,privilegeId,email,createdAt,updatedAt')->paginate($perpage, 'default', $page);
+        $data = $model->select('id,nisn,name,gender,status,classId,roomId,CONCAT("' . base_url('assets') . '/",image) as image,privilegeId,email,createdAt,updatedAt')->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
 
         if ($page > $countPage)
-            return  $this->respond([]);
+            return  $this->respond([
+                'totalPage' => $countPage,
+                'currentPage' => $currentPage,
+                'data' => []
+            ]);
 
         else {
             return  $this->respond([
