@@ -99,7 +99,6 @@ class Students extends ResourceController
 
     public function paging($status = "all", $perpage = 10, $page = 1)
     {
-        $count = 0;
         if ($status == 1) {
             $model = $this->model->where('status', 1);
         } elseif ($status == 0) {
@@ -108,16 +107,19 @@ class Students extends ResourceController
             $model = $this->model;
         }
 
-        $data = $model->paginate($perpage, 'default', $page);
-        $count = $model->pager->getPageCount();
-        if ($page > $count)
-            return  $this->failNotFound();
+        $data = $model->select('nisn,name,gender,status,classId,roomId,CONCAT("'.base_url('assets').'/",image) as image,privilegeId,email,createdAt')->paginate($perpage, 'default', $page);
+        $countPage = $model->pager->getPageCount();
+        $currentPage = $model->pager->getCurrentPage();
+
+        if ($page > $countPage)
+            return  $this->respond([]);
 
         else {
             return  $this->respond([
-                'totalPage' => $count, 'data' => $data
+                'totalPage' => $countPage,
+                'currentPage' => $currentPage,
+                'data' => $data
             ]);
-            // return  $this->respond([$model->where('status', 0)->countAllResults()]);
         }
     }
 
