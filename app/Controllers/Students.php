@@ -43,6 +43,7 @@ class Students extends ResourceController
     public function index()
     {
         $model = $this->model->findAll();
+
         return $this->respond($model);
     }
 
@@ -94,17 +95,30 @@ class Students extends ResourceController
      * )
      */
 
-    public function paging($status = 'all', $perpage = 10, $page = 1)
+
+
+    public function paging($status = "all", $perpage = 10, $page = 1)
     {
-        $model = $this->model;
-        if ($status == '1') {
-            $model->where('status', 1);
-        } else 
-        if ($status == '0') {
-            $model->where('status', 0);
+        $count = 0;
+        if ($status == 1) {
+            $model = $this->model->where('status', 1);
+        } elseif ($status == 0) {
+            $model = $this->model->where('status', 0);
+        } else {
+            $model = $this->model;
         }
-        return $page > ceil($model->countAll() / $perpage) ? $this->respond([]) :
-            $this->respond($model->paginate($perpage, '', $page));
+
+        $data = $model->paginate($perpage, 'default', $page);
+        $count = $model->pager->getPageCount();
+        if ($page > $count)
+            return  $this->failNotFound();
+
+        else {
+            return  $this->respond([
+                'totalPage' => $count, 'data' => $data
+            ]);
+            // return  $this->respond([$model->where('status', 0)->countAllResults()]);
+        }
     }
 
     /**
