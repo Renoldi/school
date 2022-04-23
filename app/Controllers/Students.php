@@ -24,8 +24,8 @@ class Students extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Students",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Students",
+     *   description="Students",
      *   tags={"Students"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -55,8 +55,8 @@ class Students extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Students/paging/{status}/{perpage}/{page}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Students",
+     *   description="Students",
      *   tags={"Students"},
      *   @OA\Parameter(
      *         name="status",
@@ -97,7 +97,7 @@ class Students extends ResourceController
 
 
 
-    public function paging($status = "all", $perpage = 10, $page = 1)
+    public function paging($status = "all", $perpage = 20, $page = 1)
     {
         if ($status == 1) {
             $model = $this->model->where('status', 1);
@@ -107,7 +107,7 @@ class Students extends ResourceController
             $model = $this->model;
         }
 
-        $data = $model->select('nisn,name,gender,status,classId,roomId,CONCAT("'.base_url('assets').'/",image) as image,privilegeId,email,createdAt')->paginate($perpage, 'default', $page);
+        $data = $model->select('nisn,name,gender,status,classId,roomId,CONCAT("'.base_url('assets').'/",image) as image,privilegeId,email,createdAt,updatedAt')->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
 
@@ -131,8 +131,8 @@ class Students extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Students/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Students",
+     *   description="Students",
      *   tags={"Students"},
      *   @OA\Parameter(
      *         name="id",
@@ -181,8 +181,8 @@ class Students extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Students",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Students",
+     *   description="Students",
      *   tags={"Students"},
     
      * @OA\RequestBody(
@@ -234,8 +234,8 @@ class Students extends ResourceController
     /**
      * @OA\Put(
      *   path="/api/Students/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Students",
+     *   description="Students",
      *   tags={"Students"},
      *   @OA\Parameter(
      *         name="id",
@@ -298,8 +298,8 @@ class Students extends ResourceController
     /**
      * @OA\Delete(
      *   path="/api/Students/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Students",
+     *   description="Students",
      *   tags={"Students"},
      *   @OA\Parameter(
      *         name="id",
@@ -362,8 +362,8 @@ class Students extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Students/login",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Students",
+     *   description="Students",
      *   tags={"Students"},
    
      *  @OA\RequestBody(
@@ -475,8 +475,8 @@ class Students extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Students/details",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Students",
+     *   description="Students",
      *   tags={"Students"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -540,8 +540,8 @@ class Students extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Students/fromXl",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Students",
+     *   description="Students",
      *   tags={"Students"},
      *   @OA\RequestBody(
      *     @OA\MediaType(
