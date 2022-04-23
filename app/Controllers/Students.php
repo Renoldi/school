@@ -7,7 +7,7 @@ use App\Libraries\StdobjeToArray;
 use App\Models\Students as ModelsStudents;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
-use Exception; 
+use Exception;
 
 class Students extends ResourceController
 {
@@ -42,7 +42,69 @@ class Students extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->where('status', 1)->findAll());
+        $model = $this->model->findAll();
+        return $this->respond($model);
+    }
+
+    /**
+     * Return the properties of a resource object
+     *
+     * @return mixed
+     */
+    /**
+     * @OA\Get(
+     *   path="/api/Students/paging/{status}/{perpage}/{page}",
+     *   summary="fleet document",
+     *   description="fleet document",
+     *   tags={"Students"},
+     *   @OA\Parameter(
+     *         name="status",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+
+    public function paging($status = 'all', $perpage = 10, $page = 1)
+    {
+        $model = $this->model;
+        if ($status == '1') {
+            $model->where('status', 1);
+        } else 
+        if ($status == '0') {
+            $model->where('status', 0);
+        }
+        return $page > ceil($model->countAll() / $perpage) ? $this->respond([]) :
+            $this->respond($model->paginate($perpage, '', $page));
     }
 
     /**
@@ -343,26 +405,19 @@ class Students extends ResourceController
         ];
         if (!$this->validate($rules)) {
 
-            $response = [
-                'status'   => 200,
-                'error'    => true,
-                'messages' => $this->validator->getErrors()
-
-            ];
-
-            return $this->respondCreated($response);
+            return $this->fail($this->validator->getErrors());
         } else {
 
             $user =  $this->model->select("students.* , r.departmentId")->join('rooms r', 'r.id=students.roomId')->join('departments d', 'd.id=r.departmentId')->where('email', $email)->first();
 
             if (is_null($user)) {
-                return $this->respond(['error' => 'Invalid username '], 401);
+                return $this->fail(['error' => 'Invalid username '], 401);
             }
 
             $pwd_verify = password_verify($password, $user->password);
 
             if (!$pwd_verify) {
-                return $this->respond(['error' => 'Invalid password.'], 401);
+                return $this->fail(['error' => 'Invalid password.'], 401);
             }
             $iat = time(); // current timestamp value
 

@@ -38,6 +38,7 @@ $routes->group('api', function ($routes) {
     $routes->post('Teachers/login', 'Teachers::login');
     $routes->post('Students/login', 'Students::login');
     $routes->get('Subjects', 'Subjects::index');
+    $routes->get('Students/paging/(:any)/(:num)/(:num)', 'Students::paging/$1/$2/$3');
 });
 // $routes->group('api', ['filter' => ['Auth','Role:5']], function ($routes) {
 $routes->group('api', ['filter' => 'Auth'], function ($routes) {
