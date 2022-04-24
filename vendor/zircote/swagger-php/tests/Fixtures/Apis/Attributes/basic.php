@@ -9,6 +9,7 @@ namespace OpenApi\Tests\Fixtures\Apis\Attributes;
 use OpenApi\Attributes as OAT;
 use OpenApi\Tests\Fixtures\Attributes as OAF;
 
+#[OAT\OpenApi(openapi: '3.1.0', security: [['bearerAuth' => []]])]
 #[OAT\Info(
     version: '1.0.0',
     title: 'Basic single file API',
@@ -18,6 +19,7 @@ use OpenApi\Tests\Fixtures\Attributes as OAF;
 #[OAT\Server(url: 'https://localhost/api', description: 'API server')]
 #[OAT\Tag(name: 'products', description: 'All about products')]
 #[OAT\Tag(name: 'catalog', description: 'Catalog API')]
+#[OAT\SecurityScheme(securityScheme: 'bearerAuth', type: 'http', scheme: 'bearer')]
 class OpenApiSpec
 {
 }
@@ -58,12 +60,15 @@ class Product implements ProductInterface
 {
     use NameTrait;
 
+    #[OAT\Property(property: 'kind')]
+    public const KIND = 'Virtual';
+
     #[OAT\Property(description: 'The id.', format: 'int64', example: 1)]
     public $id;
 
     public function __construct(
         #[OAT\Property()] public int $quantity,
-        #[OAT\Property()] public string $brand,
+        #[OAT\Property(nullable: true, default: null, example: null)] public string $brand,
         #[OAT\Property()] public Colour $colour,
         #[OAT\Property(type: 'string')] public \DateTimeInterface $releasedAt,
     ) {
@@ -127,6 +132,56 @@ class ProductController
     )]
     #[OAT\Response(response: 401, description: 'oops')]
     public function getAll()
+    {
+    }
+
+    #[OAT\Post(
+        path: '/subscribe',
+        operationId: 'subscribe',
+        summary: 'Subscribe to product webhook',
+        tags: ['products'],
+        callbacks: [
+            'onChange' => [
+                '{$request.query.callbackUrl}' => [
+                    'post' => [
+                        'requestBody' => new OAT\RequestBody(
+                            description: 'subscription payload',
+                            content: [
+                                new OAT\MediaType(
+                                    mediaType: 'application/json',
+                                    schema: new OAT\Schema(
+                                        properties: [
+                                            new OAT\Property(
+                                                property: 'timestamp',
+                                                description: 'time of change',
+                                                type: 'string',
+                                                format: 'date-time'
+                                            ),
+                                        ]
+                                    )
+                                ),
+                            ]
+                        ),
+                    ],
+                    'responses' => [
+                        '200' => [
+                            'description' => 'Your server implementation should return this HTTP status code if the data was received successfully',
+                        ],
+                    ],
+                ],
+
+            ],
+        ]
+    )]
+    #[OAT\Parameter(
+        name: 'callbackUrl',
+        in: 'query'
+    )]
+    #[OAT\Response(
+        response: 200,
+        description: 'callbackUrl registered'
+    )]
+    public function subscribe()
     {
     }
 }

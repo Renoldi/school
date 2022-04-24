@@ -16,6 +16,7 @@ function detailJwt($header)
         }
     }
 
+
     if (is_null($token) || empty($token)) {
         return Services::response()
             ->setJSON(
@@ -33,6 +34,7 @@ function detailJwt($header)
     try {
         return  JWT::decode($token, new Key($key, 'HS256'));
     } catch (Exception $ex) {
+
         return Services::response()
             ->setJSON([
                 'status'   => 401,
@@ -45,7 +47,7 @@ function detailJwt($header)
     }
 }
 
-function generate($payload )
+function generate($payload)
 {
     $key = getenv('JWT_SECRET');
     return JWT::encode($payload, $key, 'HS256');

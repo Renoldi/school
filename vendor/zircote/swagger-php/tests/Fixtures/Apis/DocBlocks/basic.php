@@ -9,6 +9,10 @@ namespace OpenApi\Tests\Fixtures\Apis\DocBlocks;
 use OpenApi\Annotations as OA;
 
 /**
+ * @OA\OpenApi(
+ *     security={{"bearerAuth": {}}}
+ * )
+ *
  * @OA\Info(
  *     version="1.0.0",
  *     title="Basic single file API",
@@ -25,6 +29,11 @@ use OpenApi\Annotations as OA;
  * @OA\Tag(
  *     name="catalog",
  *     description="Catalog API"
+ * )
+ * @OA\SecurityScheme(
+ *     securityScheme="bearerAuth",
+ *     type="http",
+ *     scheme="bearer",
  * )
  */
 class OpenApiSpec
@@ -85,7 +94,7 @@ class Product implements ProductInterface
     /** @OA\Property */
     public int $quantity;
 
-    /** @OA\Property */
+    /** @OA\Property(nullable=true, default=null, example=null) */
     public string $brand;
 
     /** @OA\Property */
@@ -97,6 +106,11 @@ class Product implements ProductInterface
      * @OA\Property(format="int64", example=1)
      */
     public $id;
+
+    /**
+     * @OA\Property(property="kind")
+     */
+    public const KIND = 'Virtual';
 
     public function __construct(
         /**
@@ -195,6 +209,53 @@ class ProductController
      * )
      */
     public function getAll()
+    {
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/subscribe",
+     *     tags={"products"},
+     *     operationId="subscribe",
+     *     summary="Subscribe to product webhook",
+     *     @OA\Parameter(
+     *         name="callbackUrl",
+     *         in="query"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="callbackUrl registered"
+     *     ),
+     *     callbacks={
+     *         "onChange": {
+     *             "{$request.query.callbackUrl}": {
+     *                 "post": {
+     *                     "requestBody": @OA\RequestBody(
+     *                         description="subscription payload",
+     *                         @OA\MediaType(
+     *                             mediaType="application/json",
+     *                             @OA\Schema(
+     *                                 @OA\Property(
+     *                                     property="timestamp",
+     *                                     description="time of change",
+     *                                     type="string",
+     *                                     format="date-time"
+     *                                 )
+     *                             )
+     *                         )
+     *                     )
+     *                 },
+     *                 "responses": {
+     *                     "200": {
+     *                         "description": "Your server implementation should return this HTTP status code if the data was received successfully"
+     *                     }
+     *                 }
+     *             }
+     *         }
+     *     }
+     * )
+     */
+    public function subscribe()
     {
     }
 }

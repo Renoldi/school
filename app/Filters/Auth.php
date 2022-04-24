@@ -6,7 +6,9 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Config\Services;
-use Exception; 
+use Exception;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class Auth implements FilterInterface
 {
@@ -28,20 +30,8 @@ class Auth implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $header = $request->getServer('HTTP_AUTHORIZATION');
-        try {
-            helper('jwt');
-            detailJwt($header);
-        } catch (Exception $ex) {
-            return Services::response()
-                ->setJSON([
-                    'status'   => 401,
-                    'error'    => true,
-                    'messages' => [
-                        'error' => 'Unauthorized'
-                    ]
-                ])
-                ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
-        }
+        helper('jwt');
+        return detailJwt($header);
     }
 
     /**

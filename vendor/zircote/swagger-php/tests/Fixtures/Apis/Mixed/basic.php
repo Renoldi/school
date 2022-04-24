@@ -10,10 +10,19 @@ use OpenApi\Annotations as OA;
 use OpenApi\Attributes as OAT;
 
 /**
- * @OA\Info(
- *   version="1.0.0",
- *   title="Basic single file API",
- *   @OA\License(name="MIT", identifier="MIT")
+ * @OA\OpenApi(
+ *     openapi="3.1.0",
+ *     @OA\Info(
+ *         version="1.0.0",
+ *         title="Basic single file API",
+ *         @OA\License(name="MIT", identifier="MIT")
+ *     ),
+ *     security={{"bearerAuth": {}}}
+ * )
+ * @OA\SecurityScheme(
+ *     securityScheme="bearerAuth",
+ *     type="http",
+ *     scheme="bearer",
  * )
  */
 #[OAT\Tag(name: 'products', description: 'All about products')]
@@ -62,6 +71,9 @@ class Product implements ProductInterface
 {
     use NameTrait;
 
+    #[OAT\Property(property: 'kind')]
+    public const KIND = 'Virtual';
+
     /**
      * The id.
      *
@@ -75,7 +87,7 @@ class Product implements ProductInterface
     #[OAT\Property()]
     public int $quantity;
 
-    #[OAT\Property()]
+    #[OAT\Property(nullable: true, default: null, example: null)]
     public string $brand;
 
     /** @OA\Property */
@@ -148,6 +160,53 @@ class ProductController
     )]
     #[OAT\Response(response: 401, description: 'oops')]
     public function getAll()
+    {
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/subscribe",
+     *     tags={"products"},
+     *     operationId="subscribe",
+     *     summary="Subscribe to product webhook",
+     *     @OA\Parameter(
+     *         name="callbackUrl",
+     *         in="query"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="callbackUrl registered"
+     *     ),
+     *     callbacks={
+     *         "onChange": {
+     *             "{$request.query.callbackUrl}": {
+     *                 "post": {
+     *                     "requestBody": @OA\RequestBody(
+     *                         description="subscription payload",
+     *                         @OA\MediaType(
+     *                             mediaType="application/json",
+     *                             @OA\Schema(
+     *                                 @OA\Property(
+     *                                     property="timestamp",
+     *                                     description="time of change",
+     *                                     type="string",
+     *                                     format="date-time"
+     *                                 )
+     *                             )
+     *                         )
+     *                     )
+     *                 },
+     *                 "responses": {
+     *                     "200": {
+     *                         "description": "Your server implementation should return this HTTP status code if the data was received successfully"
+     *                     }
+     *                 }
+     *             }
+     *         }
+     *     }
+     * )
+     */
+    public function subscribe()
     {
     }
 }
