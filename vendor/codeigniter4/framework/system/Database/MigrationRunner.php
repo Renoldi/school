@@ -761,7 +761,7 @@ class MigrationRunner
             'id' => [
                 'type'           => 'BIGINT',
                 'constraint'     => 20,
-                'unsigned'       => true,
+                
                 'auto_increment' => true,
             ],
             'version' => [

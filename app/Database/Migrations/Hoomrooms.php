@@ -11,7 +11,6 @@ class Hoomrooms extends Migration
         $this->forge->addField([
             'id'          => [
                 'type'           => 'INT',
-                'unsigned'       => true,
                 'auto_increment' => true,
                 'constraint' => 11,
             ],
@@ -31,7 +30,6 @@ class Hoomrooms extends Migration
                 'type'           => 'tinyint',
                 'constraint'     => 1,
             ],
-            
             'createdAt'      => [
                 'type'           => 'timestamp',
             ],
