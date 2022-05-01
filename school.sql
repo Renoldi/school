@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2022 at 04:29 PM
+-- Generation Time: May 01, 2022 at 08:18 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `classes` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `createdAt` datetime NOT NULL,
@@ -48,11 +48,31 @@ INSERT INTO `classes` (`id`, `name`, `status`, `createdAt`, `updatedAt`, `delete
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `departments`
+--
+
+CREATE TABLE `departments` (
+  `id` int(11) NOT NULL,
+  `name` varchar(10) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id`, `name`, `status`) VALUES
+(1, 'IPA', 1),
+(2, 'IPS', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `exams`
 --
 
 CREATE TABLE `exams` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `classId` int(11) NOT NULL,
   `subjectId` int(11) NOT NULL,
   `question` text DEFAULT NULL,
@@ -62,6 +82,7 @@ CREATE TABLE `exams` (
   `c` text NOT NULL,
   `d` text NOT NULL,
   `e` text NOT NULL,
+  `point` int(2) NOT NULL,
   `answer` char(1) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `createdAt` datetime NOT NULL,
@@ -73,54 +94,54 @@ CREATE TABLE `exams` (
 -- Dumping data for table `exams`
 --
 
-INSERT INTO `exams` (`id`, `classId`, `subjectId`, `question`, `questionImage`, `a`, `b`, `c`, `d`, `e`, `answer`, `status`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:29', '2022-03-27 21:22:29', '0000-00-00 00:00:00'),
-(2, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:29', '2022-03-27 21:22:29', '0000-00-00 00:00:00'),
-(3, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:29', '2022-03-27 21:22:29', '0000-00-00 00:00:00'),
-(4, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(5, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(6, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(7, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(8, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(9, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(10, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(11, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(12, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'c', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(13, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(14, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(15, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'a', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(16, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(17, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'a', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(18, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(19, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(20, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(21, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(22, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(23, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(24, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(25, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(26, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(27, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'c', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(28, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'a', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(29, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(30, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(31, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(32, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(33, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(34, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(35, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(36, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(37, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(38, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(39, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'c', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(40, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(41, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'a', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(42, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(43, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(44, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(45, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(46, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'c', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
-(47, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00');
+INSERT INTO `exams` (`id`, `classId`, `subjectId`, `question`, `questionImage`, `a`, `b`, `c`, `d`, `e`, `point`, `answer`, `status`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+(1, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:29', '2022-03-27 21:22:29', '0000-00-00 00:00:00'),
+(2, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:29', '2022-03-27 21:22:29', '0000-00-00 00:00:00'),
+(3, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:29', '2022-03-27 21:22:29', '0000-00-00 00:00:00'),
+(4, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(5, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(6, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(7, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(8, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(9, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(10, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(11, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(12, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'c', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(13, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(14, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(15, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'a', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(16, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(17, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'a', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(18, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(19, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(20, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(21, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(22, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(23, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(24, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(25, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(26, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(27, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'c', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(28, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'a', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(29, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(30, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(31, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(32, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(33, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(34, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(35, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(36, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(37, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(38, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(39, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'c', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(40, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(41, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'a', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(42, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(43, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'd', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(44, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(45, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'e', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(46, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'c', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00'),
+(47, 3, 10, 'Salah  satu  faktor  yang  menyebabkan  sejarah  tidak  dapat  dipisahkan  dari  kehidupan manusia adalah …', NULL, 'manusia merupakan penggerak sejarah', 'sejarah merupakan ilmu yang mempelajari manusia', 'manusia selalu mengalami perubahan di dalam kehidupannya', 'sejarah selalu membahas kehidupan manusia dan lingkungannya', 'Sesuatu bisa dikatakan sebagai sejarah jika terdapat saksi dan bukti', 0, 'b', 1, '2022-03-27 21:22:30', '2022-03-27 21:22:30', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -129,7 +150,7 @@ INSERT INTO `exams` (`id`, `classId`, `subjectId`, `question`, `questionImage`, 
 --
 
 CREATE TABLE `hoomrooms` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `roomId` int(11) NOT NULL,
   `classId` int(11) NOT NULL,
   `teacherId` int(11) NOT NULL,
@@ -178,7 +199,7 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 --
 
 CREATE TABLE `privileges` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `createdAt` datetime NOT NULL,
@@ -781,8 +802,7 @@ INSERT INTO `resultexams` (`id`, `studentId`, `examId`, `choise`, `status`, `cre
 (559, 285, 23, 'c', 0, '2022-03-27 21:23:16', '2022-03-27 21:23:16', '0000-00-00 00:00:00'),
 (560, 254, 19, 'c', 0, '2022-03-27 21:23:16', '2022-03-27 21:23:16', '0000-00-00 00:00:00'),
 (561, 342, 20, 'a', 0, '2022-03-27 21:23:16', '2022-03-27 21:23:16', '0000-00-00 00:00:00'),
-(562, 275, 18, 'b', 0, '2022-03-27 21:23:16', '2022-03-27 21:23:16', '0000-00-00 00:00:00'),
-(563, 181, 2, 'b', 0, '2022-03-27 21:23:16', '2022-03-27 21:23:16', '0000-00-00 00:00:00');
+(562, 275, 18, 'b', 0, '2022-03-27 21:23:16', '2022-03-27 21:23:16', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -791,9 +811,10 @@ INSERT INTO `resultexams` (`id`, `studentId`, `examId`, `choise`, `status`, `cre
 --
 
 CREATE TABLE `rooms` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `status` tinyint(1) NOT NULL,
+  `departmentId` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `deletedAt` datetime NOT NULL
@@ -803,14 +824,14 @@ CREATE TABLE `rooms` (
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`id`, `name`, `status`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, 'IPA 1', 1, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
-(2, 'IPA 2', 1, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
-(3, 'IPA 3', 1, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
-(4, 'IPA 4', 1, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
-(5, 'IPS 1', 1, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
-(6, 'IPS 2', 1, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
-(7, 'IPS 3', 1, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00');
+INSERT INTO `rooms` (`id`, `name`, `status`, `departmentId`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+(1, 'IPA 1', 1, 1, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
+(2, 'IPA 2', 1, 1, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
+(3, 'IPA 3', 1, 1, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
+(4, 'IPA 4', 1, 1, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
+(5, 'IPS 1', 1, 2, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
+(6, 'IPS 2', 1, 2, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00'),
+(7, 'IPS 3', 1, 2, '2022-03-27 21:23:52', '2022-03-27 21:23:52', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -837,8 +858,9 @@ CREATE TABLE `scheduleexams` (
 --
 
 CREATE TABLE `students` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `nisn` varchar(100) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `name` varchar(100) NOT NULL,
   `image` varchar(50) DEFAULT NULL,
   `password` varchar(60) NOT NULL,
@@ -846,7 +868,7 @@ CREATE TABLE `students` (
   `roomId` int(11) NOT NULL,
   `gender` varchar(1) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `privilegeId` int(11) NOT NULL,
+  `privilegeId` int(11) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `deletedAt` datetime NOT NULL
@@ -856,400 +878,400 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `nisn`, `name`, `image`, `password`, `classId`, `roomId`, `gender`, `status`, `privilegeId`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, '1000000000', 'ABDYAN ABDAN MAHANA', NULL, '$2y$10$Kv9Lu/SQIEg8T.3/aG2jaOvbZ30tRZ7Yb5j3BSie9BiaVGWpnxzpC', 1, 1, 'L', 1, 5, '2022-03-27 21:27:11', '2022-03-27 21:27:11', '0000-00-00 00:00:00'),
-(2, '1000000001', 'ADE HAYATI', NULL, '$2y$10$teRquBwuULn2Kqf3dnlXEeT41mYWq3V7Ys17.6/zbFeyXqoiQcAyy', 1, 1, 'P', 1, 5, '2022-03-27 21:27:11', '2022-03-27 21:27:11', '0000-00-00 00:00:00'),
-(3, '1000000002', 'AHMAD QAIS MUGHITSULHAQ', NULL, '$2y$10$H7ON/MFSvDMNBsbqhpLd3e3gq80wKvh4lk55PQP7iWJIKGaqtN/8u', 1, 1, 'L', 1, 5, '2022-03-27 21:27:11', '2022-03-27 21:27:11', '0000-00-00 00:00:00'),
-(4, '1000000003', 'AIDIL HADI', NULL, '$2y$10$/6CAJaDDS3gPKZ5NvvDi1.1T90HULCUEriJixbP9xOZI9CiXUY/Om', 1, 1, 'L', 1, 5, '2022-03-27 21:27:11', '2022-03-27 21:27:11', '0000-00-00 00:00:00'),
-(5, '1000000004', 'ANDI ARBA', NULL, '$2y$10$ZeU/uRJRdeIicD7r1nTrguuSERWLscdOQ1MdM335.VmnxvoUMjM.2', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(6, '1000000005', 'CHAINA RAMADANA', NULL, '$2y$10$K7edp0GZyh4YbpJER.MTJulMV7iyPI0Gwc.EMmQyt8cCQUz9NY7S2', 1, 1, 'P', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(7, '1000000006', 'DIMAS OKTAVIAN', NULL, '$2y$10$SAwpSa0KoqLBPdVuPe2KJekp99Um8Q9mOzA5lD2f1W0w01QyRqSc2', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(8, '1000000007', 'DUHA INDRA WANSYAH', NULL, '$2y$10$lFEgRg.j60oi9lowhbQX4OM5cgUi8sCKWFdGiA3RT7BVF0mtOtiGa', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(9, '1000000008', 'ERWIN MAULANA', NULL, '$2y$10$4J8X64yCzXE57nnjlCdUq.DBQr2Ma4IvQ8FNOW8zXS.twRe9gbWDa', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(10, '1000000009', 'FAUZAN AL KHAIRI', NULL, '$2y$10$dhI3Bq09uS1faszJyvj7cugWrZZCUkg6COogiEh04neeIUGBf78vO', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(11, '1000000010', 'FIHADIAN FITRA', NULL, '$2y$10$Ivy3tpC5z96DIwKGVBWatORfyMua65i3hmmjVOa33d3DqIyz0yYAi', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(12, '1000000011', 'FUTRI YASMINI', NULL, '$2y$10$BxgW1Js5ytzdceqcRe5qu.XfukkeilrUsTeIaO8hcu2cTi12HzqFm', 1, 1, 'P', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(13, '1000000012', 'IKHSAN ZIKRI', NULL, '$2y$10$myV8zhTfKTA/Ct/XTpBfduCoUTGMWPsJNxp/qb0JK8FdgJ95brd9a', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(14, '1000000013', 'IQBAL AIMUL HUSNI', NULL, '$2y$10$cOUr0gOpQSFXqIx9hbWgCe89JYJUgCo9i73WtPbMk5cuc8sV24Idi', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(15, '1000000014', 'MAULAN DARA', NULL, '$2y$10$KdsjU/XvGhwB6URyeBtHr.Ruiq2lBYifG57xHWgEWwQUPEGZ1lXGO', 1, 1, 'P', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(16, '1000000015', 'MIFTAHUL RIFKI MY', NULL, '$2y$10$MYhMhfs6JxVUsMHhQieDnu75DEXAIBVZ3gxnf03qKiZJnpb5XSZg6', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(17, '1000000016', 'MUHAMMAD RAOSHAH', NULL, '$2y$10$SOP4ibRoGwpxvITsc3FMdOqvr8t3zNjJet.nMmJ0vStSTIOpremAS', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(18, '1000000017', 'SHIRATHAL FADHLA', NULL, '$2y$10$j23IQRAllTw1BZv.kNzTH.NVfg0qj7VTKuPc2uAmpulBqPGSopQ66', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(19, '1000000018', 'NABILA BIBESMI', NULL, '$2y$10$GUmK/yhyoW55cIGEiLaKTO6Vdnayi9r2X3twIXsfyakKYz5v0Yl3O', 1, 1, 'P', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(20, '1000000019', 'NAUFAL FADHIL', NULL, '$2y$10$/ocjbUKKfyKgHB6A02Dr4.8iftPwYlCH/K2DI9nLbsJTIbPQIE0ze', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(21, '1000000020', 'NIANTA HAFIDZA', NULL, '$2y$10$9NPivC62wccCy21tTVtue.MyEmPuNo6T3ejdDPm3vzt6uiwPk8F6.', 1, 1, 'P', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(22, '1000000021', 'RELIF WANTONA', NULL, '$2y$10$5rG9kCeeEYJ0Dp22sqLgTuwyE/7Ff1AV0PVLl/UAXYHck5sOErgoG', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(23, '1000000022', 'RENDI FEBRIANDI', NULL, '$2y$10$Ex.qK.l6z6NFa/MBSMmyv.AbOybzhGs3RjBzsD8Yfkksl1fo2EsSG', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(24, '1000000023', 'REZKI MAHARA', NULL, '$2y$10$BX8tkA.v1P6lpTSQhkxuIuoOx2KQP3QWlZDSlB.yL1qS22ySoe.XO', 1, 1, 'L', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(25, '1000000024', 'SISMA CANTIKA PUTRI', NULL, '$2y$10$3XX/DWQl2fvqyS0DTlPYe.Cw6o7hoiIOEJZ/oYTTBFkveOPSoiGee', 1, 1, 'P', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(26, '1000000025', 'WENI HAFIZAH', NULL, '$2y$10$X.2ytcfbdtWnkrIYSkt7KuZGNRoSe3ImKOVGW6k.sxl/GwU07EmiC', 1, 1, 'P', 1, 5, '2022-03-27 21:27:12', '2022-03-27 21:27:12', '0000-00-00 00:00:00'),
-(27, '1000000026', 'ARIYANA AMELIA', NULL, '$2y$10$/XzzRzvLKxAPW8zv5FzNUuQshuUrURuQXW0O2yigr5qFsD8oxKxde', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(28, '1000000027', 'ASHPIA NISA', NULL, '$2y$10$fvL0hHzxPz28IqHPDJ3/Fe6jitCZUjmBA8/IksB2qwAgy54PFfCnm', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(29, '1000000028', 'ASNI MULYANI', NULL, '$2y$10$fKGTKxWRMAcqZuAl1vOE1OlJay0rn97fuiKNtZqc/68THf831wr46', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(30, '1000000029', 'BAKRI', NULL, '$2y$10$y8FppFt0yjsfq8RqThbax.eBNUr9zQAx9zNDKWTzFXh13AhsQIcpq', 1, 2, 'L', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(31, '1000000030', 'BILHAQQI', NULL, '$2y$10$vdJrwoZwkLsPZXd4VXpjc.PXPB9aTj6B6FR9oY/SuJOGH2cnLyl2u', 1, 2, 'L', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(32, '1000000031', 'FATMAWATI', NULL, '$2y$10$VbOf7cRJMWSHQC7/i4FtiOPuD/75tWs/3iezUdcTZGYO1jZ697Zvu', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(33, '1000000032', 'FIRZAIRIN ULUL AZMI', NULL, '$2y$10$KW8L5xVvdLdLZ1ykdrFKw.wwow9mg7nauHcduCkYCU0AmKo6WrJL2', 1, 2, 'L', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(34, '1000000033', 'FUTRI MAHARANI', NULL, '$2y$10$UpmZXWYSNGtyWzmk7L.16upgnS2bBdd28JSrZyjh74bp1kqxaLRPG', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(35, '1000000034', 'GILANG GEMILANG', NULL, '$2y$10$jmmsQx9vhDoFW5bZSjiGFOO6M0LStv4hEJ9uin2Fd5SsjoyS5AfUS', 1, 2, 'L', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(36, '1000000035', 'HELSI HERLINDA', NULL, '$2y$10$v9r40YIlKTClLkMN2cBlBu8dWazB.Y69WT.3bmjvGnhXtjKdFkuOe', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(37, '1000000036', 'IFTINAH SYIFA', NULL, '$2y$10$397A3eibW3Q5P//06H6GmuufuorP8l0rGpWrsBlAQtegKP7G.V/aO', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(38, '1000000037', 'KAMISA AIDA PUTRI', NULL, '$2y$10$ohCHKXz3o.Wo/4D8GyYfrOiOSyZRWvebSEGWktqcyKNG568/uJ0VC', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(39, '1000000038', 'MALA NOVIA FITRI', NULL, '$2y$10$C1.YILUV52gkL79duoRGYufunqaAjeKp4g.Lh/gihGs67bQxaFayG', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(40, '1000000039', 'MUHAMMAD HAIKAL', NULL, '$2y$10$KFGpRfncwOrA8wuUMhzGGu933iiIztfB77Fb9jBQ2goTr7eQdyhHq', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(41, '1000000040', 'NABILA YANTI', NULL, '$2y$10$aCqWaZL7GwY76ud72Mfh..z0SBWEdKGbEI9hJNcASnNHC68.yubty', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(42, '1000000041', 'NAUFAL HIBATULLAH', NULL, '$2y$10$SAlMYjB/t8ShTiYnJdZlIuHuc.2e5OhT/Lva5jIm8Ga9yHC4hQ7Ca', 1, 2, 'L', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(43, '1000000042', 'QHANDIRA ALSA GUFRANA', NULL, '$2y$10$PCDDGek4AQFMCkZKv0Bxu.kk3iM5qUogg8QKQLO7Ydijoj6ZUUNE.', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(44, '1000000043', 'RAUZATUL ZANNAH', NULL, '$2y$10$M6RHbgtsR95E8fUXUi3yE.XUbZOr.7kA09ekHjzQce7VF4Wx9eHRq', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(45, '1000000044', 'RESI DIAN OKTESYA', NULL, '$2y$10$TiBRxMX0HjxtHL0D9HxU8eVuEy7ZWlWcUuQxq.I0kYvomGeh3L.j.', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(46, '1000000045', 'RIYANDA', NULL, '$2y$10$/Dhbp0cR.WT47plglCV8M.SeT4X1ZVWeLAtTApXSlOY7BCfsaNive', 1, 2, 'L', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(47, '1000000046', 'RIFA RAHMAN', NULL, '$2y$10$UTaIxgUlwR6riCSDGG1dH.gciHorqKLKAQiDqH0boP/hrWrWYAgbm', 1, 2, 'L', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(48, '1000000047', 'RINI DIANTI', NULL, '$2y$10$d7WXqihuZlaNFE/77113c.9pMr7bYtAZ8brvpv.Biyq5GMvxl0ipK', 1, 2, 'P', 1, 5, '2022-03-27 21:27:13', '2022-03-27 21:27:13', '0000-00-00 00:00:00'),
-(49, '1000000048', 'ROZA AMELIA SAHRAINI', NULL, '$2y$10$dYhlVI8/xK07nOFc1WvJwuXvRX2Rbk.8YLYX4Rqx6gNP4ZW63as6i', 1, 2, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(50, '1000000049', 'MUHAMMAD DZAKI HABIBI', NULL, '$2y$10$c91lKiX5VQwdx9nNRiS8yeY6LqefNGm3vpfxYln9iCwB/dYeiExEi', 1, 2, 'L', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(51, '1000000050', 'SINTHIA ATIKAH', NULL, '$2y$10$oYOsnApWmzWE9/15keRGDOYrepNlKd/T3VxHy5mdqnjcNVIFqDe1y', 1, 2, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(52, '1000000051', 'TAUFIK HIDAYAT', NULL, '$2y$10$SUY1ErpZa/z8uqCwRYGL1O7NKHDIVyxTiWxCBFjsKmMOI9IA.tq1C', 1, 2, 'L', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(53, '1000000052', 'ULFA FITRIA', NULL, '$2y$10$mWnmsKWtvkW6soG1mSY1aO8qkKTM/LTmOMHRtYOsknpYNhYfJo6he', 1, 2, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(54, '1000000053', 'USWATUN NAZWA', NULL, '$2y$10$vnyk7kJa3O9yZbHsTXrDa..DlMcJbuk38d2tevEEpeZT2PPbhdWEa', 1, 2, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(55, '1000000054', 'YULI ARNIA', NULL, '$2y$10$y3dfIATuHxieI7uIn5.OW..PqIDXDhyiXQZHbPSc2HJLwKbydBS8m', 1, 2, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(56, '1000000055', 'ZAHRINA IZZATI S', NULL, '$2y$10$H9sk8r13axc5lPtK.N1lNuCkrFMTo2j.BISbTXoc4l7dG4YWzzRRq', 1, 2, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(57, '1000000056', 'DALILA KHAIRY', NULL, '$2y$10$wnFXVg9lt3tux0mIlDvI8u.Ziwsu6QVFMTYF4vjzgoSp4kbx8XmG6', 1, 2, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(58, '1000000057', 'NAUFAL ZAHRAN', NULL, '$2y$10$hqh.Tly9n0vrwdrzQxznf.o1JexFPuC.p4ylggtpEEZC6BjPk5fyC', 1, 2, 'L', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(59, '1000000058', 'SYAFA UQBAH ARRAFI', NULL, '$2y$10$GyvvZ5RMqHrhNrHch3HOM./EOw2Dr8qsVC3v8o1R.2Gu7wDguaAQW', 1, 2, 'L', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(60, '1000000059', 'ARIKA SIMEHATE', NULL, '$2y$10$MrEs5M5ENHNu0FtJ/o/aEewjithS4ecnwlXzYWllO7RxxJTJijmF2', 1, 2, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(61, '1000000060', 'ALPANDI', NULL, '$2y$10$w/dsn7ZTufsnqtuFdjTpLOyQFwLqHhBsuhSP6vYqRTxToGUEgSv8K', 1, 3, 'L', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(62, '1000000061', 'AURA DINA', NULL, '$2y$10$JujfvzqUd8YfhZAYN2e91OHWJmm7Mv1Od4qZzVc0J42pE6jcpIE/K', 1, 3, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(63, '1000000062', 'BUNGE LUSIANA', NULL, '$2y$10$Igljvo86azmPWmIv9SS1R.byD8HiamSBXD9C06ZEVIDNA0Q3ywv56', 1, 3, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(64, '1000000063', 'FUTRI SALSABILA', NULL, '$2y$10$5Mhz0cDiI3Oq8zWwbwLGZ.rsmmHhHsEtTn7H3hDdNzrxY3uwXhwL.', 1, 3, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(65, '1000000064', 'HAMDAN', NULL, '$2y$10$HsDKlmY6juK783n2SWvFZeSaVWZfbWvIOXuEBZ1/eMPmTeVkrNfu6', 1, 3, 'L', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(66, '1000000065', 'JURFA NAJWA', NULL, '$2y$10$.uf0iHbsbq.4sZAq.iTqZu8YeN2.OskLpIIrI4oWbImhdlWskdj1i', 1, 3, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(67, '1000000066', 'KHAIRI FIKRI', NULL, '$2y$10$mLRcDfTkHZia6Bu97SVrJuyUEvtUH9zRBpkitvpOvtt1hqu003RGu', 1, 3, 'L', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(68, '1000000067', 'LIZA NOVRIANA', NULL, '$2y$10$zlgAeBfj6ynNBxjzFQDLSOjwizN4NIiwpvp980jNn3XvsnD6EGV4e', 1, 3, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(69, '1000000068', 'MAUZA ISMIADI', NULL, '$2y$10$Bh9M1zdx2dB4h.BRAUqwm.60vDu2AH3ASNrt8uH4EbDh.mb.p8j4G', 1, 3, 'L', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(70, '1000000069', 'MELA YUNITA', NULL, '$2y$10$OESi5S/cZWxGgKY4FMCsVOEUMqa9/b0UuG2EFdOvyMqvX2kP3PTke', 1, 3, 'P', 1, 5, '2022-03-27 21:27:14', '2022-03-27 21:27:14', '0000-00-00 00:00:00'),
-(71, '1000000070', 'MUTIARA RAMADHANI', NULL, '$2y$10$zHqApAV2wvZPq2gqSCt2cO84sgkgCkWKZjPZOSrfnY7tSTlpIbi2a', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(72, '1000000071', 'NADIA ', NULL, '$2y$10$iX1MWMbmAKZcIvA5xa5BFOhskc.wB0iZxSdDTFDSkfbgjKDutKeru', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(73, '1000000072', 'NAUFAL WALIYUL HAQ', NULL, '$2y$10$KVAqN0MHkFgCslVttu1VAO8E6oaOVAWKbe1gEk9/Ff7aMULx0w26S', 1, 3, 'L', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(74, '1000000073', 'PINTA SARI', NULL, '$2y$10$9wjV46c5OnNssfLrk.qiVuLrNZreGWmr869gg1Y5qHPHp/9TpR7Mu', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(75, '1000000074', 'RENDIA FITRAWAN', NULL, '$2y$10$0J6M1F0ai3YaMtO7b9vQY.NFIrfGNmJ18XifMqkTI5hN/ZbGmcspy', 1, 3, 'L', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(76, '1000000075', 'RIDHA JUNITA', NULL, '$2y$10$N3kC6CHefru09aK8XXuYVuqcnzTbPlCXpuau3aFcuSNJb/Bpo/qKW', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(77, '1000000076', 'RIFDA FRIATIN', NULL, '$2y$10$VvIaxt6CHfRPMH9C3.l8zu1FBdR7MenGXX0gYhY.jIVuDG7itqvCq', 1, 3, 'L', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(78, '1000000077', 'RIFKI RAHMAN HAKIM', NULL, '$2y$10$ATVMo7r.Vco6ZuzWXe6WWexXrpv4.4SGcGlYlHQw5PczEJ3fkyDI6', 1, 3, 'L', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(79, '1000000078', 'RIZKA ANINDRA', NULL, '$2y$10$l4B1x8qW2/xuDu/Rqyf9WOGw8AiT6rk.5nPNWrMlAxnBwtGmtf/TC', 1, 3, 'L', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(80, '1000000079', 'RIZKI SYAFITRI', NULL, '$2y$10$vCBtdzYiRVsZVaR2.gmyduYrn4dxh2ZmxJFHZvTQzBk69ZVyPL74y', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(81, '1000000080', 'SAHRANI PUTRI', NULL, '$2y$10$0w7uvrnh18eFlcJrwsKCGedcDYuUKOxoFsMRhFE//3lACg7HRlpcG', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(82, '1000000081', 'SELVIA AFRIANI', NULL, '$2y$10$nIQga/PxoLzt53LhM03h.Obj2Ek3fZjHp0Brzsuz4Qi1vJgrqK/KG', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(83, '1000000082', 'SOPIA RAMADHANI', NULL, '$2y$10$5BnsnNu4teXlH8cWrlui5ut0qYHqlnzZZbYzUX/q9rKgSnXsGfRUu', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(84, '1000000083', 'SULASTRI ULANDARI', NULL, '$2y$10$Iw.Iz8mCUkcUMVV2w/csleu4wIJEwyz39WwmgtGLlW3z3XAYQXxVO', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(85, '1000000084', 'YOGA SETIAWAN', NULL, '$2y$10$XPrq7RWbdW7AQGVfwZWcJuudoANQ98wCITtj7085oUcj7RbBM1g42', 1, 3, 'L', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(86, '1000000085', 'ZAHARA DWE ARIANTI', NULL, '$2y$10$/tNI2rF/P5M.ZBFtt/2F2uS3JkyPiQ3nRC/4hYa.bMVYQmM4AJkD.', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(87, '1000000086', 'ZAHARA MURNI', NULL, '$2y$10$2GW39cHa0QL1tXiGhK8Pg.2MVkogBEfgEKC8qnkJ5LtK.g8pnj5xe', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(88, '1000000087', 'ZAHRANI IZZATI S', NULL, '$2y$10$ls8r847FtGvgmcYEuparEuoe8u2UqZUu6Q1V1sBZMvxzl4drjA86O', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(89, '1000000088', 'ZILFANA KHAIRUN NISA', NULL, '$2y$10$uXWGHxYpr2DT8O8Yqf.Ai..9zrMoU/24178P1z.mrFYPOlkjmBw9a', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(90, '1000000089', 'JUSPIKA ARADI', NULL, '$2y$10$23KJoSf0IAvj4VIVU78Eb.gtC8IXIIcuaCasRsagcT30dXjvJsa3K', 1, 3, 'L', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(91, '1000000090', 'NOVA DILIZA', NULL, '$2y$10$U40rIrXsXMrHwdqrq1PKIOVnREjQ8pKz1qtWnkZNleMjEpvrj9NBK', 1, 3, 'P', 1, 5, '2022-03-27 21:27:15', '2022-03-27 21:27:15', '0000-00-00 00:00:00'),
-(92, '1000000091', 'FITRA ARIGA', NULL, '$2y$10$NE4u4a4F58REgvdz2JS.2e8H9Cb4QjNyzKlg67ZBD53d.kamDET9e', 1, 3, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(93, '1000000092', 'INTAN NURHAYATI', NULL, '$2y$10$80X5mWZfDox2dE/l1eUbg.Cnw5vSdPjchPKOCcj5dBF3qKggpBKbW', 1, 3, 'P', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(94, '1000000093', 'WIN TEGUH IWAN RANTONI', NULL, '$2y$10$QKcRYImTO0q2h0DMr0rnhOT9ZGHBdWShmMpqg/QzuabIF5vQ91gwu', 1, 3, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(95, '1000000094', 'ABDYAN ABDAN MAHANA', NULL, '$2y$10$MSxnYxxjVtDpTD133U5UMObyx/E3p.irMobdbHiN5FFOecKjdj56.', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(96, '1000000095', 'ADE HAYATI', NULL, '$2y$10$IzV3exkYyFCna9WLzZUXAOPZ1X6ZO9vKuTBvaurMScCwvUlxZa1CK', 2, 1, 'P', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(97, '1000000096', 'AHMAD QAIS MUGHITSULHAQ', NULL, '$2y$10$xUxqTY9YE3NjPR1Y3SShfuL42J86NzRetelYM/TUy3WVXlDgYu1ES', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(98, '1000000097', 'AIDIL HADI', NULL, '$2y$10$hh0kkCPv3JVlBhA3HWB46Oy/Ar5MSGa7uACmDR23A2yXGrFgiSVrG', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(99, '1000000098', 'ANDI ARBA', NULL, '$2y$10$mepWqBqBPdsw39RXmlmCLOIUC6qL4uj8yGMUq7RlmqGBlYvm90Zfm', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(100, '1000000099', 'CHAINA RAMADANA', NULL, '$2y$10$b.Vouooc2.uShCl5a1YuruP3.cxwD.65Jtk6MwnOhisNa5idAuVtq', 2, 1, 'P', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(101, '1000000100', 'DIMAS OKTAVIAN', NULL, '$2y$10$dM2qkfPHyCZc7WSB1hvdWui9M7ltV9egfy1ZygbF5g70dmjgdiWJa', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(102, '1000000101', 'DUHA INDRA WANSYAH', NULL, '$2y$10$WzTg28piZeDQB0hqutthUenm5/J.1dlB/FrWH9dBHBslkLzk2/bYe', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(103, '1000000102', 'ERWIN MAULANA', NULL, '$2y$10$zcprM2gidEbwF490FcHg5OzN/AAm0bcy4Z3AqehMxOoq47hX9EukC', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(104, '1000000103', 'FAUZAN AL KHAIRI', NULL, '$2y$10$sNCwtnDI/nJXtHeDsNkm/uMNGPR.gHXYm4uu//U45R2GbhEjRnLDG', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(105, '1000000104', 'FIHADIAN FITRA', NULL, '$2y$10$uD2WfYioEyrZby6v1WxiCuUSc19B3WW23351aQ0plBwCTqbeJG5oS', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(106, '1000000105', 'FUTRI YASMINI', NULL, '$2y$10$V0HIYpRsPt2zdBzytUlQFuX308dh5o599TDAX4UgxNeJa/qAD49Qe', 2, 1, 'P', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(107, '1000000106', 'IKHSAN ZIKRI', NULL, '$2y$10$tkwRltXpoiQHphegOsv6BufMEds2a0irGoLQ5FlolW8j2lnibXBGS', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(108, '1000000107', 'IQBAL AIMUL HUSNI', NULL, '$2y$10$1F5qePQCIAGQxh6wzRj8Z.gHlZVqXjRLTmoVxYloMj1daKYRH4slC', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(109, '1000000108', 'MAULAN DARA', NULL, '$2y$10$e3goc1D5oFv9Cl9P6GkpO.yuSvCume5xBzdzFSzajsH72QjWmthSC', 2, 1, 'P', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(110, '1000000109', 'MIFTAHUL RIFKI MY', NULL, '$2y$10$IxP62OI/hKwIj1uk0QA3kOKbo33z.IN/9v93jXbbJjJt6pAI51GBq', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(111, '1000000110', 'MUHAMMAD RAOSHAH', NULL, '$2y$10$cUIhJsbuBUHbOCSeUSW9BeS45Ky6/ETRddlYutLzhLflDGZG.nCI.', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(112, '1000000111', 'SHIRATHAL FADHLA', NULL, '$2y$10$iP/3XmRfNvpVA6fPw2.s1eLuZsIkYrjsTR8nxhAVbumYlbSvWscMW', 2, 1, 'L', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(113, '1000000112', 'NABILA BIBESMI', NULL, '$2y$10$GEmdF1u4WDjKZogv3HO2KumIXNVvXBBds/PtgNN3bKlZHyEgCwXN.', 2, 1, 'P', 1, 5, '2022-03-27 21:27:16', '2022-03-27 21:27:16', '0000-00-00 00:00:00'),
-(114, '1000000113', 'NAUFAL FADHIL', NULL, '$2y$10$YHu0axiKqd4roHmWG6ClJuDhe1VE/Lfi.dsKa2EWyPXdsXkW6hyeu', 2, 1, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(115, '1000000114', 'NIANTA HAFIDZA', NULL, '$2y$10$Kau8CJZayxlQkxQRxWfnQe5GKdVHXSMgFTKaykqGwskgqVC78.wlC', 2, 1, 'P', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(116, '1000000115', 'RELIF WANTONA', NULL, '$2y$10$C2Sws5BGeA1LRfGrY8ITW.2.AilVbu4Vb4obpv7Bo3GEQFH9J1CXq', 2, 1, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(117, '1000000116', 'RENDI FEBRIANDI', NULL, '$2y$10$cdUp30Zh8F2shbutsWLd/.HlaZU2769K4k4cbSHwKqW2UVs4HULgu', 2, 1, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(118, '1000000117', 'REZKI MAHARA', NULL, '$2y$10$Ta8NSSad5GQS2PfaK1VlE.Nxnpe5QoTIz9KsNIT/dO/SkHhuXzcR2', 2, 1, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(119, '1000000118', 'SISMA CANTIKA PUTRI', NULL, '$2y$10$0OlKT8tYpJPjKeiYj.ePVe0IZLvvJBbX.Rr7xDD7zYQf7lHbwfpdO', 2, 1, 'P', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(120, '1000000119', 'WENI HAFIZAH', NULL, '$2y$10$43q6C2/LwEshPLHSItiXtuNSZxGx6ZPctgTrvgKfFr0kOnidemjAC', 2, 1, 'P', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(121, '1000000120', 'AGIH ILHAM', NULL, '$2y$10$Bj5S8YU4RIJpTcsUlB0Fw.0KkplzGLnhIWD6Ah6qdRZ17znnWCq/W', 2, 2, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(122, '1000000121', 'AISY FAHROZI', NULL, '$2y$10$7znyZWqKoNrimhvqg6E5nOGgx/naU9fdBFsymLDG1OGCl/VChQn.y', 2, 2, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(123, '1000000122', 'ANGGUN CYTRA ROZHA', NULL, '$2y$10$aQbGlGM3ZD3h68PvJHVTqervWgOJMznLamF5/pPl.GGGpCMLhfJ3q', 2, 2, 'P', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(124, '1000000123', 'ARYANA', NULL, '$2y$10$9j.r2HjkrYXXcks6uvv7/OmSVNnCbEHpBi8vUN95ybLTsGNbsrAF2', 2, 2, 'P', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(125, '1000000124', 'AWALLUDIN NOVRIANDI M', NULL, '$2y$10$Yt8UcembYNM3lfkxDxVLU.mFkmE0.mnfYFTgEW86oj6vM8prCtpB6', 2, 2, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(126, '1000000125', 'DIANA', NULL, '$2y$10$4u1AX1jXcUMTSWp03JgSJOSgrKSpJeaHVxWCe6hyD0vMPtEvUNcme', 2, 2, 'P', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(127, '1000000126', 'FANI LIDIA FUTRI', NULL, '$2y$10$COh6aofxC7pdxCxyWC7DZeXLNQfWtctJb4/D8AoOWGGSg3vFScjn6', 2, 2, 'P', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(128, '1000000127', 'GHUFRAN ABAL', NULL, '$2y$10$rMJUQphMr.N2Fib8chJu0uukarsTm2gDhqXyoKBfhUzJaxI4ktL5u', 2, 2, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(129, '1000000128', 'HAFIDZ  ALFARIZI', NULL, '$2y$10$a0DWADrjHmZZvaeWE9mNHORxTWTcrqvT7tI9HSfECApYdA/lvrSPK', 2, 2, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(130, '1000000129', 'HAFIDZA HAFIF AZIZ', NULL, '$2y$10$TnIVv7sUD0yWlblgsvaQZeoecexyhj0Y9Nqd84PGDorJBpfND3xty', 2, 2, 'P', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(131, '1000000130', 'ILHAM ELSANDI', NULL, '$2y$10$JWhhkum5LLoruRZmNfN7Ee3HUZhbtV9weLx6A0qvCgBg13EJ4zic2', 2, 2, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(132, '1000000131', 'INE SALVANI RENGGALI ', NULL, '$2y$10$HWpoRmGZNCfXnuPC4jeU.OSKrB1t6MMG2mZlsUYFHrBgpsh7TyE8W', 2, 2, 'P', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(133, '1000000132', 'IWAN REZEKI', NULL, '$2y$10$s0Jl2Wk0FRIdvIci.0U2aeimuRT3Ogc8/OJLO7113VA4kII.7/MC2', 2, 2, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(134, '1000000133', 'JUNAIDI', NULL, '$2y$10$bfpwK58OiaQ05qruJhqOfejnhZJFUTLGJyQSXcldTZqDCYO/EIBWm', 2, 2, 'L', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(135, '1000000134', 'KAMISA', NULL, '$2y$10$jxNpJe2dxf1fMXnW77ter.WXFwIvD7c0/fv1bMpy5tTudU23lLWgO', 2, 2, 'P', 1, 5, '2022-03-27 21:27:17', '2022-03-27 21:27:17', '0000-00-00 00:00:00'),
-(136, '1000000135', 'NAJWA SALSABILA LAILI', NULL, '$2y$10$82j/8Gg1.WN6PAEWxKn9P./.6HxBagppa7ydocQvVuy2cjp0./2FO', 2, 2, 'P', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(137, '1000000136', 'NOVYA SALISCA', NULL, '$2y$10$e2XOVGslGV2VfN4tt5kByeepiPVihtOqrYOuhKBvaTvMM8WEAF3BW', 2, 2, 'P', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(138, '1000000137', 'RADIANSYAH', NULL, '$2y$10$zYDqE2Jw2qh212sLZJMY2.F075v/x1D451/PUocBQFaSmpWJB7kPm', 2, 2, 'L', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(139, '1000000138', 'RAHMITA FITRI', NULL, '$2y$10$wHYovYpPCNQxOAIJxtM.deXxpkrfenksj0IhLSnBcy4VjrWizbpv.', 2, 2, 'P', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(140, '1000000139', 'RAJA GILANG', NULL, '$2y$10$t.sXdJA3UV3MI0oJMjvf5ONDOLtj1jB.K60yu5iY2B8bZ35aKhtw.', 2, 2, 'L', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(141, '1000000140', 'RASIKA DEWI S', NULL, '$2y$10$ma9o2XMHmJR/KVqNk8Z/5.n7xPvfCDZqMKW/dOFgF6o1IriM1UVXW', 2, 2, 'P', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(142, '1000000141', 'RENI SIMAHBENGI', NULL, '$2y$10$eWOM0JX9p1mDD1ID.pyuzusYzpCamFOYnamb5OBu27yFBI1EFbfZ.', 2, 2, 'P', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(143, '1000000142', 'RENO MIHALDIKO', NULL, '$2y$10$PZ9GhFsMUXb42W7jdmRpYOeH8m4pIqouqGZcpa6KDzYvj/ar1UlKu', 2, 2, 'L', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(144, '1000000143', 'RIFKI SETIAWAN', NULL, '$2y$10$n9/O/3bN5ih9gjrMMS2APu/v8EVaFwuvKxtXfE7mJYvT5DH3g42n6', 2, 2, 'L', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(145, '1000000144', 'RIMA SIMEHATE', NULL, '$2y$10$s.IJ4Gq1v4uEOEfCOyTlM.q.TAoQsLCljQTipSnf6I9x.IKhG9j9.', 2, 2, 'P', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(146, '1000000145', 'RIZA HIDAYAH', NULL, '$2y$10$gF1w.mequQs7phZgPocY7eKjew.z/.2KMtRvy4nmkJy3EJoFs.MGa', 2, 2, 'L', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(147, '1000000146', 'RIZQI IWAN FAJRI', NULL, '$2y$10$/FDRY4TxN01D0mffUDI4beDCKFrYaAIjzg/9d6HLX87HELQMDwsmi', 2, 2, 'L', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(148, '1000000147', 'RUHDINI', NULL, '$2y$10$0rsDDv8SY5EGZquAYHfWiuXFAfe4Nl2VnsM0XRQ/ByEtGhtiSgHBq', 2, 2, 'L', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(149, '1000000148', 'SAHRI RAMADHAN', NULL, '$2y$10$BOQaaPuJCX24lhvMl2GDg..QU.ViS3FI3oUSY8GiFxFnpAPM5eJeC', 2, 2, 'L', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(150, '1000000149', 'SAID NIBRAS ALHABSYI', NULL, '$2y$10$tUvVa3MZPzs4Zj7OUO1cruhf6llAWw/6xiYJZi6quKL3q9zy2vq4i', 2, 2, 'L', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(151, '1000000150', 'SILFANI AZRI MAISA', NULL, '$2y$10$lSEV1ANRFa2uC0z03nq/o.hn9tdzeAWfKkAyz.EzRxPkcFtfRhP/m', 2, 2, 'P', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(152, '1000000151', 'SILFINA AZRI MAISA', NULL, '$2y$10$gGUbBcC0gLwsQUiI4wVQTeefT.vkT5zfFzJg5wYSvBggocsep2OFa', 2, 2, 'P', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(153, '1000000152', 'SYAHRA WIDIA', NULL, '$2y$10$YqxJkWQM.S1DjQxLAjaMZeveQYhwsNjwQtS6U6Pd/Ax1nAjpDR3kO', 2, 2, 'P', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(154, '1000000153', 'SEMALI SYUKRAN', NULL, '$2y$10$.AITx4K6HybxSozExDqFbevGba8Rbno9MT9oDk61WBOtX9J1/Lvsy', 2, 2, 'L', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(155, '1000000154', 'ANA MARIA', NULL, '$2y$10$n0twIHR1EhkBta77ru54Ne9JGYX1irrejm0os8tL0nz.DFKnIeNUq', 3, 1, 'P', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(156, '1000000155', 'ANNASRI MULIA', NULL, '$2y$10$xlVHRTwoUi3PoP7jUQAdJO3b0/3hdCJrkvqtuPGk4j//IDgiWpPSa', 3, 1, 'L', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(157, '1000000156', 'CUT AMALIA', NULL, '$2y$10$nRqZgicZHbWxICjp0BrspOR7x27PaIjNv7tlHp/K4mEK7bC9YKwoa', 3, 1, 'P', 1, 5, '2022-03-27 21:27:18', '2022-03-27 21:27:18', '0000-00-00 00:00:00'),
-(158, '1000000157', 'DESI SILFIYANA', NULL, '$2y$10$9axF1v.iUrVYnponbmtabu/D1Zxf7SUTxm5j0MDLb.rkHZBWH5O.2', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(159, '1000000158', 'DIRGA SYIDRATUS SALWA', NULL, '$2y$10$BzJjasr2qB95uLrp4mvIk.bJc4r032fryiOrSxdHPon.M.LGkXNia', 3, 1, 'L', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(160, '1000000159', 'ELIZA SAPITRI', NULL, '$2y$10$n5wLXFN6RvAL0ctdgjrS2.6lMidRiPpGM1Mbnw7z3w0Oc/HZmAWB2', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(161, '1000000160', 'FAKHRI WIJDAN', NULL, '$2y$10$fWaa7s6VDiO35WApeYejT.p7V9MH1qSujREViyRgMkOaWBM3/hlmG', 3, 1, 'L', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(162, '1000000161', 'FANITA', NULL, '$2y$10$QwPpQooXBHj6uxA8xSOdA.JLNszXFpn7IkIYbEvsW3C.BKh0XnOhi', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(163, '1000000162', 'IHSANUDDIN', NULL, '$2y$10$odA8cEK5Jhp7sPM/lCYV5eLHf39unhhIXiibo/9/xEgPBHnyh6nfG', 3, 1, 'L', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(164, '1000000163', 'ILHAM EKA FARISY', NULL, '$2y$10$dKAz/kwKIPRJFE45BuMgxOI4AiYNP429g8LtY1NOcbzqSjpEqAgQ6', 3, 1, 'L', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(165, '1000000164', 'JANNATIA KANJU', NULL, '$2y$10$tz93y5/RRQ5/wvMcC/ShbebBrD8rJbkv0hMS//02A5Go7HghfmzwK', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(166, '1000000165', 'M. RIZKI', NULL, '$2y$10$Er07ClyfRqqjnZxg0lEAxuS1hKB56kwZXkj0UKd8Af1ItEYZGL3ia', 3, 1, 'L', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(167, '1000000166', 'M. SEJAHTERA', NULL, '$2y$10$a3MZnodrcv.JyVHlncIPGe6mRdm5zFlWBUcYv9iW072KAxkKIXX2i', 3, 1, 'L', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(168, '1000000167', 'SYARDI FITRAH', NULL, '$2y$10$9VfScYg0jd4fVTrJKG8rXei2nP5ELxNe5Jutr24/hlv3NZogTZOYy', 3, 1, 'L', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(169, '1000000168', 'LINDA AMALIA', NULL, '$2y$10$XWkSKHV0uWk8qs3b1vL0V.vC358snNUqZF5WUubmfekcpvK8psckm', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(170, '1000000169', 'MAHRIDA LATIVA', NULL, '$2y$10$Woo06wkahut.5O3Ay/9HnuMIpT4y5fHrw6aF1/4rqX1boBL9AscFS', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(171, '1000000170', 'MAULIDA SIMAHARA', NULL, '$2y$10$IXabpZxuA7ba5wku13BmF.zKRIOCGV0Wx8s8bw3T1Yt4hb0DwlDZ2', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(172, '1000000171', 'NABILA RAUDHATUN NISYA', NULL, '$2y$10$u85iWv.8OIs40LE4n9iSFOokvnwcosy.Q0BaQc0xc5/yY4Jff8MFS', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(173, '1000000172', 'NAURAH SALSABILA', NULL, '$2y$10$Q8a1mu4.loy/KFK9UZKO1.FRcq1EiQ41lB6OvHvLzb2j.VnqGw4uu', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(174, '1000000173', 'NILMA FATIMAH AZZAHRA', NULL, '$2y$10$Gi/BRNqP8/1q6yhu7N9.xuoCeJue/EOYMJr6aG4/R8ZLyqydmPaxi', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(175, '1000000174', 'NUR HAFIDZAH', NULL, '$2y$10$p7jotHKwTRGkJLEaZ4t/jOdQUjTbmh98i3Oc9NHTzjty5ums/Nmru', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(176, '1000000175', 'PINGKAN NAPISAH', NULL, '$2y$10$7/5fc4m0lIYuMGUxMiUY6u/EKd2vefyIm0MyreWU2IdyE0ctoVNzm', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(177, '1000000176', 'RIKA MAHYANI', NULL, '$2y$10$4zv2841Rb4DwkqL/g1S3TeI3g4vwARvXD1QUNLSSIZaXVXfNqbAGS', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(178, '1000000177', 'RIMA PUTRI MEGA ANDRIA', NULL, '$2y$10$eD9y.bt.Xrk39M5sR2AWheId0n1Z7xcl7OyzA5TcrgsSBMR4l.F9m', 3, 1, 'P', 1, 5, '2022-03-27 21:27:19', '2022-03-27 21:27:19', '0000-00-00 00:00:00'),
-(179, '1000000178', 'SARA BENSU', NULL, '$2y$10$4xhAFEvXhLYTVKSQwc4qGu0vxpjiIH2fKVDUnnP8zYJ6Wt9svs4HS', 3, 1, 'P', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(180, '1000000179', 'ZANNATUL AZILA', NULL, '$2y$10$J0QsHdomNFpzwG2hsmguw.W4rrHaJ9j/SkWwScnkfit1IYnAiQqTO', 3, 1, 'P', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(181, '1000000180', 'ABDAN FITRAH MENYE', NULL, '$2y$10$1zSd/R9wbOYk1DgEXRr9kePXOZ.omNDqz5J0BuUerlKS9hM8fLvGa', 3, 2, 'L', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(182, '1000000181', 'AL MUNADI', NULL, '$2y$10$Q9DFeX3gGBaeqat5HhlXSOMrfWxJh3Gh/Sv/3cmIrM/5CBSrgEbvq', 3, 2, 'L', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(183, '1000000182', 'ANDREAN CANHARI', NULL, '$2y$10$Tc3v5L9BYIcQD0/fJzrzqetgfurBK6U3XKyeLIEVdNsIA6Yw8chYy', 3, 2, 'L', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(184, '1000000183', 'ASSYIFA WAHIDDAYATI', NULL, '$2y$10$eIIiWJR8fkOHSDMv4T1Y8OkXg8f34jvWQsipruN75joWVhYaLMMUC', 3, 2, 'P', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(185, '1000000184', 'AYU DALISMA', NULL, '$2y$10$Lmru9PjFse0PqA4kF2XOQeIdAkfGCAOBIdm1qakqNd9yzMeYjl.t.', 3, 2, 'P', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(186, '1000000185', 'DAFFA ELZA FADHIL', NULL, '$2y$10$bkxc8GCA6kW5kLH3V97j4OflyZNPqeHKIYVZlg/hQY9uqfgdm625C', 3, 2, 'L', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(187, '1000000186', 'HAFNI ZAHARA', NULL, '$2y$10$pU3Wxns.QEMPDKZsw6cNX.dQ9dD1PUlyXyXGz2eu0XEKu/kY5lD5y', 3, 2, 'P', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(188, '1000000187', 'HENDRA', NULL, '$2y$10$UUbef4FdhFYZVijhEiuAM.uYelcLemKY61MDr6WxFi2vWa0dxzds6', 3, 2, 'L', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(189, '1000000188', 'HENI WIJAYANTI', NULL, '$2y$10$GcnPG/nNB1Nwr2.dOKItIeB8I6W9TNi0WZDIXhS5PP1gln1IURcXC', 3, 2, 'P', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(190, '1000000189', 'HERMA VALENTINA', NULL, '$2y$10$BkZXsGCfVJPSqC4ja4BTA.zh/fVFJ13.tRl1LKdfxevJGiCSp5T0C', 3, 2, 'P', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(191, '1000000190', 'HIDAYATUN NAHAR', NULL, '$2y$10$Lfic0hI4gLnND4.j5ya1Vu/ZA5im1jdKR/wW0swi0tNisx4AR9BAS', 3, 2, 'L', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(192, '1000000191', 'ILHAM RIZKI PRATAMA ', NULL, '$2y$10$UOcAGyIOpZuS9pbXu2N8Ke.SQwWl.JhvS3Wy/JMXGxVcXgkeybLRG', 3, 2, 'L', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(193, '1000000192', 'IMAM SAMUDRA', NULL, '$2y$10$H4HRIKufOb1gAn4UwPg2Qu.jujp6l8pSt6z.VD3IwLlz/2KAPd2ZK', 3, 2, 'L', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(194, '1000000193', 'INTAN TAMARA', NULL, '$2y$10$YLToJ7ZerLzwh2Emn8MgtOkJHOKGIY9yDXW9R4DCVKcBPh5jPL1dC', 3, 2, 'P', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(195, '1000000194', 'ISMA JUNI PRATAMA', NULL, '$2y$10$29DWGiY5SOJE8uERJaVFnO2XPPtyaU1DKQQOA6h2pG5CHnEymvYi.', 3, 2, 'P', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(196, '1000000195', 'JONI SYAHWANNARA', NULL, '$2y$10$0IvgTKwCQTgE68MFVTqsNOJWLORlEOEHmbfI8sjs3ygiqM6VzGppG', 3, 2, 'L', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(197, '1000000196', 'JUHRIASYAH', NULL, '$2y$10$jsilYJWq6vK/SKvQqfU.7u9MPqKrjLK0FdkLwU/scuuAqSRADRN2G', 3, 2, 'L', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(198, '1000000197', 'KHAIRUNNISA', NULL, '$2y$10$rHc4zAHvQzyNNSUwYNahwO/F2IJhdwfSZBnTXVxLEf5oivUvw1fi2', 3, 2, 'P', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(199, '1000000198', 'JUMADI RAHMAN', NULL, '$2y$10$yELAvsm.Nhw3qBBaSc.tbOZGKLY7pJbsMJuGLDJ9JinVrXRH6pY32', 3, 2, 'L', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(200, '1000000199', 'FATHUL ANISA', NULL, '$2y$10$Tm5.rUDTFTv7aj8tRjs4EOXFslJPdlH/9M/CHq.TKOVK0Mm4w7Dzu', 3, 2, 'P', 1, 5, '2022-03-27 21:27:20', '2022-03-27 21:27:20', '0000-00-00 00:00:00'),
-(201, '1000000200', 'M.NUR', NULL, '$2y$10$wVCGk2CoKr4UymtwWGuEJO5iWwKuqcHNwTvMP77c4Rdc/5I/cNRpW', 3, 2, 'L', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(202, '1000000201', 'MAUZI ALFADILA', NULL, '$2y$10$Wc/KAtZYc2U/8BcQnBW3o.5b4JTrR5tKobEkDyFPyRzGxtlvoFNR.', 3, 2, 'L', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(203, '1000000202', 'MAWADDAH', NULL, '$2y$10$71uZMaGbwlGmHuF27mPnp.THhDmlE4Zdu/NiMGqNkQ6aJyL9EikYy', 3, 2, 'P', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(204, '1000000203', 'MIRZA BUGE MUSAMPE', NULL, '$2y$10$hH6N6A1MPm3kHEpo2zg53.W9Xb4PCgX7TvpMOK7gkVgP5g17qw/Oy', 3, 2, 'L', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(205, '1000000204', 'MUKHSIN', NULL, '$2y$10$1AHahnvh1Zsuhp0q1OgpmeBoO9XIupmL.OoHKfH/drpxOhVANbSAu', 3, 2, 'L', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(206, '1000000205', 'NURHAYATI', NULL, '$2y$10$O2ReZLwlyN7apnWxcN2aZ.sx.34eabE3wu/ZOqvKhG5I/KYgDxsd.', 3, 2, 'P', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(207, '1000000206', 'ORIJA GUNAWAN S', NULL, '$2y$10$trPQkuv0ZTHmO0.v9su1g.Db6pDIaOtlHJtwGNdQmU0ux2E91UuhW', 3, 2, 'L', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(208, '1000000207', 'RAHMI SAPITRI', NULL, '$2y$10$7nFTzwpV3mnvefDyuj7ojednmQ47XeXISfUtuuGIPcXhe1kbB6E2q', 3, 2, 'P', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(209, '1000000208', 'SABAROLLAH', NULL, '$2y$10$/g2qtO8cwUW5Fol.1N6cjuV/KV/bqy5v4/U0i7uY87aXQDSB6KX12', 3, 2, 'L', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(210, '1000000209', 'SALMAN AL FARIZI', NULL, '$2y$10$DDW0wNY9nxTt7WshzDDDGuA36oullCw.7DilFyZVZqw2RR8IVTC8O', 3, 2, 'L', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(211, '1000000210', 'SAUQI QALBI IKSAN', NULL, '$2y$10$7hZvulN9/zLOZGPYTHRWg.R0Vj6Pcrubs2aUxW.ioNjRwX78Nv3ki', 3, 2, 'P', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(212, '1000000211', 'SEPRIANA PUTRI', NULL, '$2y$10$hUrA6y52AD8WiuFiZPBA5.glbKGouKeS0.eVDuSi3uJQtdCtpdriW', 3, 2, 'P', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(213, '1000000212', 'SEPTIA SULIA BRETA', NULL, '$2y$10$u7wu7oPbC4uNxOL77XmCiOS6Kzy2Eq/CQaHaPuUV.YH0RUkwLlfBW', 3, 2, 'P', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(214, '1000000213', 'SUJADA NAUFAL', NULL, '$2y$10$xxM3I7sk4biwG3Ww7VzzSO3GpI/4C3KVYxeaBGypH7uWL57mlZ1We', 3, 2, 'L', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(215, '1000000214', 'TIARA REZEKI', NULL, '$2y$10$ivhwZBtbT/RFCRnucldofe7Vye/BNb1.96xPI4QQX2pAqHz/BjbAC', 3, 2, 'P', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(216, '1000000215', 'VANIA AMANDA', NULL, '$2y$10$BJIHRpyJFT7oz7KYk9CBmOfR0Gw0pnmpwiaVd6LaoCUxO6lWbiS1G', 3, 2, 'P', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(217, '1000000216', 'WARDANI', NULL, '$2y$10$bO9iGFBzn/g52vFLjzhk3Oq2e8G4PfRYT.nBfWqElNy.NF1nCMEmC', 3, 2, 'P', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(218, '1000000217', 'WIRA MAHENDRA', NULL, '$2y$10$CgC6IgiurJqIi.mSychMHeuL8XF7ATr2GfoATbZiO0EOwuhtriovm', 3, 2, 'L', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(219, '1000000218', 'ARDIAN OKTA', NULL, '$2y$10$Lg03n7d6xxk8hfypI3zYueNbrQm4sN6/m5I/u3R6IduuEVMEBoOqu', 3, 3, 'L', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(220, '1000000219', 'AULIA RAFIQI', NULL, '$2y$10$b9rJmKWEWB4vz5vtY9Khae9nf6bs3K1RD3T89Xo5OLvOeXst1cbOK', 3, 3, 'L', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(221, '1000000220', 'AULIA RAHMI', NULL, '$2y$10$.A28Oo7T6mS/4RIAvcCrae3lPPS0N2.7YJqsPYiYfdEL3TpiEdqyq', 3, 3, 'P', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(222, '1000000221', 'AZZATIL AKMAR', NULL, '$2y$10$56iO65BewudJll2ERVOpw.0UgUGVre9ef5GY65fcHcQ9cnyJgE8gi', 3, 3, 'P', 1, 5, '2022-03-27 21:27:21', '2022-03-27 21:27:21', '0000-00-00 00:00:00'),
-(223, '1000000222', 'DHIYA JINAN SAUSAN', NULL, '$2y$10$9IW7D0tt3K4uiEis31QU9emR7QWFThQM9U1HyEp5kMasch8oRTfSu', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(224, '1000000223', 'ELMA FEBRIANI', NULL, '$2y$10$Z16qV.ESJBVrK9Wnemj.JunRucdq2w/C1xV0usWjmD1BdX7CGMatm', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(225, '1000000224', 'HENDRIK', NULL, '$2y$10$A5Hl207cnVmLhjk7dcZ13urQULgqbAcOrtPOxhY8mokIallkWiqH.', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(226, '1000000225', 'FIRA MAULANA', NULL, '$2y$10$7y4neeMoUIvJHGJ7gIlhGO.neBGp.0/2rvAWdAkl6rQ5J2DVkiQNm', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(227, '1000000226', 'IFA SILVIA', NULL, '$2y$10$IZkUDjCDdlDr9WRGjKd.gO8ic56/LMqAgXxEmbsFHTarnw9OAlSxm', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(228, '1000000227', 'INTAN RINDI PURWATI', NULL, '$2y$10$LLb1/OZtBc/odeo5Bw5Zgue4JQaEQUdk0VxAcL4vC/X7Dy7oajgli', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(229, '1000000228', 'IRADAH', NULL, '$2y$10$X14E9dFu9WFuLPrSsL97beQJIYkz6sTSCFKjnJFc53TdHPm4jsx/G', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(230, '1000000229', 'KHAIRUN NASIRIN', NULL, '$2y$10$uxQCe95o2oHWmXjCC.QF4ujTnWFwoM.2KNHoDrLTIBEireZ4ngXBq', 3, 3, 'L', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(231, '1000000230', 'M. FAHRI', NULL, '$2y$10$tUkDbMgu9S4FW0jwJjN8tujAangAQDvtP9ZZFhgptGnlENjL5/o/e', 3, 3, 'L', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(232, '1000000231', 'M. RIEZA PAHLEVI', NULL, '$2y$10$9yhaQhr5AUUj2rMOjPtcAO8WGSI2vgX7Ioh9O6Px4IwcIDftuu15W', 3, 3, 'L', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(233, '1000000232', 'M.PUTRA WANSYAH', NULL, '$2y$10$lgQnKBSnWnqi3fsy23zB1ujQ3yomqehpu.9XS/3FRY2gubbW9g5WW', 3, 3, 'L', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(234, '1000000233', 'MAHARANI', NULL, '$2y$10$yVIskUd7wr6o48ewP0kYs.ALhTcuD9Fb3bTHpGyG6WMMCvvy7.M/C', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(235, '1000000234', 'MARLINDA PUSPITA', NULL, '$2y$10$bsXkjLA7POSyxubxzPhFJueZZkovlXv.BvecA5UxHFJxahz1ErIa2', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(236, '1000000235', 'MAULIDA AFRIANI', NULL, '$2y$10$OVqdHirOYiuQqDhrPsgNUebqC/rSOFl/5336FNfNSU1M9NXdUQDEG', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(237, '1000000236', 'MUTIA REZEKI', NULL, '$2y$10$4RMuwTXkcgJ1OMz8b9g5Ju7/qbA2bNoTpKmUwwPMiauZpLERa0vi2', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(238, '1000000237', 'NADIA MAHARA', NULL, '$2y$10$RyS3q5qb1iEBsIzuIBcdZeYtzzFHmzkuQdddOJmITWcmhR37l39Pi', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(239, '1000000238', 'NADIA SARI', NULL, '$2y$10$rr8.DJ1.1h3b9a0H9IE/y.weFnXVaGQfqAGZ92/Pc.Sc9RcotAiM6', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(240, '1000000239', 'NADYA BRUDIO', NULL, '$2y$10$0kG4avhaeHfkrr3vbmXh..MG/0jvAAa2g15wa2dTg5m8MThoKjWm.', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(241, '1000000240', 'NAJIB MUSAPATI NUGRAHA', NULL, '$2y$10$CU4wsGAL5voMMm0y/5ghfuS4fwExSJ5HaW0kcpHhIqH7uf7QELSmm', 3, 3, 'L', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(242, '1000000241', 'NAZLA AQNIA', NULL, '$2y$10$zOYwG15yHklt7KaUtjDoJOEvg6dIgJZ1AtVkiDkEOYzQtXWnIMpUK', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(243, '1000000242', 'NIA RAHMADANI', NULL, '$2y$10$kCQnNwAt8Mh/PtGCIDyFWOKtPmAPRFYTjVEHLxTyhrFtibcz6U7jG', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(244, '1000000243', 'NINDA SAFITRI', NULL, '$2y$10$Q7LsWwNvkkdRIuekQ4GHk.bgzzaJaIkl2sy19wI9bMCs.7R4VsxuG', 3, 3, 'P', 1, 5, '2022-03-27 21:27:22', '2022-03-27 21:27:22', '0000-00-00 00:00:00'),
-(245, '1000000244', 'PUJA SIMEHATE', NULL, '$2y$10$4OKMtfLLpc48oWpvdNV46.eq2.AsAgX792AOFKAdgytA8GnX8C86u', 3, 3, 'P', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(246, '1000000245', 'RAHMADAYANTI', NULL, '$2y$10$W0YvRs7bv7ggMEQbatoiZ.T8nkB6nS0//rGuoSqsjXKPEiPKzO71K', 3, 3, 'P', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(247, '1000000246', 'RAIHAN DANDI', NULL, '$2y$10$.f/3qe6YeDYou04v9AtS4u4.E1Q7NmQ2slpv7z6OAmMl5tDwp.VQG', 3, 3, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(248, '1000000247', 'RAZAK RAFSANJANI', NULL, '$2y$10$GNRtJr7Iozg2jn3DIQ.3AeUf6x2vadbyInSs3vvZHzrD7JWeXKub6', 3, 3, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(249, '1000000248', 'REFKI WIYANDA', NULL, '$2y$10$3d3.8u4xbLzY8TwH4R5LFeYSqCoa1oYZ3gEhwZwfhFhDsFC9fxOYK', 3, 3, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(250, '1000000249', 'RISWANDI ANUGRAH', NULL, '$2y$10$7IVG3KDcAf9uuDExCiRCEuuoBmun0NlrXp6Di6ZudM2czrkK.wg82', 3, 3, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(251, '1000000250', 'RIZKA IWAN PASA RANGGAYO', NULL, '$2y$10$2ZV9DR8ZfnUL3QnRjGq6BOkvMKnnHwPD3dgfPCOkIf8YZcLc9bnD.', 3, 3, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(252, '1000000251', 'SAFRINANDA PUTRA', NULL, '$2y$10$HLmrY4wQ/8IaoDJQCSqz0.7YZVVtA01sNJQD35yTDbpiFnPwK7hG.', 3, 3, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(253, '1000000252', 'YULIANA', NULL, '$2y$10$0hljP7eO3hJ1eqblv07UhOmAtUE/bqbBoHezWJHweNpGvfo9xagYC', 3, 3, 'P', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(254, '1000000253', 'YULIANDA', NULL, '$2y$10$ymY08V2P9CXsLBm7OwG.i.gH73mCLmH8UaeApnq0t9lUQ0RLEDzOm', 3, 3, 'P', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(255, '1000000254', 'ZAHRAN', NULL, '$2y$10$V7NX.Tt/9ZrW0GvbHRbpnOoe.TTQOOuw.Xl1Yq/3hIu67iTJ.H3Ga', 3, 3, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(256, '1000000255', 'ABRAR ILLIYIN', NULL, '$2y$10$ETiNXiya5KWB8j1Ok/dZsulZTh8./d2FwWrf.bq8YM7Go0UTaNFbm', 3, 4, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(257, '1000000256', 'ADE NOVAL KURNIA', NULL, '$2y$10$IykDsVwJosBxBOf92.9qyuFz2d2yA27ZXCq0wpzldio/MZPjATU5q', 3, 4, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(258, '1000000257', 'ANANDA SASKIA', NULL, '$2y$10$Vp0AsjkLmXL25mOcmPBFM.rM90tuhuhVrzHHm/8l54xbbAU8XWy2W', 3, 4, 'P', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(259, '1000000258', 'ASPARINA', NULL, '$2y$10$ZpnxP9cQPwaIBdjLmgdqAO2L.KVUfxcrAu/SjNWNoMtpIDfOXpn4m', 3, 4, 'P', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00');
-INSERT INTO `students` (`id`, `nisn`, `name`, `image`, `password`, `classId`, `roomId`, `gender`, `status`, `privilegeId`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(260, '1000000259', 'CUT MERIAH SYAMSI', NULL, '$2y$10$TiRBk2GT7vCKMvMwViKgM.UttFyEMOMb17h2RoMW8xviWVmgOYGr2', 3, 4, 'P', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(261, '1000000260', 'DAHRI AZIZ', NULL, '$2y$10$s4vPMhLdaefh.rMMiyoOuOqFHASNl3EwjU51rWL.PsSwF9.UfO0Ve', 3, 4, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(262, '1000000261', 'DISKI ADLANI', NULL, '$2y$10$RSfxltieGNidJ1jWc9Q5cOwC5eHjpzWUSDEWVx/rvMQAMChzgwnka', 3, 4, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(263, '1000000262', 'DESI MAHBENGI', NULL, '$2y$10$q25jq0s4j3QCEB4A5wkau.nitSf4suigZ5Um03EqaRH9LhJdmjmXK', 3, 4, 'P', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(264, '1000000263', 'FAHMI MAISYA', NULL, '$2y$10$xV.6bMqk3M.dXO56wBBfYOYyiPJUlvP5Blwsqbh4z02ioeeH04DQq', 3, 4, 'L', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(265, '1000000264', 'HUMAIRA NADILA', NULL, '$2y$10$YeekBkcmXD6axK/tYh6DxODfc3DHUVGBTKpVpMNxQuhe1UuVqTHO6', 3, 4, 'P', 1, 5, '2022-03-27 21:27:23', '2022-03-27 21:27:23', '0000-00-00 00:00:00'),
-(266, '1000000265', 'HUSNI MAHTUAH', NULL, '$2y$10$afeXfb.c5uYzUdyFuk6ZxO7zAPsP.u0Y0ESuVBBIKjAOp5aVlg0bi', 3, 4, 'L', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(267, '1000000266', 'IQBAL DARMAWAN', NULL, '$2y$10$klBKSurWSrSrzg5099wBGOOWQL1rdtriFiKv5gDzbtpl0Zz5ZF00i', 3, 4, 'L', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(268, '1000000267', 'ISRA AZZAHRA', NULL, '$2y$10$7MX0oXz8fkGLQoo5WOFY0OkSRk2h6UEo3xzZ0k39kf/BSMwoT7U.e', 3, 4, 'P', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(269, '1000000268', 'JAMIAN QALBU', NULL, '$2y$10$KiYY2maK13265DmvYI8HHe2it6ZWl4R6P.M3/9YhCp6JWXkJYGV0K', 3, 4, 'L', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(270, '1000000269', 'KHAIRUNISA', NULL, '$2y$10$Wa02Wte8bTxQUYIYCXW0Wu3QkmKhklA73L3I46NbaVxeCBIU6Ydi6', 3, 4, 'L', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(271, '1000000270', 'LAULA SALSABILA', NULL, '$2y$10$fi1kI5k9dAJGe45k1ZZJGOdUqNALLFpZLtUL2eRSMhqaW8nJBKqXS', 3, 4, 'P', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(272, '1000000271', 'NIA RAMADHANA', NULL, '$2y$10$PQnH4Ueo5Kk4X9eFMsoI8egwAVkKCLzhF6AbADUhIfoeBLcoR/5Mm', 3, 4, 'P', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(273, '1000000272', 'MAGFIRAH YURISMA', NULL, '$2y$10$N3JX.pFyOzn/czFl7qlpJ.5nliygJNdpgUvvFKFLOLX/FLGnFjEXm', 3, 4, 'P', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(274, '1000000273', 'MAULIYANA', NULL, '$2y$10$FFGxtGTBdXl0q9j3UaZv5.GV9jMOK0zcVmdBvZrH8rZG4CDlVp6z.', 3, 4, 'P', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(275, '1000000274', 'MEETHA LAURA', NULL, '$2y$10$q4ggWiE5ho.DrqgxvjKh8OnYmBgK3hjEPz1jb.Cd2t5WrP3uVq26K', 3, 4, 'P', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(276, '1000000275', 'MISLAN BAHANA', NULL, '$2y$10$u45NJ54Deegm74lybTCvx.3bb1W8j0jxhi4tWBhoMpPpkvy.pN782', 3, 4, 'L', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(277, '1000000276', 'NADILA RAUDATUN NISYA ', NULL, '$2y$10$WCdEp7wyfhzTZnS4wZjIJuivvjx75qn4.hMFELJq6.21zloFbFHiy', 3, 4, 'P', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(278, '1000000277', 'NADYA TIARANI APRILIA', NULL, '$2y$10$7te1wGWM3PQstozZ60bsQe4F2xGj/QQNasuLoQDRk0RD3OYkaWy2e', 3, 4, 'P', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(279, '1000000278', 'M.SUBKI', NULL, '$2y$10$TLv2.GrgMUqoJ.K/E6oUB.XV7nur4Pp23GrDanMwO/YnlJmztWZqa', 3, 4, 'L', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(280, '1000000279', 'NORA ARIFAH', NULL, '$2y$10$/IZ9iu1Sia/8pM4HSbZ0buKd9t25EmYcuSViv3rBPTuw8SCKfIQyS', 3, 4, 'P', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(281, '1000000280', 'PUTRI ALYA SALSABILA', NULL, '$2y$10$O3GKhMNRGhL82iXwNXE3kuPw9spQp0788vCvwclXGvYWTMGKpsuei', 3, 4, 'P', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(282, '1000000281', 'PUTRI KAWAZULA', NULL, '$2y$10$41olqUEgPOglB04EUAVqUu.IY0NGTLnHp6Bo/BfD3R/T6USeyvvJa', 3, 4, 'P', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(283, '1000000282', 'RAMADHAN FITRA', NULL, '$2y$10$dT7WmBff6REvmdRoW.1SbeVl7aAT0wAV38a986xZ7x6MrpSnMATx6', 3, 4, 'L', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(284, '1000000283', 'RANDA RIZKI', NULL, '$2y$10$vly7s0vVFF5kd.7Pvv7da.jZaML/MjyrTJmzECXJD3J8bfPkNaCH.', 3, 4, 'L', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(285, '1000000284', 'RELADI', NULL, '$2y$10$m7P2oWPB58mf8NUISr22zej8SADAJP6LtSSiQFwq6A/qcARLjw9aK', 3, 4, 'L', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(286, '1000000285', 'REZEKI WANANTO', NULL, '$2y$10$HGHrils38Fhmx5ifBn5zmuUVW48njfHyckZOPDMSujBxV2sRBB7V.', 3, 4, 'L', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(287, '1000000286', 'RISKI', NULL, '$2y$10$Z6HRUJxj95aQY8LhC5kAfOpZNoEKR9bv80plLQGuivqXmjRZvExlO', 3, 4, 'L', 1, 5, '2022-03-27 21:27:24', '2022-03-27 21:27:24', '0000-00-00 00:00:00'),
-(288, '1000000287', 'RISKI SETIAWAN', NULL, '$2y$10$zvLTaqlje2r8Bq9L.SL04evOdi5ttg5JFcaRc8cs2MwIOIsOp4y5.', 3, 4, 'L', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(289, '1000000288', 'RIZKI IWAN RAMADAN', NULL, '$2y$10$3zPXJbsNDDob1.MyFj1ObO8ur3sj6FOc7eDD3m56eNbALKs71uP3C', 3, 4, 'L', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(290, '1000000289', 'RUAIDA', NULL, '$2y$10$lGq//ZsmDroYmbh6kjPq/u6DGWMgJ58AVjUxOKZgnSL3gzNUH.ynC', 3, 4, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(291, '1000000290', 'SELVIA PINTE NATE', NULL, '$2y$10$Gp/TPCvh0ji0KKq7LHbDV.O06zAABaDcKCNFQVC7huk4x3oeyjX8G', 3, 4, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(292, '1000000291', 'WULAN MELISA', NULL, '$2y$10$JBN0dcLmORAUxmMKkGFyXObw92nwMW5MD5chkB.UGxPbkqTOVcxEK', 3, 4, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(293, '1000000292', 'ANGGUN KANIYA', NULL, '$2y$10$zCswNWJ1jGkrsSwInY/Q3.oGr3juQnjlUXcGpl91BHMSEG69IsvpC', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(294, '1000000293', 'BINA UTAMI', NULL, '$2y$10$SpPhkVJpg7hWlhQtMMl/2ehii1.nP4CiHKJMPi50NpViPX9Pt.3fG', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(295, '1000000294', 'DITA ARMAZA YANI', NULL, '$2y$10$bbYaPZq98nd7xV2Uci0EV.c23CPCPSCktUt6IRs3IdrBQMvowh4AO', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(296, '1000000295', 'HUSNA SARI', NULL, '$2y$10$D0ggDjn9.TXTEzJXrQgFCOyoqKvoMXaFunVLgLgM2InxL8KWKwiGu', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(297, '1000000296', 'IPAK YANA', NULL, '$2y$10$uCcQ.bYmpTVX.xpn715lYOUugz7OOTT8zwRMO1TC9raIf6.SpXpx2', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(298, '1000000297', 'ISTIQOMAH', NULL, '$2y$10$tWkvEu0L1esL47.dpg.e4.G84LCzmsKrFp.bWC5ljW7YIB91MLj7C', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(299, '1000000298', 'LIDYA AUDINA', NULL, '$2y$10$6WqX9x2sXclF2ksgxvF/I.thbicrfg1CYguxosHddsP/uRllC..me', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(300, '1000000299', 'MA\'RIFATIN ZAHRA', NULL, '$2y$10$RzKPFVcf7Laczo6y8rC0Z.h42ONE2lkGuQlusEANrKOV0Mjge1l22', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(301, '1000000300', 'MELAWATI PUTRI', NULL, '$2y$10$i2o8pgq3MP1Grl6AmUe3xu2kV/ME90ESJrG8XwUJTVZsnUsRPBxG6', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(302, '1000000301', 'MILA JUNITA SLASIH', NULL, '$2y$10$GjgQFuGiElB38JqoX89QgO740kehRLISguvpG54Sj7XZ/kFPARoMe', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(303, '1000000302', 'MIRNA YANTI', NULL, '$2y$10$tA8.7d2lXsczmacZ8JOG..hG7EYfUk7bGdTn7i33d8OjfFGrvAB5S', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(304, '1000000303', 'NAZIRA HUSNA', NULL, '$2y$10$31FvTKvnGJEeFBsFKLoY7uBWqQwX3LH0RFAr2nzXaFQkNzTxwTK..', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(305, '1000000304', 'HELMI FAUZIANSAH', NULL, '$2y$10$3Nvk2V5fE6YGhqVnHy/TQOMrZMdWJXbaULx9IaPCd9miWR5Nc6gZe', 3, 5, 'L', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(306, '1000000305', 'NUR AISYAH BORU N', NULL, '$2y$10$PzShjMCbLxaTgHaFHZ6n1uPEHtVU3RqAaFYjGT4rJ1jz0Cut2OZOy', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(307, '1000000306', 'PINTE REZEKI', NULL, '$2y$10$CJUPQgAp4JFuMjfM1Vbiz.gUl4XHpLm.DdQRCf3XYHVebkiDCH1N6', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(308, '1000000307', 'PUTRI DAMAYANI', NULL, '$2y$10$ODg20YQAdIurxvM.rWxpY.dOhyOyJVifCIXEjuI5P2yBmZnffebCy', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(309, '1000000308', 'RANIA PERMATA PUTRI', NULL, '$2y$10$CAsv7pV2DokLOgbDKz/nt.EyEdiecDieTja0WUWm6K55ztraxvU7m', 3, 5, 'P', 1, 5, '2022-03-27 21:27:25', '2022-03-27 21:27:25', '0000-00-00 00:00:00'),
-(310, '1000000309', 'RUHDA', NULL, '$2y$10$GFU6ARxxDZVCi4aeIX6DheErGVwKmYtG32nkD2th6QRdJ.KgX4cTe', 3, 5, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(311, '1000000310', 'SARAWIDA MELALA', NULL, '$2y$10$6uK8ofc7soK7ZdE6qKoaD.g9UaIK/owg0bXxQiiOk4x7krfJAbeSG', 3, 5, 'L', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(312, '1000000311', 'SARI RAMADANI', NULL, '$2y$10$qBPOUMLTO0SaolIjQcAize/n45RxU7dBZYEIpoJ3SkKzSYgdXJ6Si', 3, 5, 'L', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(313, '1000000312', 'SAUFA YARDA', NULL, '$2y$10$Vk6cM7qbMssvhDLTxlFuxuH6HV4ogFvIEwtLVnEsXjn1C1AGd0QaC', 3, 5, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(314, '1000000313', 'SITI NUR KHADIJAH', NULL, '$2y$10$dZKfQkLdG9CVckTag59DJu3lc8rES2zPd.hEGzPjd8vt9ECOsRdBC', 3, 5, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(315, '1000000314', 'WIN NAUFAL MUHAMMAD', NULL, '$2y$10$IMUxKdTSTNtzUs8glI7vjuylBoJ3k26uOSlUEiQ0/M59JiSGnNfim', 3, 5, 'L', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(316, '1000000315', 'YLMIANA FITRI', NULL, '$2y$10$R7JkzGYfAD.h5F6jT95DReIiFo.LKD.APHLi.Felykpg9oPno2R8W', 3, 5, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(317, '1000000316', 'YOWENI BAHGIE', NULL, '$2y$10$5JiR74P1TkfZmcQeUjZR3.hHzqzIu4U9x14ATiNe1dAYwz1nRDPD6', 3, 5, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(318, '1000000317', 'AYU NISA MAHBENGI', NULL, '$2y$10$fdw8eKk36f4Rl9n1eOH1weqR81rnQhdUPOI68kcxQzeRWFdbKcflK', 3, 6, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(319, '1000000318', 'ALFI SAHRI', NULL, '$2y$10$/3I3joAPlMdzYyqv1PQyYum8tx0uoeTC3uY/Jb3bf0/bDm2R2WIqK', 3, 6, 'L', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(320, '1000000319', 'ARJUNA ARISISARA', NULL, '$2y$10$kfpp474StAGXr3QDUq8JqeCSeQ9Hd/OOd15K0hYFEaoImbtTnqO9W', 3, 6, 'L', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(321, '1000000320', 'BAYU PITRA ARLO', NULL, '$2y$10$FbKH7DHXuVPoYjobHP.zdOJB8GuVhbv3/6/nrfFK/XTE4KvKsXZl6', 3, 6, 'L', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(322, '1000000321', 'BUDI CANDRA', NULL, '$2y$10$Dpz5Li0ThpHdMy25VHblFes6EKSzktKtkIg14Lwuu/OFIO3XI0t.e', 3, 6, 'L', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(323, '1000000322', 'DECHITA ISNADIANI', NULL, '$2y$10$n55WFAKhlfpFHe5bdcLeIe35Fs3dCYJ5GmYJplJ9ubTgHJgkMC8.e', 3, 6, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(324, '1000000323', 'DESI MAHARA', NULL, '$2y$10$9jXEo6hRsP8R3ugdhCBk3.qN1hNZWg7bn9My/FLwW0ZmbcRVBn6TC', 3, 6, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(325, '1000000324', 'DEVI ANGGRAINI', NULL, '$2y$10$aD1h8T57bHBRcecH2zF2FOVPPMoPStXYc6QCtrEDGBKnA4agzgIwu', 3, 6, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(326, '1000000325', 'FARISA RAHMADANI', NULL, '$2y$10$t5RIB2oBjPQBoDgm1J1VIeb1DqTSbQzybgRfjhHAEm3NpjqzppEg.', 3, 6, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(327, '1000000326', 'HAIRI DAMI', NULL, '$2y$10$0b/zc8t5oM22DrYqTOFOJ.VnMlK6jJA11PJ6593eR.Qu3hBLcar5C', 3, 6, 'L', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(328, '1000000327', 'HAJIL MASTURI', NULL, '$2y$10$JxrThi44IrV9vdDkFVhRauzDVXaXCWTM0AC0eSLGuPDrzBpkCsvYO', 3, 6, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(329, '1000000328', 'HUSNUL NISA', NULL, '$2y$10$W3SNAZ8Lpluvd/tTMI4gZ.5sKuRI1PHBHGH/OSQsCRJxrMa2Gr5ci', 3, 6, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(330, '1000000329', 'ISNAINI', NULL, '$2y$10$tUXrz9LFuFT29I1SSGPMlePkSyyKVwrpyd6aKmwBX41U8jgXcyzka', 3, 6, 'P', 1, 5, '2022-03-27 21:27:26', '2022-03-27 21:27:26', '0000-00-00 00:00:00'),
-(331, '1000000330', 'JAHRA SALSABILA', NULL, '$2y$10$dbEllhjeaLBBAQTRwhro5urvROLQAGAMr4Ed1btBErLczSwE9ZluW', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(332, '1000000331', 'JULIANA FITRI', NULL, '$2y$10$WjtRtZRCDUOKoi7AxJINyuZgokqH7.nDqFGCwyXIRuuAY5rbHJNM6', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(333, '1000000332', 'KAIFA RIZKI', NULL, '$2y$10$awDfpSP0TDs/LWphD6O1sOYOz2.IAKbLLIHraH45wsWmniBmdP2am', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(334, '1000000333', 'MAISARAH SIMEHATE', NULL, '$2y$10$PmF6vUlqkXp6kMnko6idKemtqKeFRPYf14Pxgj.3NkXpnYOO25Ysa', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(335, '1000000334', 'MHD. FAHRIZAL KR', NULL, '$2y$10$9TFveNShEK8Eu.SEiOwgteByNJqHz04j4cLhxW3mu.tpXJqDfTVPC', 3, 6, 'L', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(336, '1000000335', 'MULYANA KS', NULL, '$2y$10$vzIN3YqcDeA/SBIse6dkg./BXRL7Z8KeEZl/HNdVwjiyCU6OHAdPS', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(337, '1000000336', 'NABILA TRI SINTENI', NULL, '$2y$10$efotfwofPEAT5d/CUYwfquTXTP2RtjQBh5P/ZzRuVWK.Musy7qXOi', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(338, '1000000337', 'NAFHAH SYASYA SAJIDAH', NULL, '$2y$10$loTfaGiiofLXUUOkHXa5HOxYxL9ndCKtavCuaobtMM3/kCwrNEyHC', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(339, '1000000338', 'NAUVAL ARISKA PUTRA', NULL, '$2y$10$lhT0LsoVKdmSS.j6qUiXo.Dxby2j1mnwYLsxRKqNQ53ZPoLiLyR8C', 3, 6, 'L', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(340, '1000000339', 'NAZARUDDIN', NULL, '$2y$10$63Etd0g9VpJYBDgKada2Z.NEd82u0GOmFjVAUWBF.QubwU17aEzmK', 3, 6, 'L', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(341, '1000000340', 'NIARA DESWITA', NULL, '$2y$10$wQMl0VYmi6ARz8DNR7OaA.JRBKydlPRfb9I3Cp/mDUBoSYueejUWS', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(342, '1000000341', 'NILA WATI', NULL, '$2y$10$8bm9H/flp5dXUSAUlVtDyO/X29mLRCQ.orOCZjNPOpIEtuoj5L2eu', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(343, '1000000342', 'NUR WAHDA', NULL, '$2y$10$VzhzCr37xhVseVc/8qZzaeACzOe4Fg4/eQp93JZHxnM/x1grv.WGy', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(344, '1000000343', 'OKTA PUTRI', NULL, '$2y$10$Rv89t2Li2vxHvKvU6MX3r.hP9obbCJflWdtvVNU.1op5.IJm2hc0q', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(345, '1000000344', 'RAUZATUL ZANNAH', NULL, '$2y$10$VXqx2MLfR.LWihxbpXThJu.dl/ExZBnhtbwNrm6hkj1hvUXysxkKe', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(346, '1000000345', 'REYNALDI', NULL, '$2y$10$3fXlYagPmeOYXM0XiK04Hukysgey/e.VQerIV5MpokctyC71iNMX2', 3, 6, 'L', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(347, '1000000346', 'RISKINA PUTRI', NULL, '$2y$10$1jbT3t08K3RvqAvsXbPQ2eKTX0uurwvWBFfhburzKySXVx4VkoeA6', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(348, '1000000347', 'SABRI', NULL, '$2y$10$uBcI7HHPTm.21jqX4IMBV.LrRg.GmlZXKqNHPFk2EYCFsYwCPCDUe', 3, 6, 'L', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(349, '1000000348', 'SALWANI', NULL, '$2y$10$O5/nb9wmKIkQwXELJtgTr.OGH2U7N7MhjdVDoubbBb3O.9UiJbmk6', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(350, '1000000349', 'SANDI PUJAGA', NULL, '$2y$10$HIaLZwQi5RUQyQJ75AClZe6wnCIoP/gxwIeZOG7w/6UMsPK6WNMYu', 3, 6, 'L', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(351, '1000000350', 'SARI ANJANI', NULL, '$2y$10$6ZqWIH/cmyP4LFHPdvtitu/j0PMe4F3gRIeDGfoTOjRC9yzJQW0IC', 3, 6, 'P', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(352, '1000000351', 'T. RAFLY YADYANSYAH', NULL, '$2y$10$oi62o9hyURS7mZOPFqoGRe4DuKCOHT5Z.QSk9gQ.1IDVlPj/WAljy', 3, 6, 'L', 1, 5, '2022-03-27 21:27:27', '2022-03-27 21:27:27', '0000-00-00 00:00:00'),
-(353, '1000000352', 'ZIKRI WAN PINTE', NULL, '$2y$10$1T/LeDy0UMIUGRQtPIflwOp2epCV56ZrEvSZlBx5leTb1Mpts86oe', 3, 6, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(354, '1000000353', 'SYAHIDUL SYAHPUTRA', NULL, '$2y$10$1qR9lahu9Q14X/qfmaqnne7RvE5WUE3KWhzm.MUhjaQaYLb7Wr/yC', 3, 6, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(355, '1000000354', 'AFIKAH SAHIRA', NULL, '$2y$10$CQvacJVuI16n1G4eJDEC.OVeEabm/ypbq65ua906mX/XCGyVDM6w.', 3, 7, 'P', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(356, '1000000355', 'AFRIANSYAH', NULL, '$2y$10$D8Z7Dmj7ZCV.sDqnTSyLvucJ/CsQNKLivn98AbNAOFmDn3zguVr.u', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(357, '1000000356', 'AHMAD NANDA KUARA', NULL, '$2y$10$egtCpbdw1fsZI.xuaQXf4eFbZrbiS4GVUTHjcJzyAB0vtqOca6iLO', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(358, '1000000357', 'AHYA MAULANA', NULL, '$2y$10$q3bNMT0hKIee/JN0NzjtPOJ0LOvQZzapU29IBapY3VXKZhnxaZFEW', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(359, '1000000358', 'AHYAR ADHA', NULL, '$2y$10$AR9s3bfLN4AfXKxIdNDOVOZCFgwEuYl6CHoNZ8qtncgAq0hyLWI/q', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(360, '1000000359', 'AL WANSYAH', NULL, '$2y$10$75POU96TAXpNyRxfsxkRI./YuFW7jcMHxlgTAR5t9PtCEkUr4fvGi', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(361, '1000000360', 'ALDIANSYAH RIZKI', NULL, '$2y$10$EeQdEBMhBgiBJ4ZE5MimQe3iE67Yx2s6IM3cunSIQGrzoBtGeiM0m', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(362, '1000000361', 'APINDA ULFA', NULL, '$2y$10$iDkG0BjRZx2TkCCN22TvaO7eeI1eO6owkBxrw4JhM95Nbz7WRHoXK', 3, 7, 'P', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(363, '1000000362', 'AZIKIATUN', NULL, '$2y$10$7SC641qF3BWDdE7wXZdBB.NYHV07KRUgUAd/zgcTzfV4yHYv8WyAm', 3, 7, 'P', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(364, '1000000363', 'CUT INTAN NURAINI', NULL, '$2y$10$spdCIId6AAG2WpU.oYjXl.Xn6AGnj9cYqh.8PsdwEPeByfs9yKhAi', 3, 7, 'P', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(365, '1000000364', 'DAINI FITRI', NULL, '$2y$10$ZdPLyoDtmApLBuZse8D7XOVNK3H6qtvaoUR2xu8V7hcpEaeU89LKm', 3, 7, 'P', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(366, '1000000365', 'FARIDI WAHDI', NULL, '$2y$10$aTaGl2JcbT.eORhx6UoTmutXAvrRC.Jx/zCAYCR/L.VOUXCs.RpIC', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(367, '1000000366', 'FERI MARDI AQIMI', NULL, '$2y$10$W8Nuh8pTsS5fr.hySgBgv.D0fHd2L/RLENVOU2Z6rMtRYi4TMjN/W', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(368, '1000000367', 'FRIHA SUPIANTI RINI', NULL, '$2y$10$K7MqTRqnOzU2HLERGm0D4.ttUzhB3KSgwi/FS1H9d70unGEpxuNvC', 3, 7, 'P', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(369, '1000000368', 'FURQAN ', NULL, '$2y$10$13Oup4g6XK2Gos8oHbwT5uzXA4OjRAltpvhFEYjJi/BHAuX34JU9C', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(370, '1000000369', 'HARIANSYAH', NULL, '$2y$10$CJeHwZV5S.eEVhay3AMfLO8pKsEWX1wv0QMeomC8TVNjylmsioxi.', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(371, '1000000370', 'ILHAM FAHMI', NULL, '$2y$10$ozBDbd.nqssCHDakLcMYC.9ysWVET8fYFzHgp4Gxo/y6jBWmaBwSe', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(372, '1000000371', 'ITA WARNI', NULL, '$2y$10$ydLQR7S10CvKAji3c030N.YyHOHrVt2KnB9UrCLSFomWX3Pv1OFN6', 3, 7, 'P', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(373, '1000000372', 'IWAN RAMADHAN', NULL, '$2y$10$Hp4ozfHyuHctkHfSvUbu7OZBmq/ehe4OI0thwlSCaBM9OJkZaJHEa', 3, 7, 'L', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(374, '1000000373', 'KEMALA INTAN', NULL, '$2y$10$TBgWPZugH0l1FsElhvaWzuIMWSocmo2Cp5qjG8akIt3Yfhn5lT1oa', 3, 7, 'P', 1, 5, '2022-03-27 21:27:28', '2022-03-27 21:27:28', '0000-00-00 00:00:00'),
-(375, '1000000374', 'KHAIRUL ADHA', NULL, '$2y$10$S5qT5lKlfGQMvKEEOw6.neV11kksADF.SDRZS0l/WrB.pg2RvnwD2', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(376, '1000000375', 'LINDA KARMA', NULL, '$2y$10$HACd323knXrb5GVFuxv1r.egk/kZfJgPVBqssDupPBcfkUQXwYLBa', 3, 7, 'P', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(377, '1000000376', 'MHD. FADHLI', NULL, '$2y$10$rmNK.lflXP6Zc2Lq./Gmo.rfoAv8RnKkxDHXBiqXuOyD51hxxy4PC', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(378, '1000000377', 'MILWAN APRILIAN', NULL, '$2y$10$zliUvHgCkFyrCqUT.xBxVuVmLMQXsfGarljwxrio3nz1KbFcL6mF6', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(379, '1000000378', 'MISSIS SAPRIDA', NULL, '$2y$10$ZFcbKEGAfifTUwU3P7Vwm.0X2r12TmSy42lH7EAl//MaTayG5D4B6', 3, 7, 'P', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(380, '1000000379', 'MUSHAB', NULL, '$2y$10$XU0NJPwGmTvnmL7RRT2xSuK2g06XYRCPFHxIvyYKQ/KwNVbojcRsO', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(381, '1000000380', 'NURAINI ', NULL, '$2y$10$EN1QbKFdUThyyUPtv4bp9OwCjf5KMNSMduEWVgVZoRhkTRB1/O3EG', 3, 7, 'P', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(382, '1000000381', 'RAHMAH FATHIYA', NULL, '$2y$10$FmMVNEirdAau0gLuVtVM0.dEB08w/2/k5Y8skSmDFoDrDMrSxY852', 3, 7, 'P', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(383, '1000000382', 'RAHMAT TENIRO', NULL, '$2y$10$Bs0oT9g6PCAgDlErZw71fO2OkBiBKUe2HsUvtFWfPBPvEBOxDvZee', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(384, '1000000383', 'RAHMATSYAH', NULL, '$2y$10$xvb4x04C4ticzYUGvCCwJ.B6CiECj4F93iyS9mkEOp0vmKKvv2QcS', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(385, '1000000384', 'RENDI', NULL, '$2y$10$lo1KG0V.q1f5Qjc22qnl1.TPLgX3ggtohj7WwHDHlic6KVvDFEzv2', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(386, '1000000385', 'RIDHO AL SADR', NULL, '$2y$10$KFeCMfMTwCrb3bujGUCAEeV.vfCWkBU.ou2/EDX.N.EpPBZbSPXQK', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(387, '1000000386', 'SAHRIAL', NULL, '$2y$10$g0czWsI6kc7u/8NLrdtVWuIavU592o0GaNR6jyxKkeJXPqDQNQq0.', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(388, '1000000387', 'SALWANDI TEBE', NULL, '$2y$10$x6gwyVtcV8iViLktf5XF8.UGXt/74k359bgq66fpAIg1j569EX6qO', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(389, '1000000388', 'SELFI YULIANA', NULL, '$2y$10$/ZFCSPgixXq4Vyu0QNAo3eMv6UEhTlisQ3KeCv2liSDnaehawabgu', 3, 7, 'P', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(390, '1000000389', 'SUPIANDA', NULL, '$2y$10$48vMhGMUaV0e6RihgWkOJuaN3qlCAejHL2eLi2nBejTuPNT6MLOie', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(391, '1000000390', 'YASSAR', NULL, '$2y$10$WK.Ay2BUErCU6ON/q14COuPev.HH.rq1w//evOjiOwJe4.hgskLQq', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00'),
-(392, '1000000391', 'IRFAN RISKY', NULL, '$2y$10$MkC3MnidCbC1grlpUFXajOtmuRRJ7zfs6DUla6L6/rm6HfVw2rHcm', 3, 7, 'L', 1, 5, '2022-03-27 21:27:29', '2022-03-27 21:27:29', '0000-00-00 00:00:00');
+INSERT INTO `students` (`id`, `nisn`, `email`, `name`, `image`, `password`, `classId`, `roomId`, `gender`, `status`, `privilegeId`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+(1, '1000000000', 'admins@admin.com', 'ABDYAN ABDAN MAHANA', 'avatar.png', '$2y$10$RGY8OCYZg9KGN4LoHadUh.T44vuAXI4l0s5BxWHNEPGwdjo41iCcm', 1, 1, 'L', 0, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(2, '1000000001', 'adehayati929@man.com', 'ADE HAYATI', 'avatar.png', '$2y$10$UeLHxsbbHR/fO56wo4V.OOZFVDul1MGRso0k/bx.Bsb3XgoOS0mUO', 1, 1, 'P', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(3, '1000000002', 'ahmadqaismughitsulhaq712@man.com', 'AHMAD QAIS MUGHITSULHAQ', 'avatar.png', '$2y$10$aLnirYRrqVwPyEbfFVpoaO3CT0.wHC3mBF6YgYC5TokY5jUR1I/zG', 1, 1, 'L', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(4, '1000000003', 'aidilhadi776@man.com', 'AIDIL HADI', 'avatar.png', '$2y$10$mASWRnZUAJuxAuCODZw6IOVIDrT53wDmyEJKpqYPA7Px9QeO2YX8e', 1, 1, 'L', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(5, '1000000004', 'andiarba469@man.com', 'ANDI ARBA', 'avatar.png', '$2y$10$7sin0e9Jf8oI/wCBaSfJe.0F0RUGc0pE6PNxl2wn38D0DgdB1ASAa', 1, 1, 'L', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(6, '1000000005', 'chainaramadana334@man.com', 'CHAINA RAMADANA', 'avatar.png', '$2y$10$yB6F20ysacBYMpkYrb1e8ukeCqBe0k08TL4fIRcKBhaOMeiEqJV..', 1, 1, 'P', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(7, '1000000006', 'dimasoktavian566@man.com', 'DIMAS OKTAVIAN', 'avatar.png', '$2y$10$6u7qMnwmgH0gW6A4xqLMduy6TGruvq4ZmVCSSBMaePU1uzs4Gx.uG', 1, 1, 'L', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(8, '1000000007', 'duhaindrawansyah727@man.com', 'DUHA INDRA WANSYAH', 'avatar.png', '$2y$10$VBa3FMavXkfMpnG8yJTAhOZT2rR5xCoh414xCxj9V9fTjsju0UTRC', 1, 1, 'L', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(9, '1000000008', 'erwinmaulana117@man.com', 'ERWIN MAULANA', 'avatar.png', '$2y$10$JWghk8chfVPHtXnt3P6OtuvYHcABKWCMbY/ye2EZ9gnnu2A327BN.', 1, 1, 'L', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(10, '1000000009', 'fauzanalkhairi273@man.com', 'FAUZAN AL KHAIRI', 'avatar.png', '$2y$10$BKjlkySgWdYdgD.RE6H7m.2sUC19V7RIiTSSe7NFAi6CVkbvUYZWW', 1, 1, 'L', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(11, '1000000010', 'fihadianfitra199@man.com', 'FIHADIAN FITRA', 'avatar.png', '$2y$10$/wVpq1qMc9slmZqmNA5NXOyrwfe5HcEBHYyfzbSHcFwCdZL/8UzDu', 1, 1, 'L', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(12, '1000000011', 'futriyasmini437@man.com', 'FUTRI YASMINI', 'avatar.png', '$2y$10$2zp1Wm0EaLWH9bEykbfxSuA7a937Gsj6Ra6sF3zcg4JeBqvGr.6yy', 1, 1, 'P', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(13, '1000000012', 'ikhsanzikri43@man.com', 'IKHSAN ZIKRI', 'avatar.png', '$2y$10$yE/Nko1g07IgRfpSLgBnjuVwQ6Cw5rck3NAySmzjVFqiZFGK1xj0q', 1, 1, 'L', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(14, '1000000013', 'iqbalaimulhusni946@man.com', 'IQBAL AIMUL HUSNI', 'avatar.png', '$2y$10$1ohTa.t2I0yCjhMG8plHeeLt/j1lixRKB.sv9vKpvEH7b6NHjYsS.', 1, 1, 'L', 1, 5, '2022-03-28 12:25:23', '2022-03-28 12:25:23', '0000-00-00 00:00:00'),
+(15, '1000000014', 'maulandara175@man.com', 'MAULAN DARA', 'avatar.png', '$2y$10$NqD2cuCOAGQaREYzugvFp.UIIdaBZKoqRqd30Z4WzLIhVxqa5nNp.', 1, 1, 'P', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(16, '1000000015', 'miftahulrifkimy545@man.com', 'MIFTAHUL RIFKI MY', 'avatar.png', '$2y$10$zEEVr7hAebg7I3m0JrXm8O7HQYop.qChG21t0Rkq3neBqCr4buB5.', 1, 1, 'L', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(17, '1000000016', 'muhammadraoshah394@man.com', 'MUHAMMAD RAOSHAH', 'avatar.png', '$2y$10$tT3ecz6XQjIRWcqffCz8puZFcWFdIWNbNL2dfbK3AI9g3II9xS/PK', 1, 1, 'L', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(18, '1000000017', 'shirathalfadhla160@man.com', 'SHIRATHAL FADHLA', 'avatar.png', '$2y$10$4d.mJU2Sv7a85/dtAZuRJenfqCp4wTDzGXi7thR2OjI8v1YQneYtq', 1, 1, 'L', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(19, '1000000018', 'nabilabibesmi762@man.com', 'NABILA BIBESMI', 'avatar.png', '$2y$10$KKF02wNGeNjUhZ16/Y2RfOdcx4/JJkBcJa.gbR9mQmpHwM4sanSxS', 1, 1, 'P', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(20, '1000000019', 'naufalfadhil781@man.com', 'NAUFAL FADHIL', 'avatar.png', '$2y$10$C4gjVNpMLnUSoDE84zOSSOEDRXF9KFlc5i2UfROu6c6bfXY9zE3zS', 1, 1, 'L', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(21, '1000000020', 'niantahafidza645@man.com', 'NIANTA HAFIDZA', 'avatar.png', '$2y$10$gUgQmR.q8rwOSWl/ELXt.eQERLRx9mNmT1YBQg2.RCL7BQh4zNUEO', 1, 1, 'P', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(22, '1000000021', 'relifwantona998@man.com', 'RELIF WANTONA', 'avatar.png', '$2y$10$S3UezxPyk67SSu6sHVVJm.U/VwaozoFlgZbFNOpDIBYwa3/fKRdX.', 1, 1, 'L', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(23, '1000000022', 'rendifebriandi72@man.com', 'RENDI FEBRIANDI', 'avatar.png', '$2y$10$NP.BISYhwNBGKnBl5NSLnu2q7HxSeRUvUy4OAdfq78XLm3/BCg.8y', 1, 1, 'L', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(24, '1000000023', 'rezkimahara285@man.com', 'REZKI MAHARA', 'avatar.png', '$2y$10$C60Bnbqtk2YE/XE6khAlS.Acz9PmgePA9SYr/ewsXy7a4fI7pGZpe', 1, 1, 'L', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(25, '1000000024', 'sismacantikaputri470@man.com', 'SISMA CANTIKA PUTRI', 'avatar.png', '$2y$10$KFW3qcSopkrMkeTX5HTPgu2DBDykGUhzf0WFCt6PeJ/5BELdUm0MW', 1, 1, 'P', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(26, '1000000025', 'wenihafizah370@man.com', 'WENI HAFIZAH', 'avatar.png', '$2y$10$U0V3LoFx/YCBpCuGn7zhJuDALdL60MVYfeZ85ZDbSzv5EW.lNcAWa', 1, 1, 'P', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(27, '1000000026', 'ariyanaamelia563@man.com', 'ARIYANA AMELIA', 'avatar.png', '$2y$10$E032K5KMt39wpGnTqC8NseWWVzq95d8hInEklsWETmJLJg5dCdQ22', 1, 2, 'P', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(28, '1000000027', 'ashpianisa617@man.com', 'ASHPIA NISA', 'avatar.png', '$2y$10$G8IIlIqCs30UhZPYa2JOTuxBm6sKV7N8WsafhCATtjNi5BndRtB96', 1, 2, 'P', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(29, '1000000028', 'asnimulyani642@man.com', 'ASNI MULYANI', 'avatar.png', '$2y$10$WWEhKPPgfEkoew2PCLoXzuJrNgufmsBYF.oCYoXAbyPQFJxTD5mm6', 1, 2, 'P', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(30, '1000000029', 'bakri786@man.com', 'BAKRI', 'avatar.png', '$2y$10$HQBiQvDQYoFEMXFsZuydyuD87eMtqh5x1iwVBnVZl1Hq5MawGbbAu', 1, 2, 'L', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(31, '1000000030', 'bilhaqqi380@man.com', 'BILHAQQI', 'avatar.png', '$2y$10$3chIZLtQqPZDtfluij31Z.eXRIAiaoAv.SAVBmiNoTuzpjMwsn5t2', 1, 2, 'L', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(32, '1000000031', 'fatmawati261@man.com', 'FATMAWATI', 'avatar.png', '$2y$10$TtFAETOhACb/vMNKv4JF4.LtGrxKhFsrsByXjwgbfRxGNkzEl5yCK', 1, 2, 'P', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(33, '1000000032', 'firzairinululazmi906@man.com', 'FIRZAIRIN ULUL AZMI', 'avatar.png', '$2y$10$71mf0Rypj9qltDZKv/uUEOecvJGBYutbcrDRU91/dvOSM/x8fPNYO', 1, 2, 'L', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(34, '1000000033', 'futrimaharani575@man.com', 'FUTRI MAHARANI', 'avatar.png', '$2y$10$yDMqTCnU36NV1K8XRnWATOBx6zEqyO1Wx6cYGjSS2XgBY5MqnUCyu', 1, 2, 'P', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(35, '1000000034', 'gilanggemilang235@man.com', 'GILANG GEMILANG', 'avatar.png', '$2y$10$/emdOgwkFmUFS0uU21pn3.XuTgjpyaVFf//.OLINKS.xd/3UCe1xG', 1, 2, 'L', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(36, '1000000035', 'helsiherlinda946@man.com', 'HELSI HERLINDA', 'avatar.png', '$2y$10$pd.2mesJXIbi3.PbNyTdAOk8JXhqHjVltz5SXo9xFhG6.S.6o1g8e', 1, 2, 'P', 1, 5, '2022-03-28 12:25:24', '2022-03-28 12:25:24', '0000-00-00 00:00:00'),
+(37, '1000000036', 'iftinahsyifa760@man.com', 'IFTINAH SYIFA', 'avatar.png', '$2y$10$d4lV7P9csnZeeWWhm6APgO0C0qEDkHG4JJF0c9B9gegILVA3zrawW', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(38, '1000000037', 'kamisaaidaputri194@man.com', 'KAMISA AIDA PUTRI', 'avatar.png', '$2y$10$g0vIHIA6MBw9BbDDiiSWSOgoiTLFDLnyaBLL2YgLc/jy3GQurZPOy', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(39, '1000000038', 'malanoviafitri694@man.com', 'MALA NOVIA FITRI', 'avatar.png', '$2y$10$PPNm7V22GHF7vhryw6Tq3OXobekU/Jx8wDkIPNzKn07DpnH6lzyaW', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(40, '1000000039', 'muhammadhaikal924@man.com', 'MUHAMMAD HAIKAL', 'avatar.png', '$2y$10$y29nR7fB2peNHnyHScqL4eta1AuEFqaVFF.CEoTC9iuHLKMA02/KS', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(41, '1000000040', 'nabilayanti428@man.com', 'NABILA YANTI', 'avatar.png', '$2y$10$EqRggpbTgnyl1F6wMadZiOq/Lhxfd4iVigYZeWR2no9r0pcQkgX8G', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(42, '1000000041', 'naufalhibatullah199@man.com', 'NAUFAL HIBATULLAH', 'avatar.png', '$2y$10$rrWktxqpR6l6ZKG12jNN4eU78c23kMr9kmtm9uHQKJLKOkym0kIMG', 1, 2, 'L', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(43, '1000000042', 'qhandiraalsagufrana776@man.com', 'QHANDIRA ALSA GUFRANA', 'avatar.png', '$2y$10$Tz3ORvBMkEFledEV.Wfp7O3IEvZTcdl6hnVezfKV6IOa5wXRE4dPe', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(44, '1000000043', 'rauzatulzannah687@man.com', 'RAUZATUL ZANNAH', 'avatar.png', '$2y$10$DzZdIykcWLObCcGJBQzkYOwFXaMrSiBQ8SwTooqHZgSgwmN1aM6wm', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(45, '1000000044', 'residianoktesya287@man.com', 'RESI DIAN OKTESYA', 'avatar.png', '$2y$10$J1EgY6UoICnUbSK7cnRPauG2jR1zPZaq4FJKgGdQgjOmGYD3TF.ka', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(46, '1000000045', 'riyanda485@man.com', 'RIYANDA', 'avatar.png', '$2y$10$yp5wC.bIrJlFE/M7QxMiOebTsCJwfI3gTyoR4xXvO.MEJBHJp6W8e', 1, 2, 'L', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(47, '1000000046', 'rifarahman958@man.com', 'RIFA RAHMAN', 'avatar.png', '$2y$10$4QuowqOt94FHilxnaGQ50eQI1hfZg0AhEW1VZdquGOoV8jpGyNlBa', 1, 2, 'L', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(48, '1000000047', 'rinidianti705@man.com', 'RINI DIANTI', 'avatar.png', '$2y$10$7D8EniZgiA4BTtvq8dqPT.dSXYjaYni6DtVHdibzmBsmHYGyG4X1W', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(49, '1000000048', 'rozaameliasahraini17@man.com', 'ROZA AMELIA SAHRAINI', 'avatar.png', '$2y$10$TWvsAiTW8zMWwoB.q78a2O.A/2a0Ohred6.hXpwPBwhhVxn4GUvBa', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(50, '1000000049', 'muhammaddzakihabibi978@man.com', 'MUHAMMAD DZAKI HABIBI', 'avatar.png', '$2y$10$GQtpSBZI8vsSnlaqmWL9duhoFsn/qhnQCxR2KCPHXXE6LPphLKoOe', 1, 2, 'L', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(51, '1000000050', 'sinthiaatikah288@man.com', 'SINTHIA ATIKAH', 'avatar.png', '$2y$10$BxvvpLlC1C5r5TbXVzJBT..2YvtRNhs0N0i86.PH.UuTA9kjYhvma', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(52, '1000000051', 'taufikhidayat440@man.com', 'TAUFIK HIDAYAT', 'avatar.png', '$2y$10$UQa45YJ7d9JF9MM.ijCBH.z5icICUes3./G3BHB7KtzNvUVmzRD2W', 1, 2, 'L', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(53, '1000000052', 'ulfafitria972@man.com', 'ULFA FITRIA', 'avatar.png', '$2y$10$0kDzhVudok3vgcXZyc5yeuVhj5dlA7zidWQiL7nShxkQSFOEjkW7y', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(54, '1000000053', 'uswatunnazwa895@man.com', 'USWATUN NAZWA', 'avatar.png', '$2y$10$1OLXjBSxLTQ0udTZZcb..uoWPn/ibBex5jRXvdqUm.u9tN0jSNALe', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(55, '1000000054', 'yuliarnia965@man.com', 'YULI ARNIA', 'avatar.png', '$2y$10$zmtEhYXMHCz.r5m7mrSpVuxrLVzY/RdgRaEitFAwZsLzNKjX7vRSO', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(56, '1000000055', 'zahrinaizzatis740@man.com', 'ZAHRINA IZZATI S', 'avatar.png', '$2y$10$WYluqRqHW3IKcKNhLDt2E.MhUuazsyUoiQSWITmAQloTE/1cYtEgm', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(57, '1000000056', 'dalilakhairy546@man.com', 'DALILA KHAIRY', 'avatar.png', '$2y$10$uDlFjXJLJNBQClcr18ZJqen/9VyN3h4RvLz36VbqhM5i.m2oVYATe', 1, 2, 'P', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(58, '1000000057', 'naufalzahran63@man.com', 'NAUFAL ZAHRAN', 'avatar.png', '$2y$10$RX8kogQHcL9rdJKETcjUIO4QcNIeBcPtsYJ77Mq/Sh5U42B6onl5.', 1, 2, 'L', 1, 5, '2022-03-28 12:25:25', '2022-03-28 12:25:25', '0000-00-00 00:00:00'),
+(59, '1000000058', 'syafauqbaharrafi447@man.com', 'SYAFA UQBAH ARRAFI', 'avatar.png', '$2y$10$kQsOqRyNrxtgNfv8k9QGGOe0QP1tul/8CJP/st4DU8EUxLBEvDZFW', 1, 2, 'L', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(60, '1000000059', 'arikasimehate464@man.com', 'ARIKA SIMEHATE', 'avatar.png', '$2y$10$0ESVw75dy/4h0VeF2AHXauzFUHKOF5q97n6Bv/5R8.OqvBYRgCU8W', 1, 2, 'P', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(61, '1000000060', 'alpandi824@man.com', 'ALPANDI', 'avatar.png', '$2y$10$9S9RG8TG0B61GE4THret1ezfNT5ZHbL/077.D0KnQnw.Mu5H1Fj52', 1, 3, 'L', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(62, '1000000061', 'auradina850@man.com', 'AURA DINA', 'avatar.png', '$2y$10$o37vOuuU2k/vOgt74WxA4.4qaeAKldfM9G5mbzpuFk5b1JR/frPVW', 1, 3, 'P', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(63, '1000000062', 'bungelusiana963@man.com', 'BUNGE LUSIANA', 'avatar.png', '$2y$10$6x5ioZ2TXvpymsP.QwZ/d.kIseM5l8pYvbT9gJ9W.2QEq3thm5jnK', 1, 3, 'P', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(64, '1000000063', 'futrisalsabila93@man.com', 'FUTRI SALSABILA', 'avatar.png', '$2y$10$.uN3LaDPxUfuKkgA9fh1PeIdFqYfxrcmb/w6fyDTRDqvCWBjSqmbi', 1, 3, 'P', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(65, '1000000064', 'hamdan354@man.com', 'HAMDAN', 'avatar.png', '$2y$10$K4dD2X9O8fDkvcxQKSVczevCa5XW10XeMeNlzrDBLXBgF5YBSbzte', 1, 3, 'L', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(66, '1000000065', 'jurfanajwa248@man.com', 'JURFA NAJWA', 'avatar.png', '$2y$10$haLYt9/Wb6OvAgAeUorPOuL.aN0KCoPrML434ojPpXqfKKuWIqTHG', 1, 3, 'P', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(67, '1000000066', 'khairifikri664@man.com', 'KHAIRI FIKRI', 'avatar.png', '$2y$10$PkPuVs5JXCdKIqbjXY.9eO1P/X1QQI5MqT.4mhiUY2p4NqWjXxWqW', 1, 3, 'L', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(68, '1000000067', 'lizanovriana822@man.com', 'LIZA NOVRIANA', 'avatar.png', '$2y$10$XUaF6.EIhWQ0rJlXrXN/b.CtrwUDfDDkpOzBAJYrxWFiMT2raTsfu', 1, 3, 'P', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(69, '1000000068', 'mauzaismiadi844@man.com', 'MAUZA ISMIADI', 'avatar.png', '$2y$10$rgXaoh.mmc9Bz2xjHFIc1eHXzwGu8PyPz9xsZLLpfUr.hA9/Foe2C', 1, 3, 'L', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(70, '1000000069', 'melayunita284@man.com', 'MELA YUNITA', 'avatar.png', '$2y$10$shWOFC.OGSEAUjPhEh44YOx5JePU1J26732zoZNcd351HRXiqigmS', 1, 3, 'P', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(71, '1000000070', 'mutiararamadhani789@man.com', 'MUTIARA RAMADHANI', 'avatar.png', '$2y$10$jA9fYGODDQeSaTc3UPvqiuww/GHfs/CiyiiX3VenzzMY6.cY0q/za', 1, 3, 'P', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(72, '1000000071', 'nadia683@man.com', 'NADIA ', 'avatar.png', '$2y$10$APp2ENwdT1hcitf1zpzlLeyRkGC2dgG0JmcnY5GU4xYWmyBvlUopu', 1, 3, 'P', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(73, '1000000072', 'naufalwaliyulhaq110@man.com', 'NAUFAL WALIYUL HAQ', 'avatar.png', '$2y$10$/bxhxtLtTLRiuOkxGLp3PewJp1FKNH.Jomq36ZjCPnJE2VOBuf9Gq', 1, 3, 'L', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(74, '1000000073', 'pintasari65@man.com', 'PINTA SARI', 'avatar.png', '$2y$10$RXDEqJtkd9UrNb/MvUqIrOzOvy.0ui97.P7JTEEVvuyUqhMP8L7HK', 1, 3, 'P', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(75, '1000000074', 'rendiafitrawan274@man.com', 'RENDIA FITRAWAN', 'avatar.png', '$2y$10$ykjjMByYrz/AA0Zfb.W/UeYF3ZW8mYS3YIhSAFv9YcHK3zfWigy3K', 1, 3, 'L', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(76, '1000000075', 'ridhajunita18@man.com', 'RIDHA JUNITA', 'avatar.png', '$2y$10$YEe8i1KL0pc7/.T8uXZiD.VW.CBb/mwjcOUC/FEnfGa/3D6z/1fDK', 1, 3, 'P', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(77, '1000000076', 'rifdafriatin846@man.com', 'RIFDA FRIATIN', 'avatar.png', '$2y$10$0ssZD2ceiOpIMr8n8.Eu/en.Ba7LyrmcHN1yly9MyNumNMUXfPY1a', 1, 3, 'L', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(78, '1000000077', 'rifkirahmanhakim906@man.com', 'RIFKI RAHMAN HAKIM', 'avatar.png', '$2y$10$SgR9DPGaTCCrtXbLi4BEmOYeW6J/8TsGKYdjGL9B/Z3D7b3lp5WSC', 1, 3, 'L', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(79, '1000000078', 'rizkaanindra393@man.com', 'RIZKA ANINDRA', 'avatar.png', '$2y$10$7tchpKeFXwjBNYHUl73TI.mOGOJ8kds//vaSR9Vub9AKCtbJtCSI.', 1, 3, 'L', 1, 5, '2022-03-28 12:25:26', '2022-03-28 12:25:26', '0000-00-00 00:00:00'),
+(80, '1000000079', 'rizkisyafitri793@man.com', 'RIZKI SYAFITRI', 'avatar.png', '$2y$10$iNDiMCOGhkJEfaLuQOlO5uMaBk1RBruaciFOc0xnyQZ5ehVEhv8G6', 1, 3, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(81, '1000000080', 'sahraniputri919@man.com', 'SAHRANI PUTRI', 'avatar.png', '$2y$10$CHYHfU/aCXweOlPXiaUEZOaRAXC38FiKzjoCQqJTvVYFCVFi1DWDa', 1, 3, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(82, '1000000081', 'selviaafriani43@man.com', 'SELVIA AFRIANI', 'avatar.png', '$2y$10$3/xvtE8gecrsaigDSIBqzeKJYf9DsblJIu7zAm4VgXfDUW0cV8ec2', 1, 3, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(83, '1000000082', 'sopiaramadhani262@man.com', 'SOPIA RAMADHANI', 'avatar.png', '$2y$10$erd/zLDasTbkyYtCUb6Ate2oRGGQlsN7G9vJa0IcS6UrAYV1q79RK', 1, 3, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(84, '1000000083', 'sulastriulandari388@man.com', 'SULASTRI ULANDARI', 'avatar.png', '$2y$10$pVXPMn4maWwX0KjmWQh3Gus4m.kKbnXmUDlekFxCg/zILJNi8if2S', 1, 3, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(85, '1000000084', 'yogasetiawan586@man.com', 'YOGA SETIAWAN', 'avatar.png', '$2y$10$iHA6cxHiaZUf5MGhn.zj9upwjG4.iy0vvaPlrZXA77qkhETblXPW2', 1, 3, 'L', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(86, '1000000085', 'zaharadwearianti980@man.com', 'ZAHARA DWE ARIANTI', 'avatar.png', '$2y$10$VDw3.Ae0VNH6HT8TGcXzFOtdSUQ/kl6Y9V5pc3N5nqSaaxGrxB9.G', 1, 3, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(87, '1000000086', 'zaharamurni527@man.com', 'ZAHARA MURNI', 'avatar.png', '$2y$10$HSIqSjJn2PRbJdTp5wHU0.y4UzbQM/0JSrTb7lYnKvPuuvPtJABT6', 1, 3, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(88, '1000000087', 'zahraniizzatis621@man.com', 'ZAHRANI IZZATI S', 'avatar.png', '$2y$10$UHv7yPR8DyZFFzYiOR0XiuOF0WSxT9iUdGk/aMpHFxIpxJ9gzyRau', 1, 3, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(89, '1000000088', 'zilfanakhairunnisa752@man.com', 'ZILFANA KHAIRUN NISA', 'avatar.png', '$2y$10$yMmytw6gzFDmssQ9c3nIH.VK4ROvT.35i6QJRVWMy5cVfDMteNyMe', 1, 3, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(90, '1000000089', 'juspikaaradi72@man.com', 'JUSPIKA ARADI', 'avatar.png', '$2y$10$khkZzinUQ.JknUxq9fQ5YuuMV4FDi/Bdy2gD1RjBO0q29anlGJDVC', 1, 3, 'L', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(91, '1000000090', 'novadiliza238@man.com', 'NOVA DILIZA', 'avatar.png', '$2y$10$fseP.fhkv7H7R0Bli5YdcubbIoBxmJOK/DIsi9A0h5T2fmML5Hcsa', 1, 3, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(92, '1000000091', 'fitraariga796@man.com', 'FITRA ARIGA', 'avatar.png', '$2y$10$eTfYFbnMza1t9sYyjGCH7uleasiMsiWe8XOt2yJXtbu2FH8gujQUW', 1, 3, 'L', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(93, '1000000092', 'intannurhayati862@man.com', 'INTAN NURHAYATI', 'avatar.png', '$2y$10$nM69vFE2.sAEtzOw8KNuQO2jMexc1FR/zyvbE3D3xa8VN2OPTA2eS', 1, 3, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(94, '1000000093', 'winteguhiwanrantoni666@man.com', 'WIN TEGUH IWAN RANTONI', 'avatar.png', '$2y$10$U/hBucWQKTUGNyold8xE6.SkkLbAkRhzlYellZK0lz4Y1nq001vkm', 1, 3, 'L', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(95, '1000000094', 'abdyanabdanmahana182@man.com', 'ABDYAN ABDAN MAHANA', 'avatar.png', '$2y$10$kM0pJ2mPh40t1BqxVdxRIuh2Rrbaum/8jhPVaijAkXajajMfcNsBG', 2, 1, 'L', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(96, '1000000095', 'adehayati842@man.com', 'ADE HAYATI', 'avatar.png', '$2y$10$JezE5KCvbNJcWpU9RiNTiu/380CBNTSCfP.2R.NkdTsCZNwjGS4r2', 2, 1, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(97, '1000000096', 'ahmadqaismughitsulhaq945@man.com', 'AHMAD QAIS MUGHITSULHAQ', 'avatar.png', '$2y$10$Qwl833o9kLYaM/qVji9yyezM8fpHOSBaIQuSkZYB4p4VMyM6eV95y', 2, 1, 'L', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(98, '1000000097', 'aidilhadi296@man.com', 'AIDIL HADI', 'avatar.png', '$2y$10$H9u6Yqan9ntTJkTHLGD.eOHBQfQhsAgJmIJPvvdVNCDiDuiSgOymO', 2, 1, 'L', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(99, '1000000098', 'andiarba930@man.com', 'ANDI ARBA', 'avatar.png', '$2y$10$ZFQm9P1Y0pgCeadCQlS/A.l/sVFiFcJV1.ca70DP/VXFZFza5rpD.', 2, 1, 'L', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(100, '1000000099', 'chainaramadana316@man.com', 'CHAINA RAMADANA', 'avatar.png', '$2y$10$A82m8jYNBmWKBuWnXDzmPe54W0jVs3plkYDX4MPHV18UkC3l9kdqi', 2, 1, 'P', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(101, '1000000100', 'dimasoktavian97@man.com', 'DIMAS OKTAVIAN', 'avatar.png', '$2y$10$bXpTphuc3oRIXKhUmFrQv.0blWq.JzPPXdOzambGCLHrlqC24bqX6', 2, 1, 'L', 1, 5, '2022-03-28 12:25:27', '2022-03-28 12:25:27', '0000-00-00 00:00:00'),
+(102, '1000000101', 'duhaindrawansyah178@man.com', 'DUHA INDRA WANSYAH', 'avatar.png', '$2y$10$7cLxwFq4fj8wvsGz5q18.ereEg0KrWkQycI/4YJu5Ks2mnLpgfzkW', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(103, '1000000102', 'erwinmaulana822@man.com', 'ERWIN MAULANA', 'avatar.png', '$2y$10$NUA1l1EAPevWyQrsibMSE.yy7vsxTWFYZe5UCeyGOWg51LTbXhKsy', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(104, '1000000103', 'fauzanalkhairi68@man.com', 'FAUZAN AL KHAIRI', 'avatar.png', '$2y$10$gDQ6odadqFuVHNzdnnzxCOVmjYPhVQ8qvKFkri1Ge3vj7BgGp4o6W', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(105, '1000000104', 'fihadianfitra207@man.com', 'FIHADIAN FITRA', 'avatar.png', '$2y$10$3Xm0uneSxawEuptsRlS3/OzJp0HSnnqqLQfBRDLY1JIfLHLswh8pW', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(106, '1000000105', 'futriyasmini5@man.com', 'FUTRI YASMINI', 'avatar.png', '$2y$10$i.V5H6qFxmm7OBtuateef.Rm2vxL6lLHLyfcpDpQP0AlYFd7E6xcW', 2, 1, 'P', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(107, '1000000106', 'ikhsanzikri590@man.com', 'IKHSAN ZIKRI', 'avatar.png', '$2y$10$2UJctoAmFeWKh4UNcqM8jui9XqdH48mOhlewTWCIOXxazWXjhqpLG', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(108, '1000000107', 'iqbalaimulhusni417@man.com', 'IQBAL AIMUL HUSNI', 'avatar.png', '$2y$10$EbyUWvstvnhz6bTXXC4t0eh7vp2G9ZX5QpohuX9EbbSUwr.gwKAG.', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(109, '1000000108', 'maulandara895@man.com', 'MAULAN DARA', 'avatar.png', '$2y$10$ThqYJZcnsV36m5pWvrenFOQlOEJNZBPFJQqQm4vnQKjnoqSKQDRGe', 2, 1, 'P', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(110, '1000000109', 'miftahulrifkimy297@man.com', 'MIFTAHUL RIFKI MY', 'avatar.png', '$2y$10$GJciJjiI7Q3ydbjSD1krluShEry0P6dE1.5.SzP0A1RMXK4OS36g.', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(111, '1000000110', 'muhammadraoshah300@man.com', 'MUHAMMAD RAOSHAH', 'avatar.png', '$2y$10$aM8nRhAyRqA1DpJoGwEX0ujDJPSr06vkNwaNSqBdvR4kwmd2xI/0O', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(112, '1000000111', 'shirathalfadhla876@man.com', 'SHIRATHAL FADHLA', 'avatar.png', '$2y$10$HqUWCyNr/CUaMGigVJYWu.5aealGqlfWDpTumWWQyXl1fEAva.jY6', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(113, '1000000112', 'nabilabibesmi492@man.com', 'NABILA BIBESMI', 'avatar.png', '$2y$10$OA/VjAY9NeUohqTpulhKmeoRb/iJgKGtg7rlAOC3svbrtBSFY1VDW', 2, 1, 'P', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(114, '1000000113', 'naufalfadhil340@man.com', 'NAUFAL FADHIL', 'avatar.png', '$2y$10$rXXAe0XGgIQN02u0ClXxq.JVjNUPPamI/Sr9Op4Yx0QV6mgJEIDea', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(115, '1000000114', 'niantahafidza953@man.com', 'NIANTA HAFIDZA', 'avatar.png', '$2y$10$tv1eNBE5P7D/mVw0aAmm3e75Z2oB39QHrK0zmSV1d.5Kb8a/inDPu', 2, 1, 'P', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(116, '1000000115', 'relifwantona116@man.com', 'RELIF WANTONA', 'avatar.png', '$2y$10$48yUwzlBW0vnaCZa6uxJj.gkIxJiHQ8KxBXf1R9ONHlJQPTxwhJTG', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(117, '1000000116', 'rendifebriandi452@man.com', 'RENDI FEBRIANDI', 'avatar.png', '$2y$10$Q74BrgQXd/KGnnvUHNOuhufbkwdWJDcbl10xLpJjuWMUJdTPv.tfa', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(118, '1000000117', 'rezkimahara804@man.com', 'REZKI MAHARA', 'avatar.png', '$2y$10$LJQ47UGbN6mE1bMxsk0sceIzupd.kM/nvhBuQQwdqCvxYEITKRP2e', 2, 1, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(119, '1000000118', 'sismacantikaputri520@man.com', 'SISMA CANTIKA PUTRI', 'avatar.png', '$2y$10$vnRFwYa0cMlLKf5n8kkErefOVngU9QG9hvmbd5.kWI0iQJ7I99f0W', 2, 1, 'P', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(120, '1000000119', 'wenihafizah915@man.com', 'WENI HAFIZAH', 'avatar.png', '$2y$10$Mlrh4JkJ8v3PBRaJ6FV9suWXzd3mkcBdiSzMNqpCcjO.Kb/BvBA6K', 2, 1, 'P', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(121, '1000000120', 'agihilham631@man.com', 'AGIH ILHAM', 'avatar.png', '$2y$10$WNfqLhspwXGZAVpV.db9Nu8xkn3QW3LWKP5BwzWxEAly1XjHZtsg6', 2, 2, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(122, '1000000121', 'aisyfahrozi717@man.com', 'AISY FAHROZI', 'avatar.png', '$2y$10$Vzv.JxbQRKf7r4ni2vdbou6wjyqznYuw1g.Elthx9lDVs/Y7uzRde', 2, 2, 'L', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(123, '1000000122', 'angguncytrarozha26@man.com', 'ANGGUN CYTRA ROZHA', 'avatar.png', '$2y$10$v36kGiRY7xZIq21gYCszIOYC/VZXny1V2.x.aWYEQBP.91.Pazh5q', 2, 2, 'P', 1, 5, '2022-03-28 12:25:28', '2022-03-28 12:25:28', '0000-00-00 00:00:00'),
+(124, '1000000123', 'aryana725@man.com', 'ARYANA', 'avatar.png', '$2y$10$iIu3PtHu2OGjOG3JT5yy5uFIiIcDh3u2FixJAYgk47zeAyLlmT2JK', 2, 2, 'P', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(125, '1000000124', 'awalludinnovriandim822@man.com', 'AWALLUDIN NOVRIANDI M', 'avatar.png', '$2y$10$kP8BeZPSU0CxVsyCvawpceXmmw901IR7FJ.3Ez/eX2x/L7OLtksbm', 2, 2, 'L', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(126, '1000000125', 'diana658@man.com', 'DIANA', 'avatar.png', '$2y$10$GQIvCwLTteU1oW4n1kRs6OF5HIrpTjPOrJRxwZm6gKy24uENYgDcG', 2, 2, 'P', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(127, '1000000126', 'fanilidiafutri702@man.com', 'FANI LIDIA FUTRI', 'avatar.png', '$2y$10$xBG7G6ktX38tmUngwdQ6L.LBXQM6y42uBuhBECD2.Gxi4vDWgPRS2', 2, 2, 'P', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(128, '1000000127', 'ghufranabal715@man.com', 'GHUFRAN ABAL', 'avatar.png', '$2y$10$5cn/O0IsJYYX6BNO91g9A.B17bkU8vFZQGMNSeHdBZc20XHdydUai', 2, 2, 'L', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(129, '1000000128', 'hafidzalfarizi593@man.com', 'HAFIDZ  ALFARIZI', 'avatar.png', '$2y$10$aS8hSLbSLoX..HEJYUSpp.drg5ZGiZIgSy7rBtXZ60SDc8yU.fbQS', 2, 2, 'L', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(130, '1000000129', 'hafidzahafifaziz919@man.com', 'HAFIDZA HAFIF AZIZ', 'avatar.png', '$2y$10$a/F2elqY005wGszyJoTOXe5B2i7KuQH9bVUn14vYHFHbE7GBUkAI6', 2, 2, 'P', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(131, '1000000130', 'ilhamelsandi365@man.com', 'ILHAM ELSANDI', 'avatar.png', '$2y$10$boyw222h51okwC52iXdPeuqiSUCXSaXlaJUS0E1.I7D9z1U9JUP7K', 2, 2, 'L', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(132, '1000000131', 'inesalvanirenggali948@man.com', 'INE SALVANI RENGGALI ', 'avatar.png', '$2y$10$/HqqVJkYG4zNPKrouOwgw.cw9ofdgFX67SUeiYEoo/SB6v5.jIEzK', 2, 2, 'P', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(133, '1000000132', 'iwanrezeki150@man.com', 'IWAN REZEKI', 'avatar.png', '$2y$10$AzW845fpoeZA577yqJdRXOJXydQwK3J4GPbqOp5P37LAqESYWh7Pi', 2, 2, 'L', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(134, '1000000133', 'junaidi941@man.com', 'JUNAIDI', 'avatar.png', '$2y$10$t76DBJljXW7ztIuRRTPt.uuCm8QAsDS1y/H9BCcBsrnLVbvnxxDV.', 2, 2, 'L', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(135, '1000000134', 'kamisa535@man.com', 'KAMISA', 'avatar.png', '$2y$10$e7nHMUAquOZGKFba65w.au8iWzhmykfkBsduDafBHCQR7puaFi6LG', 2, 2, 'P', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(136, '1000000135', 'najwasalsabilalaili198@man.com', 'NAJWA SALSABILA LAILI', 'avatar.png', '$2y$10$x2fb34VnrcuLs44OZa60iOkzgj/NcLCnphKrtxpAPLGciQKtkCQ3i', 2, 2, 'P', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(137, '1000000136', 'novyasalisca28@man.com', 'NOVYA SALISCA', 'avatar.png', '$2y$10$5i16O29ECKb.GHMZBo1hi.FVBPP3vP5J2hoLuSrH1Pio6jzwcTby2', 2, 2, 'P', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(138, '1000000137', 'radiansyah571@man.com', 'RADIANSYAH', 'avatar.png', '$2y$10$Xl71DbHFRWv/ud2NiclK7etMySws0W5JFObctoTKS/yiczpe6hQim', 2, 2, 'L', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(139, '1000000138', 'rahmitafitri953@man.com', 'RAHMITA FITRI', 'avatar.png', '$2y$10$stJk/QD7OKTGp0.CvSNECepE8JUdCtbY0dyhfFejKCWax4lumIL9G', 2, 2, 'P', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(140, '1000000139', 'rajagilang194@man.com', 'RAJA GILANG', 'avatar.png', '$2y$10$pY7eCSUKdC17PJBVHYZ0Duh2iJqBZ1CQ2TFS0mDPDg3LZWKFqfdky', 2, 2, 'L', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(141, '1000000140', 'rasikadewis584@man.com', 'RASIKA DEWI S', 'avatar.png', '$2y$10$S9TManYqKBcKCJm6QD4osO1sbRP2uK2xqvnMtrxgJsy4N/qDZPsWS', 2, 2, 'P', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(142, '1000000141', 'renisimahbengi811@man.com', 'RENI SIMAHBENGI', 'avatar.png', '$2y$10$fH9elgFalYmfvsRx4n5HVefqUrZkqMb8JCwqg/TRrsfOMtsa1m5AK', 2, 2, 'P', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(143, '1000000142', 'renomihaldiko367@man.com', 'RENO MIHALDIKO', 'avatar.png', '$2y$10$04n4lc/qylNPPUsuqZDOae4uE6Wj3gD3rS9DtJb5v6uj9UpLix45K', 2, 2, 'L', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(144, '1000000143', 'rifkisetiawan516@man.com', 'RIFKI SETIAWAN', 'avatar.png', '$2y$10$wZDCEE.gRLXk08eHscrTPOZB94VL.V3FTnYP1irieN61yrZmXfxb.', 2, 2, 'L', 1, 5, '2022-03-28 12:25:29', '2022-03-28 12:25:29', '0000-00-00 00:00:00'),
+(145, '1000000144', 'rimasimehate614@man.com', 'RIMA SIMEHATE', 'avatar.png', '$2y$10$dxcDifX3ke651.nnA9gQyuD4Jb.CAmiKlWTBz/RB/w9OiECvEU2rm', 2, 2, 'P', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(146, '1000000145', 'rizahidayah872@man.com', 'RIZA HIDAYAH', 'avatar.png', '$2y$10$VNFG.zkeFb8uDUJMDjPlfu21TRbzay7i2TVhaeRhqqSjcwmBsHGpy', 2, 2, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(147, '1000000146', 'rizqiiwanfajri497@man.com', 'RIZQI IWAN FAJRI', 'avatar.png', '$2y$10$KbN9P9AEYf6TRlkpOucmXOO6vvOsKKYsFC5owaGl7bRl5tTgbgI4u', 2, 2, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(148, '1000000147', 'ruhdini470@man.com', 'RUHDINI', 'avatar.png', '$2y$10$HCnDXxPMFz1Nmo7LYL..6e4CfNmD3IUWhbEr.dOy5rxaPYuWN4WZu', 2, 2, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(149, '1000000148', 'sahriramadhan60@man.com', 'SAHRI RAMADHAN', 'avatar.png', '$2y$10$7mH6zFObO6c4JMQacZG8DOrxvO14vfAH3PlLdHSKPYVShUmIHML2a', 2, 2, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(150, '1000000149', 'saidnibrasalhabsyi802@man.com', 'SAID NIBRAS ALHABSYI', 'avatar.png', '$2y$10$zTJPHSoE5qXZTMr1PrHWmeEFxJFhwtd5xjAG3NZfvqKK7SKGn1PHG', 2, 2, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(151, '1000000150', 'silfaniazrimaisa434@man.com', 'SILFANI AZRI MAISA', 'avatar.png', '$2y$10$R6M0XWWQwDD9mh1yCs6oVOFzAgvV4.hq5sjJJJhUEODoO26T3zoxS', 2, 2, 'P', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(152, '1000000151', 'silfinaazrimaisa117@man.com', 'SILFINA AZRI MAISA', 'avatar.png', '$2y$10$n9.O/Gv8fMwBcFQttCHMtOkDt/u6nCM9yU3zB.6NQUc.bqM2/4lTO', 2, 2, 'P', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(153, '1000000152', 'syahrawidia444@man.com', 'SYAHRA WIDIA', 'avatar.png', '$2y$10$4rR24oGjRMotse9wZNIe6.Lq2aB6xFTfOxtE1EijScrNT5h.D2jfG', 2, 2, 'P', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(154, '1000000153', 'semalisyukran985@man.com', 'SEMALI SYUKRAN', 'avatar.png', '$2y$10$T491/oh4C7VBvE3ZB7/uzeEybBSsIq0vxR8BCPGjJr7Ff5KyWqyBa', 2, 2, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(155, '1000000154', 'anamaria856@man.com', 'ANA MARIA', 'avatar.png', '$2y$10$7UhyEC0MDi7EkdHZ.ItmXO/pfg0iZOij5gIeHIqlWPA.iMs9EvEXO', 3, 1, 'P', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(156, '1000000155', 'annasrimulia258@man.com', 'ANNASRI MULIA', 'avatar.png', '$2y$10$Gq9uNAUVUEqfGoz2hJLE7ewed645GMPCA.BeKpCojp4.lfHXhjQSS', 3, 1, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(157, '1000000156', 'cutamalia230@man.com', 'CUT AMALIA', 'avatar.png', '$2y$10$2Xa7Q3POPNdQjQoQinW9HOveq8K7TxWvAvlXf38vXNh.8gMnzoI76', 3, 1, 'P', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(158, '1000000157', 'desisilfiyana833@man.com', 'DESI SILFIYANA', 'avatar.png', '$2y$10$uDVl3nTFsqapAfdxjZ324el0m6j08Xww9TjzgFtV.cXN1TxoesX0.', 3, 1, 'P', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(159, '1000000158', 'dirgasyidratussalwa165@man.com', 'DIRGA SYIDRATUS SALWA', 'avatar.png', '$2y$10$m/WouScYe4Ma8tVhoKWCAek25kPNrCI5qpbW54oD3puBFibbmo5O.', 3, 1, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(160, '1000000159', 'elizasapitri771@man.com', 'ELIZA SAPITRI', 'avatar.png', '$2y$10$OYEGBkU1TtI362qOauDJUeuRmv4n8XuA017Kwi8yPViKrzlXxM5j2', 3, 1, 'P', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(161, '1000000160', 'fakhriwijdan92@man.com', 'FAKHRI WIJDAN', 'avatar.png', '$2y$10$tapo9Ic8U2AsxJGh4Ey/ouBLBOeTyqyb.UGO69c0xMI4gGETAtcoG', 3, 1, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(162, '1000000161', 'fanita378@man.com', 'FANITA', 'avatar.png', '$2y$10$ktv.ALGEcRwoBk8AbfU0t.g26KY/5bQrN9901ko2OG0kkXag3Vz4S', 3, 1, 'P', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(163, '1000000162', 'ihsanuddin1000@man.com', 'IHSANUDDIN', 'avatar.png', '$2y$10$qk/J39vP7CYkccQwapJlmepGv8L88LaWWBdS5RMtI03/cu.awsdI2', 3, 1, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(164, '1000000163', 'ilhamekafarisy176@man.com', 'ILHAM EKA FARISY', 'avatar.png', '$2y$10$oYJQEtPW6xo3UWy8iAUIgOz9kcxJrx0uG.9XNGqztptfWFTu0gEeC', 3, 1, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(165, '1000000164', 'jannatiakanju566@man.com', 'JANNATIA KANJU', 'avatar.png', '$2y$10$x0vFXRHC/SxM4IScQ7UiY.WoaEGZH4knB9OqH0Fnw2XumogBCEVr6', 3, 1, 'P', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(166, '1000000165', 'm.rizki955@man.com', 'M. RIZKI', 'avatar.png', '$2y$10$eytxYd4Lrklu3Qa9AoJnsuBWIhKgj7QC.8.Dx9F4VuG0P/iNUrEK.', 3, 1, 'L', 1, 5, '2022-03-28 12:25:30', '2022-03-28 12:25:30', '0000-00-00 00:00:00'),
+(167, '1000000166', 'm.sejahtera442@man.com', 'M. SEJAHTERA', 'avatar.png', '$2y$10$ztFIBtXHZ4l2XChltpHIau7a70X8XvVIvndFw5RNtDDXD.2j5/o5i', 3, 1, 'L', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(168, '1000000167', 'syardifitrah649@man.com', 'SYARDI FITRAH', 'avatar.png', '$2y$10$1FGDrGubgmw0ZbUb.5e.euRlgoh5vorgHAf4Hymm0zD3hxKoEYHGS', 3, 1, 'L', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(169, '1000000168', 'lindaamalia670@man.com', 'LINDA AMALIA', 'avatar.png', '$2y$10$24Ub9BOF3.8s3EfNJ.1sLOhE4GtzNatv703AlGtfiVABgSgHYx4Sa', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(170, '1000000169', 'mahridalativa822@man.com', 'MAHRIDA LATIVA', 'avatar.png', '$2y$10$nV6vKdsclzT1hrsnxl./ueHvLMHGQJcDQqLCxv1T6nPcxbO6EGAtK', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(171, '1000000170', 'maulidasimahara184@man.com', 'MAULIDA SIMAHARA', 'avatar.png', '$2y$10$9npOZ3OpxuF/EiVom.wUfOj/80fCbYNZHnmFVCJmXK39hOBWuGXG.', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(172, '1000000171', 'nabilaraudhatunnisya165@man.com', 'NABILA RAUDHATUN NISYA', 'avatar.png', '$2y$10$4PWrE/xY7CtSZSXmtRkEMeq9iLvZDShTQGil.ixToj33VHAMf6ose', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(173, '1000000172', 'naurahsalsabila89@man.com', 'NAURAH SALSABILA', 'avatar.png', '$2y$10$dxgkUgyxzs2viwurQxA55.Ug2Qn5MS6ZawKJShT.9ijusLvF2M9P6', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(174, '1000000173', 'nilmafatimahazzahra241@man.com', 'NILMA FATIMAH AZZAHRA', 'avatar.png', '$2y$10$tLT4Dzw3eors7YWO1/28N.sSJ7sfzyPE.QxMOAzoKHhQ9YYzwm4GK', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(175, '1000000174', 'nurhafidzah79@man.com', 'NUR HAFIDZAH', 'avatar.png', '$2y$10$8P90uS.w9sKLPPTaC00IhOtUayZt0glFIY8i1xs/t5hS8VlaRhhjS', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(176, '1000000175', 'pingkannapisah419@man.com', 'PINGKAN NAPISAH', 'avatar.png', '$2y$10$owsUo29boDtvSHIYrpPEquVwEu6mf914LJIH/c6IEipwlvBZ3VsKO', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(177, '1000000176', 'rikamahyani481@man.com', 'RIKA MAHYANI', 'avatar.png', '$2y$10$/uolcuWyBKZ2oh0z5sWIzeRSlno3g01E/8sTc1cUr18zJgwpTCnfq', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(178, '1000000177', 'rimaputrimegaandria504@man.com', 'RIMA PUTRI MEGA ANDRIA', 'avatar.png', '$2y$10$nMOJnxH5yS/IEbAEmLnj/.7PWlJNJlQ50repXcZKYWzTd2VWI65/K', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(179, '1000000178', 'sarabensu424@man.com', 'SARA BENSU', 'avatar.png', '$2y$10$.csO9QrhAOUUNtxxedj3kuqRXnivjyAH74Drq0lQK1jQNdh86NOBm', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(180, '1000000179', 'zannatulazila41@man.com', 'ZANNATUL AZILA', 'avatar.png', '$2y$10$g99F44s/EI4ouTlhjYDBluwlQoCW6sj1IeIncjDt/yWNDKNcgCm4W', 3, 1, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(181, '1000000180', 'abdanfitrahmenye362@man.com', 'ABDAN FITRAH MENYE', 'avatar.png', '$2y$10$ISTUN4IQ8XMGdbtpsl8ju.Em/peF/Vd5pNoL4FCc2H18PFy85cBDu', 3, 2, 'L', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(182, '1000000181', 'almunadi205@man.com', 'AL MUNADI', 'avatar.png', '$2y$10$eA3KDM7pJ8n7TalFU80pOu9mX3WAbANP7CqnVXOOHiJAxGeGvu9si', 3, 2, 'L', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(183, '1000000182', 'andreancanhari569@man.com', 'ANDREAN CANHARI', 'avatar.png', '$2y$10$o76CqryqzRpLcmakPkaLL.7mdnbhYgjD7EjN8HmpVYk2XOfrVo7Ou', 3, 2, 'L', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(184, '1000000183', 'assyifawahiddayati808@man.com', 'ASSYIFA WAHIDDAYATI', 'avatar.png', '$2y$10$0so2ZIZeQ92Yx8dPiAW.aum/VlgpKW0RoAxU1KYHM0.lyEFZuQ1Va', 3, 2, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(185, '1000000184', 'ayudalisma648@man.com', 'AYU DALISMA', 'avatar.png', '$2y$10$CpgEvrLqJWrzrKcASA65BuFz3CauWwaAr3/Zx/av7/wpSd2rRV3IW', 3, 2, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(186, '1000000185', 'daffaelzafadhil513@man.com', 'DAFFA ELZA FADHIL', 'avatar.png', '$2y$10$6wOjo/kdjqfoGyDfcg8PFuXcvAHEbv/Ur0L7IW9ip9o2q3rSKA2iq', 3, 2, 'L', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(187, '1000000186', 'hafnizahara105@man.com', 'HAFNI ZAHARA', 'avatar.png', '$2y$10$miMdwW0h78sM8067jtos8uheVR7HfKJCr5XDxiiLEI7x4SpCQMIz6', 3, 2, 'P', 1, 5, '2022-03-28 12:25:31', '2022-03-28 12:25:31', '0000-00-00 00:00:00'),
+(188, '1000000187', 'hendra197@man.com', 'HENDRA', 'avatar.png', '$2y$10$ijXnNv1zVADz/BTddtcVauS0x5cpkBuyK8C0Nd5VN9v6n8GsrMwLu', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(189, '1000000188', 'heniwijayanti27@man.com', 'HENI WIJAYANTI', 'avatar.png', '$2y$10$ZRfdzLZqmSprOOZpKuOnXuodqE4oltrHiskLoMg7GozqlHNZJQNjW', 3, 2, 'P', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(190, '1000000189', 'hermavalentina641@man.com', 'HERMA VALENTINA', 'avatar.png', '$2y$10$y976q0nmlLgLvwkRRgUz4ONS/UUdFqfc6v8JRZQUMDrnBFBKa842i', 3, 2, 'P', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(191, '1000000190', 'hidayatunnahar472@man.com', 'HIDAYATUN NAHAR', 'avatar.png', '$2y$10$nyPsWnvnbirdJwdlvpFjsemnFlxpVhRppmn9G8hOq6Y4SYxvoo6xW', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(192, '1000000191', 'ilhamrizkipratama477@man.com', 'ILHAM RIZKI PRATAMA ', 'avatar.png', '$2y$10$rJNQySgd7nJUwgE99lwST.YkYTcimb77zVuPWupqVuTrz0HfjmtAq', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(193, '1000000192', 'imamsamudra512@man.com', 'IMAM SAMUDRA', 'avatar.png', '$2y$10$qAUve8b0czh2RrU4jIZWOuLC3KyznpDoVIDMB9//TPa2vSJ9CRaim', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(194, '1000000193', 'intantamara469@man.com', 'INTAN TAMARA', 'avatar.png', '$2y$10$CeR7bTKDFv4mYMCmZbwcZ.jarwVK/7QASu.0bLk.AJ1zeQo1Va/kK', 3, 2, 'P', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(195, '1000000194', 'ismajunipratama685@man.com', 'ISMA JUNI PRATAMA', 'avatar.png', '$2y$10$ohacGkWqpIPI4wSYEtp03eVUULBkmOuWxzMG/4zvIYDC07sJzvME2', 3, 2, 'P', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(196, '1000000195', 'jonisyahwannara494@man.com', 'JONI SYAHWANNARA', 'avatar.png', '$2y$10$zW42VgLp.wfDrkAFSL8JZeopBhF5Fsc7u22efybjK3CNi10Qkoa36', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(197, '1000000196', 'juhriasyah273@man.com', 'JUHRIASYAH', 'avatar.png', '$2y$10$STd8OtOC/sT3ENhAiBBUMe227dcJ/plCMuCId29rJQ/LgfezdV/Ui', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(198, '1000000197', 'khairunnisa1@man.com', 'KHAIRUNNISA', 'avatar.png', '$2y$10$wBdKbjXGIM9qmNvwwmuNWuDzDdp/9NF/IagLa.KAnaGR.a.062.hO', 3, 2, 'P', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(199, '1000000198', 'jumadirahman606@man.com', 'JUMADI RAHMAN', 'avatar.png', '$2y$10$QXRQhfk9TZ5E0MZSAQtm3eaVGVkZCdOz2xGxBPOpgl3Obt7Pc55vG', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(200, '1000000199', 'fathulanisa677@man.com', 'FATHUL ANISA', 'avatar.png', '$2y$10$tb4PDj3QiU.VvVge1/BtXOxPy4DSh3h6lNSvM8yPcwvkqVJTSXCqq', 3, 2, 'P', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(201, '1000000200', 'm.nur333@man.com', 'M.NUR', 'avatar.png', '$2y$10$4Iiq1BQt3SxRLO6YqeKSVO40tguxL6ccjPj9SQQlFs5jPCU2YfRt.', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(202, '1000000201', 'mauzialfadila361@man.com', 'MAUZI ALFADILA', 'avatar.png', '$2y$10$9SZ.wcEsGUgFK4.y9Q/RK.pN2xeI6YKw9STIdyths8OtKGQ5CR7pG', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(203, '1000000202', 'mawaddah362@man.com', 'MAWADDAH', 'avatar.png', '$2y$10$rPWicxgwiDqiyBXieZ0Ph.jBlkpRHRHdL8s7eTr.ZwaPKsy6NWMlW', 3, 2, 'P', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(204, '1000000203', 'mirzabugemusampe53@man.com', 'MIRZA BUGE MUSAMPE', 'avatar.png', '$2y$10$PyMT8EmS83bCoShaqvlnkOlu5Cw/4q6HuyCvX71TwbyETXfMVwvzG', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(205, '1000000204', 'mukhsin544@man.com', 'MUKHSIN', 'avatar.png', '$2y$10$D8RBsPC14qfTgZZ8JqVzk.5um3effsy2gwHxZPtt.gRAwPAAXxAvu', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(206, '1000000205', 'nurhayati431@man.com', 'NURHAYATI', 'avatar.png', '$2y$10$1WQjg0Cwt4.0slLTAlrBe.Bk8OWZLKZoNn0eAmeQ3aUdwttBCBBiO', 3, 2, 'P', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(207, '1000000206', 'orijagunawans712@man.com', 'ORIJA GUNAWAN S', 'avatar.png', '$2y$10$XVgY4PB9xxQve0nW.VpOO.vF7a5VHsbPfgp/WvN7sHTA57lnOQPyW', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(208, '1000000207', 'rahmisapitri141@man.com', 'RAHMI SAPITRI', 'avatar.png', '$2y$10$pyweLywMFL/7B/MZRBH6IuOoPz5W8SzK5EU8.1040mKVsaIGc5cWe', 3, 2, 'P', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(209, '1000000208', 'sabarollah894@man.com', 'SABAROLLAH', 'avatar.png', '$2y$10$MqZpksGhz9It0Gho7qOzdeBvH7qtXSd7NaqAnq1Epj3qmSvCSqrL2', 3, 2, 'L', 1, 5, '2022-03-28 12:25:32', '2022-03-28 12:25:32', '0000-00-00 00:00:00'),
+(210, '1000000209', 'salmanalfarizi16@man.com', 'SALMAN AL FARIZI', 'avatar.png', '$2y$10$.bWlKqKfhFdIyr0jGlnGKOLkZhzwZRN/U1lov26V1WqIZ3vzKjr6e', 3, 2, 'L', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(211, '1000000210', 'sauqiqalbiiksan550@man.com', 'SAUQI QALBI IKSAN', 'avatar.png', '$2y$10$bwHlspYzU6Jfwx0Yba8Wfujr1Y1Pg3DMFPM23ghlRwRsM60X6pQ4a', 3, 2, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(212, '1000000211', 'seprianaputri599@man.com', 'SEPRIANA PUTRI', 'avatar.png', '$2y$10$Slt8AoePz8Q9ZALMEHNqOuMjqjKnw7tICZJ/p3wvhvvf5Mlnd2KQi', 3, 2, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(213, '1000000212', 'septiasuliabreta40@man.com', 'SEPTIA SULIA BRETA', 'avatar.png', '$2y$10$rM/.Y41u6./G/CyYTp0tK.m3qyRYR32zfjxNrsfTKB4e8eiThMG7W', 3, 2, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(214, '1000000213', 'sujadanaufal161@man.com', 'SUJADA NAUFAL', 'avatar.png', '$2y$10$pN3BKEIM9HywqGXh6zBOWegg6SpZHXJlfXdQY0OytWBoMUiJlo.1q', 3, 2, 'L', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(215, '1000000214', 'tiararezeki79@man.com', 'TIARA REZEKI', 'avatar.png', '$2y$10$WRsxK48c8BBT2.LrTD7anuKm7B4X/sndR1GhwrfD/WvgXqDlx1NSa', 3, 2, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(216, '1000000215', 'vaniaamanda734@man.com', 'VANIA AMANDA', 'avatar.png', '$2y$10$xqlmVCsNYIJE3ljN2G6/beKZFVO6nXJgNQkZaruwdkvUQMsDB/DG2', 3, 2, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(217, '1000000216', 'wardani502@man.com', 'WARDANI', 'avatar.png', '$2y$10$wWvYBnn3ExMhGuRdw6v2kuZkYlpvGImGi.3HlyNjq0jqDrr5CGKuK', 3, 2, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(218, '1000000217', 'wiramahendra152@man.com', 'WIRA MAHENDRA', 'avatar.png', '$2y$10$mCi.T3Iu301OOWU91wJCQ.HmeUEgUQkEd7a6epRmIzWABHwUmX.fi', 3, 2, 'L', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00');
+INSERT INTO `students` (`id`, `nisn`, `email`, `name`, `image`, `password`, `classId`, `roomId`, `gender`, `status`, `privilegeId`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+(219, '1000000218', 'ardianokta467@man.com', 'ARDIAN OKTA', 'avatar.png', '$2y$10$iUqFVooinaMJxJFdh3N0B.jAMKC7k27oCdEVU48RGA/6SikOEz4/y', 3, 3, 'L', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(220, '1000000219', 'auliarafiqi847@man.com', 'AULIA RAFIQI', 'avatar.png', '$2y$10$6D9ImsMvWuRSDQWcvTDFYuVb/82Me3GXRBm.AvbqdU8xLJerKLOUu', 3, 3, 'L', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(221, '1000000220', 'auliarahmi788@man.com', 'AULIA RAHMI', 'avatar.png', '$2y$10$AHxzMJxfDL6XatWBJaDBT.Gn0XDXD71h8OYZj6TFeV16oDNdTSaye', 3, 3, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(222, '1000000221', 'azzatilakmar341@man.com', 'AZZATIL AKMAR', 'avatar.png', '$2y$10$GlnAUoUv6LVORaRp125qReHToSbrbPzXsGODoC3A1yOqUz0LT1iZO', 3, 3, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(223, '1000000222', 'dhiyajinansausan957@man.com', 'DHIYA JINAN SAUSAN', 'avatar.png', '$2y$10$Mv3HvZCVJRimBZGmeuRDVOKkcQcTATf63cGxBbzQnYR3jaYbqoruu', 3, 3, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(224, '1000000223', 'elmafebriani382@man.com', 'ELMA FEBRIANI', 'avatar.png', '$2y$10$CMOh0feT.cX3yUKjsnW1VuFkgK98xo2M/Gy3.QjZKG8NcnUlCgJce', 3, 3, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(225, '1000000224', 'hendrik685@man.com', 'HENDRIK', 'avatar.png', '$2y$10$mqviKT1jgL74vTEThE9JpOQ4OSZVa.eH6sxa0f0obvMj.p4YB8vRS', 3, 3, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(226, '1000000225', 'firamaulana495@man.com', 'FIRA MAULANA', 'avatar.png', '$2y$10$SIz6h6JgSpALCvrGy.wLsODULO8DQclp9pshfGMVM5L1o93XS/w/O', 3, 3, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(227, '1000000226', 'ifasilvia503@man.com', 'IFA SILVIA', 'avatar.png', '$2y$10$FwH0vS0TLsf2HKLHiuMot.bXKE8KOJAlL/5XXT9wz/q/bnccQe4Nu', 3, 3, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(228, '1000000227', 'intanrindipurwati363@man.com', 'INTAN RINDI PURWATI', 'avatar.png', '$2y$10$PMIYkpfTEoaSsoL3OD/OVOflqeqXZau/R.8RYi4iGclvb0pSWcxKK', 3, 3, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(229, '1000000228', 'iradah88@man.com', 'IRADAH', 'avatar.png', '$2y$10$rFJ30NUS9VURJLKyt1E3bu0c97.jPewIepeJUWI5xpbVvXp4U5LdO', 3, 3, 'P', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(230, '1000000229', 'khairunnasirin93@man.com', 'KHAIRUN NASIRIN', 'avatar.png', '$2y$10$CLTp/alxHESzf7/KMnTGiutoAuaqaxsL5ClKbGoYT7WzeCbZHxrz.', 3, 3, 'L', 1, 5, '2022-03-28 12:25:33', '2022-03-28 12:25:33', '0000-00-00 00:00:00'),
+(231, '1000000230', 'm.fahri959@man.com', 'M. FAHRI', 'avatar.png', '$2y$10$KZNyCruhSJ6dNCng/NcLM.cH/U74iK6YXIyQdAWFVB90MRSFGHE6C', 3, 3, 'L', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(232, '1000000231', 'm.riezapahlevi241@man.com', 'M. RIEZA PAHLEVI', 'avatar.png', '$2y$10$xrftFpB549fze43MTCHckuidosUBstYjbtiFlawpgFPIiudu2eqZu', 3, 3, 'L', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(233, '1000000232', 'm.putrawansyah339@man.com', 'M.PUTRA WANSYAH', 'avatar.png', '$2y$10$Mfjjxwe.okUbVSFauRBulORhTkoQQlKDmEC4Y.6P34MBFOr7HAfcu', 3, 3, 'L', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(234, '1000000233', 'maharani813@man.com', 'MAHARANI', 'avatar.png', '$2y$10$R7Kw8grlNlvsK97D.LKCH.EaJZEN3NY13HPRuFPeCkNFEXHCVYxqW', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(235, '1000000234', 'marlindapuspita860@man.com', 'MARLINDA PUSPITA', 'avatar.png', '$2y$10$6rQoscYnNfDJx3xS4ylrIuzivPHA2GV6aLvm4CErc4jwPx6apoKkS', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(236, '1000000235', 'maulidaafriani451@man.com', 'MAULIDA AFRIANI', 'avatar.png', '$2y$10$0HW2Brma3KoCtEjU0Ig7AOExR6iYqaQcqkas271jeJix1BtD1zkvW', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(237, '1000000236', 'mutiarezeki591@man.com', 'MUTIA REZEKI', 'avatar.png', '$2y$10$ylIzb5biIlMHNKTOqfpGKeDlKrmzoXElsopSCxpnGrYYada.wB1oi', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(238, '1000000237', 'nadiamahara336@man.com', 'NADIA MAHARA', 'avatar.png', '$2y$10$f2HHKjl6OkPY7ZRu2h7Rye6tqv.AYJc9UPh02QWnNWBAqXCsEvK1q', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(239, '1000000238', 'nadiasari332@man.com', 'NADIA SARI', 'avatar.png', '$2y$10$bLhTchT55fHzCTuieb482.EzanuLc7EdGCEuOvPstelCAjoyoX2zS', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(240, '1000000239', 'nadyabrudio2@man.com', 'NADYA BRUDIO', 'avatar.png', '$2y$10$esVRil3pX4e5UNoblJ6MtuNO/JH2gZ476FAVmsfJOIiERx4htfivO', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(241, '1000000240', 'najibmusapatinugraha70@man.com', 'NAJIB MUSAPATI NUGRAHA', 'avatar.png', '$2y$10$sJEA1bsZQ5SHFKThQbrPj.lqyiUlmakEYeYXCY6/bO1UalPDWrjmy', 3, 3, 'L', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(242, '1000000241', 'nazlaaqnia803@man.com', 'NAZLA AQNIA', 'avatar.png', '$2y$10$5cc3Xap5Rb/BjUn0uafeEupjbd9895i3ptCYy1gG21vi55tvpVcKa', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(243, '1000000242', 'niarahmadani522@man.com', 'NIA RAHMADANI', 'avatar.png', '$2y$10$963dOPM1X6QmKVVff.XBPOjIUVmKelX96NQRejR6F5L5H5BN826Z.', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(244, '1000000243', 'nindasafitri111@man.com', 'NINDA SAFITRI', 'avatar.png', '$2y$10$XbfEhEV97.ngWWARY2O2pe/Bvl7j8qRAgM6tAMe3R94hJejiG/ilq', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(245, '1000000244', 'pujasimehate489@man.com', 'PUJA SIMEHATE', 'avatar.png', '$2y$10$nIoAtnnbnUQzWQqOkvZ.5O3z92xCMhV/3NrliVkXMlgyXPRm0Z7qq', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(246, '1000000245', 'rahmadayanti464@man.com', 'RAHMADAYANTI', 'avatar.png', '$2y$10$1lJRLMzlfrKFFfQJ.3yA/esVGEKNOQ.UvPuf8nLnxCB5RGEbHgW4C', 3, 3, 'P', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(247, '1000000246', 'raihandandi812@man.com', 'RAIHAN DANDI', 'avatar.png', '$2y$10$iICbXwXCHjII7aN378zFFeFwfNGRWLG3plN0aWvHGULffSnfbNTJK', 3, 3, 'L', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(248, '1000000247', 'razakrafsanjani74@man.com', 'RAZAK RAFSANJANI', 'avatar.png', '$2y$10$K4HpuHxcyOPUIE.fkmeRpuKFYnrvBUQvmiAfyGi7D.wMWJIRvW0o6', 3, 3, 'L', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(249, '1000000248', 'refkiwiyanda333@man.com', 'REFKI WIYANDA', 'avatar.png', '$2y$10$yoesNtVvm8Etsqn9K4TBL.chF03ERnOQbChAzfWFiNVCaj7lOkoYe', 3, 3, 'L', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(250, '1000000249', 'riswandianugrah792@man.com', 'RISWANDI ANUGRAH', 'avatar.png', '$2y$10$HufMq9AeKg0NMCR/yzfjAu0Jmpr44FF/.fJ.eg6jhm9nznsc9cgT.', 3, 3, 'L', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(251, '1000000250', 'rizkaiwanpasaranggayo493@man.com', 'RIZKA IWAN PASA RANGGAYO', 'avatar.png', '$2y$10$JWxwEvowO0trdKaqFLyOceixwmBjzYUM2HUWJYAPj5O13wJI3cFzq', 3, 3, 'L', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(252, '1000000251', 'safrinandaputra492@man.com', 'SAFRINANDA PUTRA', 'avatar.png', '$2y$10$VE/61aYSVm.Msv8g04QQnueqpNVRWi2Jyl/a1VbiXmZnLoC.Q6MxW', 3, 3, 'L', 1, 5, '2022-03-28 12:25:34', '2022-03-28 12:25:34', '0000-00-00 00:00:00'),
+(253, '1000000252', 'yuliana414@man.com', 'YULIANA', 'avatar.png', '$2y$10$HvvMR6/PrbTy37Ol4KSUSOeLVZb7.pfmdPPsCIzvxMYX2ITA9xyKC', 3, 3, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(254, '1000000253', 'yulianda446@man.com', 'YULIANDA', 'avatar.png', '$2y$10$P1GvGoMdQ/XYeGuNuBRa2uqfsE/rM.3f4ylMq8wN3oJdnpN4oC/h6', 3, 3, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(255, '1000000254', 'zahran970@man.com', 'ZAHRAN', 'avatar.png', '$2y$10$J9uI.OxzLMwjV3dcoMn3GeelmuTw74IL1JAsTHfkflbQX4orcx8ju', 3, 3, 'L', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(256, '1000000255', 'abrarilliyin808@man.com', 'ABRAR ILLIYIN', 'avatar.png', '$2y$10$zXxYdB7AK7RM4oKrFZP/PO595QfA0KycE5f8.QXX2C0MrHO17ykja', 3, 4, 'L', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(257, '1000000256', 'adenovalkurnia111@man.com', 'ADE NOVAL KURNIA', 'avatar.png', '$2y$10$RMUZbiisMdiJhRz7axA/Bu8wmf7.4pMAVxD2QI2P7FzTKRAFlUeuG', 3, 4, 'L', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(258, '1000000257', 'anandasaskia986@man.com', 'ANANDA SASKIA', 'avatar.png', '$2y$10$mvOe.9c0qwiUuwqd0TkkF.e.Xb.gubYaQv3hvVdUeWIrK7bcUsx4.', 3, 4, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(259, '1000000258', 'asparina537@man.com', 'ASPARINA', 'avatar.png', '$2y$10$VP4Jp5z8XfIOElbH7KRvfuHaFYWHHq7tNX5oR7r8t0dL93CKoPtnK', 3, 4, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(260, '1000000259', 'cutmeriahsyamsi446@man.com', 'CUT MERIAH SYAMSI', 'avatar.png', '$2y$10$r/t4VhdAHieguIaEgD2gUOIsXXz2IFXao8rfQyZMRgwkGgXtTidUC', 3, 4, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(261, '1000000260', 'dahriaziz472@man.com', 'DAHRI AZIZ', 'avatar.png', '$2y$10$4iczpoT6Gyf31i9kGiXueON0KBGhHDKvYQTyaz0g7yO7YsSsy8Txi', 3, 4, 'L', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(262, '1000000261', 'diskiadlani900@man.com', 'DISKI ADLANI', 'avatar.png', '$2y$10$kq3UOLh3izbrci9zu2ffT.NYwYPRVrBPCDot89gKiAFksw0sz1Pa6', 3, 4, 'L', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(263, '1000000262', 'desimahbengi66@man.com', 'DESI MAHBENGI', 'avatar.png', '$2y$10$sFzKwN0Y9NUItjg.0I3ws.nk1Wef2KFGUxJkbKqIxKLfr2vWMxX5e', 3, 4, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(264, '1000000263', 'fahmimaisya872@man.com', 'FAHMI MAISYA', 'avatar.png', '$2y$10$HdxGdDDIS5J4NE6teNDixuFiIpkadPFSJZHpgfnW641hK49/FIOJW', 3, 4, 'L', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(265, '1000000264', 'humairanadila799@man.com', 'HUMAIRA NADILA', 'avatar.png', '$2y$10$eILqOCS3Wys3P6.EHFF/sO8G7gLxH9n0PbQ6bw0LkTtfqIszuy..a', 3, 4, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(266, '1000000265', 'husnimahtuah475@man.com', 'HUSNI MAHTUAH', 'avatar.png', '$2y$10$nh8CqV.x1H5gu1Nt2izU8OqxH80IyEhHCFbl0zpXFUU1CENrbeDx.', 3, 4, 'L', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(267, '1000000266', 'iqbaldarmawan304@man.com', 'IQBAL DARMAWAN', 'avatar.png', '$2y$10$dRCFR/0BYWqkDLAOpsvjweaXEa.4y4zqWcw6SqDcBBbRa3/1qx05W', 3, 4, 'L', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(268, '1000000267', 'israazzahra932@man.com', 'ISRA AZZAHRA', 'avatar.png', '$2y$10$T1ljzQKTTf.DlslbXqnbyuIxBikQLlRpB7GD2RkL6FxBmRP2ZXHk2', 3, 4, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(269, '1000000268', 'jamianqalbu598@man.com', 'JAMIAN QALBU', 'avatar.png', '$2y$10$fRDioQ8n5.TriY2mjQQPKeGvxZIcM5.yPQDWh6m6.VVMBSPnZaldW', 3, 4, 'L', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(270, '1000000269', 'khairunisa709@man.com', 'KHAIRUNISA', 'avatar.png', '$2y$10$H5NgH2gCdAx/ckD8C.RASOuaMPgj/oIS6pQhumKL0ldDPETTKUkpa', 3, 4, 'L', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(271, '1000000270', 'laulasalsabila295@man.com', 'LAULA SALSABILA', 'avatar.png', '$2y$10$x8ADAIRaZWBgk2er114L3ei.Mzu10/QxkR1AGtkGLvVKISu4hQoA2', 3, 4, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(272, '1000000271', 'niaramadhana118@man.com', 'NIA RAMADHANA', 'avatar.png', '$2y$10$i66ONjbBCZKlHEnho2Chu.nR4gKfiLpAjl/y0eM4L4kJBjafmqMqu', 3, 4, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(273, '1000000272', 'magfirahyurisma418@man.com', 'MAGFIRAH YURISMA', 'avatar.png', '$2y$10$TJ7OuiyDu7/PPG7eRKfGGemBcCkHtdzDpJDl8/7LQK7feACQev6t2', 3, 4, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(274, '1000000273', 'mauliyana445@man.com', 'MAULIYANA', 'avatar.png', '$2y$10$hjDruglFDuh1OcRw3A.lFubWymGGmeJivEOPlncsoSc76G/LynLOS', 3, 4, 'P', 1, 5, '2022-03-28 12:25:35', '2022-03-28 12:25:35', '0000-00-00 00:00:00'),
+(275, '1000000274', 'meethalaura987@man.com', 'MEETHA LAURA', 'avatar.png', '$2y$10$uZZ/1C./oki9AdG7Y5nQ0.W3dj2qz4i1IKxqEQ88iavC1D2OTSxEG', 3, 4, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(276, '1000000275', 'mislanbahana741@man.com', 'MISLAN BAHANA', 'avatar.png', '$2y$10$sK4WXp5PxgpiLYCZJUeh9ebvgzaj78EV9FN6/ySEXPdhXy2tF.l96', 3, 4, 'L', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(277, '1000000276', 'nadilaraudatunnisya326@man.com', 'NADILA RAUDATUN NISYA ', 'avatar.png', '$2y$10$hItyh8qLiHfa0PotDtDQ7e5JtcrgWzz8m453nihm68qb0W57wDg92', 3, 4, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(278, '1000000277', 'nadyatiaraniaprilia458@man.com', 'NADYA TIARANI APRILIA', 'avatar.png', '$2y$10$.5DXcai45GixUMFrwU4dseCDZ19A4fSXdZPecliye/NF.ayi/UdJ6', 3, 4, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(279, '1000000278', 'm.subki509@man.com', 'M.SUBKI', 'avatar.png', '$2y$10$xKoRP08XygJz42ixlKmsV.pm0J/0WXUn6SbXtNzjMoGasNKR12mGK', 3, 4, 'L', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(280, '1000000279', 'noraarifah898@man.com', 'NORA ARIFAH', 'avatar.png', '$2y$10$9kUq1loCyF/jGlWnOn93GOnJBJ6tG/qJAfRFl49cygGXuSh7bFlyy', 3, 4, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(281, '1000000280', 'putrialyasalsabila580@man.com', 'PUTRI ALYA SALSABILA', 'avatar.png', '$2y$10$K7JEPGQi5kA6FcnUSa5rK.n.wNxtgFj3Ml0tkQqJNlpuMqW4d3Xqy', 3, 4, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(282, '1000000281', 'putrikawazula341@man.com', 'PUTRI KAWAZULA', 'avatar.png', '$2y$10$F4kCwMB04wyaOUhyVnsIguiQXernYBZvOSJrbyHLkcLTewVg3A05K', 3, 4, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(283, '1000000282', 'ramadhanfitra434@man.com', 'RAMADHAN FITRA', 'avatar.png', '$2y$10$qjmKQMl2SPdukTUesBMCo.m1isFqb61wbObYnpEYMA/f8JTJJ3cZC', 3, 4, 'L', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(284, '1000000283', 'randarizki239@man.com', 'RANDA RIZKI', 'avatar.png', '$2y$10$1zSTCNwI8.BJhVjpkNEq2.8k3G8yxxeEvF6UdiZwQRVRFpsy7FiFu', 3, 4, 'L', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(285, '1000000284', 'reladi708@man.com', 'RELADI', 'avatar.png', '$2y$10$sjdS7unSeml117buhHRxU.8KJ6uJyQPNjyF7i8HChhzzJ1BDvfIiq', 3, 4, 'L', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(286, '1000000285', 'rezekiwananto938@man.com', 'REZEKI WANANTO', 'avatar.png', '$2y$10$McbT4ZpOzOQek0.fym9gYuY2XjJ2ehog/3B33C33D3QdUFiWk.922', 3, 4, 'L', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(287, '1000000286', 'riski803@man.com', 'RISKI', 'avatar.png', '$2y$10$MCwmeWN5Piig4PljB9YEjeINR6tywTme4kpn0nIhFTVaJJ4CqogFG', 3, 4, 'L', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(288, '1000000287', 'riskisetiawan467@man.com', 'RISKI SETIAWAN', 'avatar.png', '$2y$10$1oc/1th4gcI2RkQ2W0EB4OVfpPPokbaHRChpvQwmPXcERRtqcVuEa', 3, 4, 'L', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(289, '1000000288', 'rizkiiwanramadan192@man.com', 'RIZKI IWAN RAMADAN', 'avatar.png', '$2y$10$j1LMBc7tdxYmT2Sga9.9OOI0BOw2mJUapOOiqEA4OO7RaQP7Zlruq', 3, 4, 'L', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(290, '1000000289', 'ruaida195@man.com', 'RUAIDA', 'avatar.png', '$2y$10$8Q/uLAwkppzo.UtbhUHDCOdqw20SP28iDH1OoSO1BNOUcL/Jrvr3i', 3, 4, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(291, '1000000290', 'selviapintenate421@man.com', 'SELVIA PINTE NATE', 'avatar.png', '$2y$10$Eji15bRLPefdsy6gJE4s7ecAPY.CPVG7dl.ANILmUDQ2RC4fle.v6', 3, 4, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(292, '1000000291', 'wulanmelisa582@man.com', 'WULAN MELISA', 'avatar.png', '$2y$10$Ox3.xzfF3SXvl.fk2Z4A3OLClfPQbGdyptqdZFwvMxI733vHpcF7O', 3, 4, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(293, '1000000292', 'anggunkaniya526@man.com', 'ANGGUN KANIYA', 'avatar.png', '$2y$10$5Fwk9oVFipxAu0UVro3IsuFU3xz8PloiPep4jj0.VzMrZnyTJrUzS', 3, 5, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(294, '1000000293', 'binautami407@man.com', 'BINA UTAMI', 'avatar.png', '$2y$10$RfSXle71Hxxe6nc49scXuuXF10hXLdeZ2NQzZIpweQk7UFm6qc7fW', 3, 5, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(295, '1000000294', 'ditaarmazayani21@man.com', 'DITA ARMAZA YANI', 'avatar.png', '$2y$10$9PDsjCVbuPmGstsrkUYhveOEJJeX7S6jsS62WkEkGKzkMDdQOJ3rm', 3, 5, 'P', 1, 5, '2022-03-28 12:25:36', '2022-03-28 12:25:36', '0000-00-00 00:00:00'),
+(296, '1000000295', 'husnasari222@man.com', 'HUSNA SARI', 'avatar.png', '$2y$10$BxVgd.ZBLZGDdWSHNryAnujgQpxvKPXmOa9pV2Xz3PkVzLDXcgaVi', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(297, '1000000296', 'ipakyana959@man.com', 'IPAK YANA', 'avatar.png', '$2y$10$UbR40Cz6V8WwSAa.rHA5/OVRK1B8CHrgnfbxlbYxqeOxrx3Zcyh3K', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(298, '1000000297', 'istiqomah237@man.com', 'ISTIQOMAH', 'avatar.png', '$2y$10$3.CfnNm8mgji5idmwBL61u1IjczJZramIjxKbYK4C.TLojWN.VwUK', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(299, '1000000298', 'lidyaaudina106@man.com', 'LIDYA AUDINA', 'avatar.png', '$2y$10$.Zu/Sd1luM7x6KfEe9p3d.DaxhnPFG.3Zh.JQtQxIu./AWAP9jDZW', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(300, '1000000299', 'ma\'rifatinzahra327@man.com', 'MA\'RIFATIN ZAHRA', 'avatar.png', '$2y$10$ilbd/znb6DHRdEAWcIkWWu2vgqzrcyfMZFPz6T9KQTa3XI77ptfJW', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(301, '1000000300', 'melawatiputri551@man.com', 'MELAWATI PUTRI', 'avatar.png', '$2y$10$30HuhpwXLCC5UMHNgkQMVuaPX1MIUEeH9QEaCcVrS.AvISdwY5m2m', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(302, '1000000301', 'milajunitaslasih874@man.com', 'MILA JUNITA SLASIH', 'avatar.png', '$2y$10$WE/0OPYW3N10kbrZ5xyT/usG35P7oTC.1zgsdWUFyQHgtWNzkYPIG', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(303, '1000000302', 'mirnayanti750@man.com', 'MIRNA YANTI', 'avatar.png', '$2y$10$4bCAyst4O7bpXLjBXPzP0.fGhSUVwMlVYF//SrHaXNsh.R4UedhF6', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(304, '1000000303', 'nazirahusna377@man.com', 'NAZIRA HUSNA', 'avatar.png', '$2y$10$wTPhXPTnYIlANOhtjS4DLOUrQGxLIXQBXGZjZqdVpffR4KyC39IpS', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(305, '1000000304', 'helmifauziansah622@man.com', 'HELMI FAUZIANSAH', 'avatar.png', '$2y$10$xJtS4TyJSwv5qU7qJCrOO.t2RargYHLhUmH4eD0dk0nZJnZXLdRkS', 3, 5, 'L', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(306, '1000000305', 'nuraisyahborun257@man.com', 'NUR AISYAH BORU N', 'avatar.png', '$2y$10$nnO.wh3FY5wgT6fuqUJJf.SHETV.ZcCZF1XNQZv1Sh9R5q2ifOZ6G', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(307, '1000000306', 'pinterezeki135@man.com', 'PINTE REZEKI', 'avatar.png', '$2y$10$H6NclkGu/A9GAx15yuEZMeQ31q8vxnJSgo5kKf.Bzno/z3F2.Jt/u', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(308, '1000000307', 'putridamayani109@man.com', 'PUTRI DAMAYANI', 'avatar.png', '$2y$10$h5jIfLqAs2kqQYQav.tP..8FkLYYEnuUlfJFiZoJkjcWA8DRlONOC', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(309, '1000000308', 'raniapermataputri744@man.com', 'RANIA PERMATA PUTRI', 'avatar.png', '$2y$10$cz6oYac8d6PJDdpqkNgzBeLtsv6ebraEyMJCxiVVz3T0aOEt6MmGC', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(310, '1000000309', 'ruhda771@man.com', 'RUHDA', 'avatar.png', '$2y$10$V0SF4LUYSuDZtVpTwRl7xOmnU4sLbskbVNDPx7wMbiQalpdB1s2Ri', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(311, '1000000310', 'sarawidamelala241@man.com', 'SARAWIDA MELALA', 'avatar.png', '$2y$10$KdYcDeqDh0sCU5TGkhSSU.248FOG4Oh3jIIerPuG1dO4lVx6Zlr5O', 3, 5, 'L', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(312, '1000000311', 'sariramadani574@man.com', 'SARI RAMADANI', 'avatar.png', '$2y$10$lVIYxXbuq2XH7km3UI3w0.2Ex9VTJMl3YxArZ7J15xFALDqRFh3bu', 3, 5, 'L', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(313, '1000000312', 'saufayarda197@man.com', 'SAUFA YARDA', 'avatar.png', '$2y$10$pmYFX.ZpqfEWhL2vrO7m/eJofA3cUQHGOis.paLUGt5BzI1joN.1S', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(314, '1000000313', 'sitinurkhadijah566@man.com', 'SITI NUR KHADIJAH', 'avatar.png', '$2y$10$KPSWy5KuIo37f2DKP.ItUerz9J3PRYt4txv.BbuUFIFLuHjZus9UG', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(315, '1000000314', 'winnaufalmuhammad138@man.com', 'WIN NAUFAL MUHAMMAD', 'avatar.png', '$2y$10$MkAWvEK/RNyr4OrKZ.5gTuvte/gTNmCdYQImTxIwpFLbmlUKQeCxK', 3, 5, 'L', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(316, '1000000315', 'ylmianafitri353@man.com', 'YLMIANA FITRI', 'avatar.png', '$2y$10$vtPnabq6Yav0IUGwescfquNo3ttym3sDTi22KaXoGoRrfdSmHjm9m', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(317, '1000000316', 'yowenibahgie692@man.com', 'YOWENI BAHGIE', 'avatar.png', '$2y$10$RWzAtAhfwqn7zYwRaJrv6.FnR8NxWPZYE/7TfsfxcsqmBQcqAsbgq', 3, 5, 'P', 1, 5, '2022-03-28 12:25:37', '2022-03-28 12:25:37', '0000-00-00 00:00:00'),
+(318, '1000000317', 'ayunisamahbengi505@man.com', 'AYU NISA MAHBENGI', 'avatar.png', '$2y$10$Pj.wdP/5flW1NgqT8/4yvuaKsot1uHv6DZCmz4GV05GaQDYPSFssm', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(319, '1000000318', 'alfisahri622@man.com', 'ALFI SAHRI', 'avatar.png', '$2y$10$0Ye/Gdr/0wxj1tg16rusZ.MWMAuHQcDyiX9QwSNUPAoF/1D1L2BC6', 3, 6, 'L', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(320, '1000000319', 'arjunaarisisara246@man.com', 'ARJUNA ARISISARA', 'avatar.png', '$2y$10$VCuIUqOqIp2PS45tdOZagegfCmCaf3ZN296I4UYOeUgrGDD.2UVOK', 3, 6, 'L', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(321, '1000000320', 'bayupitraarlo443@man.com', 'BAYU PITRA ARLO', 'avatar.png', '$2y$10$Xtchq5qyVmus17YM.zuAz.iYUb8EqDwZZXrnQUrAVanULOjzv9mF2', 3, 6, 'L', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(322, '1000000321', 'budicandra256@man.com', 'BUDI CANDRA', 'avatar.png', '$2y$10$zA21JFuU03MzGY0qFhWLlO1vbsLBh/Di5YOsUd1jRYMojOiSQr7Ty', 3, 6, 'L', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(323, '1000000322', 'dechitaisnadiani180@man.com', 'DECHITA ISNADIANI', 'avatar.png', '$2y$10$Gx2k10hBE6oaXAs11aWyS.SkPpiLkJmhf.Off1R.v.s8PYQTYAGom', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(324, '1000000323', 'desimahara442@man.com', 'DESI MAHARA', 'avatar.png', '$2y$10$hBGsHsOpkIarazoezoiaV.Npuf7xo/ULNqL3A4i6nFLrN8MQYdGum', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(325, '1000000324', 'devianggraini257@man.com', 'DEVI ANGGRAINI', 'avatar.png', '$2y$10$N8oN9izsSSZKdpkcONNre.fkk90IQSVAJJoqjiKs4qAqkTbEQjBoO', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(326, '1000000325', 'farisarahmadani737@man.com', 'FARISA RAHMADANI', 'avatar.png', '$2y$10$mgLWSjHr4tZ3WvNrqkrkgeVGJqXpyAlKeIm1V2krJvoj3lmnWywri', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(327, '1000000326', 'hairidami120@man.com', 'HAIRI DAMI', 'avatar.png', '$2y$10$Iax52hwQFlDeqsFRczho4eSoM5h5/1BBj8wwB.ldWUMMXV.yPQAse', 3, 6, 'L', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(328, '1000000327', 'hajilmasturi26@man.com', 'HAJIL MASTURI', 'avatar.png', '$2y$10$yHJWDO6jayfJph4hdDA0eOy7ePOgjvXKW8oYatLo3pLyihbuBhoWu', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(329, '1000000328', 'husnulnisa18@man.com', 'HUSNUL NISA', 'avatar.png', '$2y$10$sEI5/8G6eM3b0F5O3r/iVu8MJrSNNrVDPuxeEgPmwqJCRY3Lw3bAq', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(330, '1000000329', 'isnaini192@man.com', 'ISNAINI', 'avatar.png', '$2y$10$sQrlhM4SyEbxfEHuNtJuduucPMfIg0uF6tsx/0HXRaOvSLONSkCj6', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(331, '1000000330', 'jahrasalsabila175@man.com', 'JAHRA SALSABILA', 'avatar.png', '$2y$10$OVlxvtknkMCXi6QZ1RfXr.Df0zmJat3qXWozouNIp.Nh6.97jJU8i', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(332, '1000000331', 'julianafitri487@man.com', 'JULIANA FITRI', 'avatar.png', '$2y$10$DpWTtCfn8tY0cmeQygLV7.s2hKojx.7KehFkk7FaXZmS5qVJPeDDq', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(333, '1000000332', 'kaifarizki941@man.com', 'KAIFA RIZKI', 'avatar.png', '$2y$10$vyU2RzPjPUoW1ZDe5fk.QO9JfTB4XUT4mpRmsZ/sAH7O3rdKniJMy', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(334, '1000000333', 'maisarahsimehate412@man.com', 'MAISARAH SIMEHATE', 'avatar.png', '$2y$10$EAGnIU/5zNA5lfegZWpJ/OTEpnIepzviXq8r7paxrabroS.YEK.i6', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(335, '1000000334', 'mhd.fahrizalkr702@man.com', 'MHD. FAHRIZAL KR', 'avatar.png', '$2y$10$lcbWPX3VFSv9Zm0hcMWQH.cl/qq7EZynAnyCMOk/u.AffiwlCfSgq', 3, 6, 'L', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(336, '1000000335', 'mulyanaks539@man.com', 'MULYANA KS', 'avatar.png', '$2y$10$.BqRALVgDPNYJxnzQlu9qualLjWVBaWJNMpmzSrO6FFwI7YKGJpfO', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(337, '1000000336', 'nabilatrisinteni127@man.com', 'NABILA TRI SINTENI', 'avatar.png', '$2y$10$wJ0ljTudiz1kWbN9Kq9n0e8xgAtO3UM7hcQDIqo09XQpPtrA91ar.', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(338, '1000000337', 'nafhahsyasyasajidah988@man.com', 'NAFHAH SYASYA SAJIDAH', 'avatar.png', '$2y$10$nBmhSis.RbnPgDpU7nsrQ.qaiZL.gqUgrR6.gZ9//lbKRcMwozhC6', 3, 6, 'P', 1, 5, '2022-03-28 12:25:38', '2022-03-28 12:25:38', '0000-00-00 00:00:00'),
+(339, '1000000338', 'nauvalariskaputra16@man.com', 'NAUVAL ARISKA PUTRA', 'avatar.png', '$2y$10$4uhs/ija3X3JuxZFPX.HX.5rOa.DzBQivtyitFO40P8YshxOpDDqq', 3, 6, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(340, '1000000339', 'nazaruddin885@man.com', 'NAZARUDDIN', 'avatar.png', '$2y$10$Zvn1n3/o32mR4aFsmVYJYOaOpDH2IyNBneAryM7JLomn/uRkpikzq', 3, 6, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(341, '1000000340', 'niaradeswita650@man.com', 'NIARA DESWITA', 'avatar.png', '$2y$10$tQb60dE.LMBzNTCAkDhg1Opsy1YCUh4TU8udq9PL0cDw/05BgWQTS', 3, 6, 'P', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(342, '1000000341', 'nilawati206@man.com', 'NILA WATI', 'avatar.png', '$2y$10$yMc0B45EIVWuj4B7gJUCIe8eMv2geuxaizk9bGTeukVY54TVtwUOa', 3, 6, 'P', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(343, '1000000342', 'nurwahda345@man.com', 'NUR WAHDA', 'avatar.png', '$2y$10$vxHcocvWEd5i8YAAlkV85uVM1o/rPGrUs1VHQwILRRjZlY4aYO2fe', 3, 6, 'P', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(344, '1000000343', 'oktaputri406@man.com', 'OKTA PUTRI', 'avatar.png', '$2y$10$BZoFVs5CIxFfT8UyCUYP2uUDawPm1xdoYGahjN1r51Ed7z8TBqt5e', 3, 6, 'P', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(345, '1000000344', 'rauzatulzannah451@man.com', 'RAUZATUL ZANNAH', 'avatar.png', '$2y$10$9ZwG1HprR.UE28xiKW8SieZC1O0gBogurAfRx3Nmzff6stuWVlO2a', 3, 6, 'P', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(346, '1000000345', 'reynaldi673@man.com', 'REYNALDI', 'avatar.png', '$2y$10$sAC2ADXiLT6LIVK/qikYIusrYATqq0FOmr77bpDwVN.kB.STZk6pG', 3, 6, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(347, '1000000346', 'riskinaputri224@man.com', 'RISKINA PUTRI', 'avatar.png', '$2y$10$sh8uwX5ODhS.8z5fqbmiwe9zO6DIWnGOWCkXCBUzlvyUokSVDdgwy', 3, 6, 'P', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(348, '1000000347', 'sabri926@man.com', 'SABRI', 'avatar.png', '$2y$10$4vyNqqV9trY.rIPFTA/KQOTHVGje.ZaCtAeRWSnL0ieV2eJE0piJO', 3, 6, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(349, '1000000348', 'salwani851@man.com', 'SALWANI', 'avatar.png', '$2y$10$KSl/BC5utOfF9N8iOj436egsce.y3Ozg1kkZJhQIa6JMFm8rpxmmq', 3, 6, 'P', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(350, '1000000349', 'sandipujaga348@man.com', 'SANDI PUJAGA', 'avatar.png', '$2y$10$N.jH/bn.fLDI29n/wN3smOsd1ego691yczbN2VuGfDeGKAp59DVei', 3, 6, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(351, '1000000350', 'sarianjani849@man.com', 'SARI ANJANI', 'avatar.png', '$2y$10$SZzBZZH9eaTVuuXLl.3fTuYAvzxfj/Fg6MTWSzq2lWD8c9lFcmtMW', 3, 6, 'P', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(352, '1000000351', 't.raflyyadyansyah953@man.com', 'T. RAFLY YADYANSYAH', 'avatar.png', '$2y$10$jXbRM/6zyICIMZ2qBPCDAeX/639WO7Rll.bQu9G6.e8QRHL9mkEOm', 3, 6, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(353, '1000000352', 'zikriwanpinte928@man.com', 'ZIKRI WAN PINTE', 'avatar.png', '$2y$10$gJwe6KI9/NzBa.xFEunvzOYBZ9EY1/4t9/Q6B8vvKpXdgKp2sPHDG', 3, 6, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(354, '1000000353', 'syahidulsyahputra614@man.com', 'SYAHIDUL SYAHPUTRA', 'avatar.png', '$2y$10$gTySesyJKhFsv7l7cmtSNuKBiTUSWf5VKb8MRXr.O7NPcpRrpb6R2', 3, 6, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(355, '1000000354', 'afikahsahira14@man.com', 'AFIKAH SAHIRA', 'avatar.png', '$2y$10$he8ePQWZPk9ZcIt.1SGUkuLt1MZ7pTgF9dvLw/V1hi7j5Xq8zo.9C', 3, 7, 'P', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(356, '1000000355', 'afriansyah588@man.com', 'AFRIANSYAH', 'avatar.png', '$2y$10$obKzczaEhbrRWrW2C21AR.RTR0jaM0rVDZtA57mqFj5YzTRRQJedm', 3, 7, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(357, '1000000356', 'ahmadnandakuara493@man.com', 'AHMAD NANDA KUARA', 'avatar.png', '$2y$10$yt13fNsPpz8nwe26Vb1UceVe9dEXpen.GoBf2V1uC5s9o.AHg5XQC', 3, 7, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(358, '1000000357', 'ahyamaulana251@man.com', 'AHYA MAULANA', 'avatar.png', '$2y$10$WHgiu72qSnX0YCrtZp6cVOSZGlp6O7ZXHEjEiKa7F1k0pZnQJIkCq', 3, 7, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(359, '1000000358', 'ahyaradha730@man.com', 'AHYAR ADHA', 'avatar.png', '$2y$10$Yg86Qaz3DvDhAt2z5VxiBOeJ9.vcvqP0zSVyPg3TsgQvgEG43nSh.', 3, 7, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(360, '1000000359', 'alwansyah90@man.com', 'AL WANSYAH', 'avatar.png', '$2y$10$.kfEXuJrwKJ2ef1WgOASNOlfNeiHDtQXhKAQmLlR7vK3s26NaWLfi', 3, 7, 'L', 1, 5, '2022-03-28 12:25:39', '2022-03-28 12:25:39', '0000-00-00 00:00:00'),
+(361, '1000000360', 'aldiansyahrizki459@man.com', 'ALDIANSYAH RIZKI', 'avatar.png', '$2y$10$Do5COLo9SjxFvdDWAz9C9.Flsfu5720CRpBGKAEWqRWexAcOWy7kS', 3, 7, 'L', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(362, '1000000361', 'apindaulfa866@man.com', 'APINDA ULFA', 'avatar.png', '$2y$10$LplaZ17Qogm4Y4Hu7gIAv.HnRH3Dyb.EEWMie0oGSHhsdOe4QwvGW', 3, 7, 'P', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(363, '1000000362', 'azikiatun422@man.com', 'AZIKIATUN', 'avatar.png', '$2y$10$Esw8it7gu2Zrmh.yu/3RFuH4ECapoubaZ65j.euulwTODQQEhF9UW', 3, 7, 'P', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(364, '1000000363', 'cutintannuraini241@man.com', 'CUT INTAN NURAINI', 'avatar.png', '$2y$10$OFd1BY99D8McYcruiFFWNOYuPZ.I6998e348mgXN0WN0f2CLIfDte', 3, 7, 'P', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(365, '1000000364', 'dainifitri964@man.com', 'DAINI FITRI', 'avatar.png', '$2y$10$sF2KBIkUjOb.6mYAhOk0ce7pUHCejf0PAfzVGyk8gYF7xC4pEzyWG', 3, 7, 'P', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(366, '1000000365', 'faridiwahdi544@man.com', 'FARIDI WAHDI', 'avatar.png', '$2y$10$L3g9Gua0ZikE7Q4/r9TRluUURr/sicSPpzDiY1NJ/QCxNmWEZdMhi', 3, 7, 'L', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(367, '1000000366', 'ferimardiaqimi393@man.com', 'FERI MARDI AQIMI', 'avatar.png', '$2y$10$gbE2BmVFIn/1uehxTbXXD.US65bGEtitd6AL.JUyYPg37uyYSygJu', 3, 7, 'L', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(368, '1000000367', 'frihasupiantirini553@man.com', 'FRIHA SUPIANTI RINI', 'avatar.png', '$2y$10$Ve2L7QJeupWOulnaUwGbjO2PvVv0waDLJSeLE3HMWn.o3k26zcor2', 3, 7, 'P', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(369, '1000000368', 'furqan492@man.com', 'FURQAN ', 'avatar.png', '$2y$10$cIKCC22iMIrLoWj0YZTM1.zSM7zbUkini9b3mnlul3jTVD8Fsqxry', 3, 7, 'L', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(370, '1000000369', 'hariansyah78@man.com', 'HARIANSYAH', 'avatar.png', '$2y$10$hRfoxa6tl5xp.lqnsNcBb.NJAwTUOk.oOtBmSJcSYU.SD9U0dtGZS', 3, 7, 'L', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(371, '1000000370', 'ilhamfahmi718@man.com', 'ILHAM FAHMI', 'avatar.png', '$2y$10$Eal90fKzQ8E.uuO6Jd43eeO0FtN3NtiEfMFHag0Mh8HzYMsAuTdDC', 3, 7, 'L', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(372, '1000000371', 'itawarni346@man.com', 'ITA WARNI', 'avatar.png', '$2y$10$emb2eey8I8ofvcDBrIzSWuH43FJvuVqYhlVVWZIUVEwVUXJLwOiHm', 3, 7, 'P', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(373, '1000000372', 'iwanramadhan300@man.com', 'IWAN RAMADHAN', 'avatar.png', '$2y$10$XH70By1J3KCoy94fBvvCSeART/hzHpdPijkNPMCIfKIIgp3Cq/C8u', 3, 7, 'L', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(374, '1000000373', 'kemalaintan597@man.com', 'KEMALA INTAN', 'avatar.png', '$2y$10$lDJzvtkwYIWwtgJyav3lkeFI7bQlDs8PKc9aYlmY8AniwqAnhAvty', 3, 7, 'P', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(375, '1000000374', 'khairuladha641@man.com', 'KHAIRUL ADHA', 'avatar.png', '$2y$10$dCUUrPTtElBWOFU9XhkHBOBqzSGRm3kcmzVIH42U3wSTkpOJHYxhe', 3, 7, 'L', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(376, '1000000375', 'lindakarma904@man.com', 'LINDA KARMA', 'avatar.png', '$2y$10$lkZ3grTBH8sfeKAyi9nUSu0.Mx4FrvoDMnsAxhuR1y5b.jD2ecb96', 3, 7, 'P', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(377, '1000000376', 'mhd.fadhli349@man.com', 'MHD. FADHLI', 'avatar.png', '$2y$10$wbmbc1GOz7Dq/I/.RJEIEedEp5IRSDhKU.5iLObuL8yvXIJQrPBKq', 3, 7, 'L', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(378, '1000000377', 'milwanaprilian500@man.com', 'MILWAN APRILIAN', 'avatar.png', '$2y$10$6NBW0OswiS7lNiIkyjrVoO6H070RSW8hS9JoK/d3yoA3V5QD8rlnC', 3, 7, 'L', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(379, '1000000378', 'mississaprida585@man.com', 'MISSIS SAPRIDA', 'avatar.png', '$2y$10$oyJjl3GXFFgjGCfub.biKOOingu3uKkbGyiHJBNqn3emxqJHQ/mbe', 3, 7, 'P', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(380, '1000000379', 'mushab622@man.com', 'MUSHAB', 'avatar.png', '$2y$10$llVhRO.u1pU88X11DA9Dc.DtRbbW5p6gofmGwiBDQV03m3jY8bEUS', 3, 7, 'L', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(381, '1000000380', 'nuraini543@man.com', 'NURAINI ', 'avatar.png', '$2y$10$1o9BvRfstoJQrhld5Boxme2ZWvQs2fTfU8liD7MhZri1kizCLY7vG', 3, 7, 'P', 1, 5, '2022-03-28 12:25:40', '2022-03-28 12:25:40', '0000-00-00 00:00:00'),
+(382, '1000000381', 'rahmahfathiya4@man.com', 'RAHMAH FATHIYA', 'avatar.png', '$2y$10$aTU76Jp4qmMfHbLUzS1bqOzNYEzOhN7EfCexlzvI2ryhviJm3A3uy', 3, 7, 'P', 1, 5, '2022-03-28 12:25:41', '2022-03-28 12:25:41', '0000-00-00 00:00:00'),
+(383, '1000000382', 'rahmatteniro117@man.com', 'RAHMAT TENIRO', 'avatar.png', '$2y$10$NNtGkPk/ImnaIhGRzFA3Bu/X3HLsTDTpa4ounLPMsbnUaYJHHkaoW', 3, 7, 'L', 1, 5, '2022-03-28 12:25:41', '2022-03-28 12:25:41', '0000-00-00 00:00:00'),
+(384, '1000000383', 'rahmatsyah936@man.com', 'RAHMATSYAH', 'avatar.png', '$2y$10$lOW/4YxLlQRKChyO.D7KlOyFcKhKXgs6Oa5f15xYRQSdLKo87fxKu', 3, 7, 'L', 1, 5, '2022-03-28 12:25:41', '2022-03-28 12:25:41', '0000-00-00 00:00:00'),
+(385, '1000000384', 'rendi386@man.com', 'RENDI', 'avatar.png', '$2y$10$i0wmzuy5uh7eXfj1mnYsWuG7Jl9gYsf2jBhy.ceT4t5hp0yTSjFrW', 3, 7, 'L', 1, 5, '2022-03-28 12:25:41', '2022-03-28 12:25:41', '0000-00-00 00:00:00'),
+(386, '1000000385', 'ridhoalsadr49@man.com', 'RIDHO AL SADR', 'avatar.png', '$2y$10$8UeTHoxnJYrCW3h4HVtaN.aost9lrP3B.1FvQM6E8YmJvrRIXr0hK', 3, 7, 'L', 1, 5, '2022-03-28 12:25:41', '2022-03-28 12:25:41', '0000-00-00 00:00:00'),
+(387, '1000000386', 'sahrial669@man.com', 'SAHRIAL', 'avatar.png', '$2y$10$ucatW.OnECf87vT8T27OVu5mYe/wBHxX5EFT2qO.yoH8ycG/E1AEK', 3, 7, 'L', 1, 5, '2022-03-28 12:25:41', '2022-03-28 12:25:41', '0000-00-00 00:00:00'),
+(388, '1000000387', 'salwanditebe221@man.com', 'SALWANDI TEBE', 'avatar.png', '$2y$10$iTr9tRuLcYeBmm9YioSbs.bidRACDLLEM1NL4F06iVbiT6ErgEj7y', 3, 7, 'L', 1, 5, '2022-03-28 12:25:41', '2022-03-28 12:25:41', '0000-00-00 00:00:00'),
+(389, '1000000388', 'selfiyuliana490@man.com', 'SELFI YULIANA', 'avatar.png', '$2y$10$oeoc4dc5AKrmbObhC7tonOZtqdJCI79DFFfbBpfoNm.OgKJCOxV3u', 3, 7, 'P', 1, 5, '2022-03-28 12:25:41', '2022-03-28 12:25:41', '0000-00-00 00:00:00'),
+(390, '1000000389', 'supianda52@man.com', 'SUPIANDA', 'avatar.png', '$2y$10$x0CTQ5THMngxSDGcxNuZwO6ga5gplY4A/b0JM4Dqc4x9E/IK0KO62', 3, 7, 'L', 1, 5, '2022-03-28 12:25:41', '2022-03-28 12:25:41', '0000-00-00 00:00:00'),
+(391, '1000000390', 'yassar487@man.com', 'YASSAR', 'avatar.png', '$2y$10$23c2OQGPECiDM5JpZoVnb.0cK.DUMRBv3qhaybDJsg4uRiYCqFwkS', 3, 7, 'L', 1, 5, '2022-03-28 12:25:41', '2022-03-28 12:25:41', '0000-00-00 00:00:00'),
+(392, '1000000391', 'irfanrisky206@man.com', 'IRFAN RISKY', 'avatar.png', '$2y$10$9NJv2woJqUmndwU1YJwA5OukDwtrXYvzczFaQPCaiRowh0YjmL8Je', 3, 7, 'L', 1, 5, '2022-03-28 12:25:41', '2022-03-28 12:25:41', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1258,9 +1280,10 @@ INSERT INTO `students` (`id`, `nisn`, `name`, `image`, `password`, `classId`, `r
 --
 
 CREATE TABLE `subjects` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `status` tinyint(1) NOT NULL,
+  `departmentId` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `deletedAt` datetime NOT NULL
@@ -1270,33 +1293,33 @@ CREATE TABLE `subjects` (
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `name`, `status`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, 'matematika wajib', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(2, 'matematika peminatan', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(3, 'fisika', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(4, 'lintas minat fisika', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(5, 'kimia', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(6, 'biologi', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(7, 'lintas minat biologi', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(8, 'lintas minat kimia', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(9, 'sejarah indonesia', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(10, 'sejarah peminatan', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(11, 'sejarah kebudayaan islam', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(12, 'alquran hadist', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(13, 'aqidah akhlak', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(14, 'fiqih', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(15, 'bahasa inggris', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(16, 'bahasa indonesia', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(17, 'bahasa arab', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(18, 'ekonomi', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(19, 'lintas minat ekonomi', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(20, 'sosiologi', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(21, 'lintas minat sosiologi', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(22, 'geografi', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(23, 'seni budaya', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(24, 'prakarya', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(25, 'penjas', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
-(26, 'pkn', 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00');
+INSERT INTO `subjects` (`id`, `name`, `status`, `departmentId`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+(1, 'matematika wajib', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(2, 'matematika peminatan', 1, 2, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(3, 'fisika', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(4, 'lintas minat fisika', 1, 2, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(5, 'kimia', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(6, 'biologi', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(7, 'lintas minat biologi', 1, 2, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(8, 'lintas minat kimia', 1, 2, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(9, 'sejarah indonesia', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(10, 'sejarah peminatan', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(11, 'sejarah kebudayaan islam', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(12, 'alquran hadist', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(13, 'aqidah akhlak', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(14, 'fiqih', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(15, 'bahasa inggris', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(16, 'bahasa indonesia', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(17, 'bahasa arab', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(18, 'ekonomi', 1, 2, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(19, 'lintas minat ekonomi', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(20, 'sosiologi', 1, 2, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(21, 'lintas minat sosiologi', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(22, 'geografi', 1, 2, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(23, 'seni budaya', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(24, 'prakarya', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(25, 'penjas', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00'),
+(26, 'pkn', 1, 1, '2022-03-27 21:27:53', '2022-03-27 21:27:53', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1305,7 +1328,7 @@ INSERT INTO `subjects` (`id`, `name`, `status`, `createdAt`, `updatedAt`, `delet
 --
 
 CREATE TABLE `teachers` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `nip` varchar(60) NOT NULL,
   `name` varchar(60) NOT NULL,
   `gender` varchar(1) NOT NULL,
@@ -1729,20 +1752,30 @@ INSERT INTO `teachers` (`id`, `nip`, `name`, `gender`, `position`, `dob`, `subje
 -- Indexes for table `classes`
 --
 ALTER TABLE `classes`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `departments`
+--
+ALTER TABLE `departments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `exams`
 --
 ALTER TABLE `exams`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subjectId` (`subjectId`),
+  ADD KEY `classId` (`classId`);
 
 --
 -- Indexes for table `hoomrooms`
 --
 ALTER TABLE `hoomrooms`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `classId` (`classId`),
+  ADD KEY `teacherId` (`teacherId`),
+  ADD KEY `roomId` (`roomId`);
 
 --
 -- Indexes for table `migrations`
@@ -1760,13 +1793,16 @@ ALTER TABLE `privileges`
 -- Indexes for table `resultexams`
 --
 ALTER TABLE `resultexams`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `studentId` (`studentId`),
+  ADD KEY `examId` (`examId`);
 
 --
 -- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `departmentId` (`departmentId`);
 
 --
 -- Indexes for table `scheduleexams`
@@ -1778,13 +1814,17 @@ ALTER TABLE `scheduleexams`
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `students_ibfk_1` (`privilegeId`),
+  ADD KEY `roomId` (`roomId`),
+  ADD KEY `classId` (`classId`);
 
 --
 -- Indexes for table `subjects`
 --
 ALTER TABLE `subjects`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `departmentId` (`departmentId`);
 
 --
 -- Indexes for table `teachers`
@@ -1800,19 +1840,25 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `exams`
 --
 ALTER TABLE `exams`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `hoomrooms`
 --
 ALTER TABLE `hoomrooms`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1824,7 +1870,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `privileges`
 --
 ALTER TABLE `privileges`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `resultexams`
@@ -1836,7 +1882,7 @@ ALTER TABLE `resultexams`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `scheduleexams`
@@ -1848,19 +1894,65 @@ ALTER TABLE `scheduleexams`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=393;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=393;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=393;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=393;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `exams`
+--
+ALTER TABLE `exams`
+  ADD CONSTRAINT `exams_ibfk_1` FOREIGN KEY (`subjectId`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `exams_ibfk_2` FOREIGN KEY (`classId`) REFERENCES `classes` (`id`);
+
+--
+-- Constraints for table `hoomrooms`
+--
+ALTER TABLE `hoomrooms`
+  ADD CONSTRAINT `hoomrooms_ibfk_1` FOREIGN KEY (`classId`) REFERENCES `classes` (`id`),
+  ADD CONSTRAINT `hoomrooms_ibfk_2` FOREIGN KEY (`teacherId`) REFERENCES `teachers` (`id`),
+  ADD CONSTRAINT `hoomrooms_ibfk_3` FOREIGN KEY (`roomId`) REFERENCES `rooms` (`id`);
+
+--
+-- Constraints for table `resultexams`
+--
+ALTER TABLE `resultexams`
+  ADD CONSTRAINT `resultexams_ibfk_1` FOREIGN KEY (`studentId`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `resultexams_ibfk_2` FOREIGN KEY (`examId`) REFERENCES `exams` (`id`);
+
+--
+-- Constraints for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`departmentId`) REFERENCES `departments` (`id`);
+
+--
+-- Constraints for table `students`
+--
+ALTER TABLE `students`
+  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`privilegeId`) REFERENCES `privileges` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `students_ibfk_2` FOREIGN KEY (`roomId`) REFERENCES `rooms` (`id`),
+  ADD CONSTRAINT `students_ibfk_3` FOREIGN KEY (`classId`) REFERENCES `classes` (`id`);
+
+--
+-- Constraints for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD CONSTRAINT `subjects_ibfk_1` FOREIGN KEY (`departmentId`) REFERENCES `departments` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

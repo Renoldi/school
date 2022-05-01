@@ -358,10 +358,6 @@ class Students extends ResourceController
         }
     }
 
-    private function getKey()
-    {
-        return getenv('JWT_SECRET');
-    }
 
     /**
      * @OA\Post(
@@ -441,18 +437,15 @@ class Students extends ResourceController
             }
             $iat = time(); // current timestamp value
 
-            $exp = $iat + (3600 * 24 * (365 / 12));
-            $payload = array(
-                "iss" => base_url(),
-                "aud" => array(
-                    "my-api-User",
-                    base_url('api/Students/details'),
-                    $this->request->getServer('REMOTE_ADDR')
-                ),
-                "sub" => "login " . $user->email,
-                "iat" => $iat, //Time the JWT issued at
-                "exp" =>  $exp, // Expiration time of token,
-                "data" => array(
+            $entity = new EntitiesStudents();
+            $lastLogin = Date('Y-m-d H:i:s', $iat);
+            $entity->lastLogin = $lastLogin;
+            $entity->ipAddress = $this->request->getServer('REMOTE_ADDR');
+            $entity->about = "login";
+            if ($this->model->update($user->id, $entity)) {
+
+                $exp = $iat + (3600 * 24 * (365 / 12));
+                $users = array(
                     "id" =>  $user->id,
                     "name" => $user->name,
                     "email" =>  $user->email,
@@ -463,16 +456,29 @@ class Students extends ResourceController
                     "roomId" => $user->roomId,
                     "departmentId" => $user->departmentId,
                     "privilegeId" => $user->privilegeId,
-                ),
-            );
+                );
+                $payload = array(
+                    "iss" => base_url(),
+                    "aud" => array(
+                        "my-api-User",
+                        base_url('api/Students/details'),
+                        $this->request->getServer('REMOTE_ADDR')
+                    ),
+                    "sub" => "login " . $user->email,
+                    "iat" => $iat, //Time the JWT issued at
+                    "exp" =>  $exp, // Expiration time of token,
+                    "user" => $users
+                );
 
-            helper('jwt');
-            $token = generate($payload);
-            $response = [
-                'message' => 'Login Succesful',
-                "token" => $token,
-            ];
-            return $this->respond($response);
+                helper('jwt');
+                $token = generate($payload);
+                $response = [
+                    'user' => $users,
+                    "token" => $token,
+                ];
+                return $this->respond($response);
+            } else
+                return $this->fail(['error' => 'fail login'], 401);
         }
     }
 

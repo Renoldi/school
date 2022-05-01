@@ -375,8 +375,20 @@ class Teachers extends ResourceController
             $entity->about = "login";
 
             if ($this->model->update($user->id, $entity)) {
-                $key = $this->getKey();
                 $exp = $iat + (3600 * 24 * (365 / 12));
+                $users = array(
+                    "id" => $user->id,
+                    'nip' => $user->nip,
+                    'name' => $user->name,
+                    'gender' => $user->gender,
+                    'position' => $user->position,
+                    'dob' => $user->dob,
+                    'subjectId' => $user->subjectId,
+                    'email' => $user->email,
+                    'image' => $user->image,
+                    'status' => $user->status,
+                    'privilegeId' => $user->privilegeId,
+                );
                 $payload = array(
                     "iss" => base_url(),
                     "aud" => array(
@@ -387,29 +399,18 @@ class Teachers extends ResourceController
                     "sub" => "login ",
                     "iat" => $iat, //Time the JWT issued at
                     "exp" =>  $exp, // Expiration time of token,
-                    "user" => array(
-                        "id" => $user->id,
-                        'nip' => $user->nip,
-                        'name' => $user->name,
-                        'gender' => $user->gender,
-                        'position' => $user->position,
-                        'dob' => $user->dob,
-                        'subjectId' => $user->subjectId,
-                        'email' => $user->email,
-                        'image' => $user->image,
-                        'status' => $user->status,
-                        'privilegeId' => $user->privilegeId,
-                    ),
+                    "user" => $users,
                 );
 
                 helper('jwt');
                 $token = generate($payload);
                 $response = [
-                    'message' => 'Login Succesful',
+                    'user' => $users,
                     "token" => $token,
                 ];
                 return $this->respond($response);
-            }
+            } else
+                return $this->fail(['error' => 'fail login'], 401);
         }
     }
 
