@@ -40,10 +40,13 @@ class Resultexams extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP ',
+                'NULL' => TRUE,
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('studentId', 'students','id');
+        $this->forge->addForeignKey('examId', 'exams','id');
         $this->forge->createTable('resultexams');
     }
 

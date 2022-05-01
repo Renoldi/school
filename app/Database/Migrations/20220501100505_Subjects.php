@@ -12,15 +12,19 @@ class Subjects extends Migration
             'id'          => [
                 'type'           => 'INT',
                 'constraint'     => 11,
-                
                 'auto_increment' => true,
             ],
             'name'       => [
                 'type'       => 'VARCHAR',
+                'unique'         => true,
                 'constraint' => 100,
             ],
             'status'      => [
                 'type'           => 'tinyint',
+                'constraint'     => 1,
+            ],
+            'departmentId'      => [
+                'type'           => 'INT',
                 'constraint'     => 1,
             ],
             'createdAt' => [
@@ -30,16 +34,17 @@ class Subjects extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP ',
+                'NULL' => TRUE,
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('departmentId', 'departments', 'id');
         $this->forge->createTable('subjects');
     }
 
     public function down()
     {
         $this->forge->dropTable('subjects');
-
     }
 }

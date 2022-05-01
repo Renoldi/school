@@ -23,10 +23,12 @@ class Scheduleexams extends Migration
                 'constraint' => 11,
             ],
             'start'      => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP ',
+                'NULL' => TRUE,
             ],
             'end'      => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP ',
+                'NULL' => TRUE,
             ],
             'status'      => [
                 'type' => 'tinyint',
@@ -39,10 +41,13 @@ class Scheduleexams extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP ',
+                'NULL' => TRUE,
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('subjectId', 'subjects','id');
+        $this->forge->addForeignKey('classId', 'classs','id');
         $this->forge->createTable('scheduleexams');
     }
 

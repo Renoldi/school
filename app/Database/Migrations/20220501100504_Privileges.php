@@ -16,6 +16,7 @@ class Privileges extends Migration
             ],
             'name'       => [
                 'type'       => 'VARCHAR',
+                'unique'         => true,
                 'constraint' => 50,
             ],
             'status'      => [
@@ -29,7 +30,8 @@ class Privileges extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP ',
+                'NULL' => TRUE,
             ],
         ]);
         $this->forge->addKey('id', true);

@@ -30,15 +30,16 @@ class Classes extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP',
+                'null' => true,
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('classes');
+        $this->forge->createTable('classs');
     }
 
     public function down()
     {
-        $this->forge->dropTable('classes');
+        $this->forge->dropTable('classs');
     }
 }

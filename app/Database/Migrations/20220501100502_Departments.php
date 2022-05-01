@@ -30,7 +30,8 @@ class Departments extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP',
+                'null' => true,
             ],
         ]);
         $this->forge->addKey('id', true);

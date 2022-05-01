@@ -44,8 +44,8 @@ class Teachers extends Migration
             ],
             'email'      => [
                 'type'           => 'VARCHAR',
+                'unique'         => true,
                 'constraint'     => 255,
-
             ],
             'image'      => [
                 'type'           => 'VARCHAR',
@@ -67,10 +67,13 @@ class Teachers extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP ',
+                'NULL' => TRUE,
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('subjectId', 'subjects','id');
+        $this->forge->addForeignKey('privilegeId', 'privileges','id');
         $this->forge->createTable('teachers');
     }
 

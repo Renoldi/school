@@ -61,10 +61,13 @@ class Exams extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP ',
+                'NULL' => TRUE,
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('subjectId', 'subjects','id');
+        $this->forge->addForeignKey('classId', 'classs','id');
         $this->forge->createTable('exams');
     }
 

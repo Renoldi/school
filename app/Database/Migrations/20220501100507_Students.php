@@ -12,7 +12,6 @@ class Students extends Migration
             'id'          => [
                 'type'           => 'INT',
                 'constraint'     => 11,
-                
                 'auto_increment' => true,
             ],
             'nisn'       => [
@@ -22,6 +21,11 @@ class Students extends Migration
             'name'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
+            ],
+            'email'      => [
+                'type'           => 'VARCHAR',
+                'unique'         => true,
+                'constraint'     => 255,
             ],
             'image'       => [
                 'type'       => 'VARCHAR',
@@ -52,7 +56,7 @@ class Students extends Migration
                 'type'           => 'INT',
                 'constraint'     => 11,
             ],
-            
+
             'createdAt' => [
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
@@ -60,10 +64,14 @@ class Students extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP ',
+                'NULL' => TRUE,
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('roomId', 'rooms', 'id');
+        $this->forge->addForeignKey('classId', 'classs', 'id');
+        $this->forge->addForeignKey('privilegeId', 'privileges', 'id');
         $this->forge->createTable('students');
     }
 

@@ -37,10 +37,15 @@ class Hoomrooms extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP DEFAULT NULL',
+                'type' => 'TIMESTAMP ',
+                'NULL' => TRUE,
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('roomId', 'rooms','id');
+        $this->forge->addForeignKey('classId', 'classs','id');
+        $this->forge->addForeignKey('teacherId', 'teachers','id');
+
         $this->forge->createTable('hoomrooms');
     }
 
