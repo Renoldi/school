@@ -14,13 +14,14 @@ class Students extends Seeder
 
         $model = new ModelsStudents();
         $entities = new EntitiesStudents();
+        $datas = [];
+        $faker = \Faker\Factory::create();
         for ($i = 0; $i < 100; $i++) {
-            $faker = \Faker\Factory::create();
             $data  = [
                 'nisn' => generateRandomString(9, '0123456789abcdefghijklmnopqrstuvwxyz') . rand(0, 100),
                 'email' => $faker->email(),
                 'name' => $faker->name(),
-                'image' => $faker->image(),
+                'image' => 'assets/avatar.png',
                 'password' => 'admin123',
                 'classId' => rand(1, 3),
                 'roomId' => rand(1, 7),
@@ -29,8 +30,8 @@ class Students extends Seeder
                 'privilegeId' => 5,
             ];
 
-            $entities->fill($data);
-            $model->save($entities);
+            $datas[] = $entities->fill($data);
         }
+        $model->insertBatch($datas);
     }
 }
