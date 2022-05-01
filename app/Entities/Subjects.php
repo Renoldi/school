@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
+
 /**
  * @OA\Schema(
  *   schema="Subjects",
@@ -26,7 +27,8 @@ class Subjects extends Entity
     protected $dates   = ['createdAt', 'updatedAt', 'deletedAt'];
     protected $casts   = [];
     protected $attributes = [
-        'name' => null, 
-        'status' => null, 
+        'name' => null,
+        'status' => null,
+        'departmentId' => null,
     ];
 }
