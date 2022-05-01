@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Hoomrooms extends Migration
+class Classes extends Migration
 {
     public function up()
     {
@@ -14,17 +14,10 @@ class Hoomrooms extends Migration
                 'auto_increment' => true,
                 'constraint' => 11,
             ],
-            'roomId'       => [
-                'type'       => 'INT',
-                'constraint' => 11,
-            ],
-            'classId'       => [
-                'type'       => 'INT',
-                'constraint' => 11,
-            ],
-            'teacherId'       => [
-                'type'       => 'INT',
-                'constraint' => 11,
+            'name'       => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+                'unique'         => true,
             ],
             'status'      => [
                 'type'           => 'tinyint',
@@ -37,16 +30,15 @@ class Hoomrooms extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP',
-                'null' => true,
+                'type' => 'TIMESTAMP DEFAULT NULL',
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('hoomrooms');
+        $this->forge->createTable('classes');
     }
 
     public function down()
     {
-        $this->forge->dropTable('hoomrooms');
+        $this->forge->dropTable('classes');
     }
 }

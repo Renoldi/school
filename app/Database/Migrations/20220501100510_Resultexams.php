@@ -4,55 +4,35 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Students extends Migration
+class Resultexams extends Migration
 {
     public function up()
     {
         $this->forge->addField([
             'id'          => [
                 'type'           => 'INT',
-                'constraint'     => 11,
                 
                 'auto_increment' => true,
+                'constraint' => 11,
             ],
-            'nisn'       => [
-                'type'       => 'VARCHAR',
-                'constraint' => 100,
-            ],
-            'name'       => [
-                'type'       => 'VARCHAR',
-                'constraint' => 100,
-            ],
-            'image'       => [
-                'type'       => 'VARCHAR',
-                'constraint' => 50,
-                'null'        => true,
-            ],
-            'password'       => [
-                'type'       => 'VARCHAR',
-                'constraint' => 60,
-            ],
-            'classId'       => [
+            'studentId'       => [
                 'type'       => 'INT',
                 'constraint' => 11,
             ],
-            'roomId'       => [
+            'examId'       => [
                 'type'       => 'INT',
                 'constraint' => 11,
             ],
-            'gender'       => [
+            'choise'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => 1,
             ],
+             
             'status'      => [
                 'type'           => 'tinyint',
                 'constraint'     => 1,
             ],
-            'privilegeId'      => [
-                'type'           => 'INT',
-                'constraint'     => 11,
-            ],
-            
+           
             'createdAt' => [
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
@@ -60,16 +40,15 @@ class Students extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP',
-                'null' => true,
+                'type' => 'TIMESTAMP DEFAULT NULL',
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('students');
+        $this->forge->createTable('resultexams');
     }
 
     public function down()
     {
-        $this->forge->dropTable('students');
+        $this->forge->dropTable('resultexams');
     }
 }

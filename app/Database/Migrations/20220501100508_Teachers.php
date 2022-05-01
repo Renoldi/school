@@ -67,8 +67,7 @@ class Teachers extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP',
-                'null' => true,
+                'type' => 'TIMESTAMP DEFAULT NULL',
             ],
         ]);
         $this->forge->addKey('id', true);

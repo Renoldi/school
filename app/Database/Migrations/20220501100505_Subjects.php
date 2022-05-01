@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Scheduleexams extends Migration
+class Subjects extends Migration
 {
     public function up()
     {
@@ -15,19 +15,9 @@ class Scheduleexams extends Migration
                 
                 'auto_increment' => true,
             ],
-            'subjectId'       => [
-                'type'       => 'INT',
-                'constraint' => 11,
-            ],
-            'classId'       => [
-                'type'       => 'INT',
-                'constraint' => 11,
-            ],
-            'start'      => [
-                'type'           => 'timestamp',
-            ],
-            'end'      => [
-                'type'           => 'timestamp',
+            'name'       => [
+                'type'       => 'VARCHAR',
+                'constraint' => 100,
             ],
             'status'      => [
                 'type'           => 'tinyint',
@@ -40,16 +30,16 @@ class Scheduleexams extends Migration
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP',
-                'null' => true,
+                'type' => 'TIMESTAMP DEFAULT NULL',
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('scheduleexams');
+        $this->forge->createTable('subjects');
     }
 
     public function down()
     {
-        $this->forge->dropTable('scheduleexams');
+        $this->forge->dropTable('subjects');
+
     }
 }
