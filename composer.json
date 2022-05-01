@@ -9,10 +9,10 @@
         "codeigniter4/framework": "^4",
         "zircote/swagger-php": "^4.2",
         "firebase/php-jwt": "^6.1",
-        "phpoffice/phpspreadsheet": "^1.22"
+        "phpoffice/phpspreadsheet": "^1.22",
+        "fzaninotto/faker": "^1.9"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9",
         "mikey179/vfsstream": "^1.6",
         "phpunit/phpunit": "^9.1"
     },

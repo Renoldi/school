@@ -23,7 +23,6 @@ class Classes extends Migration
                 'type'           => 'tinyint',
                 'constraint'     => 1,
             ],
-            
             'createdAt'      => [
                 'type'           => 'timestamp',
             ],
