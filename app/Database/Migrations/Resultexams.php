@@ -34,14 +34,15 @@ class Resultexams extends Migration
                 'constraint'     => 1,
             ],
            
-            'createdAt'      => [
-                'type'           => 'timestamp',
+            'createdAt' => [
+                'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
-            'updatedAt'      => [
-                'type'           => 'timestamp',
+            'updatedAt' => [
+                'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],
-            'deletedAt'      => [
-                'type'           => 'timestamp',
+            'deletedAt' => [
+                'type' => 'TIMESTAMP',
+                'null' => true,
             ],
         ]);
         $this->forge->addKey('id', true);
