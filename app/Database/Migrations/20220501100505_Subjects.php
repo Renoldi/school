@@ -16,7 +16,6 @@ class Subjects extends Migration
             ],
             'name'       => [
                 'type'       => 'VARCHAR',
-                'unique'         => true,
                 'constraint' => 100,
             ],
             'status'      => [

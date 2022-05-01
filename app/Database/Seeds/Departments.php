@@ -2,6 +2,8 @@
 
 namespace App\Database\Seeds;
 
+use App\Entities\Departments as EntitiesDepartments;
+use App\Models\Departments as ModelsDepartments;
 use CodeIgniter\Database\Seeder;
 
 class Departments extends Seeder
@@ -9,22 +11,21 @@ class Departments extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create();
-        $iat = time();
-        $now = Date('Y-m-d H:i:s', $iat);
+        $model = new ModelsDepartments();
+        $entities = new EntitiesDepartments();
         $data = [
             [
                 'name'  => 'IPA',
-                'status'  =>  1,
-                'createdAt'  => $now,
-                'updatedAt'  => $now,
+                'status'  =>  1, 
             ],
             [
                 'name'  => 'IPS',
-                'status'  =>  1,
-                'createdAt'  => $now,
-                'updatedAt'  => $now,
+                'status'  =>  1, 
             ],
         ];
-        $this->db->table('departments')->insertBatch($data);
+        foreach ($data as $datass) {
+            $entities->fill($datass);
+            $model->save($entities);
+        }
     }
 }

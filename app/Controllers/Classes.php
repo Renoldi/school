@@ -2,18 +2,18 @@
 
 namespace App\Controllers;
 
-use App\Entities\Classes as EntitiesClasses;
+use App\Entities\Classs as EntitiesClasss;
 use App\Libraries\StdobjeToArray;
-use App\Models\Classes as ModelsClasses;
+use App\Models\Classs as ModelsClasss;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 use Exception;
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 
-class Classes extends ResourceController
+class Classs extends ResourceController
 {
-    protected $modelName = ModelsClasses::class;
+    protected $modelName = ModelsClasss::class;
     protected $format    = 'json';
     use ResponseTrait;
 
@@ -25,15 +25,15 @@ class Classes extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Classes",
+     *   path="/api/Classs",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Classes"},
+     *   tags={"Classs"},
      *   @OA\Response(
      *     response=200, description="ok",
      *     @OA\JsonContent(
      *      type="array",
-     *       @OA\Items(ref="#/components/schemas/Classes")
+     *       @OA\Items(ref="#/components/schemas/Classs")
      *     ),
      *   ),
      *   @OA\Response(
@@ -54,10 +54,10 @@ class Classes extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Classes/{id}",
+     *   path="/api/Classs/{id}",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Classes"},
+     *   tags={"Classs"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -65,7 +65,7 @@ class Classes extends ResourceController
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Classes")
+     *      @OA\JsonContent(ref="#/components/schemas/Classs")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -104,21 +104,21 @@ class Classes extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/Classes",
+     *   path="/api/Classs",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Classes"},
+     *   tags={"Classs"},
     
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Classes"),
+     *      @OA\Schema(ref="#/components/schemas/Classs"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=201, description="created",
-     *      @OA\JsonContent(ref="#/components/schemas/Classes")
+     *      @OA\JsonContent(ref="#/components/schemas/Classs")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Request error",
@@ -140,7 +140,7 @@ class Classes extends ResourceController
         if ($data == null) {
             return $this->fail("data null");
         }
-        $entity = new EntitiesClasses();
+        $entity = new EntitiesClasss();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->save($entity)) {
@@ -158,10 +158,10 @@ class Classes extends ResourceController
      */
     /**
      * @OA\Put(
-     *   path="/api/Classes/{id}",
+     *   path="/api/Classs/{id}",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Classes"},
+     *   tags={"Classs"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -171,12 +171,12 @@ class Classes extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Classes"),
+     *      @OA\Schema(ref="#/components/schemas/Classs"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="updated",
-     *      @OA\JsonContent(ref="#/components/schemas/Classes")
+     *      @OA\JsonContent(ref="#/components/schemas/Classs")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -205,7 +205,7 @@ class Classes extends ResourceController
         if ($data == null) {
             return $this->fail("data null");
         }
-        $entity = new EntitiesClasses();
+        $entity = new EntitiesClasss();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->update($id, $entity)) {
@@ -222,10 +222,10 @@ class Classes extends ResourceController
      */
     /**
      * @OA\Delete(
-     *   path="/api/Classes/{id}",
+     *   path="/api/Classs/{id}",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Classes"},
+     *   tags={"Classs"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -281,10 +281,10 @@ class Classes extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Classes/fromXl",
+     *   path="/api/Classs/fromXl",
      *   summary="fleet document",
      *   description="fleet document",
-     *   tags={"Classes"},
+     *   tags={"Classs"},
      *   @OA\RequestBody(
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",
@@ -352,7 +352,7 @@ class Classes extends ResourceController
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
 
-        $subjectEntity = new EntitiesClasses();
+        $subjectEntity = new EntitiesClasss();
         $this->model->transStart();
         foreach ($data as $x => $row) {
             if ($x == 0) {

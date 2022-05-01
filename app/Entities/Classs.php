@@ -6,7 +6,7 @@ use CodeIgniter\Entity\Entity;
 
 /**
  * @OA\Schema(
- *   schema="Classes",
+ *   schema="Classs",
  * @OA\Property(
  *      property="id",
  *      type="integer",
@@ -21,7 +21,7 @@ use CodeIgniter\Entity\Entity;
  *    ), 
  * )
  */
-class Classes extends Entity
+class Classs extends Entity
 {
     protected $datamap = [];
     protected $dates   = ['createdAt', 'updatedAt', 'deletedAt'];

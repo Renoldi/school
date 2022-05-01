@@ -2,7 +2,7 @@
 function generateRandomString($length = 25, $characters)
 {
     if ($characters == null) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$';
     }
     $charactersLength = strlen($characters);
     $randomString = '';

@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Classes extends Model
+class Classs extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'classes';
+    protected $table            = 'classs';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Classes::class;
+    protected $returnType       = \App\Entities\Classs::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
@@ -28,7 +28,7 @@ class Classes extends Model
     
     // Validation
     protected $validationRules      = [
-        'name' => 'required|alpha_numeric_space|is_unique[classes.name,id,{id}]',
+        'name' => 'required|alpha_numeric_space|is_unique[classs.name,id,{id}]',
         'status' => 'required|integer',
     ];
     protected $validationMessages   = [];

@@ -28,5 +28,6 @@ class Rooms extends Entity
     protected $attributes = [
         'name' => null,
         'status' => null,
+        'departmentId' => null,
     ];
 }

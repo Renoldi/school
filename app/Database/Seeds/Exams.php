@@ -2,17 +2,21 @@
 
 namespace App\Database\Seeds;
 
+use App\Entities\Exams as EntitiesExams;
+use App\Models\Exams as ModelsExams;
 use CodeIgniter\Database\Seeder;
 
 class Exams extends Seeder
 {
     public function run()
     {
-        $iat = time();
-        $now = Date('Y-m-d H:i:s', $iat);
+        helper('genarator_string');
+        $model = new ModelsExams();
+        $entities = new EntitiesExams();
+
         for ($i = 0; $i < 100; $i++) {
             $faker = \Faker\Factory::create();
-            $data[] = [
+            $data = [
                 'classId'  => rand(1, 3),
                 'subjectId'  => rand(1, 26),
                 'question'  => $faker->text,
@@ -21,22 +25,11 @@ class Exams extends Seeder
                 'c'  => $faker->text,
                 'd'  => $faker->text,
                 'e'  => $faker->text,
-                'answer'  => $now,
-                'status'  => $now,
-                'createdAt'  => $now,
-                'updatedAt'  => $now,
+                'answer'  => generateRandomString(1, 'abcde'),
+                'status'  => 1,
             ];
+            $entities->fill($data);
+            $model->save($entities);
         }
-        $this->db->table('departments')->insertBatch($data);
-    }
-
-    function generateRandomString($length = 25) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
     }
 }

@@ -42,7 +42,7 @@ $routes->group('api', function ($routes) {
 });
 // $routes->group('api', ['filter' => ['Auth','Role:5']], function ($routes) {
 $routes->group('api', ['filter' => 'Auth'], function ($routes) {
-    $routes->post('Classes/fromXl', 'Classes::fromXl');
+    $routes->post('Classs/fromXl', 'Classs::fromXl');
     $routes->post('Exams/fromXl', 'Exams::fromXl');
     $routes->post('Hoomrooms/fromXl', 'Hoomrooms::fromXl');
     $routes->post('Privileges/fromXl', 'Privileges::fromXl');
@@ -55,7 +55,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->post('Subjects/fromXl', 'Subjects::fromXl');
     $routes->get('Teachers/details', 'Teachers::details');
     $routes->post('Teachers/fromXl', 'Teachers::fromXl');
-    $routes->resource('Classes');
+    $routes->resource('Classs');
     $routes->resource('Exams');
     $routes->resource('Hoomrooms');
     $routes->resource('Privileges');
