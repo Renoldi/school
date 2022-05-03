@@ -6,10 +6,7 @@ use App\Entities\Classs as EntitiesClasss;
 use App\Libraries\StdobjeToArray;
 use App\Models\Classs as ModelsClasss;
 use CodeIgniter\API\ResponseTrait;
-use CodeIgniter\RESTful\ResourceController;
-use Exception;
-use \Firebase\JWT\JWT;
-use \Firebase\JWT\Key;
+use CodeIgniter\RESTful\ResourceController; 
 
 class Classs extends ResourceController
 {
