@@ -29,7 +29,9 @@ class Exams extends Seeder
                 'status'  => 1,
             ];
             $entities->fill($data);
-            $model->save($entities);
+            if (!$model->save($entities)) {
+                var_dump($model->errors());
+            }
         }
     }
 }

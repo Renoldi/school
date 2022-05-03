@@ -14,9 +14,10 @@ class Students extends Seeder
 
        
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 500; $i++) {
-            $model = new ModelsStudents();
+        $model = new ModelsStudents();
             $entities = new EntitiesStudents();
+        for ($i = 0; $i < 500; $i++) {
+            
             $data  = [
                 'nisn' => generateRandomString(9, '0123456789abcdefghijklmnopqrstuvwxyz') . rand(0, 100),
                 'email' => $faker->email(),
@@ -27,11 +28,14 @@ class Students extends Seeder
                 'roomId' => rand(1, 7),
                 'gender' => generateRandomString(1, 'mf'),
                 'status' => 1,
+                'dob' => $faker->date(),
                 'privilegeId' => 5,
             ];
 
             $entities->fill($data);
-            $model->save($entities);
+            if (!$model->save($entities)) {
+                var_dump($model->errors());
+            }
         }
     }
 }

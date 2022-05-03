@@ -42,7 +42,9 @@ class Subjects extends Seeder
         ];
         foreach ($data as $data) {
             $entities->fill($data);
-            $model->save($entities);
+            if (!$model->save($entities)) {
+                var_dump($model->errors());
+            }
         }
     }
 }

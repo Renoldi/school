@@ -51,7 +51,9 @@ class Rooms extends Seeder
         ];
         foreach ($data as $datass) {
             $entities->fill($datass);
-            $model->save($entities);
+            if (!$model->save($entities)) {
+                var_dump($model->errors());
+            }
         }
     }
 }

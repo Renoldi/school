@@ -48,6 +48,9 @@ class Students extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 1,
             ],
+            'dob'       => [
+                'type'       => 'datetime',
+            ],
             'status'      => [
                 'type'           => 'tinyint',
                 'constraint'     => 1,
