@@ -45,7 +45,6 @@ class Teachers extends Model
         'dob' => 'required|',
         'subjectId' => 'required|integer',
         'email' => 'required|valid_email|is_unique[teachers.email,id,{id}]',
-        // 'image' => 'required|',
         'status' => 'required|integer',
         'privilegeId' => 'required|integer',
     ];
