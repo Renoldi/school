@@ -1,6 +1,10 @@
  php spark make:scaffold acc_account_name --restful --return entity
  php spark serve
 
+ php spark migrate genarate table
+ php spark migrate:rollback remove table
+ php spark db:seed RunSeeder insert table
+
  https://onlinewebtutorblog.com/how-to-enable-cors-in-codeigniter-4-for-rest-apis/
 
  * template 
