@@ -11,25 +11,24 @@ class Teachers extends Seeder
     public function run()
     {
         helper('genarator_string');
+        $faker = \Faker\Factory::create();
 
-        $model = new ModelsTeachers();
-        $datas = [];
-        $entities = new EntitiesTeachers();
-        for ($i = 0; $i < 100; $i++) {
-            $faker = \Faker\Factory::create();
+        for ($i = 0; $i < 500; $i++) {
+            $model = new ModelsTeachers();
+            $entities = new EntitiesTeachers();
             $data  = [
                 'nip' => generateRandomString(9, '0123456789abcdefghijklmnopqrstuvwxyz') . rand(0, 100),
                 'email' => $faker->email(),
                 'name' => $faker->name(),
-                'image' => $faker->image(),
+                'image' =>'assets/avatar.png',
                 'password' => 'admin123',
                 'subjectId' => rand(1, 26),
                 'gender' => generateRandomString(1, 'mf'),
                 'status' => 1,
                 'privilegeId' => 4,
             ];
-            $datas  [] = $entities->fill($data);
+            $entities->fill($data);
+            $model->save($entities);
         }
-        $model->insertBatch($datas);
     }
 }

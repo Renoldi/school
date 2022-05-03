@@ -12,11 +12,11 @@ class Students extends Seeder
     {
         helper('genarator_string');
 
-        $model = new ModelsStudents();
-        $entities = new EntitiesStudents();
-        $datas = [];
+       
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 500; $i++) {
+            $model = new ModelsStudents();
+            $entities = new EntitiesStudents();
             $data  = [
                 'nisn' => generateRandomString(9, '0123456789abcdefghijklmnopqrstuvwxyz') . rand(0, 100),
                 'email' => $faker->email(),
@@ -30,8 +30,8 @@ class Students extends Seeder
                 'privilegeId' => 5,
             ];
 
-            $datas[] = $entities->fill($data);
+            $entities->fill($data);
+            $model->save($entities);
         }
-        $model->insertBatch($datas);
     }
 }
