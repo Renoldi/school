@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '382a4a6f4c85a0c0b18df817b61c3cd47b0660c5',
+        'reference' => 'b386efa1f113f0eff5ddf56b3fb767306ca6b22e',
         'name' => 'codeigniter4/appstarter',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '382a4a6f4c85a0c0b18df817b61c3cd47b0660c5',
+            'reference' => 'b386efa1f113f0eff5ddf56b3fb767306ca6b22e',
             'dev_requirement' => false,
         ),
         'codeigniter4/framework' => array(
@@ -488,12 +488,12 @@
             'dev_requirement' => false,
         ),
         'symfony/finder' => array(
-            'pretty_version' => 'v5.4.3',
-            'version' => '5.4.3.0',
+            'pretty_version' => 'v5.4.8',
+            'version' => '5.4.8.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/finder',
             'aliases' => array(),
-            'reference' => '231313534dded84c7ecaa79d14bc5da4ccb69b7d',
+            'reference' => '9b630f3427f3ebe7cd346c277a1408b00249dad9',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-ctype' => array(
