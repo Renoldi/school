@@ -12,12 +12,10 @@ class Students extends Seeder
     {
         helper('genarator_string');
 
-       
         $faker = \Faker\Factory::create();
         $model = new ModelsStudents();
-            $entities = new EntitiesStudents();
+        $entities = new EntitiesStudents();
         for ($i = 0; $i < 500; $i++) {
-            
             $data  = [
                 'nisn' => generateRandomString(9, '0123456789abcdefghijklmnopqrstuvwxyz') . rand(0, 100),
                 'email' => $faker->email(),

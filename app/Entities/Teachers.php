@@ -70,6 +70,8 @@ class Teachers extends Entity
         'status' => null,
         'privilegeId' => null,
         'password' => null,
+        'dob'=> null,
+
     ];
 
     public function setPassword(string $pass)

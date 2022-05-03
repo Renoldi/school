@@ -25,6 +25,7 @@ class Students extends Model
         'image',
         'privilegeId',
         'email',
+        'dob'
     ];
 
     // Dates
@@ -44,6 +45,7 @@ class Students extends Model
         'classId' => 'required|integer',
         'roomId' => 'required|integer',
         'privilegeId' => 'required|integer',
+        'dob' => 'required|',
         'email' => 'required|valid_email|is_unique[teachers.email,id,{id}]',
 
     ];
