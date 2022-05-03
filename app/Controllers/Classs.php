@@ -14,7 +14,6 @@ class Classs extends ResourceController
     protected $format    = 'json';
     use ResponseTrait;
 
-
     /**
      * Return an array of resource objects, themselves in array format
      *
