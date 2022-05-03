@@ -13,7 +13,7 @@ class Teachers extends Seeder
         helper('genarator_string');
         $faker = \Faker\Factory::create();
 
-        for ($i = 0; $i < 500; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $model = new ModelsTeachers();
             $entities = new EntitiesTeachers();
             $data  = [
@@ -27,6 +27,7 @@ class Teachers extends Seeder
                 'status' => 1,
                 'privilegeId' => 4,
             ];
+            var_dump($data);
             $entities->fill($data);
             $model->save($entities);
         }
