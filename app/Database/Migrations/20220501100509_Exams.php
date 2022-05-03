@@ -46,6 +46,9 @@ class Exams extends Migration
             'e'       => [
                 'type'           => 'TEXT',
             ],
+            'point'       => [
+                'type'           => 'INT',
+            ],
             'answer'       => [
                 'type'       => 'CHAR',
                 'constraint' => 1,
