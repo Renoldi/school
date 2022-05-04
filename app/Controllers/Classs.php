@@ -138,13 +138,14 @@ class Classs extends ResourceController
         }
         $entity = new EntitiesClasss();
         $array = new StdobjeToArray($data);
+         
         $entity->fill($array->get());
         if (!$this->model->save($entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
         $record = $this->model->find($this->model->getInsertID());
 
-        return $this->respondCreated($record, 'post created');
+        return $this->respondCreated($entity, 'post created');
     }
 
     /**

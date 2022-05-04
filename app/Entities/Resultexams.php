@@ -9,19 +9,7 @@ use CodeIgniter\Entity\Entity;
  * @OA\Property(
  *      property="id",
  *      type="integer",
- *    ),
- * @OA\Property(
- *      property="studentId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="examId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="choise",
- *      type="string",
- *    ),    
+ *    )    
  * )
  */
 class Resultexams extends Entity
@@ -34,4 +22,22 @@ class Resultexams extends Entity
         'examId' => null,
         'choise' => null,
     ];
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $studentId;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $examId;
+
+   /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $choise;
 }

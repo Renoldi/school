@@ -19,6 +19,8 @@ class Classs extends Model
         'status',
     ];
 
+    
+
     // Dates
     protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';

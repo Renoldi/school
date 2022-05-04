@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
+
 /**
  * @OA\Schema(
  *   schema="Exams",
@@ -10,50 +11,6 @@ use CodeIgniter\Entity\Entity;
  *      property="id",
  *      type="integer",
  *    ),
- * @OA\Property(
- *      property="classId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="subjectId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="question",
- *      type="string",
- *    ), 
- * @OA\Property(
- *      property="questionImage",
- *      type="string",
- *    ),  
- * @OA\Property(
- *      property="a",
- *      type="string",
- *    ),  
- * @OA\Property(
- *      property="b",
- *      type="string",
- *    ),  
- * @OA\Property(
- *      property="c",
- *      type="string",
- *    ),  
- * @OA\Property(
- *      property="d",
- *      type="string",
- *    ),  
- * @OA\Property(
- *      property="e",
- *      type="string",
- *    ),  
- * @OA\Property(
- *      property="answer",
- *      type="string",
- *    ),  
- * @OA\Property(
- *      property="status",
- *      type="integer",
- *    ), 
  * )
  */
 class Exams extends Entity
@@ -72,6 +29,73 @@ class Exams extends Entity
         'd' => null,
         'e' => null,
         'answer' => null,
+        'point' => null,
         'status' => null,
     ];
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $classId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $subjectId;
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $question;
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $questionImage;
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $a;
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $b;
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $c;
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $d;
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $e;
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $answer;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $status;
 }

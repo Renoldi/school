@@ -9,43 +9,7 @@ use CodeIgniter\Entity\Entity;
  * @OA\Property(
  *      property="id",
  *      type="integer",
- *    ),
- * @OA\Property(
- *      property="nisn",
- *      type="string",
- *    ), 
- * @OA\Property(
- *      property="name",
- *      type="string",
- *    ), 
- * @OA\Property(
- *      property="gender",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="password",
- *      type="string",
- *    ),  
- * @OA\Property(
- *      property="classId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="roomId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="status",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="privilegeId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="image",
- *      type="string",
- *    ), 
+ *    ) 
  * )
  */
 class Students extends Entity
@@ -67,11 +31,83 @@ class Students extends Entity
         'ipAddress' => null,
         'about' => null,
     ];
+
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $nisn;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $name;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $gender;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $password;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $status;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $classId;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $roomId;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $image;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $privilegeId;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $email;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $ipAddress;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $about;
     
     public function setPassword(string $pass)
     {
         $this->attributes['password'] = password_hash($pass, PASSWORD_BCRYPT);
-
         return $this;
     }
 }

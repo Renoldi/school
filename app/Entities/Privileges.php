@@ -9,15 +9,7 @@ use CodeIgniter\Entity\Entity;
  * @OA\Property(
  *      property="id",
  *      type="integer",
- *    ),
- * @OA\Property(
- *      property="name",
- *      type="string",
- *    ), 
- * @OA\Property(
- *      property="status",
- *      type="integer",
- *    ), 
+ *    )
  * )
  */
 class Privileges extends Entity
@@ -29,4 +21,15 @@ class Privileges extends Entity
         'name' => null,
         'status' => null,
     ];
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $name;
+     /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $status;
 }

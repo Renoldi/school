@@ -10,46 +10,6 @@ use CodeIgniter\Entity\Entity;
  * @OA\Property(
  *      property="id",
  *      type="integer",
- *    ),
- * @OA\Property(
- *      property="nip",
- *      type="string",
- *    ), 
- * @OA\Property(
- *      property="name",
- *      type="string",
- *    ), 
- * @OA\Property(
- *      property="gender",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="position",
- *      type="string",
- *    ), 
- * @OA\Property(
- *      property="dob",
- *      type="date",
- *    ), 
- * @OA\Property(
- *      property="subjectId",
- *      type="integer",
- *    ),  
- * @OA\Property(
- *      property="status",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="image",
- *      type="string",
- *    ), 
- * @OA\Property(
- *      property="email",
- *      type="string",
- *    ), 
- * @OA\Property(
- *      property="privilegeId",
- *      type="integer",
  *    ), 
  * )
  */
@@ -63,17 +23,95 @@ class Teachers extends Entity
         'name' => null,
         'gender' => null,
         'position' => null,
-        'dob' => null,
         'subjectId' => null,
         'email' => null,
         'image' => null,
         'status' => null,
         'privilegeId' => null,
         'password' => null,
-        'dob'=> null,
+        'dob' => null,
         'ipAddress' => null,
         'about' => null,
     ];
+
+
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $nip;
+
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $name;
+
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $gender;
+
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $position;
+
+     /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $subjectId;
+
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $email;
+
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $image;
+
+     /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $status;
+
+     /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $privilegeId;
+
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $password;
+
+     /**
+     * @var date
+     * @OA\Property()
+     */
+    protected $dob;
+
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $ipAddress;
+
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $about;
 
     public function setPassword(string $pass)
     {

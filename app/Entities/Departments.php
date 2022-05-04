@@ -11,14 +11,6 @@ use CodeIgniter\Entity\Entity;
  *      property="id",
  *      type="integer",
  *    ),
- * @OA\Property(
- *      property="name",
- *      type="string",
- *    ), 
- * @OA\Property(
- *      property="status",
- *      type="integer",
- *    ), 
  * )
  */
 class Departments extends Entity
@@ -30,4 +22,15 @@ class Departments extends Entity
         'name' => null,
         'status' => null,
     ];
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $name;
+     /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $status;
 }

@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
+
 /**
  * @OA\Schema(
  *   schema="Hoomrooms",
@@ -10,22 +11,6 @@ use CodeIgniter\Entity\Entity;
  *      property="id",
  *      type="integer",
  *    ),
- * @OA\Property(
- *      property="roomId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="classId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="teacherId",
- *      type="string",
- *    ),    
- * @OA\Property(
- *      property="status",
- *      type="integer",
- *    ), 
  * )
  */
 class Hoomrooms extends Entity
@@ -39,4 +24,25 @@ class Hoomrooms extends Entity
         'teacherId' => null,
         'status' => null,
     ];
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $roomId;
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $classId;
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $teacherId;
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $status;
 }

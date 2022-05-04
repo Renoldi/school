@@ -3,33 +3,14 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
+
 /**
  * @OA\Schema(
  *   schema="Scheduleexams",
  * @OA\Property(
  *      property="id",
  *      type="integer",
- *    ),
- * @OA\Property(
- *      property="subjectId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="classId",
- *      type="integer",
- *    ), 
- * @OA\Property(
- *      property="start",
- *      type="datetime",
- *    ), 
- * @OA\Property(
- *      property="end",
- *      type="datetime",
- *    ), 
- * @OA\Property(
- *      property="status",
- *      type="integer",
- *    ), 
+ *    )
  * )
  */
 class Scheduleexams extends Entity
@@ -44,4 +25,35 @@ class Scheduleexams extends Entity
         'end' => null,
         'status' => null,
     ];
+
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $subjectId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $classId;
+
+    /**
+     * @var datetime
+     * @OA\Property()
+     */
+    protected $start;
+
+    /**
+     * @var datetime
+     * @OA\Property()
+     */
+    protected $end;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $status;
 }

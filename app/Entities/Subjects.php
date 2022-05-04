@@ -10,15 +10,7 @@ use CodeIgniter\Entity\Entity;
  * @OA\Property(
  *      property="id",
  *      type="integer",
- *    ),
- * @OA\Property(
- *      property="name",
- *      type="string",
- *    ), 
- * @OA\Property(
- *      property="status",
- *      type="integer",
- *    ), 
+ *    )  
  * )
  */
 class Subjects extends Entity
@@ -31,4 +23,22 @@ class Subjects extends Entity
         'status' => null,
         'departmentId' => null,
     ];
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $name;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $status;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $departmentId;
 }
