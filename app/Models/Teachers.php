@@ -25,7 +25,9 @@ class Teachers extends Model
         'image',
         'status',
         'privilegeId',
-        'password'
+        'password',
+        'ipAddress',
+        'about',
     ];
 
     // Dates
@@ -46,6 +48,8 @@ class Teachers extends Model
         'subjectId' => 'required|integer',
         'email' => 'required|valid_email|is_unique[teachers.email,id,{id}]',
         'status' => 'required|integer',
+        'ipAddress' => 'required',
+        'about' => 'required',
         'privilegeId' => 'required|integer',
     ];
     protected $validationMessages   = [];

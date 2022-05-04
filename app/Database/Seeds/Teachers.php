@@ -28,6 +28,8 @@ class Teachers extends Seeder
                 'status' => 1,
                 'position'=>'teacher',
                 'privilegeId' => 4,
+                'about' => 'created',
+                'ipAddress' => '127.0.0.1',
             ];
             $entities->fill($data);
             if (!$model->save($entities)) {

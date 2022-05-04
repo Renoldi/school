@@ -48,6 +48,18 @@ class Students extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 1,
             ],
+            'gender'       => [
+                'type'       => 'VARCHAR',
+                'constraint' => 1,
+            ],
+            'ipAddress'       => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
+            'about'       => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
             'dob'       => [
                 'type'       => 'datetime',
             ],
@@ -59,7 +71,6 @@ class Students extends Migration
                 'type'           => 'INT',
                 'constraint'     => 11,
             ],
-
             'createdAt' => [
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],

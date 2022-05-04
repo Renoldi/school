@@ -47,6 +47,14 @@ class Teachers extends Migration
                 'unique'         => true,
                 'constraint'     => 255,
             ],
+            'ipAddress'       => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
+            'about'       => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
             'image'      => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 255,

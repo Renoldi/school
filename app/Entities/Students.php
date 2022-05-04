@@ -64,6 +64,8 @@ class Students extends Entity
         'image' => null,
         'privilegeId' => null,
         'email' => null,
+        'ipAddress' => null,
+        'about' => null,
     ];
     
     public function setPassword(string $pass)
