@@ -355,7 +355,12 @@ class Teachers extends ResourceController
             return $this->respondCreated($response);
         } else {
 
-            $user =  $this->model->where('email', $email)->join('privileges', "privileges.id=" . $this->model->primaryKey)->first();
+            $user =  $this->model
+                ->select("teachers.*,p.name as privilege, s.name as subject")
+                ->join('privileges p', 'p.id=teachers.privilegeId')
+                ->join('subjects s', 's.id=teachers.subjectId')
+                ->where('email', $email)
+                ->first();
 
             if (is_null($user)) {
                 return $this->respond(['error' => 'Invalid username '], 401);
@@ -367,50 +372,48 @@ class Teachers extends ResourceController
                 return $this->respond(['error' => 'Invalid password.'], 401);
             }
             $iat = time(); // current timestamp value
-
             $entity = new EntitiesTeachers();
-            $lastLogin = Date('Y-m-d H:i:s', $iat);
-            $entity->lastLogin = $lastLogin;
             $entity->ipAddress = $this->request->getServer('REMOTE_ADDR');
             $entity->about = "login";
 
-            if ($this->model->update($user->id, $entity)) {
-                $exp = $iat + (3600 * 24 * (365 / 12));
-                $users = array(
-                    "id" => $user->id,
-                    'nip' => $user->nip,
-                    'name' => $user->name,
-                    'gender' => $user->gender,
-                    'position' => $user->position,
-                    'dob' => $user->dob,
-                    'subjectId' => $user->subjectId,
-                    'email' => $user->email,
-                    'image' => $user->image,
-                    'status' => $user->status,
-                    'privilegeId' => $user->privilegeId,
-                );
-                $payload = array(
-                    "iss" => base_url(),
-                    "aud" => array(
-                        "my-api-Teachers",
-                        base_url('api/Teachers/details'),
-                        $this->request->getServer('REMOTE_ADDR')
-                    ),
-                    "sub" => "login ",
-                    "iat" => $iat, //Time the JWT issued at
-                    "exp" =>  $exp, // Expiration time of token,
-                    "user" => $users,
-                );
-
-                helper('jwt');
-                $token = generate($payload);
-                $response = [
-                    'user' => $users,
-                    "token" => $token,
-                ];
-                return $this->respond($response);
-            } else
+            if (!$this->model->update($user->id, $entity)) {
                 return $this->fail(['error' => 'fail login'], 401);
+            }
+            
+            $exp = $iat + (3600 * 24 * (365 / 12));
+            $users = array(
+                "id" => $user->id,
+                'nip' => $user->nip,
+                'name' => $user->name,
+                'gender' => $user->gender,
+                'position' => $user->position,
+                'dob' => $user->dob,
+                'subject' => $user->subject,
+                'email' => $user->email,
+                'image' => $user->image,
+                'status' => $user->status,
+                'privilege' => $user->privilege,
+            );
+            $payload = array(
+                "iss" => base_url(),
+                "aud" => array(
+                    "my-api-Teachers",
+                    base_url('api/Teachers/details'),
+                    $this->request->getServer('REMOTE_ADDR')
+                ),
+                "sub" => "login ",
+                "iat" => $iat, //Time the JWT issued at
+                "exp" =>  $exp, // Expiration time of token,
+                "user" => $users,
+            );
+
+            helper('jwt');
+            $token = generate($payload);
+            $response = [
+                'user' => $users,
+                "token" => $token,
+            ];
+            return $this->respond($response);
         }
     }
 

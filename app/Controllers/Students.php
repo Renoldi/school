@@ -423,7 +423,8 @@ class Students extends ResourceController
             return $this->fail($this->validator->getErrors());
         } else {
 
-            $user =  $this->model->select("students.*,p.name as privilege, d.name as department, r.name as room")
+            $user =  $this->model
+                ->select("students.*,p.name as privilege, d.name as department, r.name as room")
                 ->join('rooms r', 'r.id=students.roomId')
                 ->join('privileges p', 'p.id=students.privilegeId')
                 ->join('departments d', 'd.id=r.departmentId')
@@ -444,9 +445,9 @@ class Students extends ResourceController
             $entity->ipAddress = $this->request->getServer('REMOTE_ADDR');
             $entity->about = "login";
             if (!$this->model->update($user->id, $entity)) {
-                return $this->failValidationErrors($this->model->errors());
+                return $this->fail(['error' => 'fail login'], 401);
             }
-             
+
             $exp = $iat + (3600 * 24 * (365 / 12));
             $users = array(
                 "id" =>  $user->id,
@@ -454,12 +455,11 @@ class Students extends ResourceController
                 "email" =>  $user->email,
                 "image" =>  $user->image,
                 "status" => $user->status,
-                "createdAt" => $user->createdAt,
-                "updatedAt" => $user->updatedAt,
                 "department" => $user->department,
                 "room" => $user->room,
                 "privilege" => $user->privilege,
             );
+
             $payload = array(
                 "iss" => base_url(),
                 "aud" => array(
