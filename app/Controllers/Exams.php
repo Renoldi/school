@@ -114,6 +114,16 @@ class Exams extends ResourceController
      *         in="path",
      *         required=true,
      *   ), 
+     *  *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
      *      @OA\JsonContent(ref="#/components/schemas/Exams")
