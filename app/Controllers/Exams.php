@@ -7,6 +7,7 @@ use App\Libraries\StdobjeToArray;
 use App\Models\Exams as ModelsExams;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
+use Exception;
 
 class Exams extends ResourceController
 {
@@ -152,7 +153,7 @@ class Exams extends ResourceController
      */
     public function getExams($classId = null, $subjectId = null,  $status = 1, $perpage = 20, $page = 1)
     {
-        
+
         $model = $this->model
             ->where('subjectId', $classId)
             ->where('classId', $subjectId)
@@ -189,6 +190,103 @@ class Exams extends ResourceController
                 'perPage' => $perPage,
                 'data' => $data
             ]);
+        }
+    }
+    /**
+     * Return the properties of a resource object
+     *
+     * @return mixed
+     */
+    /**
+     * @OA\Get(
+     *   path="/api/Exams/getExamsStudent/{subjectId}/{perpage}/{page}",
+     *   summary="exams",
+     *   description="exams",
+     *   tags={"Exams"},
+     *     @OA\Parameter(
+     *         name="subjectId",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *     @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Exams")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function getExamsStudent($subjectId = null, $perpage = 20, $page = 1)
+    {
+        $header = $this->request->getServer('HTTP_AUTHORIZATION');
+        
+        try {
+            helper('jwt');
+            $decoded = detailJwt($header);
+
+            $classId = $decoded->user->classId;
+
+            $model = $this->model
+                ->where('subjectId', $subjectId)
+                ->where('classId', $classId)
+                ->where('exams.status', 1)
+                ->join('classs c', 'c.id=exams.classId')
+                ->join('subjects s', 's.id=exams.subjectId');
+
+            $data = $model
+                ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject')
+                ->paginate($perpage, 'default', $page);
+            $countPage = $model->pager->getPageCount();
+            $currentPage = $model->pager->getCurrentPage();
+            $lastPage = $model->pager->getLastPage();
+            $firstPage = $model->pager->getFirstPage();
+            $perPage = $model->pager->getPerPage();
+
+            if ($page > $countPage)
+                return  $this->respond([
+                    'totalPage' => $countPage,
+                    'currentPage' => $currentPage,
+                    'lastPage' => $lastPage,
+                    'firstPage' => $firstPage,
+                    'perPage' => $perPage,
+                    'data' => []
+                ]);
+
+            else {
+                return  $this->respond([
+                    'totalPage' => $countPage,
+                    'currentPage' => $currentPage,
+                    'lastPage' => $lastPage,
+                    'firstPage' => $firstPage,
+                    'perPage' => $perPage,
+                    'data' => $data
+                ]);
+            }
+        } catch (Exception $ex) {
+            return $this->failUnauthorized();
         }
     }
 
