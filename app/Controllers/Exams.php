@@ -156,7 +156,7 @@ class Exams extends ResourceController
             ;
 
         $data = $model
-            ->select('exams.*,c.name as class,s.name as subject')
+            ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
