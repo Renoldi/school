@@ -31,8 +31,7 @@ class Role implements FilterInterface
         try {
             helper('jwt');
             $decoded = detailJwt($header);
-            $param0 = array_shift($arguments);
-            if (!in_array($param0, $decoded->data->privilegeId)) {
+            if (!in_array($decoded->data->privilegeId,$arguments )) {
                 return Services::response()
                     ->setJSON([
                         'status'   => 401,
