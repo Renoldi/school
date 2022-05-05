@@ -46,6 +46,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->post('Classs/fromXl', 'Classs::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Exams/fromXl', 'Exams::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Hoomrooms/fromXl', 'Hoomrooms::fromXl', ['filter' => 'Role:superadmin,admin']);
+    $routes->post('Departments/fromXl', 'Departments::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Privileges/fromXl', 'Privileges::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Resultexams/fromXl', 'Resultexams::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Rooms/fromXl', 'Rooms::fromXl', ['filter' => 'Role:superadmin,admin']);
@@ -58,6 +59,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->get('Students/details', 'Students::details', ['filter' => 'Role:superadmin,admin,editor,student']);
 
     $routes->delete('Classs/(:num)', 'Classs::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
+    $routes->delete('Departments/(:num)', 'Departments::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
     $routes->delete('Exams/(:num)', 'Exams::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
     $routes->delete('Hoomrooms/(:num)', 'Hoomrooms::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
     $routes->delete('Resultexams/(:num)', 'Resultexams::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
@@ -68,6 +70,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->delete('Teachers/(:num)', 'Teachers::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
 
     $routes->resource('Classs', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new'],);
+    $routes->resource('Departments', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new'],);
     $routes->resource('Exams', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
     $routes->resource('Hoomrooms', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
     $routes->resource('Resultexams', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
