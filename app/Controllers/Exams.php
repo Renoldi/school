@@ -157,8 +157,7 @@ class Exams extends ResourceController
             ->where('classId', $subjectId)
             ->where('exams.status', $status)
             ->join('classs c', 'c.id=exams.classId')
-            ->join('subjects s', 's.id=exams.subjectId')
-            ;
+            ->join('subjects s', 's.id=exams.subjectId');
 
         $data = $model
             ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject')
