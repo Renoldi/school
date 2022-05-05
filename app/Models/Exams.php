@@ -19,6 +19,7 @@ class Exams extends Model
         'subjectId',
         'question',
         'questionImage',
+        'show',
         'a',
         'b',
         'c',

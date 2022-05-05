@@ -23,6 +23,7 @@ class Exams extends Entity
         'subjectId' => null,
         'question' => null,
         'questionImage' => null,
+        'show' => null,
         'a' => null,
         'b' => null,
         'c' => null,
@@ -56,6 +57,12 @@ class Exams extends Entity
      * @OA\Property()
      */
     protected $questionImage;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $show;
 
     /**
      * @var string
