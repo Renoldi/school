@@ -22,8 +22,8 @@ class Classs extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Classs",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="classs",
+     *   description="classs",
      *   tags={"Classs"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -51,8 +51,8 @@ class Classs extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Classs/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="classs",
+     *   description="classs",
      *   tags={"Classs"},
      *   @OA\Parameter(
      *         name="id",
@@ -101,8 +101,8 @@ class Classs extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Classs",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="classs",
+     *   description="classs",
      *   tags={"Classs"},
     
      * @OA\RequestBody(
@@ -156,8 +156,8 @@ class Classs extends ResourceController
     /**
      * @OA\Put(
      *   path="/api/Classs/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="classs",
+     *   description="classs",
      *   tags={"Classs"},
      *   @OA\Parameter(
      *         name="id",
@@ -220,8 +220,8 @@ class Classs extends ResourceController
     /**
      * @OA\Delete(
      *   path="/api/Classs/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="classs",
+     *   description="classs",
      *   tags={"Classs"},
      *   @OA\Parameter(
      *         name="id",
@@ -279,8 +279,8 @@ class Classs extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Classs/fromXl",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="classs",
+     *   description="classs",
      *   tags={"Classs"},
      *   @OA\RequestBody(
      *     @OA\MediaType(

@@ -23,8 +23,8 @@ class Resultexams extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Resultexams",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Resultexams",
+     *   description="Resultexams",
      *   tags={"Resultexams"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -52,8 +52,8 @@ class Resultexams extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Resultexams/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Resultexams",
+     *   description="Resultexams",
      *   tags={"Resultexams"},
      *   @OA\Parameter(
      *         name="id",
@@ -102,8 +102,8 @@ class Resultexams extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Resultexams",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Resultexams",
+     *   description="Resultexams",
      *   tags={"Resultexams"},
     
      * @OA\RequestBody(
@@ -155,8 +155,8 @@ class Resultexams extends ResourceController
     /**
      * @OA\Put(
      *   path="/api/Resultexams/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Resultexams",
+     *   description="Resultexams",
      *   tags={"Resultexams"},
      *   @OA\Parameter(
      *         name="id",
@@ -219,8 +219,8 @@ class Resultexams extends ResourceController
     /**
      * @OA\Delete(
      *   path="/api/Resultexams/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Resultexams",
+     *   description="Resultexams",
      *   tags={"Resultexams"},
      *   @OA\Parameter(
      *         name="id",
@@ -278,8 +278,8 @@ class Resultexams extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Resultexams/fromXl",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Resultexams",
+     *   description="Resultexams",
      *   tags={"Resultexams"},
      *   @OA\RequestBody(
      *     @OA\MediaType(

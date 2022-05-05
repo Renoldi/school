@@ -26,8 +26,8 @@ class Teachers extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Teachers",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Teachers"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -55,8 +55,8 @@ class Teachers extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Teachers/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Teachers"},
      *   @OA\Parameter(
      *         name="id",
@@ -105,8 +105,8 @@ class Teachers extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Teachers",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Teachers"},
     
      * @OA\RequestBody(
@@ -158,8 +158,8 @@ class Teachers extends ResourceController
     /**
      * @OA\Put(
      *   path="/api/Teachers/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Teachers"},
      *   @OA\Parameter(
      *         name="id",
@@ -222,8 +222,8 @@ class Teachers extends ResourceController
     /**
      * @OA\Delete(
      *   path="/api/Teachers/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Teachers"},
      *   @OA\Parameter(
      *         name="id",
@@ -282,8 +282,8 @@ class Teachers extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Teachers/login",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Teachers"},
    
      *  @OA\RequestBody(
@@ -416,8 +416,8 @@ class Teachers extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Teachers/details",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Teachers"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -479,8 +479,8 @@ class Teachers extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Teachers/fromXl",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Teachers"},
      *   @OA\RequestBody(
      *     @OA\MediaType(

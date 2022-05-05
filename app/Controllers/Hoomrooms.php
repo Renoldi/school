@@ -23,8 +23,8 @@ class Hoomrooms extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Hoomrooms",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Hoomrooms",
+     *   description="Hoomrooms",
      *   tags={"Hoomrooms"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -52,8 +52,8 @@ class Hoomrooms extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Hoomrooms/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Hoomrooms",
+     *   description="Hoomrooms",
      *   tags={"Hoomrooms"},
      *   @OA\Parameter(
      *         name="id",
@@ -102,8 +102,8 @@ class Hoomrooms extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Hoomrooms",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Hoomrooms",
+     *   description="Hoomrooms",
      *   tags={"Hoomrooms"},
     
      * @OA\RequestBody(
@@ -155,8 +155,8 @@ class Hoomrooms extends ResourceController
     /**
      * @OA\Put(
      *   path="/api/Hoomrooms/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Hoomrooms",
+     *   description="Hoomrooms",
      *   tags={"Hoomrooms"},
      *   @OA\Parameter(
      *         name="id",
@@ -219,8 +219,8 @@ class Hoomrooms extends ResourceController
     /**
      * @OA\Delete(
      *   path="/api/Hoomrooms/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Hoomrooms",
+     *   description="Hoomrooms",
      *   tags={"Hoomrooms"},
      *   @OA\Parameter(
      *         name="id",

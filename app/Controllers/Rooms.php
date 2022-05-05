@@ -23,8 +23,8 @@ class Rooms extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Rooms",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Rooms",
+     *   description="Rooms",
      *   tags={"Rooms"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -52,8 +52,8 @@ class Rooms extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Rooms/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Rooms",
+     *   description="Rooms",
      *   tags={"Rooms"},
      *   @OA\Parameter(
      *         name="id",
@@ -102,8 +102,8 @@ class Rooms extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Rooms",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Rooms",
+     *   description="Rooms",
      *   tags={"Rooms"},
     
      * @OA\RequestBody(
@@ -155,8 +155,8 @@ class Rooms extends ResourceController
     /**
      * @OA\Put(
      *   path="/api/Rooms/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Rooms",
+     *   description="Rooms",
      *   tags={"Rooms"},
      *   @OA\Parameter(
      *         name="id",
@@ -219,8 +219,8 @@ class Rooms extends ResourceController
     /**
      * @OA\Delete(
      *   path="/api/Rooms/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Rooms",
+     *   description="Rooms",
      *   tags={"Rooms"},
      *   @OA\Parameter(
      *         name="id",
@@ -278,8 +278,8 @@ class Rooms extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Rooms/fromXl",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Rooms",
+     *   description="Rooms",
      *   tags={"Rooms"},
      *   @OA\RequestBody(
      *     @OA\MediaType(

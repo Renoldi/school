@@ -26,8 +26,8 @@ class Subjects extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Subjects",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Subjects"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -55,8 +55,8 @@ class Subjects extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Subjects/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Subjects"},
      *   @OA\Parameter(
      *         name="id",
@@ -105,8 +105,8 @@ class Subjects extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Subjects",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Subjects"},
     
      * @OA\RequestBody(
@@ -158,8 +158,8 @@ class Subjects extends ResourceController
     /**
      * @OA\Put(
      *   path="/api/Subjects/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Subjects"},
      *   @OA\Parameter(
      *         name="id",
@@ -222,8 +222,8 @@ class Subjects extends ResourceController
     /**
      * @OA\Delete(
      *   path="/api/Subjects/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Subjects"},
      *   @OA\Parameter(
      *         name="id",
@@ -281,8 +281,8 @@ class Subjects extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Subjects/fromXl",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Subjects",
+     *   description="Subjects",
      *   tags={"Subjects"},
      *   @OA\RequestBody(
      *     @OA\MediaType(

@@ -23,8 +23,8 @@ class Privileges extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Privileges",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Privileges",
+     *   description="Privileges",
      *   tags={"Privileges"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -52,8 +52,8 @@ class Privileges extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Privileges/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Privileges",
+     *   description="Privileges",
      *   tags={"Privileges"},
      *   @OA\Parameter(
      *         name="id",
@@ -102,8 +102,8 @@ class Privileges extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Privileges",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Privileges",
+     *   description="Privileges",
      *   tags={"Privileges"},
     
      * @OA\RequestBody(
@@ -155,8 +155,8 @@ class Privileges extends ResourceController
     /**
      * @OA\Put(
      *   path="/api/Privileges/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Privileges",
+     *   description="Privileges",
      *   tags={"Privileges"},
      *   @OA\Parameter(
      *         name="id",
@@ -219,8 +219,8 @@ class Privileges extends ResourceController
     /**
      * @OA\Delete(
      *   path="/api/Privileges/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Privileges",
+     *   description="Privileges",
      *   tags={"Privileges"},
      *   @OA\Parameter(
      *         name="id",
@@ -278,8 +278,8 @@ class Privileges extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Privileges/fromXl",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Privileges",
+     *   description="Privileges",
      *   tags={"Privileges"},
      *   @OA\RequestBody(
      *     @OA\MediaType(

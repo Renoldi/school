@@ -23,8 +23,8 @@ class Exams extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Exams",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="exams",
+     *   description="exams",
      *   tags={"Exams"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -52,8 +52,8 @@ class Exams extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Exams/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="exams",
+     *   description="exams",
      *   tags={"Exams"},
      *   @OA\Parameter(
      *         name="id",
@@ -93,6 +93,63 @@ class Exams extends ResourceController
 
         return $this->respond($record);
     }
+    /**
+     * Return the properties of a resource object
+     *
+     * @return mixed
+     */
+    /**
+     * @OA\Get(
+     *   path="/api/getExams/{classId}/{subjectId}",
+     *   summary="exams",
+     *   description="exams",
+     *   tags={"Exams"},
+     *   @OA\Parameter(
+     *         name="classId",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="subjectId",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Exams")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function getExams($classId = null, $subjectId = null)
+    {
+        $record = $this->model
+            ->where('subjectId', $classId)
+            ->where('classId', $subjectId)
+            ->where('status', 1)
+            ->findAll();
+        if (!$record) {
+            return $this->failNotFound(sprintf(
+                'user with id %d not found'
+            ));
+        }
+
+        return $this->respond($record);
+    }
 
     /**
      * Create a new resource object, from "posted" parameters
@@ -102,8 +159,8 @@ class Exams extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Exams",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="exams",
+     *   description="exams",
      *   tags={"Exams"},
     
      * @OA\RequestBody(
@@ -155,8 +212,8 @@ class Exams extends ResourceController
     /**
      * @OA\Put(
      *   path="/api/Exams/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="exams",
+     *   description="exams",
      *   tags={"Exams"},
      *   @OA\Parameter(
      *         name="id",
@@ -196,7 +253,7 @@ class Exams extends ResourceController
         $data = $this->request->getVar();
         if ($data == null) {
             return $this->fail("data null");
-        }       
+        }
 
         if ($data == null) {
             return $this->fail("data null");
@@ -219,8 +276,8 @@ class Exams extends ResourceController
     /**
      * @OA\Delete(
      *   path="/api/Exams/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="exams",
+     *   description="exams",
      *   tags={"Exams"},
      *   @OA\Parameter(
      *         name="id",
@@ -274,12 +331,12 @@ class Exams extends ResourceController
             return $this->failNotFound('No Data Found with id ' . $id);
         }
     }
-    
-     /**
+
+    /**
      * @OA\Post(
      *   path="/api/Exams/fromXl",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="exams",
+     *   description="exams",
      *   tags={"Exams"},
      *   @OA\RequestBody(
      *     @OA\MediaType(
@@ -382,7 +439,6 @@ class Exams extends ResourceController
         } else {
             $this->model->transCommit();
             return $this->respondCreated(["result" => "success upload"]);
-
         }
     }
 }

@@ -23,8 +23,8 @@ class Scheduleexams extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Scheduleexams",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Scheduleexams",
+     *   description="Scheduleexams",
      *   tags={"Scheduleexams"},
      *   @OA\Response(
      *     response=200, description="ok",
@@ -52,8 +52,8 @@ class Scheduleexams extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Scheduleexams/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Scheduleexams",
+     *   description="Scheduleexams",
      *   tags={"Scheduleexams"},
      *   @OA\Parameter(
      *         name="id",
@@ -102,8 +102,8 @@ class Scheduleexams extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Scheduleexams",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Scheduleexams",
+     *   description="Scheduleexams",
      *   tags={"Scheduleexams"},
     
      * @OA\RequestBody(
@@ -155,8 +155,8 @@ class Scheduleexams extends ResourceController
     /**
      * @OA\Put(
      *   path="/api/Scheduleexams/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Scheduleexams",
+     *   description="Scheduleexams",
      *   tags={"Scheduleexams"},
      *   @OA\Parameter(
      *         name="id",
@@ -219,8 +219,8 @@ class Scheduleexams extends ResourceController
     /**
      * @OA\Delete(
      *   path="/api/Scheduleexams/{id}",
-     *   summary="fleet document",
-     *   description="fleet document",
+     *   summary="Scheduleexams",
+     *   description="Scheduleexams",
      *   tags={"Scheduleexams"},
      *   @OA\Parameter(
      *         name="id",

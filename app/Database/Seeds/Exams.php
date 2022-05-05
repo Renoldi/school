@@ -13,20 +13,20 @@ class Exams extends Seeder
         helper('genarator_string');
         $model = new ModelsExams();
         $entities = new EntitiesExams();
-
+        $show = ['both','text','image'];
         for ($i = 0; $i < 100; $i++) {
             $faker = \Faker\Factory::create();
             $data = [
                 'classId'  => rand(1, 3),
                 'subjectId'  => rand(1, 26),
-                'question'  => $faker->text(),
+                'question'  => $faker->paragraph(),
                 'questionImage'  => $faker->imageUrl(),
-                'show' => '',
-                'a'  => $faker->text(),
-                'b'  => $faker->text(),
-                'c'  => $faker->text(),
-                'd'  => $faker->text(),
-                'e'  => $faker->text(),
+                'show' => $show[array_rand($show)],
+                'a'  => $faker->paragraph(),
+                'b'  => $faker->paragraph(),
+                'c'  => $faker->paragraph(),
+                'd'  => $faker->paragraph(),
+                'e'  => $faker->paragraph(),
                 'point' => 2,
                 'answer'  => generateRandomString(1, 'abcde'),
                 'status'  => 1,
