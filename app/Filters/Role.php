@@ -27,13 +27,12 @@ class Role implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-
         $header = $request->getServer('HTTP_AUTHORIZATION');
         try {
             helper('jwt');
             $decoded = detailJwt($header);
             $param0 = array_shift($arguments);
-            if ($decoded->data->privilegeId != $param0) {
+            if (!in_array($param0, $decoded->data->privilegeId)) {
                 return Services::response()
                     ->setJSON([
                         'status'   => 401,
