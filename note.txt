@@ -18,12 +18,13 @@
     - exam
 
 
-    SELECT 
-        s.name, e.answer,  re.choise, if(e.answer= re.choise,1,0) res 
+     SELECT 
+        s.name, e.answer,  re.choise, if(e.answer= re.choise,e.point,0) point
     FROM 
         resultexams re 
     JOIN exams e on e.id = re.examId 
-    JOIN students s on s.id = re.studentId WHERE re.studentId = 1;
+    JOIN students s on s.id = re.studentId;
+
 
     SELECT 
         s.name,  SUM( if(e.answer= re.choise,1,0)) res 
