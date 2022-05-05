@@ -100,7 +100,7 @@ class Exams extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Exams/getExams/{classId}/{subjectId}/{perpage}/{page}",
+     *   path="/api/Exams/getExams/{classId}/{subjectId}/{status}/{perpage}/{page}",
      *   summary="exams",
      *   description="exams",
      *   tags={"Exams"},
@@ -111,6 +111,11 @@ class Exams extends ResourceController
      *   ), 
      *   @OA\Parameter(
      *         name="subjectId",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="status",
      *         in="path",
      *         required=true,
      *   ), 
@@ -145,12 +150,12 @@ class Exams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function getExams($classId = null, $subjectId = null, $perpage = 20, $page = 1)
+    public function getExams($classId = null, $subjectId = null,  $status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model
             ->where('subjectId', $classId)
             ->where('classId', $subjectId)
-            ->where('exams.status', 1)
+            ->where('exams.status', $status)
             ->join('classs c', 'c.id=exams.classId')
             ->join('subjects s', 's.id=exams.subjectId')
             ;
