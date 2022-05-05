@@ -152,6 +152,7 @@ class Exams extends ResourceController
      */
     public function getExams($classId = null, $subjectId = null,  $status = 1, $perpage = 20, $page = 1)
     {
+        
         $model = $this->model
             ->where('subjectId', $classId)
             ->where('classId', $subjectId)
