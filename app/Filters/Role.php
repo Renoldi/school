@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Config\Services;
-use Exception; 
+use Exception;
 
 class Role implements FilterInterface
 {
@@ -28,10 +28,11 @@ class Role implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $header = $request->getServer('HTTP_AUTHORIZATION');
+
         try {
             helper('jwt');
             $decoded = detailJwt($header);
-            if (!in_array($decoded->data->privilege,$arguments)) {
+            if (!in_array($decoded->user->privilege, $arguments)) {
                 return Services::response()
                     ->setJSON([
                         'status'   => 401,
