@@ -38,10 +38,11 @@ $routes->group('api', function ($routes) {
     $routes->post('Teachers/login', 'Teachers::login');
     $routes->post('Students/login', 'Students::login');
     $routes->get('Subjects', 'Subjects::index');
-    $routes->get('Students/paging/(:any)/(:num)/(:num)', 'Students::paging/$1/$2/$3', ['filter' => 'Auth']);
 });
 
 $routes->group('api', ['filter' => 'Auth'], function ($routes) {
+    $routes->get('Students/paging/(:any)/(:num)/(:num)', 'Students::paging/$1/$2/$3');
+    
     $routes->post('Classs/fromXl', 'Classs::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Exams/fromXl', 'Exams::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Hoomrooms/fromXl', 'Hoomrooms::fromXl', ['filter' => 'Role:superadmin,admin']);
@@ -52,7 +53,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->post('Students/fromXl', 'Students::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Subjects/fromXl', 'Subjects::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Teachers/fromXl', 'Teachers::fromXl', ['filter' => 'Role:superadmin,admin']);
-    
+
     $routes->get('Teachers/details', 'Teachers::details', ['filter' => 'Role:superadmin,admin,teacher,editor']);
     $routes->get('Students/details', 'Students::details', ['filter' => 'Role:superadmin,admin,editor,student']);
 
