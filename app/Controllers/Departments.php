@@ -22,9 +22,9 @@ class Departments extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Departments",
-     *   summary="classs",
-     *   description="classs",
-     *   tags={"Classs"},
+     *   summary="Departments",
+     *   description="Departments",
+     *   tags={"Departments"},
      *   @OA\Response(
      *     response=200, description="ok",
      *     @OA\JsonContent(
@@ -51,9 +51,9 @@ class Departments extends ResourceController
     /**
      * @OA\Get(
      *   path="/api/Departments/{id}",
-     *   summary="classs",
-     *   description="classs",
-     *   tags={"Classs"},
+     *   summary="Departments",
+     *   description="Departments",
+     *   tags={"Departments"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -101,9 +101,9 @@ class Departments extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Departments",
-     *   summary="classs",
-     *   description="classs",
-     *   tags={"Classs"},
+     *   summary="Departments",
+     *   description="Departments",
+     *   tags={"Departments"},
     
      * @OA\RequestBody(
      *     required=true,
@@ -156,9 +156,9 @@ class Departments extends ResourceController
     /**
      * @OA\Put(
      *   path="/api/Departments/{id}",
-     *   summary="classs",
-     *   description="classs",
-     *   tags={"Classs"},
+     *   summary="Departments",
+     *   description="Departments",
+     *   tags={"Departments"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -220,9 +220,9 @@ class Departments extends ResourceController
     /**
      * @OA\Delete(
      *   path="/api/Departments/{id}",
-     *   summary="classs",
-     *   description="classs",
-     *   tags={"Classs"},
+     *   summary="Departments",
+     *   description="Departments",
+     *   tags={"Departments"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -279,9 +279,9 @@ class Departments extends ResourceController
     /**
      * @OA\Post(
      *   path="/api/Departments/fromXl",
-     *   summary="classs",
-     *   description="classs",
-     *   tags={"Classs"},
+     *   summary="Departments",
+     *   description="Departments",
+     *   tags={"Departments"},
      *   @OA\RequestBody(
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",
