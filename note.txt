@@ -18,12 +18,20 @@
     - exam
 
 
-     SELECT 
+    SELECT 
         s.name, e.answer,  re.choise, if(e.answer= re.choise,e.point,0) point
     FROM 
         resultexams re 
     JOIN exams e on e.id = re.examId 
     JOIN students s on s.id = re.studentId;
+
+    SELECT 
+        s.name, e.answer,  re.choise, if(e.answer= re.choise,e.point,0) point
+    FROM 
+        resultexams re 
+    JOIN exams e on e.id = re.examId 
+    JOIN students s on s.id = re.studentId
+    WHERE s.classId  = e.classId;
 
     SELECT * FROM `subjects` where FIND_IN_SET(2,departmentId);
     SELECT s.name,s.roomId, r.name, d.name FROM students s 
