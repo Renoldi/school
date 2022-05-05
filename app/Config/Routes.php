@@ -67,15 +67,15 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->delete('Subjects/(:num)', 'Subjects::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
     $routes->delete('Teachers/(:num)', 'Teachers::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
 
-    $routes->resource('Classs', ['filter' => 'Role:superadmin,admin,editor'], ['except' => 'delete']);
-    $routes->resource('Exams', ['filter' => 'Role:superadmin,admin,editor'], ['except' => 'delete']);
-    $routes->resource('Hoomrooms', ['filter' => 'Role:superadmin,admin,editor'], ['except' => 'delete']);
-    $routes->resource('Resultexams', ['filter' => 'Role:superadmin,admin,editor'], ['except' => 'delete']);
-    $routes->resource('Rooms', ['filter' => 'Role:superadmin,admin,editor'], ['except' => 'delete']);
-    $routes->resource('Scheduleexams', ['filter' => 'Role:superadmin,admin,editor'], ['except' => 'delete']);
-    $routes->resource('Students', ['filter' => 'Role:superadmin,admin,editor'], ['except' => 'delete']);
-    $routes->resource('Subjects', ['filter' => 'Role:superadmin,admin,editor'], ['except' => 'delete']);
-    $routes->resource('Teachers', ['filter' => 'Role:superadmin,admin,editor'], ['except' => 'delete']);
+    $routes->resource('Classs', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new'],);
+    $routes->resource('Exams', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
+    $routes->resource('Hoomrooms', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
+    $routes->resource('Resultexams', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
+    $routes->resource('Rooms', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
+    $routes->resource('Scheduleexams', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
+    $routes->resource('Students', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
+    $routes->resource('Subjects', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
+    $routes->resource('Teachers', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
 
     $routes->resource('Privileges', ['filter' => 'Role:superadmin,admin']);
 });
