@@ -41,9 +41,9 @@ $routes->group('api', function ($routes) {
 });
 
 $routes->group('api', ['filter' => 'Auth'], function ($routes) {
-    $routes->get('Students/paging/(:any)/(:num)/(:num)', 'Students::paging/$1/$2/$3',['filter' => 'Role:superadmin,admin,teacher,editor']);
-    $routes->get('Exams/getExams/(:num)/(:num)/(:num)/(:num)/(:num)', 'Exams::getExams/$1/$2/$3/$4/$5');
-    $routes->get('Exams/getExamsStudent/(:num)/(:num)/(:num)', 'Exams::getExamsStudent/$1/$2/$3');
+    $routes->get('Students/paging/(:any)/(:num)/(:num)', 'Students::paging/$1/$2/$3',['filter' => 'Role:superadmin,admin,editor']);
+    $routes->get('Exams/getExams/(:num)/(:num)/(:num)/(:num)/(:num)', 'Exams::getExams/$1/$2/$3/$4/$5',['filter' => 'Role:superadmin,admin,editor']);
+    $routes->get('Exams/getExamsStudent/(:num)/(:num)/(:num)', 'Exams::getExamsStudent/$1/$2/$3', ['filter' => 'Role:superadmin,admin,student,editor']);
 
     $routes->post('Classs/fromXl', 'Classs::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Exams/fromXl', 'Exams::fromXl', ['filter' => 'Role:superadmin,admin']);

@@ -14,7 +14,7 @@ class Exams extends Seeder
         $model = new ModelsExams();
         $entities = new EntitiesExams();
         $show = ['both','text','image'];
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 4000; $i++) {
             $faker = \Faker\Factory::create();
             $data = [
                 'classId'  => rand(1, 3),
