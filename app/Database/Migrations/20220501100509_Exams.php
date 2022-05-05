@@ -31,6 +31,9 @@ class Exams extends Migration
                 'constraint'     => 50,
                 'null'        => true,
             ],
+            'show' => [
+                'type'           => 'ENUM("both","text","image")',
+            ],
             'a'       => [
                 'type'           => 'TEXT',
             ],
@@ -49,6 +52,7 @@ class Exams extends Migration
             'point'       => [
                 'type'           => 'INT',
             ],
+
             'answer'       => [
                 'type'       => 'CHAR',
                 'constraint' => 1,
