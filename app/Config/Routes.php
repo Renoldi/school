@@ -42,19 +42,19 @@ $routes->group('api', function ($routes) {
 });
 // $routes->group('api', ['filter' => ['Auth','Role:5']], function ($routes) {
 $routes->group('api', ['filter' => 'Auth'], function ($routes) {
-    $routes->post('Classs/fromXl', 'Classs::fromXl');
-    $routes->post('Exams/fromXl', 'Exams::fromXl');
-    $routes->post('Hoomrooms/fromXl', 'Hoomrooms::fromXl');
-    $routes->post('Privileges/fromXl', 'Privileges::fromXl');
-    $routes->post('Resultexams/fromXl', 'Resultexams::fromXl');
-    $routes->post('Rooms/fromXl', 'Rooms::fromXl');
-    $routes->post('Scheduleexams/fromXl', 'Scheduleexams::fromXl');
+    $routes->post('Classs/fromXl', 'Classs::fromXl', ['filter' => 'Role:superadmin,admin']);
+    $routes->post('Exams/fromXl', 'Exams::fromXl', ['filter' => 'Role:superadmin,admin']);
+    $routes->post('Hoomrooms/fromXl', 'Hoomrooms::fromXl', ['filter' => 'Role:superadmin,admin']);
+    $routes->post('Privileges/fromXl', 'Privileges::fromXl', ['filter' => 'Role:superadmin,admin']);
+    $routes->post('Resultexams/fromXl', 'Resultexams::fromXl', ['filter' => 'Role:superadmin,admin']);
+    $routes->post('Rooms/fromXl', 'Rooms::fromXl', ['filter' => 'Role:superadmin,admin']);
+    $routes->post('Scheduleexams/fromXl', 'Scheduleexams::fromXl', ['filter' => 'Role:superadmin,admin']);
     // $routes->get('Students/details', 'Students::details', ['filter' => 'Role:1']);
-    $routes->get('Students/details', 'Students::details', ['filter' => 'Role:1']);
-    $routes->post('Students/fromXl', 'Students::fromXl');
-    $routes->post('Subjects/fromXl', 'Subjects::fromXl');
+    $routes->post('Students/fromXl', 'Students::fromXl', ['filter' => 'Role:superadmin,admin']);
+    $routes->post('Subjects/fromXl', 'Subjects::fromXl', ['filter' => 'Role:superadmin,admin']);
+    $routes->post('Teachers/fromXl', 'Teachers::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->get('Teachers/details', 'Teachers::details');
-    $routes->post('Teachers/fromXl', 'Teachers::fromXl');
+    $routes->get('Students/details', 'Students::details', ['filter' => 'Role:student']);
     $routes->resource('Classs');
     $routes->resource('Exams');
     $routes->resource('Hoomrooms');
