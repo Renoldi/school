@@ -85,7 +85,7 @@ class Classs extends ResourceController
         $record = $this->model->where('status', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
-                'class with id %d not found',
+                'not found',
                 $id
             ));
         }
