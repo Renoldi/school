@@ -25,43 +25,6 @@
     JOIN exams e on e.id = re.examId 
     JOIN students s on s.id = re.studentId;
 
-
-    SELECT 
-        s.name,  SUM( if(e.answer= re.choise,1,0)) res 
-    FROM 
-        resultexams re 
-    JOIN exams e on e.id = re.examId 
-    JOIN students s on s.id = re.studentId  
-    GROUP BY re.studentId;
-
-    SELECT s.name, su.name, c.name,r.name, 
-            SUM( if(e.answer= re.choise,1,0)) tot 
-    FROM resultexams re 
-    JOIN exams e on e.id = re.examId 
-    JOIN subjects su on su.id = e.subjectId
-    JOIN classes c on c.id = e.classId
-    JOIN students s on s.id = re.studentId  
-    JOIN rooms r on r.id = s.roomId
-    GROUP BY re.studentId;
-
-    SELECT s.name, su.name, c.name,r.name, SUM( if(e.answer= re.choise,1,0)) tot 
-    FROM resultexams re 
-    JOIN exams e on e.id = re.examId 
-    JOIN subjects su on su.id = e.subjectId
-    JOIN classes c on c.id = e.classId
-    JOIN students s on s.id = re.studentId  AND s.id = e.classId
-    JOIN rooms r on r.id = s.roomId
-    GROUP BY re.studentId;
-
-    SELECT s.name, su.name, c.name,r.name, SUM( if(e.answer= re.choise,1,0)) tot 
-    FROM resultexams re 
-    JOIN exams e on e.id = re.examId 
-    JOIN subjects su on su.id = e.subjectId
-    JOIN classes c on c.id = e.classId
-    JOIN students s on s.id = re.studentId  and s.classId = e.classId and c.id = s.classId
-    JOIN rooms r on r.id = s.roomId
-    GROUP BY re.studentId;
-
     SELECT * FROM `subjects` where FIND_IN_SET(2,departmentId);
     SELECT s.name,s.roomId, r.name, d.name FROM students s 
     JOIN rooms r on r.id = s.roomId 
