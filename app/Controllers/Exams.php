@@ -100,7 +100,7 @@ class Exams extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Exams/getExams/{classId}/{subjectId}",
+     *   path="/api/Exams/getExams/{classId}/{subjectId}/{perpage}/{page}",
      *   summary="exams",
      *   description="exams",
      *   tags={"Exams"},
