@@ -278,10 +278,6 @@ class Teachers extends ResourceController
         }
     }
 
-    private function getKey()
-    {
-        return getenv('JWT_SECRET');
-    }
 
     /**
      * @OA\Post(
