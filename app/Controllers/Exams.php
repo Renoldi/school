@@ -100,7 +100,7 @@ class Exams extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/getExams/{classId}/{subjectId}",
+     *   path="/api/Exams/getExams/{classId}/{subjectId}",
      *   summary="exams",
      *   description="exams",
      *   tags={"Exams"},
@@ -135,20 +135,46 @@ class Exams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function getExams($classId = null, $subjectId = null)
+    public function getExams($classId = null, $subjectId = null, $perpage = 20, $page = 1)
     {
-        $record = $this->model
+        $model = $this->model
             ->where('subjectId', $classId)
             ->where('classId', $subjectId)
-            ->where('status', 1)
-            ->findAll();
-        if (!$record) {
-            return $this->failNotFound(sprintf(
-                'user with id %d not found'
-            ));
-        }
+            ->where('exams.status', 1)
+            ->join('classs c', 'c.id=exams.classId')
+            ->join('subjects s', 's.id=exams.subjectId')
+            ;
 
-        return $this->respond($record);
+        $data = $model
+            ->select('exams.*,c.name as class,s.name as subject')
+            ->paginate($perpage, 'default', $page);
+        $countPage = $model->pager->getPageCount();
+        $currentPage = $model->pager->getCurrentPage();
+        $lastPage = $model->pager->getLastPage();
+        $firstPage = $model->pager->getFirstPage();
+        $perPage = $model->pager->getPerPage();
+        // $details = $model->pager->getDetails();
+
+        if ($page > $countPage)
+            return  $this->respond([
+                'totalPage' => $countPage,
+                'currentPage' => $currentPage,
+                'lastPage' => $lastPage,
+                'firstPage' => $firstPage,
+                'perPage' => $perPage,
+                'data' => []
+            ]);
+
+        else {
+            return  $this->respond([
+                'totalPage' => $countPage,
+                'currentPage' => $currentPage,
+                'lastPage' => $lastPage,
+                'firstPage' => $firstPage,
+                'perPage' => $perPage,
+                'data' => $data
+            ]);
+        }
     }
 
     /**
