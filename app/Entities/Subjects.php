@@ -22,6 +22,7 @@ class Subjects extends Entity
         'name' => null,
         'status' => null,
         'departmentId' => null,
+        'classId' => null,
     ];
 
     /**

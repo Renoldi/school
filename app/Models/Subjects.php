@@ -18,6 +18,7 @@ class Subjects extends Model
         'name',
         'status',
         'departmentId',
+        'classId',
     ];
 
     // Dates
@@ -32,6 +33,7 @@ class Subjects extends Model
         'name' => 'required|alpha_numeric_space|is_unique[subjects.name,id,{id}]',
         'status' => 'required|integer',
         'departmentId' => 'required|integer',
+        'classId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

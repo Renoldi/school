@@ -24,7 +24,11 @@ class Subjects extends Migration
             ],
             'departmentId'      => [
                 'type'           => 'INT',
-                'constraint'     => 1,
+                'constraint'     => 11,
+            ],
+            'classId'      => [
+                'type'           => 'INT',
+                'constraint'     => 11,
             ],
             'createdAt' => [
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
@@ -39,6 +43,7 @@ class Subjects extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('departmentId', 'departments', 'id');
+        $this->forge->addForeignKey('classId', 'classs', 'id');
         $this->forge->createTable('subjects');
     }
 
