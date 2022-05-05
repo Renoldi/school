@@ -104,5 +104,10 @@ class Exams extends Entity
      * @var integer
      * @OA\Property()
      */
+    protected $point;
+    /**
+     * @var integer
+     * @OA\Property()
+     */
     protected $status;
 }
