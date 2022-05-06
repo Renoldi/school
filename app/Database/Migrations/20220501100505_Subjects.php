@@ -22,14 +22,6 @@ class Subjects extends Migration
                 'type'           => 'tinyint',
                 'constraint'     => 1,
             ],
-            'departmentId'      => [
-                'type'           => 'INT',
-                'constraint'     => 11,
-            ],
-            'classId'      => [
-                'type'           => 'INT',
-                'constraint'     => 11,
-            ],
             'createdAt' => [
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             ],

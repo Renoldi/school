@@ -13,7 +13,7 @@ use CodeIgniter\Entity\Entity;
  *    ) 
  * )
  */
-class Classs extends Entity
+class Classes extends Entity
 {
     protected $datamap = [];
     protected $dates   = ['createdAt', 'updatedAt', 'deletedAt'];

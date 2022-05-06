@@ -21,8 +21,8 @@ class Subjects extends Entity
     protected $attributes = [
         'name' => null,
         'status' => null,
-        'departmentId' => null,
-        'classId' => null,
+        // 'departmentId' => null,
+        // 'classId' => null,
     ];
 
     /**
@@ -31,15 +31,15 @@ class Subjects extends Entity
      */
     protected $name;
 
-    /**
-     * @var integer
-     * @OA\Property()
-     */
-    protected $status;
+    // /**
+    //  * @var integer
+    //  * @OA\Property()
+    //  */
+    // protected $status;
 
-    /**
-     * @var integer
-     * @OA\Property()
-     */
-    protected $departmentId;
+    // /**
+    //  * @var integer
+    //  * @OA\Property()
+    //  */
+    // protected $departmentId;
 }

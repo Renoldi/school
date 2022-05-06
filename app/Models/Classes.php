@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Classs extends Model
+class Classes extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'classs';
+    protected $table            = 'classes';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Classs::class;
+    protected $returnType       = \App\Entities\Classes::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [

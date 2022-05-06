@@ -17,8 +17,8 @@ class Subjects extends Model
     protected $allowedFields    = [
         'name',
         'status',
-        'departmentId',
-        'classId',
+        // 'departmentId',
+        // 'classId',
     ];
 
     // Dates
@@ -32,8 +32,8 @@ class Subjects extends Model
     protected $validationRules      = [
         'name' => 'required|alpha_numeric_space|is_unique[subjects.name,id,{id}]',
         'status' => 'required|integer',
-        'departmentId' => 'required|integer',
-        'classId' => 'required|integer',
+        // 'departmentId' => 'required|integer',
+        // 'classId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

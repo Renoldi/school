@@ -2,17 +2,17 @@
 
 namespace App\Database\Seeds;
 
-use App\Entities\Classs as EntitiesClasss;
-use App\Models\Classs as ModelClasss;
+use App\Entities\Classes as EntitiesClasses;
+use App\Models\Classes as ModelClasses;
 use CodeIgniter\Database\Seeder;
 
-class Classs extends Seeder
+class Classes extends Seeder
 {
     public function run()
     {
         $faker = \Faker\Factory::create();
-        $model = new ModelClasss();
-        $entities = new EntitiesClasss();
+        $model = new ModelClasses();
+        $entities = new EntitiesClasses();
 
         $data = [
             [
