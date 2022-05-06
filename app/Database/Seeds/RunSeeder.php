@@ -10,7 +10,7 @@ class RunSeeder extends Seeder
     {
         // master
         $this->call('Classes');
-        $this->call('Majors');
+        $this->call('Departments');
         $this->call('Privileges');
         $this->call('Rooms');
         $this->call('Subjects');

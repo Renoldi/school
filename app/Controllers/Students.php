@@ -440,7 +440,7 @@ class Students extends ResourceController
                 ->select("students.*, c.name as class, p.name as privilege,d.id as departmentId, d.name as department, r.name as room")
                 ->join('rooms r', 'r.id=students.roomId')
                 ->join('privileges p', 'p.id=students.privilegeId')
-                ->join('classs c', 'c.id=students.classId')
+                ->join('classes c', 'c.id=students.classId')
                 ->join('departments d', 'd.id=r.departmentId')
                 ->where('email', $email)->first();
 

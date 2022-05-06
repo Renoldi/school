@@ -6,7 +6,7 @@ use CodeIgniter\Entity\Entity;
 
 /**
  * @OA\Schema(
- *   schema="Classs",
+ *   schema="classes",
  * @OA\Property(
  *      property="id",
  *      type="integer",

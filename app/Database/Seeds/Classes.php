@@ -10,7 +10,6 @@ class Classes extends Seeder
 {
     public function run()
     {
-        $faker = \Faker\Factory::create();
         $model = new ModelClasses();
         $entities = new EntitiesClasses();
 

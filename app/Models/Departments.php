@@ -28,7 +28,7 @@ class Departments extends Model
     
     // Validation
     protected $validationRules      = [
-        'name' => 'required|alpha_numeric_space|is_unique[classs.name,id,{id}]',
+        'name' => 'required|alpha_numeric_space|is_unique[classes.name,id,{id}]',
         'status' => 'required|integer',
     ];
     protected $validationMessages   = [];
