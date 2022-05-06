@@ -34,8 +34,6 @@ class Subjects extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('departmentId', 'departments', 'id');
-        $this->forge->addForeignKey('classId', 'classs', 'id');
         $this->forge->createTable('subjects');
     }
 
