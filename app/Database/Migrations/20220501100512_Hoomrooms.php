@@ -43,7 +43,7 @@ class Hoomrooms extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('roomId', 'rooms','id');
-        $this->forge->addForeignKey('classId', 'classs','id');
+        $this->forge->addForeignKey('classId', 'classes','id');
         $this->forge->addForeignKey('teacherId', 'teachers','id');
 
         $this->forge->createTable('hoomrooms');

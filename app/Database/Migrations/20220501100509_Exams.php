@@ -74,7 +74,7 @@ class Exams extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('subjectId', 'subjects','id');
-        $this->forge->addForeignKey('classId', 'classs','id');
+        $this->forge->addForeignKey('classId', 'classes','id');
         $this->forge->createTable('exams');
     }
 

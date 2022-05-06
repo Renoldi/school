@@ -4,35 +4,23 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Scheduleexams extends Migration
+class SubjectDepartements extends Migration
 {
     public function up()
     {
         $this->forge->addField([
             'id'          => [
-                'type' => 'INT',
-                'constraint'     => 11,
+                'type'           => 'INT',
                 'auto_increment' => true,
+                'constraint' => 11,
+            ],
+            'departmentId'       => [
+                'type'       => 'INT',
+                'constraint' => 11,
             ],
             'subjectId'       => [
                 'type'       => 'INT',
                 'constraint' => 11,
-            ],
-            'classId'       => [
-                'type'       => 'INT',
-                'constraint' => 11,
-            ],
-            'start'      => [
-                'type' => 'TIMESTAMP ',
-                'NULL' => TRUE,
-            ],
-            'end'      => [
-                'type' => 'TIMESTAMP ',
-                'NULL' => TRUE,
-            ],
-            'status'      => [
-                'type' => 'tinyint',
-                'constraint'     => 1,
             ],
             'createdAt' => [
                 'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
@@ -46,13 +34,13 @@ class Scheduleexams extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('subjectId', 'subjects','id');
-        $this->forge->addForeignKey('classId', 'classes','id');
-        $this->forge->createTable('scheduleexams');
+        $this->forge->addForeignKey('departmentId', 'departments', 'id');
+        $this->forge->addForeignKey('subjectId', 'subjects', 'id');
+        $this->forge->createTable('subjectDepartements');
     }
 
     public function down()
     {
-        $this->forge->dropTable('scheduleexams');
+        $this->forge->dropTable('subjectDepartements');
     }
 }
