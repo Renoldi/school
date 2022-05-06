@@ -45,7 +45,8 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->get('Exams/getExams/(:num)/(:num)/(:num)/(:num)/(:num)', 'Exams::getExams/$1/$2/$3/$4/$5',['filter' => 'Role:superadmin,admin,editor']);
     $routes->get('Exams/getExamsStudent/(:num)/(:num)/(:num)', 'Exams::getExamsStudent/$1/$2/$3', ['filter' => 'Role:superadmin,admin,student,editor']);
 
-    $routes->post('Classs/fromXl', 'Classs::fromXl', ['filter' => 'Role:superadmin,admin']);
+    $routes->post('SubjectDepartements/fromXl', 'SubjectDepartements::fromXl', ['filter' => 'Role:superadmin,admin']);
+    $routes->post('Classes/fromXl', 'Classes::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Exams/fromXl', 'Exams::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Hoomrooms/fromXl', 'Hoomrooms::fromXl', ['filter' => 'Role:superadmin,admin']);
     $routes->post('Departments/fromXl', 'Departments::fromXl', ['filter' => 'Role:superadmin,admin']);
@@ -60,7 +61,8 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->get('Teachers/details', 'Teachers::details', ['filter' => 'Role:superadmin,admin,teacher,editor']);
     $routes->get('Students/details', 'Students::details', ['filter' => 'Role:superadmin,admin,editor,student']);
 
-    $routes->delete('Classs/(:num)', 'Classs::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
+    $routes->delete('Classes/(:num)', 'Classes::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
+    $routes->delete('SubjectDepartements/(:num)', 'SubjectDepartements::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
     $routes->delete('Departments/(:num)', 'Departments::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
     $routes->delete('Exams/(:num)', 'Exams::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
     $routes->delete('Hoomrooms/(:num)', 'Hoomrooms::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
@@ -71,7 +73,8 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->delete('Subjects/(:num)', 'Subjects::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
     $routes->delete('Teachers/(:num)', 'Teachers::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
 
-    $routes->resource('Classs', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new'],);
+    $routes->resource('Classes', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new'],);
+    $routes->resource('SubjectDepartements', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new'],);
     $routes->resource('Departments', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new'],);
     $routes->resource('Exams', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
     $routes->resource('Hoomrooms', ['filter' => 'Role:superadmin,admin,editor', 'except' => 'delete,new']);
