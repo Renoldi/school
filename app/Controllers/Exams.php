@@ -248,13 +248,15 @@ class Exams extends ResourceController
             $decoded = detailJwt($header);
 
             $classId = $decoded->user->classId;
+            $departmentId = $decoded->user->departmentId;
 
             $model = $this->model
-                ->where('subjectId', $subjectId)
+                ->where('exams.subjectId', $subjectId)
                 ->where('classId', $classId)
                 ->where('exams.status', 1)
                 ->join('classes c', 'c.id=exams.classId')
-                ->join('subjects s', 's.id=exams.subjectId');
+                ->join('subjects s', 's.id=exams.subjectId')
+                ->join('subjectdepartements sd', 'sd.departmentId="'.$departmentId.'" and sd.subjectId =s.id');
 
             $data = $model
                 ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject')

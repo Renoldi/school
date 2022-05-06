@@ -13,10 +13,11 @@ class Resultexams extends Seeder
         helper('genarator_string');
         $model = new ModelsResultexams();
         $entities = new EntitiesResultexams();
-        for ($i = 0; $i < 4000; $i++) {
+        $total = 4000;
+        for ($i = 0; $i < $total; $i++) {
             $data = [
                 'studentId' => rand(1, 500),
-                'examId' => rand(1, 13101),
+                'examId' => rand(1, $total),
                 'choise' => generateRandomString(1, 'abcde'),
                 'status' => 1,
             ];
