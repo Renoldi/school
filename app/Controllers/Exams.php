@@ -242,7 +242,7 @@ class Exams extends ResourceController
     public function getExamsStudent($subjectId = null, $perpage = 20, $page = 1)
     {
         $header = $this->request->getServer('HTTP_AUTHORIZATION');
-        
+
         try {
             helper('jwt');
             $decoded = detailJwt($header);
@@ -256,7 +256,7 @@ class Exams extends ResourceController
                 ->where('exams.status', 1)
                 ->join('classes c', 'c.id=exams.classId')
                 ->join('subjects s', 's.id=exams.subjectId')
-                ->join('subjectdepartements sd', 'sd.departmentId="'.$departmentId.'" and sd.subjectId =s.id');
+                ->join('subjectdepartements sd', 'sd.departmentId="' . $departmentId . '" and sd.subjectId =s.id');
 
             $data = $model
                 ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject')
@@ -267,6 +267,7 @@ class Exams extends ResourceController
             $firstPage = $model->pager->getFirstPage();
             $perPage = $model->pager->getPerPage();
 
+            // return  $this->respond([ $model->getLastQuery()->getQuery()]);
             if ($page > $countPage)
                 return  $this->respond([
                     'totalPage' => $countPage,
