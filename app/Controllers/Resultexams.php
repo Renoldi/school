@@ -250,7 +250,6 @@ class Resultexams extends ResourceController
                     "roomName" => $key->roomName,
                     "departmentId" => $key->departmentId,
                     "departmentName" => $key->departmentName,
-                   
                 ];
                 $keys =  $key->id;
             }
