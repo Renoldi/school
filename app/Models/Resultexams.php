@@ -18,6 +18,7 @@ class Resultexams extends Model
         'studentId',
         'examId',
         'choise',
+        'status',
     ];
 
     // Dates
@@ -31,6 +32,7 @@ class Resultexams extends Model
     protected $validationRules      = [
         'studentId' => 'required|integer',
         'examId' => 'required|integer',
+        'status' => 'required|integer',
         'choise' => 'required|string',
     ];
     protected $validationMessages   = [];
