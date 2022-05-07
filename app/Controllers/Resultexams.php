@@ -176,12 +176,27 @@ class Resultexams extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Resultexams/myExam/{date}",
+     *   path="/api/Resultexams/exam/{start}/{end}/{roomId}/{classId}",
      *   summary="Resultexams",
      *   description="Resultexams",
      *   tags={"Resultexams"},
      *   @OA\Parameter(
-     *         name="date",
+     *         name="start",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="end",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="roomId",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="classId",
      *         in="path",
      *         required=true,
      *   ), 
@@ -206,19 +221,9 @@ class Resultexams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function exam($date = '2022-05-07')
+    public function exam($start = '2022-05-07',$end = '2022-05-07',$roomId, $classId)
     {
-        $header = $this->request->getServer('HTTP_AUTHORIZATION');
-
-        helper('jwt');
-        $decoded = detailJwt($header);
-
-
-        $classId = $decoded->user->classId;
-        $roomId = $decoded->user->roomId;
-        $studentId = $decoded->user->id;
-
-        $record = $this->model
+          $record = $this->model
             ->select('e.subjectId,sb.name, sum(if(e.answer= resultexams.choise,e.point,0)) point')
             ->join('students s', 's.id = resultexams.studentId')
             ->join('exams e', 'e.id = resultexams.examId and e.classId = s.classId')
@@ -226,10 +231,9 @@ class Resultexams extends ResourceController
             ->join('rooms r', 'r.id = s.roomId')
             ->join('departments d', 'd.id = r.departmentId')
             ->join('classes c', 'c.id = s.classId')
-            ->where('resultexams.createdAt BETWEEN "' . $date . ' 00:00:00" and "' . $date . ' 23:59:59"')
+            ->where('resultexams.createdAt BETWEEN "' . $start . ' 00:00:00" and "' . $end . ' 23:59:59"')
             ->where('s.roomId', $roomId)
             ->where('s.classId', $classId)
-            ->where('s.id', $studentId)
             ->groupBy('s.id,e.subjectId')
             ->findAll();
 
