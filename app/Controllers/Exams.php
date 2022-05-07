@@ -246,7 +246,7 @@ class Exams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function getExamsStudent($subjectId = null, $perpage = 20, $page = 1)
+    public function getExamsStudent($subjectId = null, $perpage = 60, $page = 1)
     {
         $header = $this->request->getServer('HTTP_AUTHORIZATION');
 
@@ -266,9 +266,9 @@ class Exams extends ResourceController
                 ->join('subjects s', 's.id=exams.subjectId')
                 ->join('subjectdepartements sd', 'sd.subjectId =s.id')
                 ->join('departments d', 'd.id=sd.departmentId');
-
             $data = $model
                 ->select('exams.id as id,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
+                ->orderBy('RAND()')
                 ->paginate($perpage, 'default', $page);
             $countPage = $model->pager->getPageCount();
             $currentPage = $model->pager->getCurrentPage();
@@ -277,24 +277,15 @@ class Exams extends ResourceController
             $perPage = $model->pager->getPerPage();
 
             // return  $this->respond([ $model->getLastQuery()->getQuery()]);
+
             if ($page > $countPage)
                 return  $this->respond([
-                    'totalPage' => $countPage,
-                    'currentPage' => $currentPage,
-                    'lastPage' => $lastPage,
-                    'firstPage' => $firstPage,
-                    'perPage' => $perPage,
-                    'data' => []
+                    'totalPage' => $countPage, 'currentPage' => $currentPage, 'lastPage' => $lastPage, 'firstPage' => $firstPage, 'perPage' => $perPage, 'data' => []
                 ]);
 
             else {
                 return  $this->respond([
-                    'totalPage' => $countPage,
-                    'currentPage' => $currentPage,
-                    'lastPage' => $lastPage,
-                    'firstPage' => $firstPage,
-                    'perPage' => $perPage,
-                    'data' => $data
+                    'totalPage' => $countPage, 'currentPage' => $currentPage, 'lastPage' => $lastPage, 'firstPage' => $firstPage, 'perPage' => $perPage, 'data' => $data,
                 ]);
             }
         } catch (Exception $ex) {
@@ -469,11 +460,7 @@ class Exams extends ResourceController
         if ($data) {
             if ($this->model->delete($id)) {
                 $response = [
-                    'status'   => 200,
-                    'error'    => null,
-                    'messages' => [
-                        'success' => 'Data Deleted ' . $id
-                    ]
+                    'status'   => 200, 'error'    => null, 'messages' => ['success' => 'Data Deleted ' . $id]
                 ];
                 return $this->respondDeleted($response);
             } else
@@ -535,8 +522,7 @@ class Exams extends ResourceController
         $validationRule = [
             'userfile' => [
                 'label' => 'xls File',
-                'rules' => 'uploaded[userfile]'
-                    . '|mime_in[userfile,application/xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]'
+                'rules' => 'uploaded[userfile]' . '|mime_in[userfile,application/xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]'
             ],
         ];
         if (!$this->validate($validationRule)) {
@@ -577,10 +563,7 @@ class Exams extends ResourceController
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(
-                    [
-                        'row' => $x + 1,
-                        'fields' => $this->model->errors()
-                    ]
+                    ['row' => $x + 1,    'fields' => $this->model->errors()]
                 );
             }
         }

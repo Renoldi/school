@@ -10,36 +10,24 @@
  https://onlinewebtutorblog.com/how-to-enable-cors-in-codeigniter-4-for-rest-apis/
 
  * template 
-    - subject
-    - class
-    - privilage
-    - room
-    - student
-    - exam
+- subject
+- class
+- privilage
+- room
+- student
+- exam
 
-
-    SELECT 
-        s.name, e.answer,  re.choise, if(e.answer= re.choise,e.point,0) point
-    FROM 
-        resultexams re 
-    JOIN exams e on e.id = re.examId 
-    JOIN students s on s.id = re.studentId;
-
-    SELECT 
-        s.name, e.answer,  re.choise, if(e.answer= re.choise,e.point,0) point
-    FROM 
-        resultexams re 
-    JOIN exams e on e.id = re.examId 
-    JOIN students s on s.id = re.studentId
-    WHERE s.classId  = e.classId;
-
-    SELECT * FROM `subjects` where FIND_IN_SET(2,departmentId);
-    SELECT s.name,s.roomId, r.name, d.name FROM students s 
-    JOIN rooms r on r.id = s.roomId 
-    JOIN departments d on d.id = r.id;
-
-    SELECT s.name, s.roomId, r.name, d.id, d.name
-    FROM students s 
-    JOIN rooms r on r.id= s.roomId
-    JOIN departments d on d.id = r.departmentId
-    where s.id = 1; 
+SELECT 
+  s.id, s.name,s.classId,c.name className ,r.name roomName,d.name departmentName, e.subjectId, sb.name , sum(if(e.answer= re.choise,e.point,0)) point
+FROM 
+resultexams re 
+JOIN students s on s.id = re.studentId
+JOIN exams e on e.id = re.examId and e.classId = s.classId
+JOIN subjects sb on sb.id = e.subjectId
+JOIN rooms r on r.id = s.roomId
+JOIN departments d on d.id = r.departmentId
+JOIN classes c on c.id = s.classId
+where re.createdAt BETWEEN '2022-05-07 00:00:00' AND '2022-05-07 23:59:59' and e.classId = 2
+and r.departmentId = 1 
+and r.id = 1
+GROUP by s.id;

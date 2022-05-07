@@ -3,8 +3,11 @@
 namespace App\Database\Seeds;
 
 use App\Entities\Resultexams as EntitiesResultexams;
+use App\Models\Exams;
 use App\Models\Resultexams as ModelsResultexams;
+use App\Models\Students;
 use CodeIgniter\Database\Seeder;
+use PhpParser\Node\Expr\New_;
 
 class Resultexams extends Seeder
 {
@@ -13,19 +16,37 @@ class Resultexams extends Seeder
         helper('genarator_string');
         $model = new ModelsResultexams();
         $entities = new EntitiesResultexams();
-        $total = 4000;
-        $student = 500;
 
-        for ($i = 0; $i < $total; $i++) {
-            $data = [
-                'studentId' => rand(1, $student),
-                'examId' => rand(1, $total),
-                'choise' => generateRandomString(1, 'abcde'),
-                'status' => 1,
-            ];
-            $entities->fill($data);
-            if (!$model->save($entities)) {
-                var_dump($model->errors());
+        $exams = new Exams();
+
+        $students = new Students();
+
+        $data  = $students
+            ->select('students.id,ss.id subjectsid, students.classId as classId')
+            ->join('rooms r', 'r.id = students.roomId')
+            ->join('departments d', 'd.id = r.departmentId')
+            ->join('subjectdepartements sd', 'sd.departmentId = d.id')
+            ->join('subjects ss', 'ss.id = sd.subjectId')
+            ->findAll();
+
+        foreach ($data as $dat) {
+            $examsData = $exams
+                ->select('id')
+                ->where('classId', $dat->classId)
+                ->where('subjectId', $dat->subjectsid)
+                ->findAll();
+                
+            foreach ($examsData as $examsDat) {
+                $resExam = [
+                    'studentId' => $dat->id, 
+                    'examId' => $examsDat->id,
+                    'choise' => generateRandomString(1, 'abcde'),
+                    'status' => 1,
+                ];
+                $entities->fill($resExam);
+                if (!$model->save($entities)) {
+                    var_dump($model->errors());
+                }
             }
         }
     }
