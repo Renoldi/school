@@ -24,7 +24,7 @@ function detailJwt($header)
                     'status'   => 401,
                     'error'    => true,
                     'messages' => [
-                        'error' => 'Unauthorized'
+                        'error' => 'Unauthorized, token required'
                     ],
                 ]
             )
