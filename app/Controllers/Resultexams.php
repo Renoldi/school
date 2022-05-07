@@ -101,6 +101,81 @@ class Resultexams extends ResourceController
      */
     /**
      * @OA\Get(
+     *   path="/api/Resultexams/myExam/{start}/{end}",
+     *   summary="Resultexams",
+     *   description="Resultexams",
+     *   tags={"Resultexams"},
+     *   @OA\Parameter(
+     *         name="start",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="end",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Resultexams")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function myExam($start = '2022-05-07',$end = '2022-05-07')
+    {
+        $header = $this->request->getServer('HTTP_AUTHORIZATION');
+
+        helper('jwt');
+        $decoded = detailJwt($header);
+
+
+        $classId = $decoded->user->classId;
+        $roomId = $decoded->user->roomId;
+        $studentId = $decoded->user->id;
+
+        $record = $this->model
+            ->select('e.subjectId,sb.name, sum(if(e.answer= resultexams.choise,e.point,0)) point')
+            ->join('students s', 's.id = resultexams.studentId')
+            ->join('exams e', 'e.id = resultexams.examId and e.classId = s.classId')
+            ->join('subjects sb', 'sb.id = e.subjectId')
+            ->join('rooms r', 'r.id = s.roomId')
+            ->join('departments d', 'd.id = r.departmentId')
+            ->join('classes c', 'c.id = s.classId')
+            ->where('resultexams.createdAt BETWEEN "' . $start . ' 00:00:00" and "' . $end . ' 23:59:59"')
+            ->where('s.roomId', $roomId)
+            ->where('s.classId', $classId)
+            ->where('s.id', $studentId)
+            ->groupBy('s.id,e.subjectId')
+            ->findAll();
+
+        if (!$record) {
+            return $this->respond([]);
+        }
+
+        return $this->respond($record);
+    }
+    /**
+     * Return the properties of a resource object
+     *
+     * @return mixed
+     */
+    /**
+     * @OA\Get(
      *   path="/api/Resultexams/myExam/{date}",
      *   summary="Resultexams",
      *   description="Resultexams",
@@ -131,7 +206,7 @@ class Resultexams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function myExam($date = '2022-05-07')
+    public function exam($date = '2022-05-07')
     {
         $header = $this->request->getServer('HTTP_AUTHORIZATION');
 
