@@ -142,6 +142,7 @@ class Resultexams extends ResourceController
 
         $classId = $decoded->user->classId;
         $roomId = $decoded->user->roomId;
+        $studentId = $decoded->user->id;
 
         $record = $this->model
             ->select('s.id, s.name,s.classId,c.name className ,r.name roomName,d.name departmentName, e.subjectId, sb.name , sum(if(e.answer= resultexams.choise,e.point,0)) point')
@@ -154,23 +155,15 @@ class Resultexams extends ResourceController
             ->where('resultexams.createdAt BETWEEN "' . $date . ' 00:00:00" and "' . $date . ' 23:59:59"')
             ->where('s.roomId', $roomId)
             ->where('s.classId', $classId)
+            ->where('s.id', $studentId)
             ->groupBy('s.id,e.subjectId')
             ->findAll();
-        // return $this->respond([
-        //     $this->model->getLastQuery()->getQuery(),
-        //     $decoded, $classId, $roomId,
-        // ]);
-        // exit;
+
         if (!$record) {
-            return $this->failNotFound(sprintf(
-                'user with id  not found'
-            ));
+            return $this->respond([]);
         }
 
-        return $this->respond($record);
-        // } catch (Exception $ex) {
-        //     return $this->failUnauthorized('sdfsfsdf');
-        // }
+        return $this->respond($record); 
     }
 
     /**
