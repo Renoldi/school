@@ -136,7 +136,7 @@ class Resultexams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function myExam($start = '2022-05-07',$end = '2022-05-07')
+    public function myExam($start = '2022-05-07', $end = '2022-05-07')
     {
         $header = $this->request->getServer('HTTP_AUTHORIZATION');
 
@@ -221,10 +221,10 @@ class Resultexams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function exam($start = '2022-05-07',$end = '2022-05-07',$roomId, $classId)
+    public function exam($start = '2022-05-07', $end = '2022-05-07', $roomId, $classId)
     {
-          $record = $this->model
-            ->select('e.subjectId,sb.name, sum(if(e.answer= resultexams.choise,e.point,0)) point')
+        $record = $this->model
+            ->select('s.id, s.name, s.classId, c.name className,r.id roomId, r.name roomName,d.id departmentId, d.name departmentName, e.subjectId, sb.name subjectName,sum(if(e.answer= resultexams.choise,e.point,0)) point')
             ->join('students s', 's.id = resultexams.studentId')
             ->join('exams e', 'e.id = resultexams.examId and e.classId = s.classId')
             ->join('subjects sb', 'sb.id = e.subjectId')
@@ -236,12 +236,36 @@ class Resultexams extends ResourceController
             ->where('s.classId', $classId)
             ->groupBy('s.id,e.subjectId')
             ->findAll();
+        $res = [];
+        $keys = '';
+        $index = 0;
+        foreach ($record as $key) {
+            if ($keys != $key->id) {
+                $res[] = [
+                    "id" => $key->id,
+                    "name" => $key->name,
+                    "classId" => $key->classId,
+                    "className" => $key->className,
+                    "roomId" => $key->roomId,
+                    "roomName" => $key->roomName,
+                    "departmentId" => $key->departmentId,
+                    "departmentName" => $key->departmentName,
+                   
+                ];
+                $keys =  $key->id;
+            }
+              $res[count($res) - 1]['subject'][] = [
+                'id' => $key->subjectId,
+                'name' => $key->subjectName,
+                'point' => $key->point,
+            ];
+        }
 
         if (!$record) {
             return $this->respond([]);
         }
 
-        return $this->respond($record);
+        return $this->respond($res);
     }
 
     /**
