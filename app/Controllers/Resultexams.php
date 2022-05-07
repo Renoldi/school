@@ -135,7 +135,6 @@ class Resultexams extends ResourceController
     {
         $header = $this->request->getServer('HTTP_AUTHORIZATION');
 
-        // try {
         helper('jwt');
         $decoded = detailJwt($header);
 
