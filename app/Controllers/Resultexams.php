@@ -101,7 +101,7 @@ class Resultexams extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Resultexams/studentResultExam/{date}/{roomId}/{classId}",
+     *   path="/api/Resultexams/myExam/{date}",
      *   summary="Resultexams",
      *   description="Resultexams",
      *   tags={"Resultexams"},
@@ -131,7 +131,7 @@ class Resultexams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function studentResultExam($date = '2022-05-07')
+    public function myExam($date = '2022-05-07')
     {
         $header = $this->request->getServer('HTTP_AUTHORIZATION');
 
