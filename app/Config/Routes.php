@@ -59,7 +59,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->post('Teachers/fromXl', 'Teachers::fromXl', ['filter' => 'Role:superadmin,admin']);
 
     $routes->get('Teachers/details', 'Teachers::details', ['filter' => 'Role:superadmin,admin,teacher,editor']);
-    $routes->get('Students/details', 'Students::details', ['filter' => ['Role:superadmin,admin,editor,student']]);
+    $routes->get('Students/details', 'Students::details', ['filter' => ['Auth','Role:superadmin,admin,editor,student']]);
 
     $routes->delete('Classes/(:num)', 'Classes::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
     $routes->delete('SubjectDepartements/(:num)', 'SubjectDepartements::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);

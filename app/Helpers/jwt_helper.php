@@ -33,7 +33,6 @@ function detailJwt($header)
     try {
         return  JWT::decode($token, new Key($key, 'HS256'));
     } catch (Exception $ex) {
-
         return Services::response()
             ->setJSON([
                 'status'   => 401,

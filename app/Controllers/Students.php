@@ -486,7 +486,7 @@ class Students extends ResourceController
                     base_url('api/Students/details'),
                     $this->request->getServer('REMOTE_ADDR')
                 ),
-                "sub" => "login " . $user->email,
+                "sub" => "school|" . $user->id,
                 "iat" => $iat, //Time the JWT issued at
                 "exp" =>  $exp, // Expiration time of token,
                 "user" => $users
@@ -495,7 +495,6 @@ class Students extends ResourceController
             helper('jwt');
             $token = generate($payload);
             $response = [
-                'user' => $users,
                 "token" => $token,
             ];
             return $this->respond($response);

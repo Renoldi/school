@@ -375,7 +375,7 @@ class Teachers extends ResourceController
             if (!$this->model->update($user->id, $entity)) {
                 return $this->fail(['error' => 'fail login'], 401);
             }
-            
+
             $exp = $iat + (3600 * 24 * (365 / 12));
             $users = array(
                 "id" => $user->id,
@@ -397,7 +397,7 @@ class Teachers extends ResourceController
                     base_url('api/Teachers/details'),
                     $this->request->getServer('REMOTE_ADDR')
                 ),
-                "sub" => "login ",
+                "sub" =>  "school|" . $user->id,
                 "iat" => $iat, //Time the JWT issued at
                 "exp" =>  $exp, // Expiration time of token,
                 "user" => $users,
@@ -406,7 +406,6 @@ class Teachers extends ResourceController
             helper('jwt');
             $token = generate($payload);
             $response = [
-                'user' => $users,
                 "token" => $token,
             ];
             return $this->respond($response);
