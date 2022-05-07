@@ -155,15 +155,22 @@ class Exams extends ResourceController
     {
 
         $model = $this->model
-            ->where('subjectId', $classId)
-            ->where('classId', $subjectId)
+            ->where('exams.subjectId', $subjectId)
+            ->where('classId', $classId)
             ->where('exams.status', $status)
             ->join('classes c', 'c.id=exams.classId')
-            ->join('subjects s', 's.id=exams.subjectId');
+            ->join('subjects s', 's.id=exams.subjectId')
+            ->join('subjectdepartements sd', 'sd.subjectId =s.id')
+            ->join('departments d', 'd.id=sd.departmentId');
 
         $data = $model
-            ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject')
+            ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
             ->paginate($perpage, 'default', $page);
+        //     ->findAll();
+
+        // return  $this->respond([
+        //     $model->getLastQuery()->getQuery(),
+        // ]);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
         $lastPage = $model->pager->getLastPage();
@@ -254,9 +261,10 @@ class Exams extends ResourceController
                 ->where('exams.subjectId', $subjectId)
                 ->where('classId', $classId)
                 ->where('exams.status', 1)
+                ->where('d.id', $departmentId)
                 ->join('classes c', 'c.id=exams.classId')
                 ->join('subjects s', 's.id=exams.subjectId')
-                ->join('subjectdepartements sd', 'sd.departmentId="' . $departmentId . '" and sd.subjectId =s.id')
+                ->join('subjectdepartements sd', 'sd.subjectId =s.id')
                 ->join('departments d', 'd.id=sd.departmentId');
 
             $data = $model
