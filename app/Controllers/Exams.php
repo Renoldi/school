@@ -256,10 +256,11 @@ class Exams extends ResourceController
                 ->where('exams.status', 1)
                 ->join('classes c', 'c.id=exams.classId')
                 ->join('subjects s', 's.id=exams.subjectId')
-                ->join('subjectdepartements sd', 'sd.departmentId="' . $departmentId . '" and sd.subjectId =s.id');
+                ->join('subjectdepartements sd', 'sd.departmentId="' . $departmentId . '" and sd.subjectId =s.id')
+                ->join('departments d', 'd.id=sd.departmentId');
 
             $data = $model
-                ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject')
+                ->select('exams.id as id,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
                 ->paginate($perpage, 'default', $page);
             $countPage = $model->pager->getPageCount();
             $currentPage = $model->pager->getCurrentPage();
