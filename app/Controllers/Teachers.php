@@ -397,7 +397,7 @@ class Teachers extends ResourceController
                     base_url('api/Teachers/details'),
                     $this->request->getServer('REMOTE_ADDR')
                 ),
-                "sub" =>  "school|" . $user->id,
+                "sub" => "school|" . $this->request->getServer('REQUEST_TIME'),
                 "iat" => $iat, //Time the JWT issued at
                 "exp" =>  $exp, // Expiration time of token,
                 "user" => $users,
@@ -454,11 +454,7 @@ class Teachers extends ResourceController
         try {
             helper('jwt');
             $decoded = detailJwt($header);
-            $response = [
-                'message' => 'detail teacher',
-                'decoded' => $decoded,
-            ];
-            return $this->respond($response);
+            return $this->respond($decoded);
         } catch (Exception $ex) {
             return $this->failUnauthorized();
         }
