@@ -29,27 +29,17 @@ class Role implements FilterInterface
     {
         $header = $request->getServer('HTTP_AUTHORIZATION');
 
-        try {
-            helper('jwt');
-            $decoded = detailJwt($header);
-            if (!in_array($decoded->user->privilege, $arguments)) {
-                return Services::response()
-                    ->setJSON([
-                        'status'   => 401,
-                        'error'    => true,
-                        'messages' => [
-                            'error' => 'Unauthorized'
-                        ]
-                    ])
-                    ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
-            }
-        } catch (Exception $ex) {
+
+        helper('jwt');
+        $decoded = detailJwt($header);
+
+        if (!in_array($decoded->user->privilege, $arguments)) {
             return Services::response()
                 ->setJSON([
                     'status'   => 401,
                     'error'    => true,
                     'messages' => [
-                        'error' => 'Unauthorized'
+                        'error' => 'Unauthorized forbiden access'
                     ]
                 ])
                 ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);

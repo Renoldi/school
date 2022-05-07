@@ -16,7 +16,6 @@ function detailJwt($header)
         }
     }
 
-
     if (is_null($token) || empty($token)) {
         return Services::response()
             ->setJSON(

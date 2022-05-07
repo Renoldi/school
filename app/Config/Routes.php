@@ -41,8 +41,8 @@ $routes->group('api', function ($routes) {
 });
 
 $routes->group('api', ['filter' => 'Auth'], function ($routes) {
-    $routes->get('Students/paging/(:any)/(:num)/(:num)', 'Students::paging/$1/$2/$3',['filter' => 'Role:superadmin,admin,editor']);
-    $routes->get('Exams/getExams/(:num)/(:num)/(:num)/(:num)/(:num)', 'Exams::getExams/$1/$2/$3/$4/$5',['filter' => 'Role:superadmin,admin,editor']);
+    $routes->get('Students/paging/(:any)/(:num)/(:num)', 'Students::paging/$1/$2/$3', ['filter' => 'Role:superadmin,admin,editor']);
+    $routes->get('Exams/getExams/(:num)/(:num)/(:num)/(:num)/(:num)', 'Exams::getExams/$1/$2/$3/$4/$5', ['filter' => 'Role:superadmin,admin,editor']);
     $routes->get('Exams/getExamsStudent/(:num)/(:num)/(:num)', 'Exams::getExamsStudent/$1/$2/$3', ['filter' => 'Role:superadmin,admin,student,editor']);
 
     $routes->post('SubjectDepartements/fromXl', 'SubjectDepartements::fromXl', ['filter' => 'Role:superadmin,admin']);
@@ -59,7 +59,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->post('Teachers/fromXl', 'Teachers::fromXl', ['filter' => 'Role:superadmin,admin']);
 
     $routes->get('Teachers/details', 'Teachers::details', ['filter' => 'Role:superadmin,admin,teacher,editor']);
-    $routes->get('Students/details', 'Students::details', ['filter' => 'Role:superadmin,admin,editor,student']);
+    $routes->get('Students/details', 'Students::details', ['filter' => ['Role:superadmin,admin,editor,student']]);
 
     $routes->delete('Classes/(:num)', 'Classes::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
     $routes->delete('SubjectDepartements/(:num)', 'SubjectDepartements::delete/$1', ['filter' => 'Role:superadmin,admin,editor']);
