@@ -11,7 +11,7 @@ function detailJwt($header)
     $token = null;
 
     if (!empty($header)) {
-        if (preg_match('/Bearer\s(\S+)/', $header, $matches)) {
+        if (preg_match('/bearer\s(\S+)/i', $header, $matches)) {
             $token = $matches[1];
         }
     }
