@@ -145,7 +145,7 @@ class Resultexams extends ResourceController
         $studentId = $decoded->user->id;
 
         $record = $this->model
-            ->select('s.id, s.name,s.classId,c.name className ,r.name roomName,d.name departmentName, e.subjectId, sb.name , sum(if(e.answer= resultexams.choise,e.point,0)) point')
+            ->select('e.subjectId,sb.name, sum(if(e.answer= resultexams.choise,e.point,0)) point')
             ->join('students s', 's.id = resultexams.studentId')
             ->join('exams e', 'e.id = resultexams.examId and e.classId = s.classId')
             ->join('subjects sb', 'sb.id = e.subjectId')
@@ -163,7 +163,7 @@ class Resultexams extends ResourceController
             return $this->respond([]);
         }
 
-        return $this->respond($record); 
+        return $this->respond($record);
     }
 
     /**
