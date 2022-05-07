@@ -14,9 +14,11 @@ class Resultexams extends Seeder
         $model = new ModelsResultexams();
         $entities = new EntitiesResultexams();
         $total = 4000;
+        $student = 500;
+
         for ($i = 0; $i < $total; $i++) {
             $data = [
-                'studentId' => rand(1, 500),
+                'studentId' => rand(1, $student),
                 'examId' => rand(1, $total),
                 'choise' => generateRandomString(1, 'abcde'),
                 'status' => 1,

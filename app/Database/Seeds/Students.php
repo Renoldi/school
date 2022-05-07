@@ -15,7 +15,8 @@ class Students extends Seeder
         $faker = \Faker\Factory::create();
         $model = new ModelsStudents();
         $entities = new EntitiesStudents();
-        for ($i = 0; $i < 500; $i++) {
+        $student = 500;
+        for ($i = 0; $i < $student; $i++) {
             $data  = [
                 'nisn' => generateRandomString(9, '0123456789abcdefghijklmnopqrstuvwxyz') . rand(0, 100),
                 'email' => $faker->email(),
