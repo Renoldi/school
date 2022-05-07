@@ -169,7 +169,7 @@ class Exams extends ResourceController
         //     ->findAll();
 
         // return  $this->respond([
-        //     $model->getLastQuery()->getQuery(),
+        //     $model->classes()->getQuery(),
         // ]);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();

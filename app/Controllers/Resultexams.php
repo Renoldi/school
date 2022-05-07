@@ -7,6 +7,7 @@ use App\Libraries\StdobjeToArray;
 use App\Models\Resultexams as ModelsResultexams;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
+use Exception;
 
 class Resultexams extends ResourceController
 {
@@ -92,6 +93,84 @@ class Resultexams extends ResourceController
         }
 
         return $this->respond($record);
+    }
+    /**
+     * Return the properties of a resource object
+     *
+     * @return mixed
+     */
+    /**
+     * @OA\Get(
+     *   path="/api/Resultexams/studentResultExam/{date}/{roomId}/{classId}",
+     *   summary="Resultexams",
+     *   description="Resultexams",
+     *   tags={"Resultexams"},
+     *   @OA\Parameter(
+     *         name="date",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Resultexams")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function studentResultExam($date = '2022-05-07')
+    {
+        $header = $this->request->getServer('HTTP_AUTHORIZATION');
+
+        // try {
+        helper('jwt');
+        $decoded = detailJwt($header);
+
+
+        $classId = $decoded->user->classId;
+        $roomId = $decoded->user->roomId;
+
+        $record = $this->model
+            ->select('s.id, s.name,s.classId,c.name className ,r.name roomName,d.name departmentName, e.subjectId, sb.name , sum(if(e.answer= resultexams.choise,e.point,0)) point')
+            ->join('students s', 's.id = resultexams.studentId')
+            ->join('exams e', 'e.id = resultexams.examId and e.classId = s.classId')
+            ->join('subjects sb', 'sb.id = e.subjectId')
+            ->join('rooms r', 'r.id = s.roomId')
+            ->join('departments d', 'd.id = r.departmentId')
+            ->join('classes c', 'c.id = s.classId')
+            ->where('resultexams.createdAt BETWEEN "' . $date . ' 00:00:00" and "' . $date . ' 23:59:59"')
+            ->where('s.roomId', $roomId)
+            ->where('s.classId', $classId)
+            ->groupBy('s.id,e.subjectId')
+            ->findAll();
+        // return $this->respond([
+        //     $this->model->getLastQuery()->getQuery(),
+        //     $decoded, $classId, $roomId,
+        // ]);
+        // exit;
+        if (!$record) {
+            return $this->failNotFound(sprintf(
+                'user with id  not found'
+            ));
+        }
+
+        return $this->respond($record);
+        // } catch (Exception $ex) {
+        //     return $this->failUnauthorized('sdfsfsdf');
+        // }
     }
 
     /**
@@ -196,7 +275,7 @@ class Resultexams extends ResourceController
         $data = $this->request->getVar();
         if ($data == null) {
             return $this->fail("data null");
-        }       
+        }
 
         if ($data == null) {
             return $this->fail("data null");
@@ -375,7 +454,6 @@ class Resultexams extends ResourceController
         } else {
             $this->model->transCommit();
             return $this->respondCreated(["result" => "success upload"]);
-
         }
     }
 }

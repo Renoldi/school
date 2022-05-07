@@ -44,3 +44,17 @@ where re.createdAt BETWEEN '2022-05-07 00:00:00' AND '2022-05-07 23:59:59' and e
 and r.departmentId = 1 
 and r.id = 1
 GROUP by s.id,e.subjectId;
+
+SELECT  s.id, s.name,s.classId,c.name className ,r.name roomName,d.name departmentName, e.subjectId, sb.name , sum(if(e.answer= re.choise,e.point,0)) point
+FROM 
+resultexams re 
+JOIN students s on s.id = re.studentId
+JOIN exams e on e.id = re.examId and e.classId = s.classId
+JOIN subjects sb on sb.id = e.subjectId
+JOIN rooms r on r.id = s.roomId
+JOIN departments d on d.id = r.departmentId
+JOIN classes c on c.id = s.classId
+where re.createdAt BETWEEN '2022-05-07 00:00:00' AND '2022-05-07 23:59:59'   
+and s.roomId = 1
+and s.classId = 1
+GROUP by s.id,e.subjectId;
