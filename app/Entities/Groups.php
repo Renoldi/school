@@ -4,9 +4,29 @@ namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
 
+/**
+ * @OA\Schema(
+ *   schema="Groups",
+ * @OA\Property(
+ *      property="id",
+ *      type="integer",
+ *    ) 
+ * )
+ */
 class Groups extends Entity
 {
     protected $datamap = [];
-    protected $dates   = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates   = ['createdAt','updatedAt','deletedAt'];
     protected $casts   = [];
+
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $name;
+     /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $status;
 }

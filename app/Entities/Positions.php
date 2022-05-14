@@ -6,14 +6,14 @@ use CodeIgniter\Entity\Entity;
 
 /**
  * @OA\Schema(
- *   schema="Ranks",
+ *   schema="Positions",
  * @OA\Property(
  *      property="id",
  *      type="integer",
  *    ) 
  * )
  */
-class Ranks extends Entity
+class Positions extends Entity
 {
     protected $datamap = [];
     protected $dates   = ['createdAt','updatedAt','deletedAt'];
