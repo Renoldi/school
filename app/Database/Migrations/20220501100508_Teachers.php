@@ -41,6 +41,7 @@ class Teachers extends Migration
             'ipAddress' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
+                'null' => true,
             ],
             'about' => [
                 'type' => 'VARCHAR',
