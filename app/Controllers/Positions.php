@@ -21,15 +21,15 @@ class Positions extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Classes",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Positions",
+     *   summary="Positions",
+     *   description="Positions",
+     *   tags={"Positions"},
      *   @OA\Response(
      *     response=200, description="ok",
      *     @OA\JsonContent(
      *      type="array",
-     *       @OA\Items(ref="#/components/schemas/Classes")
+     *       @OA\Items(ref="#/components/schemas/Positions")
      *     ),
      *   ),
      *   @OA\Response(
@@ -50,10 +50,10 @@ class Positions extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Classes/{id}",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Positions/{id}",
+     *   summary="Positions",
+     *   description="Positions",
+     *   tags={"Positions"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -61,7 +61,7 @@ class Positions extends ResourceController
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Classes")
+     *      @OA\JsonContent(ref="#/components/schemas/Positions")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -100,21 +100,21 @@ class Positions extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/Classes",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Positions",
+     *   summary="Positions",
+     *   description="Positions",
+     *   tags={"Positions"},
     
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Classes"),
+     *      @OA\Schema(ref="#/components/schemas/Positions"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=201, description="created",
-     *      @OA\JsonContent(ref="#/components/schemas/Classes")
+     *      @OA\JsonContent(ref="#/components/schemas/Positions")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Request error",
@@ -155,10 +155,10 @@ class Positions extends ResourceController
      */
     /**
      * @OA\Put(
-     *   path="/api/Classes/{id}",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Positions/{id}",
+     *   summary="Positions",
+     *   description="Positions",
+     *   tags={"Positions"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -168,12 +168,12 @@ class Positions extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Classes"),
+     *      @OA\Schema(ref="#/components/schemas/Positions"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="updated",
-     *      @OA\JsonContent(ref="#/components/schemas/Classes")
+     *      @OA\JsonContent(ref="#/components/schemas/Positions")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -219,10 +219,10 @@ class Positions extends ResourceController
      */
     /**
      * @OA\Delete(
-     *   path="/api/Classes/{id}",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Positions/{id}",
+     *   summary="Positions",
+     *   description="Positions",
+     *   tags={"Positions"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -278,10 +278,10 @@ class Positions extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Classes/fromXl",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Positions/fromXl",
+     *   summary="Positions",
+     *   description="Positions",
+     *   tags={"Positions"},
      *   @OA\RequestBody(
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",

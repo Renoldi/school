@@ -21,15 +21,15 @@ class Groups extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Classes",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Groups",
+     *   summary="Groups",
+     *   description="Groups",
+     *   tags={"Groups"},
      *   @OA\Response(
      *     response=200, description="ok",
      *     @OA\JsonContent(
      *      type="array",
-     *       @OA\Items(ref="#/components/schemas/Classes")
+     *       @OA\Items(ref="#/components/schemas/Groups")
      *     ),
      *   ),
      *   @OA\Response(
@@ -50,10 +50,10 @@ class Groups extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Classes/{id}",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Groups/{id}",
+     *   summary="Groups",
+     *   description="Groups",
+     *   tags={"Groups"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -61,7 +61,7 @@ class Groups extends ResourceController
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Classes")
+     *      @OA\JsonContent(ref="#/components/schemas/Groups")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -100,21 +100,21 @@ class Groups extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/Classes",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Groups",
+     *   summary="Groups",
+     *   description="Groups",
+     *   tags={"Groups"},
     
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Classes"),
+     *      @OA\Schema(ref="#/components/schemas/Groups"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=201, description="created",
-     *      @OA\JsonContent(ref="#/components/schemas/Classes")
+     *      @OA\JsonContent(ref="#/components/schemas/Groups")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Request error",
@@ -155,10 +155,10 @@ class Groups extends ResourceController
      */
     /**
      * @OA\Put(
-     *   path="/api/Classes/{id}",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Groups/{id}",
+     *   summary="Groups",
+     *   description="Groups",
+     *   tags={"Groups"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -168,12 +168,12 @@ class Groups extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Classes"),
+     *      @OA\Schema(ref="#/components/schemas/Groups"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="updated",
-     *      @OA\JsonContent(ref="#/components/schemas/Classes")
+     *      @OA\JsonContent(ref="#/components/schemas/Groups")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -219,10 +219,10 @@ class Groups extends ResourceController
      */
     /**
      * @OA\Delete(
-     *   path="/api/Classes/{id}",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Groups/{id}",
+     *   summary="Groups",
+     *   description="Groups",
+     *   tags={"Groups"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -278,10 +278,10 @@ class Groups extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Classes/fromXl",
-     *   summary="Classes",
-     *   description="Classes",
-     *   tags={"Classes"},
+     *   path="/api/Groups/fromXl",
+     *   summary="Groups",
+     *   description="Groups",
+     *   tags={"Groups"},
      *   @OA\RequestBody(
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",
