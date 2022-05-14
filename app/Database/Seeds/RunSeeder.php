@@ -14,11 +14,14 @@ class RunSeeder extends Seeder
         $this->call('Privileges');
         $this->call('Rooms');
         $this->call('Subjects');
-        $this->call('Students');
-        $this->call('Teachers');
-        $this->call('SubjectDepartements');
-        $this->call('Exams');
-        $this->call('Resultexams');
+        $this->call('Groups');
+        $this->call('Ranks');
+
+        // $this->call('Students');
+        // $this->call('Teachers');
+        // $this->call('SubjectDepartements');
+        // $this->call('Exams');
+        // $this->call('Resultexams');
         // $this->call('Hoomrooms');
         // $this->call('Scheduleexams');
     }
