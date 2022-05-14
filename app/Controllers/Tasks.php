@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Entities\Ranks as EntitiesRanks;
+use App\Entities\Tasks as EntitiesTasks;
 use App\Libraries\StdobjeToArray;
-use App\Models\Ranks as ModelsRanks;
+use App\Models\Tasks as ModelsTasks;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
-class Ranks extends ResourceController
+class Tasks extends ResourceController
 {
-    protected $modelName = ModelsRanks::class;
+    protected $modelName = ModelsTasks::class;
     protected $format    = 'json';
     use ResponseTrait;
 
@@ -21,15 +21,15 @@ class Ranks extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Ranks",
-     *   summary="Ranks",
-     *   description="Ranks",
-     *   tags={"Ranks"},
+     *   path="/api/Tasks",
+     *   summary="Tasks",
+     *   description="Tasks",
+     *   tags={"Tasks"},
      *   @OA\Response(
      *     response=200, description="ok",
      *     @OA\JsonContent(
      *      type="array",
-     *       @OA\Items(ref="#/components/schemas/Ranks")
+     *       @OA\Items(ref="#/components/schemas/Tasks")
      *     ),
      *   ),
      *   @OA\Response(
@@ -50,10 +50,10 @@ class Ranks extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Ranks/{id}",
-     *   summary="Ranks",
-     *   description="Ranks",
-     *   tags={"Ranks"},
+     *   path="/api/Tasks/{id}",
+     *   summary="Tasks",
+     *   description="Tasks",
+     *   tags={"Tasks"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -61,7 +61,7 @@ class Ranks extends ResourceController
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Ranks")
+     *      @OA\JsonContent(ref="#/components/schemas/Tasks")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -100,21 +100,21 @@ class Ranks extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/Ranks",
-     *   summary="Ranks",
-     *   description="Ranks",
-     *   tags={"Ranks"},
+     *   path="/api/Tasks",
+     *   summary="Tasks",
+     *   description="Tasks",
+     *   tags={"Tasks"},
     
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Ranks"),
+     *      @OA\Schema(ref="#/components/schemas/Tasks"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=201, description="created",
-     *      @OA\JsonContent(ref="#/components/schemas/Ranks")
+     *      @OA\JsonContent(ref="#/components/schemas/Tasks")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Request error",
@@ -136,7 +136,7 @@ class Ranks extends ResourceController
         if ($data == null) {
             return $this->fail("data null");
         }
-        $entity = new EntitiesRanks();
+        $entity = new EntitiesTasks();
         $array = new StdobjeToArray($data);
          
         $entity->fill($array->get());
@@ -155,10 +155,10 @@ class Ranks extends ResourceController
      */
     /**
      * @OA\Put(
-     *   path="/api/Ranks/{id}",
-     *   summary="Ranks",
-     *   description="Ranks",
-     *   tags={"Ranks"},
+     *   path="/api/Tasks/{id}",
+     *   summary="Tasks",
+     *   description="Tasks",
+     *   tags={"Tasks"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -168,12 +168,12 @@ class Ranks extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Ranks"),
+     *      @OA\Schema(ref="#/components/schemas/Tasks"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="updated",
-     *      @OA\JsonContent(ref="#/components/schemas/Ranks")
+     *      @OA\JsonContent(ref="#/components/schemas/Tasks")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -202,7 +202,7 @@ class Ranks extends ResourceController
         if ($data == null) {
             return $this->fail("data null");
         }
-        $entity = new EntitiesRanks();
+        $entity = new EntitiesTasks();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->update($id, $entity)) {
@@ -219,10 +219,10 @@ class Ranks extends ResourceController
      */
     /**
      * @OA\Delete(
-     *   path="/api/Ranks/{id}",
-     *   summary="Ranks",
-     *   description="Ranks",
-     *   tags={"Ranks"},
+     *   path="/api/Tasks/{id}",
+     *   summary="Tasks",
+     *   description="Tasks",
+     *   tags={"Tasks"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -278,10 +278,10 @@ class Ranks extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Ranks/fromXl",
-     *   summary="Ranks",
-     *   description="Ranks",
-     *   tags={"Ranks"},
+     *   path="/api/Tasks/fromXl",
+     *   summary="Tasks",
+     *   description="Tasks",
+     *   tags={"Tasks"},
      *   @OA\RequestBody(
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",
@@ -349,7 +349,7 @@ class Ranks extends ResourceController
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
 
-        $subjectEntity = new EntitiesRanks();
+        $subjectEntity = new EntitiesTasks();
         $this->model->transStart();
         foreach ($data as $x => $row) {
             if ($x == 0) {

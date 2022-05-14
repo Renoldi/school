@@ -4,33 +4,23 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Scheduleexams extends Migration
+class TeacherTasks extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id'   => [
-                'type' => 'bigint',
-                'constraint' => 11,
+            'id' => [
+                'type' => 'INT',
                 'auto_increment' => true,
+                'constraint' => 11,
             ],
-            'subjectId' => [
+            'teacherId' => [
                 'type' => 'INT',
                 'constraint' => 11,
             ],
-            'classId' => [
+            'taskId' => [
                 'type' => 'INT',
                 'constraint' => 11,
-            ],
-            'start' => [
-                'type' => 'bigint ',
-            ],
-            'end' => [
-                'type' => 'bigint ',
-            ],
-            'status' => [
-                'type' => 'tinyint',
-                'constraint' => 1,
             ],
             'createdAt' => [
                 'type' => 'bigint',
@@ -43,13 +33,13 @@ class Scheduleexams extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('subjectId', 'subjects', 'id');
-        $this->forge->addForeignKey('classId', 'classes', 'id');
-        $this->forge->createTable('scheduleexams');
+        $this->forge->addForeignKey('teacherId', 'teachers', 'id');
+        $this->forge->addForeignKey('taskId', 'tasks', 'id');
+        $this->forge->createTable('TeacherTasks');
     }
 
     public function down()
     {
-        $this->forge->dropTable('scheduleexams');
+        $this->forge->dropTable('TeacherTasks');
     }
 }

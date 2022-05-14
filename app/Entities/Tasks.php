@@ -3,36 +3,33 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
-
 /**
  * @OA\Schema(
- *   schema="SubjectDepartements",
+ *   schema="Tasks",
  * @OA\Property(
  *      property="id",
  *      type="integer",
  *    ) 
  * )
  */
-class SubjectDepartements extends Entity
+class Tasks extends Entity
 {
     protected $datamap = [];
     protected $dates   = ['createdAt','updatedAt','deletedAt'];
     protected $casts   = [];
     protected $attributes = [
-        'teacherId' => null,
-        'subjectId' => null,
+        'name' => null,
+        'status' => null,
     ];
 
-    
     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $name;
+     /**
      * @var integer
      * @OA\Property()
      */
-    protected $teacherId;
-    
-    /**
-     * @var integer
-     * @OA\Property()
-     */
-    protected $subjectId;
+    protected $status;
 }

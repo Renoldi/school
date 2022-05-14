@@ -145,7 +145,7 @@ class Groups extends ResourceController
         }
         $record = $this->model->find($this->model->getInsertID());
 
-        return $this->respondCreated($entity, 'post created');
+        return $this->respondCreated($record , 'post created');
     }
 
     /**

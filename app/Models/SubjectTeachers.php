@@ -4,19 +4,18 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Classes extends Model
+class SubjectTeachers extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'classes';
+    protected $table            = 'subjectTeachers';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Classes::class;
+    protected $returnType       = \App\Entities\SubjectTeachers::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'name',
-        'status',
+        'teachersId','subjectId'
     ];
 
     // Dates
@@ -25,11 +24,11 @@ class Classes extends Model
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';
-    
+
     // Validation
     protected $validationRules      = [
-        'name' => 'required|alpha_numeric_space|is_unique[classes.name,id,{id}]',
-        'status' => 'required|integer',
+        'teachersId' => 'required|integer',
+        'subjectId' => 'required|integer', 
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

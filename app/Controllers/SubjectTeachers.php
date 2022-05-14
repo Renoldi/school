@@ -2,14 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Entities\SubjectDepartements as EntitiesSubjectDepartements;
+use App\Entities\SubjectTeachers as EntitiesSubjectTeachers;
 use App\Libraries\StdobjeToArray;
+use App\Models\SubjectTeachers as ModelsSubjectTeachers;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
-class SubjectDepartements extends ResourceController
+class SubjectTeachers extends ResourceController
 {
-    protected $modelName = ModelsSubjectDepartements::class;
+    protected $modelName = ModelsSubjectTeachers::class;
     protected $format  = 'json';
     use ResponseTrait;
 
@@ -20,15 +21,15 @@ class SubjectDepartements extends ResourceController
      */
     /**
      * @OA\Get(
-     *  path="/api/SubjectDepartements",
-     *  summary="SubjectDepartements",
-     *  description="SubjectDepartements",
-     *  tags={"SubjectDepartements"},
+     *  path="/api/SubjectTeachers",
+     *  summary="SubjectTeachers",
+     *  description="SubjectTeachers",
+     *  tags={"SubjectTeachers"},
      *  @OA\Response(
      *   response=200, description="ok",
      *   @OA\JsonContent(
      *   type="array",
-     *    @OA\Items(ref="#/components/schemas/SubjectDepartements")
+     *    @OA\Items(ref="#/components/schemas/SubjectTeachers")
      *   ),
      *  ),
      *  @OA\Response(
@@ -49,10 +50,10 @@ class SubjectDepartements extends ResourceController
      */
     /**
      * @OA\Get(
-     *  path="/api/SubjectDepartements/{id}",
-     *  summary="SubjectDepartements",
-     *  description="SubjectDepartements",
-     *  tags={"SubjectDepartements"},
+     *  path="/api/SubjectTeachers/{id}",
+     *  summary="SubjectTeachers",
+     *  description="SubjectTeachers",
+     *  tags={"SubjectTeachers"},
      *  @OA\Parameter(
      *     name="id",
      *     in="path",
@@ -60,7 +61,7 @@ class SubjectDepartements extends ResourceController
      *  ), 
      *  @OA\Response(
      *   response=200, description="ok",
-     *   @OA\JsonContent(ref="#/components/schemas/SubjectDepartements")
+     *   @OA\JsonContent(ref="#/components/schemas/SubjectTeachers")
      *  ), 
      *  @OA\Response(
      *   response=400, description="Bad Request"
@@ -99,21 +100,21 @@ class SubjectDepartements extends ResourceController
      */
     /**
      * @OA\Post(
-     *  path="/api/SubjectDepartements",
-     *  summary="SubjectDepartements",
-     *  description="SubjectDepartements",
-     *  tags={"SubjectDepartements"},
+     *  path="/api/SubjectTeachers",
+     *  summary="SubjectTeachers",
+     *  description="SubjectTeachers",
+     *  tags={"SubjectTeachers"},
   
      * @OA\RequestBody(
      *   required=true,
      *   @OA\MediaType(
      *    mediaType="application/json",
-     *   @OA\Schema(ref="#/components/schemas/SubjectDepartements"),
+     *   @OA\Schema(ref="#/components/schemas/SubjectTeachers"),
      *   )
      *  ),
      *  @OA\Response(
      *   response=201, description="created",
-     *   @OA\JsonContent(ref="#/components/schemas/SubjectDepartements")
+     *   @OA\JsonContent(ref="#/components/schemas/SubjectTeachers")
      *  ), 
      *  @OA\Response(
      *   response=400, description="Request error",
@@ -135,7 +136,7 @@ class SubjectDepartements extends ResourceController
         if ($data == null) {
             return $this->fail("data null");
         }
-        $entity = new EntitiesSubjectDepartements();
+        $entity = new EntitiesSubjectTeachers();
         $array = new StdobjeToArray($data);
 
         $entity->fill($array->get());
@@ -154,10 +155,10 @@ class SubjectDepartements extends ResourceController
      */
     /**
      * @OA\Put(
-     *  path="/api/SubjectDepartements/{id}",
-     *  summary="SubjectDepartements",
-     *  description="SubjectDepartements",
-     *  tags={"SubjectDepartements"},
+     *  path="/api/SubjectTeachers/{id}",
+     *  summary="SubjectTeachers",
+     *  description="SubjectTeachers",
+     *  tags={"SubjectTeachers"},
      *  @OA\Parameter(
      *     name="id",
      *     in="path",
@@ -167,12 +168,12 @@ class SubjectDepartements extends ResourceController
      *   required=true,
      *   @OA\MediaType(
      *    mediaType="application/json",
-     *   @OA\Schema(ref="#/components/schemas/SubjectDepartements"),
+     *   @OA\Schema(ref="#/components/schemas/SubjectTeachers"),
      *   )
      *  ),
      *  @OA\Response(
      *   response=200, description="updated",
-     *   @OA\JsonContent(ref="#/components/schemas/SubjectDepartements")
+     *   @OA\JsonContent(ref="#/components/schemas/SubjectTeachers")
      *  ), 
      *  @OA\Response(
      *   response=400, description="Bad Request"
@@ -201,7 +202,7 @@ class SubjectDepartements extends ResourceController
         if ($data == null) {
             return $this->fail("data null");
         }
-        $entity = new EntitiesSubjectDepartements();
+        $entity = new EntitiesSubjectTeachers();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->update($id, $entity)) {
@@ -218,10 +219,10 @@ class SubjectDepartements extends ResourceController
      */
     /**
      * @OA\Delete(
-     *  path="/api/SubjectDepartements/{id}",
-     *  summary="SubjectDepartements",
-     *  description="SubjectDepartements",
-     *  tags={"SubjectDepartements"},
+     *  path="/api/SubjectTeachers/{id}",
+     *  summary="SubjectTeachers",
+     *  description="SubjectTeachers",
+     *  tags={"SubjectTeachers"},
      *  @OA\Parameter(
      *     name="id",
      *     in="path",
@@ -277,10 +278,10 @@ class SubjectDepartements extends ResourceController
 
     /**
      * @OA\Post(
-     *  path="/api/SubjectDepartements/fromXl",
-     *  summary="SubjectDepartements",
-     *  description="SubjectDepartements",
-     *  tags={"SubjectDepartements"},
+     *  path="/api/SubjectTeachers/fromXl",
+     *  summary="SubjectTeachers",
+     *  description="SubjectTeachers",
+     *  tags={"SubjectTeachers"},
      *  @OA\RequestBody(
      *   @OA\MediaType(
      *    mediaType="multipart/form-data",
@@ -348,8 +349,8 @@ class SubjectDepartements extends ResourceController
 
         $data = $spreadsheet->getActiveSheet()->toArray();
 
-        $subjectEntity = new EntitiesSubjectDepartements();
-        $this->model->transStart();
+        $subjectEntity = new EntitiesSubjectTeachers();
+        $this->model->transStdobjeToArrayStart();
         foreach ($data as $x => $row) {
             if ($x == 0) {
                 continue;
