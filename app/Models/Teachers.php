@@ -17,8 +17,7 @@ class Teachers extends Model
     protected $allowedFields    = [
         'nip',
         'name',
-        'gender',
-        'position',
+        'gender', 
         'dob',
         'email',
         'image',
@@ -27,6 +26,7 @@ class Teachers extends Model
         'password',
         'ipAddress',
         'about',
+        'isPn'
     ];
 
     // Dates
@@ -43,12 +43,12 @@ class Teachers extends Model
         'name' => 'required|min_length[4]',
         'password' => 'required|min_length[5]',
         'gender' => 'required|alpha',
-        'position' => 'required|',
         'dob' => 'required|',
         'status' => 'required|integer',
         'ipAddress' => 'required',
         'about' => 'required',
         'privilegeId' => 'required|integer',
+        'isPn' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

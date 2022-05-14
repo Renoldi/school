@@ -5,6 +5,7 @@ namespace App\Database\Seeds;
 use App\Entities\Teachers as EntitiesTeachers;
 use App\Models\Teachers as ModelsTeachers;
 use CodeIgniter\Database\Seeder;
+use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Random;
 
 class Teachers extends Seeder
 {
@@ -25,10 +26,10 @@ class Teachers extends Seeder
                 'password' => ($i == 0) ? 'admin' : 'admin123',
                 'gender' => generateRandomString(1, 'LP'),
                 'status' => 1,
-                'position' => 'teacher',
                 'privilegeId' => ($i == 0) ? 1 : 4,
                 'about' => 'created',
                 'ipAddress' => '127.0.0.1',
+                'isPn'=>rand(0,1)
             ];
             $entities->fill($data);
             if (!$model->save($entities)) {

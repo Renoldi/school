@@ -21,8 +21,7 @@ class Teachers extends Entity
     protected $attributes = [
         'nip' => null,
         'name' => null,
-        'gender' => null,
-        'position' => null,
+        'gender' => null, 
         'email' => null,
         'image' => null,
         'status' => null,
@@ -31,6 +30,7 @@ class Teachers extends Entity
         'dob' => null,
         'ipAddress' => null,
         'about' => null,
+        'isPn' => null,
     ];
 
 
@@ -51,13 +51,7 @@ class Teachers extends Entity
      * @OA\Property()
      */
     protected $gender;
-
-     /**
-     * @var string
-     * @OA\Property()
-     */
-    protected $position;
-
+ 
      /**
      * @var string
      * @OA\Property()

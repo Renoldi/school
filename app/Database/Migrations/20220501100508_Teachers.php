@@ -9,75 +9,72 @@ class Teachers extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'          => [
-                'type'           => 'INT',
-                'constraint'     => 11,
-                
+            'id' => [
+                'type' => 'INT',
+                'constraint' => 11,
                 'auto_increment' => true,
             ],
-            'nip'       => [
-                'type'       => 'VARCHAR',
+            'nip' => [
+                'type' => 'VARCHAR',
                 'constraint' => 60,
             ],
-            'name'       => [
-                'type'       => 'VARCHAR',
+            'name' => [
+                'type' => 'VARCHAR',
                 'constraint' => 60,
             ],
-            'gender'       => [
-                'type'       => 'VARCHAR',
+            'gender' => [
+                'type' => 'VARCHAR',
                 'constraint' => 1,
             ],
-            'position'       => [
-                'type'       => 'VARCHAR',
-                'constraint' => 15,
+            'dob' => [
+                'type' => 'date',
             ],
-            'dob'       => [
-                'type'       => 'date',
+            'privilegeId' => [
+                'type' => 'INT',
+                'constraint' => 11,
             ],
-             
-            'privilegeId'      => [
-                'type'           => 'INT',
-                'constraint'     => 11,
-            ],
-            'email'      => [
-                'type'           => 'VARCHAR',
-                'unique'         => true,
-                'constraint'     => 255,
-            ],
-            'ipAddress'       => [
-                'type'       => 'VARCHAR',
+            'email' => [
+                'type' => 'VARCHAR',
+                'unique' => true,
                 'constraint' => 255,
             ],
-            'about'       => [
-                'type'       => 'VARCHAR',
+            'ipAddress' => [
+                'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'image'      => [
-                'type'           => 'VARCHAR',
-                'constraint'     => 255,
-                'null'        => true,
+            'about' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
             ],
-            'status'      => [
-                'type'           => 'tinyint',
-                'constraint'     => 1,
+            'image' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
             ],
-            'password'       => [
-                'type'       => 'VARCHAR',
+            'status' => [
+                'type' => 'tinyint',
+                'constraint' => 1,
+            ],
+            'isPn' => [
+                'type' => 'tinyint',
+                'constraint' => 1,
+            ],
+            'password' => [
+                'type' => 'VARCHAR',
                 'constraint' => 60,
             ],
             'createdAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'updatedAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'deletedAt' => [
-                 'type' => 'bigint', 
+                'type' => 'bigint',
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('subjectId', 'subjects','id');
-        $this->forge->addForeignKey('privilegeId', 'privileges','id');
+        $this->forge->addForeignKey('privilegeId', 'privileges', 'id');
         $this->forge->createTable('teachers');
     }
 
