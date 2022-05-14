@@ -22,7 +22,7 @@ class Rooms extends Model
 
     // Dates
     protected $useTimestamps = true;
-    protected $dateFormat    = 'datetime';
+    protected $dateFormat    = 'int';  
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';

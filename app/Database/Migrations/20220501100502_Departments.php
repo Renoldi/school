@@ -24,14 +24,13 @@ class Departments extends Migration
                 'constraint'     => 1,
             ],
             'createdAt' => [
-                'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+                'type' => 'int',
             ],
             'updatedAt' => [
-                'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+                'type' => 'int',
             ],
             'deletedAt' => [
-                'type' => 'TIMESTAMP',
-                'null' => true,
+                'type' => 'int', 
             ],
         ]);
         $this->forge->addKey('id', true);
