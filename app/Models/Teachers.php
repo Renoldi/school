@@ -43,10 +43,8 @@ class Teachers extends Model
         'name' => 'required|min_length[4]',
         'password' => 'required|min_length[5]',
         'gender' => 'required|alpha',
-        'dob' => 'required|',
-        'status' => 'required|integer',
-        // 'ipAddress' => 'required',
-        // 'about' => 'required',
+        'dob' => 'required',
+        'status' => 'required|integer', 
         'privilegeId' => 'required|integer',
         'isPn' => 'required|integer',
     ];

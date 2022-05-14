@@ -401,7 +401,7 @@ class Teachers extends ResourceController
                 ),
                 "sub" => "school|" . $this->request->getServer('REQUEST_TIME'),
                 "iat" => $iat->getTimestamp(), //Time the JWT issued at
-                "exp" =>  $exp->getTimestamp(), 
+                "exp" =>  $exp->getTimestamp(),
                 "user" => $users,
             );
 
@@ -534,7 +534,6 @@ class Teachers extends ResourceController
         }
 
         $file_excel = $this->request->getFile('userfile');
-        // $file_excel->getMimeType();
 
         $ext = $file_excel->getClientExtension();
         if ($ext == 'xls') {
@@ -546,25 +545,26 @@ class Teachers extends ResourceController
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
 
-        // $subject = new Subjects();
-        $subjectEntity = new EntitiesTeachers();
+        $entity = new EntitiesTeachers();
         $this->model->transStart();
         foreach ($data as $x => $row) {
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->nip = $row[0];
-            $subjectEntity->name = $row[1];
-            $subjectEntity->gender = $row[2];
-            $subjectEntity->dob = $row[3]; 
-            $subjectEntity->email = $row[4];
-            $subjectEntity->image = $row[5];
-            $subjectEntity->status = $row[6];
-            $subjectEntity->privilegeId = $row[7];
-            $subjectEntity->password = $row[8];
-            $subjectEntity->isPn = $row[9];
+            $entity->nip = $row[0];
+            $entity->name = $row[1];
+            $entity->gender = $row[2];
+            $entity->dob = $row[3];
+            $entity->email = $row[4];
+            $entity->image = $row[5];
+            $entity->status = $row[6];
+            $entity->privilegeId = $row[7];
+            $entity->password = $row[8];
+            $entity->isPn = $row[9];
 
-            if (!$this->model->save($subjectEntity)) {
+            if (!$this->model->save($entity)) {
+            // return  $this->respond([ $this->model->getLastQuery()->getQuery()]);
+
                 return $this->failValidationErrors(
                     [
                         'row' => $x + 1,
@@ -572,6 +572,7 @@ class Teachers extends ResourceController
                     ]
                 );
             }
+
         }
 
         if ($this->model->transStatus() === false) {

@@ -32,7 +32,13 @@ class Teachers extends Entity
         'about' => null,
         'isPn' => null,
     ];
+    
+    public function setPassword(string $pass)
+    {
+        $this->attributes['password'] = password_hash($pass, PASSWORD_BCRYPT);
 
+        return $this;
+    }
 
      /**
      * @var string
@@ -100,10 +106,5 @@ class Teachers extends Entity
      */
     protected $about;
 
-    public function setPassword(string $pass)
-    {
-        $this->attributes['password'] = password_hash($pass, PASSWORD_BCRYPT);
-
-        return $this;
-    }
+    
 }
