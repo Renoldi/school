@@ -28,7 +28,7 @@ class Groups extends Model
     
     // Validation
     protected $validationRules      = [
-        'name' => 'required|alpha_numeric_space|is_unique[classes.name,id,{id}]',
+        'name' => 'required|alpha_numeric_space|is_unique[groups.name,id,{id}]',
         'status' => 'required|integer',
     ];
     protected $validationMessages   = [];

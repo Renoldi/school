@@ -17,8 +17,8 @@ class RunSeeder extends Seeder
         $this->call('Ranks');
         $this->call('Tasks');
         $this->call('EducationLevels');
+        $this->call('Subjects');
         
-        // $this->call('Subjects');
         // $this->call('Students');
         // $this->call('Teachers');
         // $this->call('SubjectDepartements');

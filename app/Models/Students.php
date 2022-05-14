@@ -40,6 +40,7 @@ class Students extends Model
     // Validation
     protected $validationRules      = [
         'nisn' => 'required|min_length[10]|alpha_numeric|is_unique[students.nisn,id,{id}]',
+        'email' => 'required|valid_email|is_unique[students.email,id,{id}]',
         'name' => 'required|',
         'gender' => 'required|',
         'password' => 'required|min_length[5]',
@@ -49,7 +50,6 @@ class Students extends Model
         'privilegeId' => 'required|integer',
         'ipAddress' => 'required',
         'about' => 'required',
-        'email' => 'required|valid_email|is_unique[teachers.email,id,{id}]',
 
     ];
     protected $validationMessages   = [];

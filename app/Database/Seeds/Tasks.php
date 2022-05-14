@@ -49,17 +49,13 @@ class Tasks extends Seeder
             [
                 'name'  => 'Pembina UKS',
                 'status'  =>  1,
-            ],
-            [
-                'name'  => 'Piket',
-                'status'  =>  1,
-            ],
+            ], 
             [
                 'name'  => 'Pembina Olah Raga',
                 'status'  =>  1,
             ],
             [
-                'name'  => 'Pembina PIK-KRR',
+                'name'  => 'Pembina PIK KRR',
                 'status'  =>  1,
             ],
             [
@@ -67,7 +63,7 @@ class Tasks extends Seeder
                 'status'  =>  1,
             ],
             [
-                'name'  => 'Pembina Osim (PA) /Opr Bag. Kesiswaan',
+                'name'  => 'Pembina Osim',
                 'status'  =>  1,
             ],
             [
@@ -80,10 +76,6 @@ class Tasks extends Seeder
             ],
             [
                 'name'  => 'Bendahara Komite',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Pembina Osim',
                 'status'  =>  1,
             ], 
             [

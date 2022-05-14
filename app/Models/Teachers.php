@@ -40,13 +40,13 @@ class Teachers extends Model
     // Validation
     protected $validationRules      = [
         'nip' => 'required|min_length[10]|alpha_numeric|is_unique[teachers.nip,id,{id}]',
+        'email' => 'required|valid_email|is_unique[teachers.email,id,{id}]',
         'name' => 'required|min_length[4]',
         'password' => 'required|min_length[5]',
         'gender' => 'required|alpha',
         'position' => 'required|',
         'dob' => 'required|',
         'subjectId' => 'required|integer',
-        'email' => 'required|valid_email|is_unique[teachers.email,id,{id}]',
         'status' => 'required|integer',
         'ipAddress' => 'required',
         'about' => 'required',
