@@ -15,19 +15,19 @@ class Teachers extends Seeder
         $model = new ModelsTeachers();
         $entities = new EntitiesTeachers();
         for ($i = 0; $i < 100; $i++) {
-           
+
             $data  = [
                 'nip' => generateRandomString(9, '0123456789abcdefghijklmnopqrstuvwxyz') . rand(0, 100),
-                'email' => $faker->email(),
+                'email' => ($i == 0) ? 'admins@admin.com' : $faker->email(),
                 'name' => $faker->name(),
                 'dob' => $faker->date(),
                 'image' => 'assets/avatar.png',
-                'password' => 'admin123',
+                'password' => ($i == 0) ? 'admin' : 'admin123',
                 'subjectId' => rand(1, 26),
                 'gender' => generateRandomString(1, 'mf'),
                 'status' => 1,
-                'position'=>'teacher',
-                'privilegeId' => 4,
+                'position' => 'teacher',
+                'privilegeId' => ($i == 0) ? 1 : 4,
                 'about' => 'created',
                 'ipAddress' => '127.0.0.1',
             ];

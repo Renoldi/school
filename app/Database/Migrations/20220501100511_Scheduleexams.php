@@ -10,7 +10,7 @@ class Scheduleexams extends Migration
     {
         $this->forge->addField([
             'id'          => [
-                'type' => 'INT',
+                 'type' => 'bigint',
                 'constraint'     => 11,
                 'auto_increment' => true,
             ],
@@ -35,13 +35,13 @@ class Scheduleexams extends Migration
                 'constraint'     => 1,
             ],
             'createdAt' => [
-                'type' => 'int',
+                 'type' => 'bigint',
             ],
             'updatedAt' => [
-                'type' => 'int',
+                 'type' => 'bigint',
             ],
             'deletedAt' => [
-                'type' => 'int', 
+                 'type' => 'bigint', 
             ],
         ]);
         $this->forge->addKey('id', true);

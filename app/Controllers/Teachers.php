@@ -6,6 +6,7 @@ use App\Entities\Teachers as EntitiesTeachers;
 use App\Libraries\StdobjeToArray;
 use App\Models\Teachers as ModelsTeachers;
 use CodeIgniter\API\ResponseTrait;
+use CodeIgniter\I18n\Time;
 use CodeIgniter\RESTful\ResourceController;
 use Exception;
 use Firebase\JWT\JWT;
@@ -367,7 +368,7 @@ class Teachers extends ResourceController
             if (!$pwd_verify) {
                 return $this->respond(['error' => 'Invalid password.'], 401);
             }
-            $iat = time(); // current timestamp value
+            $iat = new Time(); // current timestamp value
             $entity = new EntitiesTeachers();
             $entity->ipAddress = $this->request->getServer('REMOTE_ADDR');
             $entity->about = "login";
@@ -376,7 +377,8 @@ class Teachers extends ResourceController
                 return $this->fail(['error' => 'fail login'], 401);
             }
 
-            $exp = $iat + (3600 * 24 * (365 / 12));
+            $exp = $iat->addYears(1);
+
             $users = array(
                 "id" => $user->id,
                 'nip' => $user->nip,
@@ -398,8 +400,8 @@ class Teachers extends ResourceController
                     $this->request->getServer('REMOTE_ADDR')
                 ),
                 "sub" => "school|" . $this->request->getServer('REQUEST_TIME'),
-                "iat" => $iat, //Time the JWT issued at
-                "exp" =>  $exp, // Expiration time of token,
+                "iat" => $iat->getTimestamp(), //Time the JWT issued at
+                "exp" =>  $exp->getTimestamp(), 
                 "user" => $users,
             );
 

@@ -23,7 +23,7 @@ class Subjects extends Model
 
     // Dates
     protected $useTimestamps = true;
-    protected $dateFormat    = 'int';  
+    protected $dateFormat   = 'int';  
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';

@@ -24,13 +24,13 @@ class Departments extends Migration
                 'constraint'     => 1,
             ],
             'createdAt' => [
-                'type' => 'int',
+                 'type' => 'bigint',
             ],
             'updatedAt' => [
-                'type' => 'int',
+                 'type' => 'bigint',
             ],
             'deletedAt' => [
-                'type' => 'int', 
+                 'type' => 'bigint', 
             ],
         ]);
         $this->forge->addKey('id', true);

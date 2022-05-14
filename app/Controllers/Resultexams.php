@@ -136,7 +136,7 @@ class Resultexams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function myExam($start = '2022-05-07', $end = '2022-05-07')
+    public function myExam($start = '1652500511', $end = '1652500511')
     {
         $header = $this->request->getServer('HTTP_AUTHORIZATION');
 
@@ -156,7 +156,7 @@ class Resultexams extends ResourceController
             ->join('rooms r', 'r.id = s.roomId')
             ->join('departments d', 'd.id = r.departmentId')
             ->join('classes c', 'c.id = s.classId')
-            ->where('resultexams.createdAt BETWEEN "' . $start . ' 00:00:00" and "' . $end . ' 23:59:59"')
+            ->where('resultexams.createdAt BETWEEN "' . $start . '" and "' . $end . '"')
             ->where('s.roomId', $roomId)
             ->where('s.classId', $classId)
             ->where('s.id', $studentId)
@@ -176,7 +176,7 @@ class Resultexams extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Resultexams/exam/{start}/{end}/{roomId}/{classId}",
+     *   path="/api/Resultexams/exam/{start}/{end}/{roomId}/{classId}/{status}",
      *   summary="Resultexams",
      *   description="Resultexams",
      *   tags={"Resultexams"},
@@ -197,6 +197,11 @@ class Resultexams extends ResourceController
      *   ), 
      *   @OA\Parameter(
      *         name="classId",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="status",
      *         in="path",
      *         required=true,
      *   ), 
@@ -221,7 +226,7 @@ class Resultexams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function exam($start = '2022-05-07', $end = '2022-05-07', $roomId, $classId)
+    public function exam($start = '1652500511', $end = '1652500511', $roomId, $classId,$status=1)
     {
         $record = $this->model
             ->select('s.id, s.name, s.classId, c.name className,r.id roomId, r.name roomName,d.id departmentId, d.name departmentName, e.subjectId, sb.name subjectName,sum(if(e.answer= resultexams.choise,e.point,0)) point')
@@ -231,9 +236,10 @@ class Resultexams extends ResourceController
             ->join('rooms r', 'r.id = s.roomId')
             ->join('departments d', 'd.id = r.departmentId')
             ->join('classes c', 'c.id = s.classId')
-            ->where('resultexams.createdAt BETWEEN "' . $start . ' 00:00:00" and "' . $end . ' 23:59:59"')
+            ->where('resultexams.createdAt BETWEEN "' . $start . '" and "' . $end . '"')
             ->where('s.roomId', $roomId)
             ->where('s.classId', $classId)
+            ->where('s.status', $status)
             ->groupBy('s.id,e.subjectId')
             ->findAll();
         $res = [];

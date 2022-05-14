@@ -6,6 +6,7 @@ use App\Entities\Students as EntitiesStudents;
 use App\Libraries\StdobjeToArray;
 use App\Models\Students as ModelsStudents;
 use CodeIgniter\API\ResponseTrait;
+use CodeIgniter\I18n\Time;
 use CodeIgniter\RESTful\ResourceController;
 use Exception;
 
@@ -453,7 +454,7 @@ class Students extends ResourceController
             if (!$pwd_verify) {
                 return $this->fail(['error' => 'Invalid password.'], 401);
             }
-            $iat = time(); // current timestamp value
+            $iat = new Time(); // current timestamp value
             $entity = new EntitiesStudents();
 
             $entity->ipAddress = $this->request->getServer('REMOTE_ADDR');
@@ -462,7 +463,7 @@ class Students extends ResourceController
                 return $this->fail(['error' => 'fail login'], 401);
             }
 
-            $exp = $iat + (3600 * 24 * (365 / 12));
+            $exp = $iat->addYears(1);
             $users = array(
                 "id" =>  $user->id,
                 "name" => $user->name,
@@ -479,6 +480,8 @@ class Students extends ResourceController
                 "privilege" => $user->privilege,
             );
 
+            $fromDart = 1652498570939;
+
             $payload = array(
                 "iss" => base_url(),
                 "aud" => array(
@@ -487,14 +490,16 @@ class Students extends ResourceController
                     $this->request->getServer('REMOTE_ADDR')
                 ),
                 "sub" => "school|" . $this->request->getServer('REQUEST_TIME'),
-                "iat" => $iat, //Time the JWT issued at
-                "exp" =>  $exp, // Expiration time of token,
-                "user" => $users
+                "iat" => $iat->getTimestamp(), //Time the JWT issued at
+                "exp" =>  $exp->getTimestamp(), // Expiration time of token,
+                "user" => $users,
             );
 
             helper('jwt');
             $token = generate($payload);
             $response = [
+                $payload,
+
                 "token" => $token,
             ];
             return $this->respond($response);
@@ -545,23 +550,14 @@ class Students extends ResourceController
 
             helper('jwt');
             $decoded = detailJwt($header);
-           
-            return $this->respond( $decoded);
+
+            return $this->respond($decoded);
         } catch (Exception $ex) {
             return $this->failUnauthorized();
         }
     }
 
-    public function setPassword($pass = null)
-    {
-        $data = password_hash($pass, PASSWORD_BCRYPT);
-        $response = [
-            'password' => $data,
-            'origin' => $pass,
-            'length' => strlen($data)
-        ];
-        return $this->respond($response);
-    }
+
 
     /**
      * @OA\Post(
