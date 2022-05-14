@@ -23,7 +23,6 @@ class Teachers extends Entity
         'name' => null,
         'gender' => null,
         'position' => null,
-        'subjectId' => null,
         'email' => null,
         'image' => null,
         'status' => null,
@@ -58,12 +57,6 @@ class Teachers extends Entity
      * @OA\Property()
      */
     protected $position;
-
-     /**
-     * @var integer
-     * @OA\Property()
-     */
-    protected $subjectId;
 
      /**
      * @var string

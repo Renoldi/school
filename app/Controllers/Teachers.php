@@ -557,13 +557,12 @@ class Teachers extends ResourceController
             $subjectEntity->name = $row[1];
             $subjectEntity->gender = $row[2];
             $subjectEntity->position = $row[3];
-            $subjectEntity->dob = $row[4];
-            $subjectEntity->subjectId = $row[5];
-            $subjectEntity->email = $row[6];
-            $subjectEntity->image = $row[7];
-            $subjectEntity->status = $row[8];
-            $subjectEntity->privilegeId = $row[9];
-            $subjectEntity->password = $row[10];
+            $subjectEntity->dob = $row[4]; 
+            $subjectEntity->email = $row[5];
+            $subjectEntity->image = $row[6];
+            $subjectEntity->status = $row[7];
+            $subjectEntity->privilegeId = $row[8];
+            $subjectEntity->password = $row[9];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(
