@@ -30,6 +30,7 @@ class Students extends Entity
         'email' => null,
         'ipAddress' => null,
         'about' => null,
+        'dob' => null,
     ];
 
     

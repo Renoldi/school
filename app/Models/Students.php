@@ -28,6 +28,7 @@ class Students extends Model
         'dob',
         'ipAddress',
         'about',
+        'dob',
     ];
 
     // Dates
