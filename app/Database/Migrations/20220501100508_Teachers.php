@@ -46,6 +46,7 @@ class Teachers extends Migration
             'about' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
+                'null' => true,
             ],
             'image' => [
                 'type' => 'VARCHAR',
