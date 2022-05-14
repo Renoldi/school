@@ -26,7 +26,7 @@ class Students extends Seeder
                 'password' => ($i == 0) ? 'admin' : 'admin123',
                 'classId' => rand(1, 3),
                 'roomId' => rand(1, 7),
-                'gender' => generateRandomString(1, 'mf'),
+                'gender' => generateRandomString(1, 'LP'),
                 'status' => 1,
                 'about' => 'created',
                 'ipAddress' => '127.0.0.1',

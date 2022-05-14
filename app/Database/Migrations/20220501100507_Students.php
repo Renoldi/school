@@ -47,11 +47,7 @@ class Students extends Migration
             'gender'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => 1,
-            ],
-            'gender'       => [
-                'type'       => 'VARCHAR',
-                'constraint' => 1,
-            ],
+            ], 
             'ipAddress'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
@@ -61,7 +57,7 @@ class Students extends Migration
                 'constraint' => 255,
             ],
             'dob'       => [
-                'type'       => 'datetime',
+                'type'       => 'date',
             ],
             'status'      => [
                 'type'           => 'tinyint',

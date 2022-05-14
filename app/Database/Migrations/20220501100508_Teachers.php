@@ -32,12 +32,9 @@ class Teachers extends Migration
                 'constraint' => 15,
             ],
             'dob'       => [
-                'type'       => 'datetime',
+                'type'       => 'date',
             ],
-            'subjectId'      => [
-                'type'           => 'INT',
-                'constraint'     => 11,
-            ],
+             
             'privilegeId'      => [
                 'type'           => 'INT',
                 'constraint'     => 11,
