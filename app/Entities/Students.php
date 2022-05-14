@@ -105,6 +105,11 @@ class Students extends Entity
      * @OA\Property()
      */
     protected $about;
+    /**
+     * @var date
+     * @OA\Property()
+     */
+    protected $dob;
     
     public function setPassword(string $pass)
     {
