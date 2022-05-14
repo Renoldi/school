@@ -15,7 +15,8 @@ class SubjectTeachers extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'teachersId','subjectId'
+        'teacherId',
+        'subjectId'
     ];
 
     // Dates

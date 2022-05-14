@@ -18,7 +18,7 @@ class SubjectTeachers extends Entity
     protected $dates   = ['createdAt','updatedAt','deletedAt'];
     protected $casts   = [];
     protected $attributes = [
-        'departmentId' => null,
+        'teacherId' => null,
         'subjectId' => null,
     ];
 
@@ -27,7 +27,7 @@ class SubjectTeachers extends Entity
      * @var integer
      * @OA\Property()
      */
-    protected $departmentId;
+    protected $teacherId;
     
     /**
      * @var integer
