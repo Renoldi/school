@@ -562,6 +562,7 @@ class Teachers extends ResourceController
             $subjectEntity->status = $row[6];
             $subjectEntity->privilegeId = $row[7];
             $subjectEntity->password = $row[8];
+            $subjectEntity->isPn = $row[9];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(
