@@ -1,3 +1,6 @@
+ add new subdomain
+  maindoamin->manageNameServer->pengelolaanDns->addNewRecord->Record Type = a ip base on ip current ip
+
  composer update update vendor
 
  php spark migrate genarate table
