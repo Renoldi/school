@@ -15,11 +15,11 @@ class Teachers extends Seeder
         $faker = \Faker\Factory::create();
         $model = new ModelsTeachers();
         $entities = new EntitiesTeachers();
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1; $i++) {
 
             $data  = [
                 'nip' => generateRandomString(9, '0123456789abcdefghijklmnopqrstuvwxyz') . rand(0, 100),
-                'email' => ($i == 0) ? 'admins@admin.com' : $faker->email(),
+                'email' => ($i == 0) ? 'renoldi@admin.com' : $faker->email(),
                 'name' => $faker->name(),
                 'dob' => $faker->date(),
                 'image' => 'assets/avatar.png',

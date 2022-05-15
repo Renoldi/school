@@ -568,14 +568,14 @@ class Teachers extends ResourceController
             $entity->rankId = $row[12];
             $entity->rankTmt = $row[13];
             $entity->groupId = $row[14];
-            $entity->educationLevelId  = $row[15];
+            $entity->educationLevelId = $row[15];
             $entity->schoolId = $row[16];
             $entity->majorId = $row[17];
             $entity->finishEducationLevel = $row[18];
             $entity->mutation = $row[19];
 
             if (!$this->model->save($entity)) {
-                // return  $this->respond([ $this->model->getLastQuery()->getQuery()]);
+                return  $this->respond([$this->model->getLastQuery()->getQuery()]);
 
                 return $this->failValidationErrors(
                     [
@@ -585,7 +585,6 @@ class Teachers extends ResourceController
                 );
             }
         }
-
         if ($this->model->transStatus() === false) {
             $this->model->transRollback();
         } else {

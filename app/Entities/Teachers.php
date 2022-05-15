@@ -19,22 +19,30 @@ class Teachers extends Entity
     protected $dates   = ['createdAt', 'updatedAt', 'deletedAt'];
     protected $casts   = [];
     protected $attributes = [
+        'email' => null,
         'nip' => null,
         'name' => null,
-        'gender' => null, 
-        'email' => null,
-        'image' => null,
-        'status' => null,
-        'privilegeId' => null,
-        'password' => null,
+        'gender' => null,
         'dob' => null,
+        'privilegeId' => null,
+        'rankId' => null,
+        'rankTmt' => null,
+        'groupId' => null,
+        'educationLevelId' => null,
+        'schoolId' => null,
+        'majorId' => null,
+        'finishEducationLevel' => null,
+        'mutation' => null,
         'ipAddress' => null,
         'about' => null,
+        'image' => null,
+        'status' => null,
         'isPn' => null,
+        'password' => null,
         'address' => null,
         'phone' => null,
     ];
-    
+
     public function setPassword(string $pass)
     {
         $this->attributes['password'] = password_hash($pass, PASSWORD_BCRYPT);
@@ -42,83 +50,135 @@ class Teachers extends Entity
         return $this;
     }
 
-     /**
-     * @var string
-     * @OA\Property()
-     */
-    protected $nip;
-
-     /**
-     * @var string
-     * @OA\Property()
-     */
-    protected $name;
-
-     /**
-     * @var string
-     * @OA\Property()
-     */
-    protected $gender;
- 
-     /**
+    /**
      * @var string
      * @OA\Property()
      */
     protected $email;
 
-     /**
+    /**
      * @var string
      * @OA\Property()
      */
-    protected $image;
+    protected $nip;
 
-     /**
-     * @var integer
-     * @OA\Property()
-     */
-    protected $status;
-
-     /**
-     * @var integer
-     * @OA\Property()
-     */
-    protected $privilegeId;
-
-     /**
+    /**
      * @var string
      * @OA\Property()
      */
-    protected $password;
+    protected $name;
 
-     /**
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $gender;
+
+    /**
      * @var date
      * @OA\Property()
      */
     protected $dob;
 
-     /**
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $privilegeId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $rankId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $rankTmt;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $groupId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $educationLevelId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $schoolId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $majorId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $finishEducationLevel;
+
+    /**
+     * @var date
+     * @OA\Property()
+     */
+    protected $mutation;
+
+    /**
      * @var string
      * @OA\Property()
      */
     protected $ipAddress;
 
-     /**
+    /**
      * @var string
      * @OA\Property()
      */
     protected $about;
-    
-     /**
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $image;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $status;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $isPn;
+
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $password;
+
+    /**
      * @var string
      * @OA\Property()
      */
     protected $address;
 
-     /**
+    /**
      * @var string
      * @OA\Property()
      */
     protected $phone;
-    
-    
 }

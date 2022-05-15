@@ -9,20 +9,20 @@ class RunSeeder extends Seeder
     public function run()
     {
         // master
-        // $this->call('Classes');
-        // $this->call('Departments');
-        // $this->call('Privileges');
-        // $this->call('Rooms');
-        // $this->call('Groups');
-        // $this->call('Ranks');
-        // $this->call('Tasks');
+        $this->call('Classes');
+        $this->call('Departments');
+        $this->call('Privileges');
+        $this->call('Rooms');
+        $this->call('Groups');
+        $this->call('Ranks');
+        $this->call('Tasks');
         $this->call('EducationLevels');
-        // $this->call('Majors');
-        // $this->call('Subjects');
-        // $this->call('Schools');
+        $this->call('Majors');
+        $this->call('Subjects');
+        $this->call('Schools');
         
         // $this->call('Students');
-        // $this->call('Teachers');
+        $this->call('Teachers');
         // $this->call('SubjectDepartements');
         // $this->call('Exams');
         // $this->call('Resultexams');

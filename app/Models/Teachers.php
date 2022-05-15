@@ -15,20 +15,28 @@ class Teachers extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'email',
         'nip',
         'name',
-        'gender', 
+        'gender',
         'dob',
-        'email',
-        'image',
-        'status',
         'privilegeId',
-        'password',
+        'rankId',
+        'rankTmt',
+        'groupId',
+        'educationLevelId',
+        'schoolId',
+        'majorId',
+        'finishEducationLevel',
+        'mutation',
         'ipAddress',
         'about',
+        'image',
+        'status',
         'isPn',
+        'password',
         'address',
-        'phone'
+        'phone',
     ];
 
     // Dates
