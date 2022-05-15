@@ -145,7 +145,7 @@ class SubjectTeachers extends ResourceController
         }
         $record = $this->model->find($this->model->getInsertID());
 
-        return $this->respondCreated($record , 'post created');
+        return $this->respondCreated($record, 'post created');
     }
 
     /**
@@ -355,7 +355,9 @@ class SubjectTeachers extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->departmentId = $row[0];
+            if ($row[0] == '')
+                continue;
+            $subjectEntity->departmentId  = $row[0];
             $subjectEntity->subjectId = $row[1];
 
             if (!$this->model->save($subjectEntity)) {

@@ -129,7 +129,8 @@ class BaseApi extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->name = $row[0];
+            $subjectEntity->name  = $row[0]; if ($row[0] == '')
+                continue;
             $subjectEntity->status = $row[1];
 
             if (!$subject->save($subjectEntity)) {

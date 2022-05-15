@@ -357,7 +357,9 @@ class Subjects extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->name = $row[0];
+            if ($row[0] == '')
+                continue;
+            $subjectEntity->name  = $row[0];
             $subjectEntity->status = $row[1];
 
             if (!$this->model->save($subjectEntity)) {
@@ -402,7 +404,6 @@ class Subjects extends ResourceController
                 'decoded' => $decoded,
             ];
             return $this->respond($response);
-            
         } catch (Exception $ex) {
             return $this->failUnauthorized();
         }

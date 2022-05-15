@@ -356,7 +356,9 @@ class Rooms extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->name = $row[0];
+            if ($row[0] == '')
+                continue;
+            $subjectEntity->name  = $row[0];
             $subjectEntity->status = $row[1];
 
             if (!$this->model->save($subjectEntity)) {

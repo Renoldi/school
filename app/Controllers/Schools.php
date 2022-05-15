@@ -2,22 +2,17 @@
 
 namespace App\Controllers;
 
-use App\Entities\Teachers as EntitiesTeachers;
+use App\Entities\Schools as EntitiesSchools;
 use App\Libraries\StdobjeToArray;
-use App\Models\Teachers as ModelsTeachers;
+use App\Models\Schools as ModelsSchools;
 use CodeIgniter\API\ResponseTrait;
-use CodeIgniter\I18n\Time;
 use CodeIgniter\RESTful\ResourceController;
-use Exception;
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
 
-class Teachers extends ResourceController
+class Schools extends ResourceController
 {
-    protected $modelName = ModelsTeachers::class;
+    protected $modelName = ModelsSchools::class;
     protected $format    = 'json';
     use ResponseTrait;
-
 
     /**
      * Return an array of resource objects, themselves in array format
@@ -26,15 +21,15 @@ class Teachers extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Teachers",
-     *   summary="Subjects",
-     *   description="Subjects",
-     *   tags={"Teachers"},
+     *   path="/api/Schools",
+     *   summary="Schools",
+     *   description="Schools",
+     *   tags={"Schools"},
      *   @OA\Response(
      *     response=200, description="ok",
      *     @OA\JsonContent(
      *      type="array",
-     *       @OA\Items(ref="#/components/schemas/Teachers")
+     *       @OA\Items(ref="#/components/schemas/Schools")
      *     ),
      *   ),
      *   @OA\Response(
@@ -45,7 +40,7 @@ class Teachers extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->where('status', 1)->findAll());
+        return $this->respond($this->model->findAll());
     }
 
     /**
@@ -55,10 +50,10 @@ class Teachers extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Teachers/{id}",
-     *   summary="Subjects",
-     *   description="Subjects",
-     *   tags={"Teachers"},
+     *   path="/api/Schools/{id}",
+     *   summary="Schools",
+     *   description="Schools",
+     *   tags={"Schools"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -66,7 +61,7 @@ class Teachers extends ResourceController
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
+     *      @OA\JsonContent(ref="#/components/schemas/Schools")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -87,10 +82,10 @@ class Teachers extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->find($id);
+        $record = $this->model->where('status', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
-                'user with id %d not found',
+                'not found',
                 $id
             ));
         }
@@ -105,21 +100,21 @@ class Teachers extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/Teachers",
-     *   summary="Subjects",
-     *   description="Subjects",
-     *   tags={"Teachers"},
+     *   path="/api/Schools",
+     *   summary="Schools",
+     *   description="Schools",
+     *   tags={"Schools"},
     
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Teachers"),
+     *      @OA\Schema(ref="#/components/schemas/Schools"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=201, description="created",
-     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
+     *      @OA\JsonContent(ref="#/components/schemas/Schools")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Request error",
@@ -141,14 +136,16 @@ class Teachers extends ResourceController
         if ($data == null) {
             return $this->fail("data null");
         }
-        $entity = new EntitiesTeachers();
+        $entity = new EntitiesSchools();
         $array = new StdobjeToArray($data);
+         
         $entity->fill($array->get());
         if (!$this->model->save($entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
+        $record = $this->model->find($this->model->getInsertID());
 
-        return $this->respondCreated($entity, 'post created');
+        return $this->respondCreated($record , 'post created');
     }
 
     /**
@@ -158,10 +155,10 @@ class Teachers extends ResourceController
      */
     /**
      * @OA\Put(
-     *   path="/api/Teachers/{id}",
-     *   summary="Subjects",
-     *   description="Subjects",
-     *   tags={"Teachers"},
+     *   path="/api/Schools/{id}",
+     *   summary="Schools",
+     *   description="Schools",
+     *   tags={"Schools"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -171,12 +168,12 @@ class Teachers extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Teachers"),
+     *      @OA\Schema(ref="#/components/schemas/Schools"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="updated",
-     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
+     *      @OA\JsonContent(ref="#/components/schemas/Schools")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -205,7 +202,7 @@ class Teachers extends ResourceController
         if ($data == null) {
             return $this->fail("data null");
         }
-        $entity = new EntitiesTeachers();
+        $entity = new EntitiesSchools();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->update($id, $entity)) {
@@ -222,10 +219,10 @@ class Teachers extends ResourceController
      */
     /**
      * @OA\Delete(
-     *   path="/api/Teachers/{id}",
-     *   summary="Subjects",
-     *   description="Subjects",
-     *   tags={"Teachers"},
+     *   path="/api/Schools/{id}",
+     *   summary="Schools",
+     *   description="Schools",
+     *   tags={"Schools"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -279,206 +276,12 @@ class Teachers extends ResourceController
         }
     }
 
-
     /**
      * @OA\Post(
-     *   path="/api/Teachers/login",
-     *   summary="Subjects",
-     *   description="Subjects",
-     *   tags={"Teachers"},
-   
-     *  @OA\RequestBody(
-     *     required=true,
-     *     @OA\MediaType(
-     *       mediaType="application/json",
-     *      @OA\Schema(
-     *          @OA\Property(
-     *              property="email",
-     *              type="string",example="admins@admin.com"
-     *          ),
-     *          @OA\Property(
-     *              property="password",
-     *              type="string",example="admin"
-     *          ),
-     *      ),
-     *     )
-     *   ),
-     *   @OA\Response(
-     *     response=200, description="ok",
-     *      @OA\JsonContent(
-     *            @OA\Property(
-     *              property="message",
-     *              type="string",
-     *          ),
-     *          @OA\Property(
-     *              property="token",
-     *              type="string",
-     *          ),
-     * )
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
-     *   ),
-     *   @OA\Response(
-     *     response=404, description="404 not found",
-     *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 404),
-     *      @OA\Property(property="error", type="double", example = 404),
-     *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
-     *       )
-     *     )
-     *   ),
-     * )
-     */
-    public function login()
-    {
-        $email = $this->request->getVar('email');
-        $password = $this->request->getVar('password');
-        $rules = [
-            "email" => "required|valid_email",
-            "password" => "required|min_length[5]",
-        ];
-        if (!$this->validate($rules)) {
-
-            $response = [
-                'status'   => 200,
-                'error'    => true,
-                'messages' => $this->validator->getErrors()
-
-            ];
-
-            return $this->respondCreated($response);
-        } else {
-
-            $user =  $this->model
-                ->select("teachers.*,p.name as privilege, s.name as subject")
-                ->join('privileges p', 'p.id=teachers.privilegeId')
-                ->join('subjects s', 's.id=teachers.subjectId')
-                ->where('email', $email)
-                ->first();
-
-            if (is_null($user)) {
-                return $this->respond(['error' => 'Invalid username '], 401);
-            }
-
-            $pwd_verify = password_verify($password, $user->password);
-
-            if (!$pwd_verify) {
-                return $this->respond(['error' => 'Invalid password.'], 401);
-            }
-            $iat = new Time(); // current timestamp value
-            $entity = new EntitiesTeachers();
-            $entity->ipAddress = $this->request->getServer('REMOTE_ADDR');
-            $entity->about = "login";
-
-            if (!$this->model->update($user->id, $entity)) {
-                return $this->fail(['error' => 'fail login'], 401);
-            }
-
-            $exp = $iat->addYears(1);
-
-            $users = array(
-                "id" => $user->id,
-                'nip' => $user->nip,
-                'name' => $user->name,
-                'gender' => $user->gender,
-                'position' => $user->position,
-                'dob' => $user->dob,
-                'subject' => $user->subject,
-                'email' => $user->email,
-                'image' => $user->image,
-                'status' => $user->status,
-                'privilege' => $user->privilege,
-            );
-            $payload = array(
-                "iss" => base_url(),
-                "aud" => array(
-                    "my-api-Teachers",
-                    base_url('api/Teachers/details'),
-                    $this->request->getServer('REMOTE_ADDR')
-                ),
-                "sub" => "school|" . $this->request->getServer('REQUEST_TIME'),
-                "iat" => $iat->getTimestamp(), //Time the JWT issued at
-                "exp" =>  $exp->getTimestamp(),
-                "user" => $users,
-            );
-
-            helper('jwt');
-            $token = generate($payload);
-            $response = [
-                "token" => $token,
-            ];
-            return $this->respond($response);
-        }
-    }
-
-    /**
-     * @OA\Get(
-     *   path="/api/Teachers/details",
-     *   summary="Subjects",
-     *   description="Subjects",
-     *   tags={"Teachers"},
-     *   @OA\Response(
-     *     response=200, description="ok",
-     *      @OA\JsonContent(
-     *            @OA\Property(
-     *              property="message",
-     *              type="string",
-     *          ),
-     *          @OA\Property(
-     *              property="token",
-     *              type="string",
-     *          ),
-     * )
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
-     *   ),
-     *   @OA\Response(
-     *     response=404, description="404 not found",
-     *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 404),
-     *      @OA\Property(property="error", type="double", example = 404),
-     *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
-     *       )
-     *     )
-     *   ),
-     *   security={{"token": {}}},
-     * )
-     */
-    public function details()
-    {
-        $header = $this->request->getServer('HTTP_AUTHORIZATION');
-        try {
-            helper('jwt');
-            $decoded = detailJwt($header);
-            return $this->respond($decoded);
-        } catch (Exception $ex) {
-            return $this->failUnauthorized();
-        }
-    }
-
-    // public function setPassword($pass = null)
-    // {
-    //     $data = password_hash($pass, PASSWORD_BCRYPT);
-    //     $response = [
-    //         'password' => $data,
-    //         'origin' => $pass,
-    //         'length' => strlen($data)
-    //     ];
-    //     return $this->respond($response);
-    // }
-
-    /**
-     * @OA\Post(
-     *   path="/api/Teachers/fromXl",
-     *   summary="Subjects",
-     *   description="Subjects",
-     *   tags={"Teachers"},
+     *   path="/api/Schools/fromXl",
+     *   summary="Schools",
+     *   description="Schools",
+     *   tags={"Schools"},
      *   @OA\RequestBody(
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",
@@ -534,6 +337,7 @@ class Teachers extends ResourceController
         }
 
         $file_excel = $this->request->getFile('userfile');
+        // $file_excel->getMimeType();
 
         $ext = $file_excel->getClientExtension();
         if ($ext == 'xls') {
@@ -545,30 +349,17 @@ class Teachers extends ResourceController
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
 
-        $entity = new EntitiesTeachers();
+        $subjectEntity = new EntitiesSchools();
         $this->model->transStart();
         foreach ($data as $x => $row) {
             if ($x == 0) {
                 continue;
             }
-            if ($row[0] == '')
+            $subjectEntity->name  = $row[0]; if ($row[0] == '')
                 continue;
-            $entity->nip  = $row[0];
-            $entity->name = $row[1];
-            $entity->gender = $row[2];
-            $entity->dob = $row[3];
-            $entity->email = $row[4];
-            $entity->image = $row[5];
-            $entity->status = $row[6];
-            $entity->privilegeId = $row[7];
-            $entity->password = $row[8];
-            $entity->isPn = $row[9];
-            $entity->address = $row[10];
-            $entity->phone = $row[11];
+            $subjectEntity->status = $row[1];
 
-            if (!$this->model->save($entity)) {
-                // return  $this->respond([ $this->model->getLastQuery()->getQuery()]);
-
+            if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(
                     [
                         'row' => $x + 1,

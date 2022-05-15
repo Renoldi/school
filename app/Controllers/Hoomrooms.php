@@ -308,7 +308,9 @@ class Hoomrooms extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->roomId = $row[0];
+            if ($row[0] == '')
+                continue;
+            $subjectEntity->roomId  = $row[0];
             $subjectEntity->classId = $row[1];
             $subjectEntity->teacherId = $row[2];
             $subjectEntity->status = $row[3];

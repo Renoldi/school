@@ -549,7 +549,9 @@ class Exams extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->classId = $row[0];
+            if ($row[0] == '')
+                continue;
+            $subjectEntity->classId  = $row[0];
             $subjectEntity->subjectId = $row[1];
             $subjectEntity->question = $row[2];
             $subjectEntity->questionImage = $row[3];

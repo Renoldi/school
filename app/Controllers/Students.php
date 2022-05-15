@@ -638,7 +638,9 @@ class Students extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->nisn = $row[0];
+            if ($row[0] == '')
+                continue;
+            $subjectEntity->nisn  = $row[0];
             $subjectEntity->email = $row[1];
             $subjectEntity->name = $row[2];
             $subjectEntity->gender = $row[3];

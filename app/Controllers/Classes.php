@@ -6,7 +6,7 @@ use App\Entities\Classes as EntitiesClasses;
 use App\Libraries\StdobjeToArray;
 use App\Models\Classes as ModelsClasses;
 use CodeIgniter\API\ResponseTrait;
-use CodeIgniter\RESTful\ResourceController; 
+use CodeIgniter\RESTful\ResourceController;
 
 class Classes extends ResourceController
 {
@@ -138,14 +138,14 @@ class Classes extends ResourceController
         }
         $entity = new EntitiesClasses();
         $array = new StdobjeToArray($data);
-         
+
         $entity->fill($array->get());
         if (!$this->model->save($entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
         $record = $this->model->find($this->model->getInsertID());
 
-        return $this->respondCreated($record , 'post created');
+        return $this->respondCreated($record, 'post created');
     }
 
     /**
@@ -355,7 +355,9 @@ class Classes extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->name = $row[0];
+            if ($row[0] == '')
+                continue;
+            $subjectEntity->name  = $row[0];
             $subjectEntity->status = $row[1];
 
             if (!$this->model->save($subjectEntity)) {

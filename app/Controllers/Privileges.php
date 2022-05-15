@@ -196,7 +196,7 @@ class Privileges extends ResourceController
         $data = $this->request->getVar();
         if ($data == null) {
             return $this->fail("data null");
-        }       
+        }
 
         if ($data == null) {
             return $this->fail("data null");
@@ -355,7 +355,9 @@ class Privileges extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->name = $row[0];
+            if ($row[0] == '')
+                continue;
+            $subjectEntity->name  = $row[0];
             $subjectEntity->status = $row[1];
 
             if (!$this->model->save($subjectEntity)) {
@@ -373,7 +375,6 @@ class Privileges extends ResourceController
         } else {
             $this->model->transCommit();
             return $this->respondCreated(["result" => "success upload"]);
-
         }
     }
 }

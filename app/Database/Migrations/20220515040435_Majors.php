@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class TeacherTasks extends Migration
+class Majors extends Migration
 {
     public function up()
     {
@@ -14,16 +14,14 @@ class TeacherTasks extends Migration
                 'auto_increment' => true,
                 'constraint' => 11,
             ],
-            'teacherId' => [
-                'type' => 'INT',
-                'constraint' => 11,
+            'name'  => [
+                'type'  => 'VARCHAR',
+                'constraint' => '100',
+                'unique'    => true,
             ],
-            'taskId' => [
-                'type' => 'INT',
-                'constraint' => 11,
-            ],
-            'tmtTask' => [
-                'type' => 'date',
+            'status' => [
+                'type' => 'tinyint',
+                'constraint' => 1,
             ],
             'createdAt' => [
                 'type' => 'bigint',
@@ -36,13 +34,11 @@ class TeacherTasks extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('teacherId', 'teachers', 'id');
-        $this->forge->addForeignKey('taskId', 'tasks', 'id');
-        $this->forge->createTable('TeacherTasks');
+        $this->forge->createTable('majors');
     }
 
     public function down()
     {
-        $this->forge->dropTable('TeacherTasks');
+        $this->forge->dropTable('majors');
     }
 }

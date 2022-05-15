@@ -226,7 +226,7 @@ class Resultexams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function exam($start = '1652500511', $end = '1652500511', $roomId, $classId,$status=1)
+    public function exam($start = '1652500511', $end = '1652500511', $roomId, $classId, $status = 1)
     {
         $record = $this->model
             ->select('s.id, s.name, s.classId, c.name className,r.id roomId, r.name roomName,d.id departmentId, d.name departmentName, e.subjectId, sb.name subjectName,sum(if(e.answer= resultexams.choise,e.point,0)) point')
@@ -259,7 +259,7 @@ class Resultexams extends ResourceController
                 ];
                 $keys =  $key->id;
             }
-              $res[count($res) - 1]['subject'][] = [
+            $res[count($res) - 1]['subject'][] = [
                 'id' => $key->subjectId,
                 'name' => $key->subjectName,
                 'point' => $key->point,
@@ -534,7 +534,9 @@ class Resultexams extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->studentId = $row[0];
+            if ($row[0] == '')
+                continue;
+            $subjectEntity->studentId  = $row[0];
             $subjectEntity->examId = $row[1];
             $subjectEntity->choise = $row[2];
             $subjectEntity->status = $row[3];

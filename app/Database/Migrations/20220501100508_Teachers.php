@@ -28,8 +28,21 @@ class Teachers extends Migration
             ],
             'dob' => [
                 'type' => 'date',
+                
             ],
             'privilegeId' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ],
+            'rankId' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ],
+            'rankTmt' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ],
+            'groupId' => [
                 'type' => 'INT',
                 'constraint' => 11,
             ],
@@ -65,6 +78,14 @@ class Teachers extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 60,
             ],
+            'address' => [
+                'type' => 'varchar',
+                'constraint' => 256,
+            ],
+            'phone' => [
+                'type' => 'varchar',
+                'constraint' => 15,
+            ],
             'createdAt' => [
                 'type' => 'bigint',
             ],
@@ -77,6 +98,8 @@ class Teachers extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('privilegeId', 'privileges', 'id');
+        $this->forge->addForeignKey('rankId', 'ranks', 'id');
+        $this->forge->addForeignKey('groupId', 'groupS', 'id');
         $this->forge->createTable('teachers');
     }
 

@@ -196,7 +196,7 @@ class Scheduleexams extends ResourceController
         $data = $this->request->getVar();
         if ($data == null) {
             return $this->fail("data null");
-        }       
+        }
 
         if ($data == null) {
             return $this->fail("data null");
@@ -308,10 +308,12 @@ class Scheduleexams extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->subjectId = $row[0];
+            if ($row[0] == '')
+                continue;
+            $subjectEntity->subjectId  = $row[0];
             $subjectEntity->classId = $row[1];
             $subjectEntity->start = $row[2];
-            $subjectEntity->end = $row[3]; 
+            $subjectEntity->end = $row[3];
             $subjectEntity->status = $row[4];
 
             if (!$this->model->save($subjectEntity)) {
@@ -329,7 +331,6 @@ class Scheduleexams extends ResourceController
         } else {
             $this->model->transCommit();
             return $this->respondCreated(["result" => "success upload"]);
-
         }
     }
 }
