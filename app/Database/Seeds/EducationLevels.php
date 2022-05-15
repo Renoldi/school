@@ -35,6 +35,10 @@ class EducationLevels extends Seeder
                 'status'  =>  1,
             ],
             [
+                'name'  => 'SMEA',
+                'status'  =>  1,
+            ],
+            [
                 'name'  => 'D1',
                 'status'  =>  1,
             ],

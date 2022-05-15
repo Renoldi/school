@@ -51,6 +51,7 @@ class Exams extends Migration
             ],
             'point'       => [
                 'type'           => 'INT',
+                'constraint'     => 3,
             ],
 
             'answer'       => [

@@ -565,6 +565,14 @@ class Teachers extends ResourceController
             $entity->isPn = $row[9];
             $entity->address = $row[10];
             $entity->phone = $row[11];
+            $entity->rankId = $row[12];
+            $entity->rankTmt = $row[13];
+            $entity->groupId = $row[14];
+            $entity->educationLevelId  = $row[15];
+            $entity->schoolId = $row[16];
+            $entity->majorId = $row[17];
+            $entity->finishEducationLevel = $row[18];
+            $entity->mutation = $row[19];
 
             if (!$this->model->save($entity)) {
                 // return  $this->respond([ $this->model->getLastQuery()->getQuery()]);

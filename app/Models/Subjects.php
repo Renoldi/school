@@ -30,7 +30,7 @@ class Subjects extends Model
 
     // Validation
     protected $validationRules      = [
-        'name' => 'required|alpha_numeric_space|is_unique[subjects.name,id,{id}]',
+        'name' => 'required|is_unique[subjects.name,id,{id}]',
         'status' => 'required|integer',
         // 'departmentId' => 'required|integer',
         // 'classId' => 'required|integer',

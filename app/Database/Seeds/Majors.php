@@ -14,77 +14,76 @@ class Majors extends Seeder
         $entities = new EntitiesMajors();
         $data = [
             [
-                'Biologi',
-                'status' => 1
-            ], 
-            [
-                'PKn',
-                'status' => 1
-            ], 
-            [
-                'Sosiologi',
+                'name' => 'Biologi',
                 'status' => 1
             ],
             [
-                'Ekonomi',
+                'name' => 'PKn',
                 'status' => 1
             ],
             [
-                'B. Indonesia',
-                'status' => 1
-            ], 
-            [
-                'Kimia',
+                'name' => 'Sosiologi',
                 'status' => 1
             ],
             [
-                'TIA',
+                'name' => 'Ekonomi',
                 'status' => 1
             ],
             [
-                'Fiqih',
+                'name' => 'B. Indonesia',
                 'status' => 1
-            ], 
+            ],
             [
-                'Penjaskes',
+                'name' => 'Kimia',
+                'status' => 1
+            ],
+            [
+                'name' => 'TIA',
+                'status' => 1
+            ],
+            [
+                'name' => 'Fiqih',
+                'status' => 1
+            ],
+            [
+                'name' => 'Penjaskes',
                 'status' => 1
             ],
 
             [
-                'B. Inggris',
-                'status' => 1
-            ], 
-            [
-                'B. Arab',
-                'status' => 1
-            ],
-            
-            [
-                'BK',
-                'status' => 1
-            ], 
-            [
-                'Fisika',
-                'status' => 1
-            ], 
-            [
-                'PAI',
-                'status' => 1
-            ], 
-            [
-                'Sejarah',
+                'name' => 'B. Inggris',
                 'status' => 1
             ],
             [
-                'Matematika',
+                'name' => 'B. Arab',
                 'status' => 1
             ],
             [
-                'IPA',
+                'name' => 'BK',
                 'status' => 1
             ],
             [
-                'Perdagangan',
+                'name' => 'Fisika',
+                'status' => 1
+            ],
+            [
+                'name' => 'PAI',
+                'status' => 1
+            ],
+            [
+                'name' => 'Sejarah',
+                'status' => 1
+            ],
+            [
+                'name' => 'Matematika',
+                'status' => 1
+            ],
+            [
+                'name' => 'IPA',
+                'status' => 1
+            ],
+            [
+                'name' => 'Perdagangan',
                 'status' => 1
             ],
         ];

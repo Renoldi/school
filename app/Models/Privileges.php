@@ -28,7 +28,7 @@ class Privileges extends Model
 
     // Validation
     protected $validationRules      = [
-        'name' => 'required|alpha|is_unique[privileges.name,id,{id}]',
+        'name' => 'required|is_unique[privileges.name,id,{id}]',
         'status' => 'required|integer',
     ];
     protected $validationMessages   = [];
