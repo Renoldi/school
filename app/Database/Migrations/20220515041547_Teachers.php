@@ -14,9 +14,15 @@ class Teachers extends Migration
                 'constraint' => 11,
                 'auto_increment' => true,
             ],
+            'email' => [
+                'type' => 'VARCHAR',
+                'unique' => true,
+                'constraint' => 255,
+            ],
             'nip' => [
                 'type' => 'VARCHAR',
                 'constraint' => 60,
+                'unique' => true,
             ],
             'name' => [
                 'type' => 'VARCHAR',
@@ -46,10 +52,23 @@ class Teachers extends Migration
                 'type' => 'INT',
                 'constraint' => 11,
             ],
-            'email' => [
-                'type' => 'VARCHAR',
-                'unique' => true,
-                'constraint' => 255,
+            'educationLevelId' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ],
+            'schoolId' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ],
+            'majorId' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ],
+            'finishEducationLevel' => [
+                'type' => 'date',
+            ],
+            'mutation' => [
+                'type' => 'date',
             ],
             'ipAddress' => [
                 'type' => 'VARCHAR',
@@ -99,7 +118,10 @@ class Teachers extends Migration
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('privilegeId', 'privileges', 'id');
         $this->forge->addForeignKey('rankId', 'ranks', 'id');
-        $this->forge->addForeignKey('groupId', 'groupS', 'id');
+        $this->forge->addForeignKey('groupId', 'groups', 'id');
+        $this->forge->addForeignKey('educationLevelId', 'educationlevels', 'id');
+        $this->forge->addForeignKey('schoolId', 'schools', 'id');
+        $this->forge->addForeignKey('majorId', 'majors', 'id');
         $this->forge->createTable('teachers');
     }
 
