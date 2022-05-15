@@ -561,6 +561,8 @@ class Teachers extends ResourceController
             $entity->privilegeId = $row[7];
             $entity->password = $row[8];
             $entity->isPn = $row[9];
+            $entity->address = $row[10];
+            $entity->phone = $row[11];
 
             if (!$this->model->save($entity)) {
             // return  $this->respond([ $this->model->getLastQuery()->getQuery()]);

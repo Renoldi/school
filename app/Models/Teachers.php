@@ -26,7 +26,9 @@ class Teachers extends Model
         'password',
         'ipAddress',
         'about',
-        'isPn'
+        'isPn',
+        'address',
+        'phone'
     ];
 
     // Dates

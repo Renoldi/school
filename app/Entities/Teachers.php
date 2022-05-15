@@ -31,6 +31,8 @@ class Teachers extends Entity
         'ipAddress' => null,
         'about' => null,
         'isPn' => null,
+        'address' => null,
+        'phone' => null,
     ];
     
     public function setPassword(string $pass)
@@ -105,6 +107,18 @@ class Teachers extends Entity
      * @OA\Property()
      */
     protected $about;
+    
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $address;
 
+     /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $phone;
+    
     
 }

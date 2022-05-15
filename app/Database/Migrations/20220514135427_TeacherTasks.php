@@ -22,6 +22,14 @@ class TeacherTasks extends Migration
                 'type' => 'INT',
                 'constraint' => 11,
             ],
+            'address' => [
+                'type' => 'varchar',
+                'constraint' => 256,
+            ],
+            'phone' => [
+                'type' => 'varchar',
+                'constraint' => 15,
+            ],
             'createdAt' => [
                 'type' => 'bigint',
             ],
