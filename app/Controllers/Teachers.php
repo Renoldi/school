@@ -20,7 +20,7 @@ class Teachers extends ResourceController
 
 
     /**
-     * Return an array of resource objects, themselves in array format
+     * Return an array of resource objects,themselves in array format
      *
      * @return mixed
      */
@@ -31,21 +31,21 @@ class Teachers extends ResourceController
      *   description="Subjects",
      *   tags={"Teachers"},
      *   @OA\Response(
-     *     response=200, description="ok",
+     *     response=200,description="ok",
      *     @OA\JsonContent(
      *      type="array",
      *       @OA\Items(ref="#/components/schemas/Teachers")
      *     ),
      *   ),
      *   @OA\Response(
-     *     response=400, description="Bad Request"
+     *     response=400,description="Bad Request"
      *   ),
      *   security={{"token": {}}},
      * )
      */
     public function index()
     {
-        return $this->respond($this->model->select(' `id`, `email`, `nip`, `name`, `gender`, `dob`, `privilegeId`, `rankId`, `rankTmt`, `groupId`, `educationLevelId`, `schoolId`, `majorId`, `finishEducationLevel`, `mutation`, `ipAddress`, `about`, `image`, `status`, `isPn`, `address`, `phone`, `createdAt`, `updatedAt`, `deletedAt`')->where('status', 1)->findAll());
+        return $this->respond($this->model->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url('assets') . '/",image) as image,status,isPn,address,phone,createdAt,updatedAt,deletedAt')->where('status', 1)->findAll());
     }
 
     /**
@@ -63,22 +63,22 @@ class Teachers extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
-     *   ), 
-     *   @OA\Response(
-     *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
      *   ),
      *   @OA\Response(
-     *     response=404, description="404 not found",
+     *     response=200,description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
+     *   ),
+     *   @OA\Response(
+     *     response=400,description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404,description="404 not found",
      *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 404),
-     *      @OA\Property(property="error", type="double", example = 404),
+     *      @OA\Property(property="status",type="double",example = 404),
+     *      @OA\Property(property="error",type="double",example = 404),
      *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "not found"),
      *       )
      *     )
      *   ),
@@ -88,7 +88,7 @@ class Teachers extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select(`id`, `email`, `nip`, `name`, `gender`, `dob`, `privilegeId`, `rankId`, `rankTmt`, `groupId`, `educationLevelId`, `schoolId`, `majorId`, `finishEducationLevel`, `mutation`, `ipAddress`, `about`, `image`, `status`, `isPn`,  `address`, `phone`, `createdAt`, `updatedAt`, `deletedAt`)
+            ->select('id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url('assets') . '/",image) as image,status,isPn, address,phone,createdAt,updatedAt,deletedAt')
             ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
@@ -101,7 +101,7 @@ class Teachers extends ResourceController
     }
 
     /**
-     * Create a new resource object, from "posted" parameters
+     * Create a new resource object,from "posted" parameters
      *
      * @return mixed
      */
@@ -120,17 +120,17 @@ class Teachers extends ResourceController
      *     )
      *   ),
      *   @OA\Response(
-     *     response=201, description="created",
+     *     response=201,description="created",
      *      @OA\JsonContent(ref="#/components/schemas/Teachers")
-     *   ), 
+     *   ),
      *   @OA\Response(
-     *     response=400, description="Request error",
+     *     response=400,description="Request error",
      *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 400),
-     *      @OA\Property(property="error", type="double", example = 400),
+     *      @OA\Property(property="status",type="double",example = 400),
+     *      @OA\Property(property="error",type="double",example = 400),
      *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "not found"),
      *       )
      *     )
      *   ),
@@ -155,7 +155,7 @@ class Teachers extends ResourceController
     }
 
     /**
-     * Add or update a model resource, from "posted" properties
+     * Add or update a model resource,from "posted" properties
      *
      * @return mixed
      */
@@ -169,7 +169,7 @@ class Teachers extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
-     *   ), 
+     *   ),
      *  @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
@@ -178,20 +178,20 @@ class Teachers extends ResourceController
      *     )
      *   ),
      *   @OA\Response(
-     *     response=200, description="updated",
+     *     response=200,description="updated",
      *      @OA\JsonContent(ref="#/components/schemas/Teachers")
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
      *   ),
      *   @OA\Response(
-     *     response=404, description="404 not found",
+     *     response=400,description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404,description="404 not found",
      *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 404),
-     *      @OA\Property(property="error", type="double", example = 404),
+     *      @OA\Property(property="status",type="double",example = 404),
+     *      @OA\Property(property="error",type="double",example = 404),
      *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "not found"),
      *       )
      *     )
      *   ),
@@ -230,29 +230,29 @@ class Teachers extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
-     *   ), 
-     *   @OA\Response(
-     *     response=200, description="ok",
-     *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 200),
-     *      @OA\Property(property="error", type="double", example = null),
-     *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
-     *       )
-     *     )
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
      *   ),
      *   @OA\Response(
-     *     response=404, description="404 not found",
+     *     response=200,description="ok",
      *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 404),
-     *      @OA\Property(property="error", type="double", example = 404),
+     *      @OA\Property(property="status",type="double",example = 200),
+     *      @OA\Property(property="error",type="double",example = null),
      *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "Data Deleted"),
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=400,description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404,description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status",type="double",example = 404),
+     *      @OA\Property(property="error",type="double",example = 404),
+     *        @OA\Property(
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "Data Deleted"),
      *       )
      *     )
      *   ),
@@ -303,7 +303,7 @@ class Teachers extends ResourceController
      *     )
      *   ),
      *   @OA\Response(
-     *     response=200, description="ok",
+     *     response=200,description="ok",
      *      @OA\JsonContent(
      *            @OA\Property(
      *              property="message",
@@ -314,18 +314,18 @@ class Teachers extends ResourceController
      *              type="string",
      *          ),
      * )
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
      *   ),
      *   @OA\Response(
-     *     response=404, description="404 not found",
+     *     response=400,description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404,description="404 not found",
      *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 404),
-     *      @OA\Property(property="error", type="double", example = 404),
+     *      @OA\Property(property="status",type="double",example = 404),
+     *      @OA\Property(property="error",type="double",example = 404),
      *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "not found"),
      *       )
      *     )
      *   ),
@@ -418,7 +418,7 @@ class Teachers extends ResourceController
      *   description="Subjects",
      *   tags={"Teachers"},
      *   @OA\Response(
-     *     response=200, description="ok",
+     *     response=200,description="ok",
      *      @OA\JsonContent(
      *            @OA\Property(
      *              property="message",
@@ -429,18 +429,18 @@ class Teachers extends ResourceController
      *              type="string",
      *          ),
      * )
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
      *   ),
      *   @OA\Response(
-     *     response=404, description="404 not found",
+     *     response=400,description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404,description="404 not found",
      *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 404),
-     *      @OA\Property(property="error", type="double", example = 404),
+     *      @OA\Property(property="status",type="double",example = 404),
+     *      @OA\Property(property="error",type="double",example = 404),
      *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "not found"),
      *       )
      *     )
      *   ),
@@ -461,7 +461,7 @@ class Teachers extends ResourceController
 
     // public function setPassword($pass = null)
     // {
-    //     $data = password_hash($pass, PASSWORD_BCRYPT);
+    //     $data = password_hash($pass,PASSWORD_BCRYPT);
     //     $response = [
     //         'password' => $data,
     //         'origin' => $pass,
@@ -490,27 +490,27 @@ class Teachers extends ResourceController
      *              type="string",
      *          ),
      *          @OA\Property(
-     *              property="where", type="object", 
-     *           @OA\Property(property="id", type="string"),
+     *              property="where",type="object",
+     *           @OA\Property(property="id",type="string"),
      *           )
      *      ),
      *     )
      *   ),
      *   @OA\Response(
-     *     response=200, description="ok",
+     *     response=200,description="ok",
      *      @OA\JsonContent(ref="#/components/schemas/Teachers")
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
      *   ),
      *   @OA\Response(
-     *     response=404, description="404 not found",
+     *     response=400,description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404,description="404 not found",
      *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 404),
-     *      @OA\Property(property="error", type="double", example = 404),
+     *      @OA\Property(property="status",type="double",example = 404),
+     *      @OA\Property(property="error",type="double",example = 404),
      *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "not found"),
      *       )
      *     )
      *   ),
@@ -590,27 +590,27 @@ class Teachers extends ResourceController
      *     )
      *   ),
      *   @OA\Response(
-     *     response=200, description="ok",
+     *     response=200,description="ok",
      *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 200),
-     *      @OA\Property(property="error", type="double", example = null),
+     *      @OA\Property(property="status",type="double",example = 200),
+     *      @OA\Property(property="error",type="double",example = null),
      *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "not found"),
      *       )
      *     )
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
      *   ),
      *   @OA\Response(
-     *     response=404, description="404 not found",
+     *     response=400,description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404,description="404 not found",
      *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 404),
-     *      @OA\Property(property="error", type="double", example = 404),
+     *      @OA\Property(property="status",type="double",example = 404),
+     *      @OA\Property(property="error",type="double",example = 404),
      *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "Data Deleted"),
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "Data Deleted"),
      *       )
      *     )
      *   ),
