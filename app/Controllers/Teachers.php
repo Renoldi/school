@@ -45,7 +45,7 @@ class Teachers extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->where('status', 1)->findAll());
+        return $this->respond($this->model->select(' `id`, `email`, `nip`, `name`, `gender`, `dob`, `privilegeId`, `rankId`, `rankTmt`, `groupId`, `educationLevelId`, `schoolId`, `majorId`, `finishEducationLevel`, `mutation`, `ipAddress`, `about`, `image`, `status`, `isPn`, `address`, `phone`, `createdAt`, `updatedAt`, `deletedAt`')->where('status', 1)->findAll());
     }
 
     /**
@@ -87,7 +87,9 @@ class Teachers extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->find($id);
+        $record = $this->model
+            ->select(`id`, `email`, `nip`, `name`, `gender`, `dob`, `privilegeId`, `rankId`, `rankTmt`, `groupId`, `educationLevelId`, `schoolId`, `majorId`, `finishEducationLevel`, `mutation`, `ipAddress`, `about`, `image`, `status`, `isPn`,  `address`, `phone`, `createdAt`, `updatedAt`, `deletedAt`)
+            ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -203,8 +205,6 @@ class Teachers extends ResourceController
             return $this->fail("data not valid");
         }
 
-
-
         $entity = new EntitiesTeachers();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -278,7 +278,6 @@ class Teachers extends ResourceController
             return $this->failNotFound('No Data Found with id ' . $id);
         }
     }
-
 
     /**
      * @OA\Post(
@@ -481,7 +480,7 @@ class Teachers extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-      *       @OA\Schema(
+     *       @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -542,7 +541,7 @@ class Teachers extends ResourceController
             $record = $this->model->select($select);
         }
 
-         if ($where != null) {
+        if ($where != null) {
             $record = $this->model->where((array)$where);
         }
 
@@ -553,7 +552,7 @@ class Teachers extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-         try {
+        try {
             $record = $this->model->findAll();
 
             if (!$record) {
@@ -566,7 +565,7 @@ class Teachers extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
-             return $this->failNotFound('not found');
+            return $this->failNotFound('not found');
             //return $this->failNotFound( $th->getMessage());
         }
     }

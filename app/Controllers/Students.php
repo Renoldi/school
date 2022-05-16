@@ -16,7 +16,6 @@ class Students extends ResourceController
     protected $format    = 'json';
     use ResponseTrait;
 
-
     /**
      * Return an array of resource objects, themselves in array format
      *
@@ -43,7 +42,7 @@ class Students extends ResourceController
      */
     public function index()
     {
-        $model = $this->model->findAll();
+        $model = $this->model->select(' `id`, `nisn`, `email`, `name`, `image`, `classId`, `roomId`, `gender`, `ipAddress`, `about`, `dob`, `status`, `privilegeId`, `createdAt`, `updatedAt`, `deletedAt`')->findAll();
 
         return $this->respond($model);
     }
@@ -180,7 +179,9 @@ class Students extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->where('status', 1)->find($id);
+        $record = $this->model
+        ->select(' `id`, `nisn`, `email`, `name`, `image`, `classId`, `roomId`, `gender`, `ipAddress`, `about`, `dob`, `status`, `privilegeId`, `createdAt`, `updatedAt`, `deletedAt`')
+        ->where('status', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
