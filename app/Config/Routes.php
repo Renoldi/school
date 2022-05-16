@@ -40,11 +40,32 @@ $routes->group('api', function ($routes) {
 });
 
 $routes->group('api', ['filter' => 'Auth'], function ($routes) {
-    $routes->get('Students/paging/(:any)/(:num)/(:num)/(:num)/(:num)', 'Students::paging/$1/$2/$3/$4/$5', ['filter' => ['Role:superadmin,admin,editor']]);
     $routes->get('Exams/getExams/(:num)/(:num)/(:num)/(:num)/(:num)', 'Exams::getExams/$1/$2/$3/$4/$5', ['filter' => ['Role:superadmin,admin,editor']]);
     $routes->get('Exams/getExamsStudent/(:num)/(:num)/(:num)', 'Exams::getExamsStudent/$1/$2/$3', ['filter' => ['Role:student']]);
     $routes->get('Resultexams/myExam/(:any)/(:any)', 'Resultexams::myExam/$1/$2', ['filter' => ['Role:student']]);
     $routes->get('Resultexams/exam/(:any)/(:any)/(:num)/(:num)/(:num)', 'Resultexams::exam/$1/$2/$3/$4/$5', ['filter' => ['Role:superadmin,admin,editor']]);
+
+    // paging
+    $routes->get('Classes/paging/(:any)/(:num)/(:num)', 'Classes::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Departments/paging/(:any)/(:num)/(:num)', 'Departments::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('EducationLevels/paging/(:any)/(:num)/(:num)', 'EducationLevels::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Exams/paging/(:any)/(:num)/(:num)', 'Exams::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Groups/paging/(:any)/(:num)/(:num)', 'Groups::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Hoomrooms/paging/(:any)/(:num)/(:num)', 'Hoomrooms::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Majors/paging/(:any)/(:num)/(:num)', 'Majors::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Privileges/paging/(:any)/(:num)/(:num)', 'Privileges::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Ranks/paging/(:any)/(:num)/(:num)', 'Ranks::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Resultexams/paging/(:any)/(:num)/(:num)', 'Resultexams::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Rooms/paging/(:any)/(:num)/(:num)', 'Rooms::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Scheduleexams/paging/(:any)/(:num)/(:num)', 'Scheduleexams::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Schools/paging/(:any)/(:num)/(:num)', 'Schools::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]); 
+    $routes->get('SubjectDepartements/paging/(:any)/(:num)/(:num)', 'SubjectDepartements::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Subjects/paging/(:any)/(:num)/(:num)', 'Subjects::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('SubjectTeachers/paging/(:any)/(:num)/(:num)', 'SubjectTeachers::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Tasks/paging/(:any)/(:num)/(:num)', 'Tasks::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Teachers/paging/(:any)/(:num)/(:num)', 'Teachers::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('TeacherTasks/paging/(:any)/(:num)/(:num)', 'TeacherTasks::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Students/paging/(:any)/(:num)/(:num)/(:num)/(:num)', 'Students::paging/$1/$2/$3/$4/$5', ['filter' => ['Role:superadmin,admin,editor']]);
 
     // count
     $routes->post('Classes/count', 'Classes::count', ['filter' => ['Role:superadmin,admin']]);
