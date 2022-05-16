@@ -12,8 +12,8 @@ class EducationLevels extends ResourceController
 {
     protected $modelName = ModelsEducationLevels::class;
     protected $format    = 'json';
-     use ResponseTrait;
-/**
+    use ResponseTrait;
+    /**
      * @OA\Get(
      *   path="/api/EducationLevels/paging/{status}/{perpage}/{page}",
      *   summary="EducationLevels",
@@ -65,7 +65,7 @@ class EducationLevels extends ResourceController
             $model = $this->model->where(['status' => 0]);
         }
 
-       $data = $model 
+        $data = $model
 
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -233,7 +233,7 @@ class EducationLevels extends ResourceController
         return $this->respondCreated($record, 'post created');
     }
 
-      /**
+    /**
      * @OA\Post(
      *   path="/api/EducationLevels/count",
      *   summary="EducationLevels",
@@ -243,7 +243,7 @@ class EducationLevels extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-      *       @OA\Schema(
+     *       @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -304,7 +304,7 @@ class EducationLevels extends ResourceController
             $record = $this->model->select($select);
         }
 
-         if ($where != null) {
+        if ($where != null) {
             $record = $this->model->where((array)$where);
         }
 
@@ -315,7 +315,7 @@ class EducationLevels extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-         try {
+        try {
             $record = $this->model->findAll();
 
             if (!$record) {
@@ -328,7 +328,7 @@ class EducationLevels extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
-             return $this->failNotFound('not found');
+            return $this->failNotFound('not found');
             //return $this->failNotFound( $th->getMessage());
         }
     }
