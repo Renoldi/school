@@ -231,37 +231,53 @@ class Students extends ResourceController
      */
     public function countGender()
     {
+        // {
+        //     "select": "gender",
+        //     "groupBy": "gender",
+        //     "where": {
+        //       "classId": 2,
+        //       "roomId": 1
+        //     }
+        //   }
         $data = $this->request->getVar();
         if ($data == null) {
             return $this->fail("data not valid");
         }
 
-        // $array = new StdobjeToArray($data);
+        $array = new StdobjeToArray($data);
+        $select = $array->param('select');;
+        $where = $array->param('where');
+        $groupBy = $array->param('groupBy');
+        $record = $this->model;
+        if ($select != null) {
+            $record = $this->model->select($select);
+        }
 
+        if ($where != null) {
+            $record = $this->model->where($where);
+        }
 
-        // $record = $this->model
-        //     ->select($array->param('select') . ', count(gender) total')
-        //     ->where($array->param('where'))
-        //     ->groupBy('gender')
-        //     ->findAll();
-        // return  $this->respond([$this->model->getLastQuery()->getQuery()]);
+        if ($groupBy != null) {
+            if ($select == null) {
+                $record = $this->model->select($groupBy . ',count(*) total');
+            }
+            $record = $this->model->groupBy($groupBy);
+        }
 
-        // if (!$record) {
-        //     return $this->failNotFound(sprintf(
-        //         'user with id %d not found',
-        //     ));
-        // }
-        // return $this->respond(
-        // [
-        //     $array->get(),
-        //     $array->getNotKey(),
-        //     $array->key(),
-        // $array->param('where'),
-        // count($array->param('where')),
-        // $array->param('select'),
-        // ]
-        //     $record 
-        // );
+        $record = $this->model->findAll();
+
+        // return  $this->respond([
+        //     $this->model->getLastQuery()->getQuery(),
+        // ]);
+
+        if (!$record) {
+            return $this->failNotFound(sprintf(
+                'user with id %d not found',
+            ));
+        }
+        return $this->respond(
+            $record
+        );
     }
 
     /**
