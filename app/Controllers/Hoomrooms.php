@@ -211,20 +211,20 @@ class Hoomrooms extends ResourceController
 
       /**
      * @OA\Post(
-     *   path="/api/Teachers/count",
-     *   summary="Teachers",
-     *   description="Teachers",
-     *   tags={"Teachers"},
+     *   path="/api/Hoomrooms/count",
+     *   summary="Hoomrooms",
+     *   description="Hoomrooms",
+     *   tags={"Hoomrooms"},
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Teachers"),
+     *      @OA\Schema(ref="#/components/schemas/Hoomrooms"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
+     *      @OA\JsonContent(ref="#/components/schemas/Hoomrooms")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"

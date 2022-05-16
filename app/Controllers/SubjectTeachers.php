@@ -378,22 +378,23 @@ class SubjectTeachers extends ResourceController
         }
     }
 
+    
       /**
      * @OA\Post(
-     *   path="/api/Teachers/count",
-     *   summary="Teachers",
-     *   description="Teachers",
-     *   tags={"Teachers"},
+     *   path="/api/SubjectTeachers/count",
+     *   summary="SubjectTeachers",
+     *   description="SubjectTeachers",
+     *   tags={"SubjectTeachers"},
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Teachers"),
+     *      @OA\Schema(ref="#/components/schemas/SubjectTeachers"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
+     *      @OA\JsonContent(ref="#/components/schemas/SubjectTeachers")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"

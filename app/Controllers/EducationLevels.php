@@ -151,20 +151,20 @@ class EducationLevels extends ResourceController
 
       /**
      * @OA\Post(
-     *   path="/api/Teachers/count",
-     *   summary="Teachers",
-     *   description="Teachers",
-     *   tags={"Teachers"},
+     *   path="/api/EducationLevels/count",
+     *   summary="EducationLevels",
+     *   description="EducationLevels",
+     *   tags={"EducationLevels"},
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Teachers"),
+     *      @OA\Schema(ref="#/components/schemas/EducationLevels"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
+     *      @OA\JsonContent(ref="#/components/schemas/EducationLevels")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"

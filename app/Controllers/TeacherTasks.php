@@ -380,20 +380,20 @@ class TeacherTasks extends ResourceController
 
       /**
      * @OA\Post(
-     *   path="/api/Teachers/count",
-     *   summary="Teachers",
-     *   description="Teachers",
-     *   tags={"Teachers"},
+     *   path="/api/TeacherTasks/count",
+     *   summary="TeacherTasks",
+     *   description="TeacherTasks",
+     *   tags={"TeacherTasks"},
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Teachers"),
+     *      @OA\Schema(ref="#/components/schemas/TeacherTasks"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
+     *      @OA\JsonContent(ref="#/components/schemas/TeacherTasks")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"

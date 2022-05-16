@@ -560,20 +560,20 @@ class Resultexams extends ResourceController
 
       /**
      * @OA\Post(
-     *   path="/api/Teachers/count",
-     *   summary="Teachers",
-     *   description="Teachers",
-     *   tags={"Teachers"},
+     *   path="/api/Resultexams/count",
+     *   summary="Resultexams",
+     *   description="Resultexams",
+     *   tags={"Resultexams"},
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Teachers"),
+     *      @OA\Schema(ref="#/components/schemas/Resultexams"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
+     *      @OA\JsonContent(ref="#/components/schemas/Resultexams")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
