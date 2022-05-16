@@ -77,3 +77,8 @@ AND `s`.`classId` = '3'
 GROUP BY `s`.`id`, `e`.`subjectId`
 
 https://codeigniter4.github.io/userguide/libraries/time.html
+
+https://localhost.com/api/Students/countGender
+{
+  "groupBy":"gender,classId,roomId"
+}

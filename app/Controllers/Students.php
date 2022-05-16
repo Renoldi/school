@@ -197,7 +197,7 @@ class Students extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/Students/countGender",
+     *   path="/api/Students/count",
      *   summary="Students",
      *   description="Students",
      *   tags={"Students"},
@@ -229,7 +229,7 @@ class Students extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function countGender()
+    public function count()
     {
         // {
         //     "select": "gender",
