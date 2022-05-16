@@ -54,7 +54,7 @@ class Students extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}/{classId}/{roomId}",
+     *   path=" /{classId}/{roomId}",
      *   summary="Students",
      *   description="Students",
      *   tags={"Students"},
