@@ -45,7 +45,7 @@ class Teachers extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url('assets') . '/",image) as image,status,isPn,address,phone,createdAt,updatedAt,deletedAt')->where('status', 1)->findAll());
+        return $this->respond($this->model->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,status,isPn,address,phone,createdAt,updatedAt,deletedAt')->where('status', 1)->findAll());
     }
 
     /**
@@ -88,7 +88,7 @@ class Teachers extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url('assets') . '/",image) as image,status,isPn, address,phone,createdAt,updatedAt,deletedAt')
+            ->select('id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,status,isPn, address,phone,createdAt,updatedAt,deletedAt')
             ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

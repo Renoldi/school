@@ -125,8 +125,8 @@ class Students extends ResourceController
         }
 
         $data = $model
-            // ->select('id,nisn,name,gender,status,classId,roomId,CONCAT("' . base_url('assets') . '/",image) as image,privilegeId,email,createdAt,updatedAt')
-            ->select('id,nisn,email,name,CONCAT("' . base_url('assets') . '/",image) as image,classId,roomId,gender,ipAddress,about,dob,status,privilegeId,createdAt,updatedAt,deletedAt')
+            // ->select('id,nisn,name,gender,status,classId,roomId,CONCAT("' . base_url() . '/",image) as image,privilegeId,email,createdAt,updatedAt')
+            ->select('id,nisn,email,name,CONCAT("' . base_url() . '/",image) as image,classId,roomId,gender,ipAddress,about,dob,status,privilegeId,createdAt,updatedAt,deletedAt')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -198,7 +198,7 @@ class Students extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('id,nisn,email,name,CONCAT("' . base_url('assets') . '/",image) as image,classId,roomId,gender,ipAddress,about,dob,status,privilegeId,createdAt,updatedAt,deletedAt')
+            ->select('id,nisn,email,name,CONCAT("' . base_url() . '/",image) as image,classId,roomId,gender,ipAddress,about,dob,status,privilegeId,createdAt,updatedAt,deletedAt')
             ->where('status', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
