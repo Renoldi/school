@@ -304,8 +304,8 @@ class Hoomrooms extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
-            return $this->failNotFound('not found');
-            return $this->failNotFound( $th->getMessage());
+             return $this->failNotFound('not found');
+            //return $this->failNotFound( $th->getMessage());
         }
     }
 
