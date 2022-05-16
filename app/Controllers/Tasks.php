@@ -15,10 +15,10 @@ class Tasks extends ResourceController
      use ResponseTrait;
 /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}",
-     *   summary="Students",
-     *   description="Students",
-     *   tags={"Students"},
+     *   path="/api/Tasks/paging/{status}/{perpage}/{page}",
+     *   summary="Tasks",
+     *   description="Tasks",
+     *   tags={"Tasks"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -37,7 +37,7 @@ class Tasks extends ResourceController
   
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *      @OA\JsonContent(ref="#/components/schemas/Tasks")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"

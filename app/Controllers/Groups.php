@@ -15,10 +15,10 @@ class Groups extends ResourceController
      use ResponseTrait;
 /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}",
-     *   summary="Students",
-     *   description="Students",
-     *   tags={"Students"},
+     *   path="/api/Groups/paging/{status}/{perpage}/{page}",
+     *   summary="Groups",
+     *   description="Groups",
+     *   tags={"Groups"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -37,7 +37,7 @@ class Groups extends ResourceController
   
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *      @OA\JsonContent(ref="#/components/schemas/Groups")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"

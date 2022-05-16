@@ -16,10 +16,10 @@ class Resultexams extends ResourceController
      use ResponseTrait;
 /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}",
-     *   summary="Students",
-     *   description="Students",
-     *   tags={"Students"},
+     *   path="/api/Resultexams/paging/{status}/{perpage}/{page}",
+     *   summary="Resultexams",
+     *   description="Resultexams",
+     *   tags={"Resultexams"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -38,7 +38,7 @@ class Resultexams extends ResourceController
   
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *      @OA\JsonContent(ref="#/components/schemas/Resultexams")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"
@@ -234,7 +234,7 @@ class Resultexams extends ResourceController
 
         $record = $this->model
             ->select('e.subjectId,sb.name, sum(if(e.answer= resultexams.choise,e.point,0)) point')
-            ->join('students s', 's.id = resultexams.studentId')
+            ->join('Resultexams s', 's.id = resultexams.studentId')
             ->join('exams e', 'e.id = resultexams.examId and e.classId = s.classId')
             ->join('subjects sb', 'sb.id = e.subjectId')
             ->join('rooms r', 'r.id = s.roomId')
@@ -314,7 +314,7 @@ class Resultexams extends ResourceController
     {
         $record = $this->model
             ->select('s.id, s.name, s.classId, c.name className,r.id roomId, r.name roomName,d.id departmentId, d.name departmentName, e.subjectId, sb.name subjectName,sum(if(e.answer= resultexams.choise,e.point,0)) point')
-            ->join('students s', 's.id = resultexams.studentId')
+            ->join('Resultexams s', 's.id = resultexams.studentId')
             ->join('exams e', 'e.id = resultexams.examId and e.classId = s.classId')
             ->join('subjects sb', 'sb.id = e.subjectId')
             ->join('rooms r', 'r.id = s.roomId')

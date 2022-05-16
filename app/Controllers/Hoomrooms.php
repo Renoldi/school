@@ -15,10 +15,10 @@ class Hoomrooms extends ResourceController
      use ResponseTrait;
 /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}",
-     *   summary="Students",
-     *   description="Students",
-     *   tags={"Students"},
+     *   path="/api/Hoomrooms/paging/{status}/{perpage}/{page}",
+     *   summary="Hoomrooms",
+     *   description="Hoomrooms",
+     *   tags={"Hoomrooms"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -37,7 +37,7 @@ class Hoomrooms extends ResourceController
   
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *      @OA\JsonContent(ref="#/components/schemas/Hoomrooms")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"

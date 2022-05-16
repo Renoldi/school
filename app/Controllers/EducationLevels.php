@@ -15,10 +15,10 @@ class EducationLevels extends ResourceController
      use ResponseTrait;
 /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}",
-     *   summary="Students",
-     *   description="Students",
-     *   tags={"Students"},
+     *   path="/api/EducationLevels/paging/{status}/{perpage}/{page}",
+     *   summary="EducationLevels",
+     *   description="EducationLevels",
+     *   tags={"EducationLevels"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -37,7 +37,7 @@ class EducationLevels extends ResourceController
   
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *      @OA\JsonContent(ref="#/components/schemas/EducationLevels")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"

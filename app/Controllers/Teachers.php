@@ -17,10 +17,10 @@ class Teachers extends ResourceController
     use ResponseTrait;
     /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}",
-     *   summary="Students",
-     *   description="Students",
-     *   tags={"Students"},
+     *   path="/api/Teachers/paging/{status}/{perpage}/{page}",
+     *   summary="Teachers",
+     *   description="Teachers",
+     *   tags={"Teachers"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -39,7 +39,7 @@ class Teachers extends ResourceController
   
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"
@@ -68,7 +68,7 @@ class Teachers extends ResourceController
         }
 
         $data = $model
-
+            ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,status,isPn,address,phone,createdAt,updatedAt,deletedAt')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -127,7 +127,12 @@ class Teachers extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,status,isPn,address,phone,createdAt,updatedAt,deletedAt')->where('status', 1)->findAll());
+        return $this->respond(
+            $this->model
+                ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,status,isPn,address,phone,createdAt,updatedAt,deletedAt')
+                ->where('status', 1)
+                ->findAll()
+        );
     }
 
     /**

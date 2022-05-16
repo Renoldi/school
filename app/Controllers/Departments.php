@@ -12,13 +12,14 @@ class Departments extends ResourceController
 {
     protected $modelName = ModelsDepartments::class;
     protected $format    = 'json';
-     use ResponseTrait;
-/**
+    use ResponseTrait;
+    
+    /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}",
-     *   summary="Students",
-     *   description="Students",
-     *   tags={"Students"},
+     *   path="/api/Departments/paging/{status}/{perpage}/{page}",
+     *   summary="Departments",
+     *   description="Departments",
+     *   tags={"Departments"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -34,10 +35,9 @@ class Departments extends ResourceController
      *         in="path",
      *         required=true,
      *   ),
-  
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *      @OA\JsonContent(ref="#/components/schemas/Departments")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"
@@ -65,7 +65,7 @@ class Departments extends ResourceController
             $model = $this->model->where(['status' => 0]);
         }
 
-       $data = $model 
+        $data = $model
 
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -220,7 +220,7 @@ class Departments extends ResourceController
         if ($data == null) {
             return $this->fail("data not valid");
         }
-         
+
         $entity = new EntitiesDepartments();
         $array = new StdobjeToArray($data);
 
@@ -233,7 +233,7 @@ class Departments extends ResourceController
         return $this->respondCreated($record, 'post created');
     }
 
-      /**
+    /**
      * @OA\Post(
      *   path="/api/Departments/count",
      *   summary="Departments",
@@ -243,7 +243,7 @@ class Departments extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-      *      @OA\Schema(
+     *      @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -305,7 +305,7 @@ class Departments extends ResourceController
             $record = $this->model->select($select);
         }
 
-         if ($where != null) {
+        if ($where != null) {
             $record = $this->model->where((array)$where);
         }
 
@@ -316,7 +316,7 @@ class Departments extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-         try {
+        try {
             $record = $this->model->findAll();
 
             if (!$record) {
@@ -329,7 +329,7 @@ class Departments extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
-             return $this->failNotFound('not found');
+            return $this->failNotFound('not found');
             //return $this->failNotFound( $th->getMessage());
         }
     }
@@ -384,7 +384,7 @@ class Departments extends ResourceController
         if ($data == null) {
             return $this->fail("data not valid");
         }
-         
+
         $entity = new EntitiesDepartments();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());

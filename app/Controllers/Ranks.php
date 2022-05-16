@@ -15,10 +15,10 @@ class Ranks extends ResourceController
      use ResponseTrait;
 /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}",
-     *   summary="Students",
-     *   description="Students",
-     *   tags={"Students"},
+     *   path="/api/Ranks/paging/{status}/{perpage}/{page}",
+     *   summary="Ranks",
+     *   description="Ranks",
+     *   tags={"Ranks"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -37,7 +37,7 @@ class Ranks extends ResourceController
   
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *      @OA\JsonContent(ref="#/components/schemas/Ranks")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"

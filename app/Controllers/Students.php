@@ -104,7 +104,7 @@ class Students extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function paging($status = "all", $perpage = 20, $page = 1, $classId = 0, $roomId)
+    public function paging($status = "all", $perpage = 20, $page = 1, $classId = 0, $roomId=0)
     {
         $model = $this->model;
         if ($status == 1) {

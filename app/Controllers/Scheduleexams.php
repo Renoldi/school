@@ -15,10 +15,10 @@ class Scheduleexams extends ResourceController
      use ResponseTrait;
 /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}",
-     *   summary="Students",
-     *   description="Students",
-     *   tags={"Students"},
+     *   path="/api/Scheduleexams/paging/{status}/{perpage}/{page}",
+     *   summary="Scheduleexams",
+     *   description="Scheduleexams",
+     *   tags={"Scheduleexams"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -37,7 +37,7 @@ class Scheduleexams extends ResourceController
   
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *      @OA\JsonContent(ref="#/components/schemas/Scheduleexams")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"

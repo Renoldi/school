@@ -15,10 +15,10 @@ class Classes extends ResourceController
      use ResponseTrait;
 /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}",
-     *   summary="Students",
-     *   description="Students",
-     *   tags={"Students"},
+     *   path="/api/Classes/paging/{status}/{perpage}/{page}",
+     *   summary="Classes",
+     *   description="Classes",
+     *   tags={"Classes"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -34,10 +34,9 @@ class Classes extends ResourceController
      *         in="path",
      *         required=true,
      *   ),
-  
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *      @OA\JsonContent(ref="#/components/schemas/Classes")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"
