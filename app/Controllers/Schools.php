@@ -45,20 +45,20 @@ class Schools extends ResourceController
 
       /**
      * @OA\Post(
-     *   path="/api/SubjectDepartements/count",
-     *   summary="SubjectDepartements",
-     *   description="SubjectDepartements",
-     *   tags={"SubjectDepartements"},
+     *   path="/api/Schools/count",
+     *   summary="Schools",
+     *   description="Schools",
+     *   tags={"Schools"},
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/SubjectDepartements"),
+     *      @OA\Schema(ref="#/components/schemas/Schools"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/SubjectDepartements")
+     *      @OA\JsonContent(ref="#/components/schemas/Schools")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"

@@ -376,8 +376,8 @@ class SubjectDepartements extends ResourceController
             return $this->respondCreated(["result" => "success upload"]);
         }
     }
-
-      /**
+ 
+     /**
      * @OA\Post(
      *   path="/api/SubjectDepartements/count",
      *   summary="SubjectDepartements",
