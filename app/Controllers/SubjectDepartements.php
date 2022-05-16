@@ -277,7 +277,7 @@ class SubjectDepartements extends ResourceController
 
     /**
      * @OA\Post(
-     *  path="/api/SubjectDepartements/ fromFile",
+     *  path="/api/SubjectDepartements/fromFile",
      *  summary="SubjectDepartements",
      *  description="SubjectDepartements",
      *  tags={"SubjectDepartements"},

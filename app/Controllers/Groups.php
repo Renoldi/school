@@ -376,7 +376,7 @@ class Groups extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Groups/ fromFile",
+     *   path="/api/Groups/fromFile",
      *   summary="Groups",
      *   description="Groups",
      *   tags={"Groups"},

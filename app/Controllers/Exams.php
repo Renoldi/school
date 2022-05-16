@@ -572,7 +572,7 @@ class Exams extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Exams/ fromFile",
+     *   path="/api/Exams/fromFile",
      *   summary="exams",
      *   description="exams",
      *   tags={"Exams"},

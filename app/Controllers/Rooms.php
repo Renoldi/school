@@ -277,7 +277,7 @@ class Rooms extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Rooms/ fromFile",
+     *   path="/api/Rooms/fromFile",
      *   summary="Rooms",
      *   description="Rooms",
      *   tags={"Rooms"},

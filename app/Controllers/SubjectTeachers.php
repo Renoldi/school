@@ -278,7 +278,7 @@ class SubjectTeachers extends ResourceController
 
     /**
      * @OA\Post(
-     *  path="/api/SubjectTeachers/ fromFile",
+     *  path="/api/SubjectTeachers/fromFile",
      *  summary="SubjectTeachers",
      *  description="SubjectTeachers",
      *  tags={"SubjectTeachers"},

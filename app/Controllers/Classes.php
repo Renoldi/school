@@ -376,7 +376,7 @@ class Classes extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Classes/ fromFile",
+     *   path="/api/Classes/fromFile",
      *   summary="Classes",
      *   description="Classes",
      *   tags={"Classes"},

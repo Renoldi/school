@@ -277,7 +277,7 @@ class Privileges extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Privileges/ fromFile",
+     *   path="/api/Privileges/fromFile",
      *   summary="Privileges",
      *   description="Privileges",
      *   tags={"Privileges"},

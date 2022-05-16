@@ -378,7 +378,7 @@ class Ranks extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Ranks/ fromFile",
+     *   path="/api/Ranks/fromFile",
      *   summary="Ranks",
      *   description="Ranks",
      *   tags={"Ranks"},

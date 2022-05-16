@@ -378,7 +378,7 @@ class Schools extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Schools/ fromFile",
+     *   path="/api/Schools/fromFile",
      *   summary="Schools",
      *   description="Schools",
      *   tags={"Schools"},

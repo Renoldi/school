@@ -378,7 +378,7 @@ class EducationLevels extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/EducationLevels/ fromFile",
+     *   path="/api/EducationLevels/fromFile",
      *   summary="EducationLevels",
      *   description="EducationLevels",
      *   tags={"EducationLevels"},

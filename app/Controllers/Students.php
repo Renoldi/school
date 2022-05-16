@@ -119,7 +119,7 @@ class Students extends ResourceController
         if ($classId != 0) {
             $model = $this->model->where(['classId' => $classId]);
         }
-        
+
         if ($roomId != 0) {
             $model = $this->model->where(['roomId' => $roomId]);
         }
@@ -678,7 +678,7 @@ class Students extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Students/ fromFile",
+     *   path="/api/Students/fromFile",
      *   summary="Students",
      *   description="Students",
      *   tags={"Students"},

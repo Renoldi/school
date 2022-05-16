@@ -278,7 +278,7 @@ class Tasks extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Tasks/ fromFile",
+     *   path="/api/Tasks/fromFile",
      *   summary="Tasks",
      *   description="Tasks",
      *   tags={"Tasks"},

@@ -456,7 +456,7 @@ class Resultexams extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Resultexams/ fromFile",
+     *   path="/api/Resultexams/fromFile",
      *   summary="Resultexams",
      *   description="Resultexams",
      *   tags={"Resultexams"},

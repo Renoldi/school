@@ -376,7 +376,7 @@ class Majors extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Majors/ fromFile",
+     *   path="/api/Majors/fromFile",
      *   summary="Majors",
      *   description="Majors",
      *   tags={"Majors"},
