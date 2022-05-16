@@ -13,6 +13,90 @@ class Rooms extends ResourceController
     protected $modelName = ModelsRooms::class;
     protected $format    = 'json';
     use ResponseTrait;
+    /**
+     * @OA\Get(
+     *   path="/api/Rooms/paging/{status}/{perpage}/{page}",
+     *   summary="Rooms",
+     *   description="Rooms",
+     *   tags={"Rooms"},
+     *   @OA\Parameter(
+     *         name="status",
+     *         in="path",
+     *         required=true,
+     *   ),
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *   ),
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *   ),
+  
+     *   @OA\Response(
+     *     response=200,description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Rooms")
+     *   ),
+     *   @OA\Response(
+     *     response=400,description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404,description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status",type="double",example = 404),
+     *      @OA\Property(property="error",type="double",example = 404),
+     *        @OA\Property(
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function paging($status = "all", $perpage = 20, $page = 1)
+    {
+        $model = $this->model;
+        if ($status == 1) {
+            $model = $this->model->where(['status' => 1]);
+        } elseif ($status == 0) {
+            $model = $this->model->where(['status' => 0]);
+        }
+
+        $data = $model
+
+            ->paginate($perpage, 'default', $page);
+        $countPage = $model->pager->getPageCount();
+        $currentPage = $model->pager->getCurrentPage();
+        $lastPage = $model->pager->getLastPage();
+        $firstPage = $model->pager->getFirstPage();
+        $perPage = $model->pager->getPerPage();
+        // $details = $model->pager->getDetails();
+
+        if ($page > $countPage)
+            return  $this->respond([
+                'totalPage' => $countPage,
+                'currentPage' => $currentPage,
+                'lastPage' => $lastPage,
+                'firstPage' => $firstPage,
+                'perPage' => $perPage,
+                'data' => []
+            ]);
+
+        else {
+            return  $this->respond([
+                'totalPage' => $countPage,
+                'currentPage' => $currentPage,
+                'lastPage' => $lastPage,
+                'firstPage' => $firstPage,
+                'perPage' => $perPage,
+                // 'details' => $details,
+                'data' => $data
+            ]);
+        }
+    }
 
 
     /**
@@ -348,7 +432,7 @@ class Rooms extends ResourceController
         $spreadsheet = $render->load($file_excel);
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
- 
+
         $subjectEntity = new EntitiesRooms();
         $this->model->transStart();
         foreach ($data as $x => $row) {
@@ -378,7 +462,7 @@ class Rooms extends ResourceController
         }
     }
 
-      /**
+    /**
      * @OA\Post(
      *   path="/api/Rooms/count",
      *   summary="Rooms",
@@ -388,7 +472,7 @@ class Rooms extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-      *       @OA\Schema(
+     *       @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -449,7 +533,7 @@ class Rooms extends ResourceController
             $record = $this->model->select($select);
         }
 
-         if ($where != null) {
+        if ($where != null) {
             $record = $this->model->where((array)$where);
         }
 
@@ -460,7 +544,7 @@ class Rooms extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-         try {
+        try {
             $record = $this->model->findAll();
 
             if (!$record) {
@@ -473,7 +557,7 @@ class Rooms extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
-             return $this->failNotFound('not found');
+            return $this->failNotFound('not found');
             //return $this->failNotFound( $th->getMessage());
         }
     }
