@@ -281,8 +281,8 @@ class Classes extends ResourceController
             $record = $this->model->select($select);
         }
 
-        if ($where != null) {
-            $record = $this->model->where($where);
+         if ($where != null) {
+            $record = $this->model->where((array)$where);
         }
 
         if ($groupBy != null) {
@@ -292,16 +292,21 @@ class Classes extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-        $record = $this->model->findAll();
+        try {
+            $record = $this->model->findAll();
 
-        if (!$record) {
-            return $this->failNotFound(sprintf(
-                'user not found',
-            ));
+            if (!$record) {
+                return $this->failNotFound(sprintf(
+                    'user not found',
+                ));
+            }
+
+            return $this->respond(
+                $record
+            );
+        } catch (\Throwable $th) {
+            return $this->failNotFound( $th->getMessage());
         }
-        return $this->respond(
-            $record
-        );
     }
 
     /**

@@ -38,8 +38,26 @@ $routes->group('api', function ($routes) {
     $routes->post('Teachers/login', 'Teachers::login');
     $routes->post('Students/login', 'Students::login');
     $routes->get('Subjects', 'Subjects::index');
-    $routes->post('Students/count', 'Students::count');
-    $routes->post('Teachers/count', 'Teachers::count');
+    $routes->post('Classes/count', 'Classes::count'); 
+    $routes->post('Departments/count', 'Departments::count'); 
+    $routes->post('EducationLevels/count', 'EducationLevels::count'); 
+    $routes->post('Exams/count', 'Exams::count'); 
+    $routes->post('Groups/count', 'Groups::count'); 
+    $routes->post('Hoomrooms/count', 'Hoomrooms::count'); 
+    $routes->post('Majors/count', 'Majors::count'); 
+    $routes->post('Privileges/count', 'Privileges::count'); 
+    $routes->post('Ranks/count', 'Ranks::count'); 
+    $routes->post('Resultexams/count', 'Resultexams::count'); 
+    $routes->post('Rooms/count', 'Rooms::count'); 
+    $routes->post('Scheduleexams/count', 'Scheduleexams::count'); 
+    $routes->post('Schools/count', 'Schools::count'); 
+    $routes->post('Students/count', 'Students::count'); 
+    $routes->post('SubjectDepartements/count', 'SubjectDepartements::count'); 
+    $routes->post('Subjects/count', 'Subjects::count'); 
+    $routes->post('SubjectTeachers/count', 'SubjectTeachers::count'); 
+    $routes->post('Tasks/count', 'Tasks::count'); 
+    $routes->post('Teachers/count', 'Teachers::count'); 
+    $routes->post('TeacherTasks/count', 'TeacherTasks::count'); 
 });
 
 $routes->group('api', ['filter' => 'Auth'], function ($routes) {

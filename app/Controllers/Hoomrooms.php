@@ -280,8 +280,8 @@ class Hoomrooms extends ResourceController
             $record = $this->model->select($select);
         }
 
-        if ($where != null) {
-            $record = $this->model->where($where);
+         if ($where != null) {
+            $record = $this->model->where((array)$where);
         }
 
         if ($groupBy != null) {
