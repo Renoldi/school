@@ -292,7 +292,7 @@ class Classes extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-        try {
+         try {
             $record = $this->model->findAll();
 
             if (!$record) {
@@ -305,6 +305,7 @@ class Classes extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
+            return $this->failNotFound('not found');
             return $this->failNotFound( $th->getMessage());
         }
     }

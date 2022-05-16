@@ -125,16 +125,22 @@ class Schools extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-        $record = $this->model->findAll();
+         try {
+            $record = $this->model->findAll();
 
-        if (!$record) {
-            return $this->failNotFound(sprintf(
-                'user not found',
-            ));
+            if (!$record) {
+                return $this->failNotFound(sprintf(
+                    'user not found',
+                ));
+            }
+
+            return $this->respond(
+                $record
+            );
+        } catch (\Throwable $th) {
+            return $this->failNotFound('not found');
+            return $this->failNotFound( $th->getMessage());
         }
-        return $this->respond(
-            $record
-        );
     }
 
     /**
