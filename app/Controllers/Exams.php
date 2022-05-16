@@ -334,8 +334,9 @@ class Exams extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
+
         $entity = new EntitiesExams();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -394,12 +395,11 @@ class Exams extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
 
-        if ($data == null) {
-            return $this->fail("data null");
-        }
+
+
         $entity = new EntitiesExams();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());

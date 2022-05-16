@@ -134,8 +134,9 @@ class Tasks extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
+
         $entity = new EntitiesTasks();
         $array = new StdobjeToArray($data);
 
@@ -196,12 +197,11 @@ class Tasks extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
 
-        if ($data == null) {
-            return $this->fail("data null");
-        }
+
+
         $entity = new EntitiesTasks();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());

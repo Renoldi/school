@@ -134,8 +134,9 @@ class Majors extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
+
         $entity = new EntitiesMajors();
         $array = new StdobjeToArray($data);
 
@@ -196,12 +197,9 @@ class Majors extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
 
-        if ($data == null) {
-            return $this->fail("data null");
-        }
         $entity = new EntitiesMajors();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -355,8 +353,9 @@ class Majors extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            
-            $subjectEntity->name  = $row[0]; if ($row[0] == '')
+
+            $subjectEntity->name  = $row[0];
+            if ($row[0] == '')
                 continue;
             $subjectEntity->status = $row[1];
 

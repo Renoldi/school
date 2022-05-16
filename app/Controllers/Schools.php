@@ -134,18 +134,19 @@ class Schools extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
+
         $entity = new EntitiesSchools();
         $array = new StdobjeToArray($data);
-         
+
         $entity->fill($array->get());
         if (!$this->model->save($entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
         $record = $this->model->find($this->model->getInsertID());
 
-        return $this->respondCreated($record , 'post created');
+        return $this->respondCreated($record, 'post created');
     }
 
     /**
@@ -196,12 +197,11 @@ class Schools extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
 
-        if ($data == null) {
-            return $this->fail("data null");
-        }
+
+
         $entity = new EntitiesSchools();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -355,7 +355,8 @@ class Schools extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            $subjectEntity->name  = $row[0]; if ($row[0] == '')
+            $subjectEntity->name  = $row[0];
+            if ($row[0] == '')
                 continue;
             $subjectEntity->status = $row[1];
 

@@ -135,8 +135,9 @@ class Scheduleexams extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
+
         $entity = new EntitiesScheduleexams();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -195,12 +196,11 @@ class Scheduleexams extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
 
-        if ($data == null) {
-            return $this->fail("data null");
-        }
+
+
         $entity = new EntitiesScheduleexams();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -301,7 +301,6 @@ class Scheduleexams extends ResourceController
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
 
-        $subject = new Subjects();
         $subjectEntity = new EntitiesScheduleexams();
         $this->model->transStart();
         foreach ($data as $x => $row) {

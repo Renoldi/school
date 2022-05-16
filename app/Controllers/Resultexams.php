@@ -314,8 +314,9 @@ class Resultexams extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
+
         $entity = new EntitiesResultexams();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -374,12 +375,11 @@ class Resultexams extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
 
-        if ($data == null) {
-            return $this->fail("data null");
-        }
+
+
         $entity = new EntitiesResultexams();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -527,7 +527,6 @@ class Resultexams extends ResourceController
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
 
-        $subject = new Subjects();
         $subjectEntity = new EntitiesResultexams();
         $this->model->transStart();
         foreach ($data as $x => $row) {

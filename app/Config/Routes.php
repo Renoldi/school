@@ -38,7 +38,7 @@ $routes->group('api', function ($routes) {
     $routes->post('Teachers/login', 'Teachers::login');
     $routes->post('Students/login', 'Students::login');
     $routes->get('Subjects', 'Subjects::index');
-    $routes->post('Students/count', 'Students::count');
+    $routes->post('Students/countGender', 'Students::countGender');
 });
 
 $routes->group('api', ['filter' => 'Auth'], function ($routes) {

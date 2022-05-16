@@ -138,8 +138,9 @@ class Subjects extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
+
         $entity = new EntitiesSubjects();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -198,12 +199,11 @@ class Subjects extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
 
-        if ($data == null) {
-            return $this->fail("data null");
-        }
+
+
         $entity = new EntitiesSubjects();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());

@@ -197,7 +197,7 @@ class Students extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/Students/count",
+     *   path="/api/Students/countGender",
      *   summary="Students",
      *   description="Students",
      *   tags={"Students"},
@@ -229,14 +229,21 @@ class Students extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function count()
+    public function countGender()
     {
         $data = $this->request->getVar();
+        if ($data == null) {
+            return $this->fail("data not valid");
+        }
+
+        // $array = new StdobjeToArray($data);
+
+
         // $record = $this->model
-        // ->select('count(gender) total')
-        // ->where($data)
-        // ->groupBy('gender')
-        // ->findAll();
+        //     ->select($array->param('select') . ', count(gender) total')
+        //     ->where($array->param('where'))
+        //     ->groupBy('gender')
+        //     ->findAll();
         // return  $this->respond([$this->model->getLastQuery()->getQuery()]);
 
         // if (!$record) {
@@ -244,10 +251,17 @@ class Students extends ResourceController
         //         'user with id %d not found',
         //     ));
         // }
-
-
-
-        return $this->respond($data);
+        // return $this->respond(
+        // [
+        //     $array->get(),
+        //     $array->getNotKey(),
+        //     $array->key(),
+        // $array->param('where'),
+        // count($array->param('where')),
+        // $array->param('select'),
+        // ]
+        //     $record 
+        // );
     }
 
     /**
@@ -290,8 +304,9 @@ class Students extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
+
         $entity = new EntitiesStudents();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -350,12 +365,11 @@ class Students extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
 
-        if ($data == null) {
-            return $this->fail("data null");
-        }
+
+
         $entity = new EntitiesStudents();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());

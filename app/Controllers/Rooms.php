@@ -135,8 +135,9 @@ class Rooms extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
+
         $entity = new EntitiesRooms();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -195,12 +196,11 @@ class Rooms extends ResourceController
     {
         $data = $this->request->getVar();
         if ($data == null) {
-            return $this->fail("data null");
+            return $this->fail("data not valid");
         }
 
-        if ($data == null) {
-            return $this->fail("data null");
-        }
+
+
         $entity = new EntitiesRooms();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -348,8 +348,7 @@ class Rooms extends ResourceController
         $spreadsheet = $render->load($file_excel);
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
-
-        $subject = new Subjects();
+ 
         $subjectEntity = new EntitiesRooms();
         $this->model->transStart();
         foreach ($data as $x => $row) {
