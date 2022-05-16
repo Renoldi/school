@@ -54,7 +54,7 @@ class Students extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path=" /{classId}/{roomId}",
+     *   path="/api/Students/paging/{status}/{perpage}/{page}/{classId}/{roomId}",
      *   summary="Students",
      *   description="Students",
      *   tags={"Students"},
@@ -104,7 +104,7 @@ class Students extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function paging($status = "all", $perpage = 20, $page = 1, $classId = 0, $roomId=0)
+    public function paging($status = "all", $perpage = 20, $page = 1, $classId = 0, $roomId = 0)
     {
         $model = $this->model;
         if ($status == 1) {
