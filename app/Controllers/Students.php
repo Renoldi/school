@@ -600,7 +600,6 @@ class Students extends ResourceController
                 "privilege" => $user->privilege,
             );
 
-            $fromDart = 1652498570939;
 
             $payload = array(
                 "iss" => base_url(),
@@ -618,8 +617,6 @@ class Students extends ResourceController
             helper('jwt');
             $token = generate($payload);
             $response = [
-                $payload,
-
                 "token" => $token,
             ];
             return $this->respond($response);
