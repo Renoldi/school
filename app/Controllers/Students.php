@@ -54,7 +54,7 @@ class Students extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Students/paging/{status}/{perpage}/{page}",
+     *   path="/api/Students/paging/{status}/{perpage}/{page}/{classId}/{roomId}",
      *   summary="Students",
      *   description="Students",
      *   tags={"Students"},
@@ -70,6 +70,16 @@ class Students extends ResourceController
      *   ), 
      *   @OA\Parameter(
      *         name="page",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="classId",
+     *         in="path",
+     *         required=true,
+     *   ), 
+     *   @OA\Parameter(
+     *         name="roomId",
      *         in="path",
      *         required=true,
      *   ), 
@@ -97,14 +107,21 @@ class Students extends ResourceController
 
 
 
-    public function paging($status = "all", $perpage = 20, $page = 1)
+    public function paging($status = "all", $perpage = 20, $page = 1, $classId = 0, $roomId)
     {
+        $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where('status', 1);
+            $model = $this->model->where(['status' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where('status', 0);
-        } else {
-            $model = $this->model;
+            $model = $this->model->where(['status' => 0]);
+        }
+
+        if ($classId != 0) {
+            $model = $this->model->where(['classId' => $classId]);
+        }
+        
+        if ($roomId != 0) {
+            $model = $this->model->where(['roomId' => $roomId]);
         }
 
         $data = $model
@@ -180,8 +197,8 @@ class Students extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-        ->select(' `id`, `nisn`, `email`, `name`, `image`, `classId`, `roomId`, `gender`, `ipAddress`, `about`, `dob`, `status`, `privilegeId`, `createdAt`, `updatedAt`, `deletedAt`')
-        ->where('status', 1)->find($id);
+            ->select(' `id`, `nisn`, `email`, `name`, `image`, `classId`, `roomId`, `gender`, `ipAddress`, `about`, `dob`, `status`, `privilegeId`, `createdAt`, `updatedAt`, `deletedAt`')
+            ->where('status', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -206,7 +223,7 @@ class Students extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-      *       @OA\Schema(
+     *       @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -267,7 +284,7 @@ class Students extends ResourceController
             $record = $this->model->select($select);
         }
 
-         if ($where != null) {
+        if ($where != null) {
             $record = $this->model->where((array)$where);
         }
 
