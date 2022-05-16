@@ -277,7 +277,7 @@ class Privileges extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Privileges/fromXl",
+     *   path="/api/Privileges/ fromFile",
      *   summary="Privileges",
      *   description="Privileges",
      *   tags={"Privileges"},
@@ -322,7 +322,7 @@ class Privileges extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function fromXl()
+    public function  fromFile()
     {
         $validationRule = [
             'userfile' => [

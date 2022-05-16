@@ -378,7 +378,7 @@ class EducationLevels extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/EducationLevels/fromXl",
+     *   path="/api/EducationLevels/ fromFile",
      *   summary="EducationLevels",
      *   description="EducationLevels",
      *   tags={"EducationLevels"},
@@ -423,7 +423,7 @@ class EducationLevels extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function fromXl()
+    public function  fromFile()
     {
         $validationRule = [
             'userfile' => [

@@ -277,7 +277,7 @@ class Rooms extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Rooms/fromXl",
+     *   path="/api/Rooms/ fromFile",
      *   summary="Rooms",
      *   description="Rooms",
      *   tags={"Rooms"},
@@ -323,7 +323,7 @@ class Rooms extends ResourceController
      * )
      */
 
-    public function fromXl()
+    public function  fromFile()
     {
         $validationRule = [
             'userfile' => [

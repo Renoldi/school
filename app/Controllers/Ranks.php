@@ -378,7 +378,7 @@ class Ranks extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Ranks/fromXl",
+     *   path="/api/Ranks/ fromFile",
      *   summary="Ranks",
      *   description="Ranks",
      *   tags={"Ranks"},
@@ -423,7 +423,7 @@ class Ranks extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function fromXl()
+    public function  fromFile()
     {
         $validationRule = [
             'userfile' => [

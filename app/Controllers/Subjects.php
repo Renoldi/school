@@ -280,7 +280,7 @@ class Subjects extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Subjects/fromXl",
+     *   path="/api/Subjects/ fromFile",
      *   summary="Subjects",
      *   description="Subjects",
      *   tags={"Subjects"},
@@ -325,7 +325,7 @@ class Subjects extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function fromXl()
+    public function  fromFile()
     {
         $validationRule = [
             'userfile' => [

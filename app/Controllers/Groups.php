@@ -376,7 +376,7 @@ class Groups extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Groups/fromXl",
+     *   path="/api/Groups/ fromFile",
      *   summary="Groups",
      *   description="Groups",
      *   tags={"Groups"},
@@ -421,7 +421,7 @@ class Groups extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function fromXl()
+    public function  fromFile()
     {
         $validationRule = [
             'userfile' => [

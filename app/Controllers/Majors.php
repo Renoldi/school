@@ -376,7 +376,7 @@ class Majors extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Majors/fromXl",
+     *   path="/api/Majors/ fromFile",
      *   summary="Majors",
      *   description="Majors",
      *   tags={"Majors"},
@@ -421,7 +421,7 @@ class Majors extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function fromXl()
+    public function  fromFile()
     {
         $validationRule = [
             'userfile' => [

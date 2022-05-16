@@ -377,7 +377,7 @@ class Departments extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Departments/fromXl",
+     *   path="/api/Departments/ fromFile",
      *   summary="Departments",
      *   description="Departments",
      *   tags={"Departments"},
@@ -422,7 +422,7 @@ class Departments extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function fromXl()
+    public function  fromFile()
     {
         $validationRule = [
             'userfile' => [

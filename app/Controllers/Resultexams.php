@@ -456,7 +456,7 @@ class Resultexams extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Resultexams/fromXl",
+     *   path="/api/Resultexams/ fromFile",
      *   summary="Resultexams",
      *   description="Resultexams",
      *   tags={"Resultexams"},
@@ -501,7 +501,7 @@ class Resultexams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function fromXl()
+    public function  fromFile()
     {
         $validationRule = [
             'userfile' => [

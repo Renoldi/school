@@ -572,7 +572,7 @@ class Exams extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Exams/fromXl",
+     *   path="/api/Exams/ fromFile",
      *   summary="exams",
      *   description="exams",
      *   tags={"Exams"},
@@ -617,7 +617,7 @@ class Exams extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function fromXl()
+    public function  fromFile()
     {
         $validationRule = [
             'userfile' => [

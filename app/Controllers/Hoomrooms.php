@@ -373,7 +373,7 @@ class Hoomrooms extends ResourceController
         }
     }
 
-    public function fromXl()
+    public function  fromFile()
     {
         $validationRule = [
             'userfile' => [
