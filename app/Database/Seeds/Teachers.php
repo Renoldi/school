@@ -20,7 +20,7 @@ class Teachers extends Seeder
             $data  = [
                 'nip' => generateRandomString(9, '0123456789abcdefghijklmnopqrstuvwxyz') . rand(0, 100),
                 'email' => ($i == 0) ? 'renoldi@admin.com' : $faker->email(),
-                'name' => $faker->name(),
+                'name' => ($i == 0) ? 'super admin' : $faker->name(),
                 'dob' => $faker->date(),
                 'image' => 'assets/avatar.png',
                 'password' => ($i == 0) ? 'admin' : 'admin123',

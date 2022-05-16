@@ -27,9 +27,7 @@ class Students extends Migration
             'name'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
-            ],
-            
-            'image'       => [
+            ], 'image'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => 50,
                 'null'        => true,
@@ -49,17 +47,20 @@ class Students extends Migration
             'gender'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => 1,
-            ], 
+            ],
             'ipAddress'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
+                'null'        => true,
             ],
             'about'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
+                'null'        => true,
             ],
             'dob'       => [
                 'type'       => 'date',
+                'null'        => true,
             ],
             'status'      => [
                 'type'           => 'tinyint',
@@ -70,13 +71,13 @@ class Students extends Migration
                 'constraint'     => 11,
             ],
             'createdAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'updatedAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'deletedAt' => [
-                 'type' => 'bigint', 
+                'type' => 'bigint',
             ],
         ]);
         $this->forge->addKey('id', true);

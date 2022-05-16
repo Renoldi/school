@@ -49,8 +49,8 @@ class Students extends Model
         'classId' => 'required|integer',
         'roomId' => 'required|integer',
         'privilegeId' => 'required|integer',
-        'ipAddress' => 'required',
-        'about' => 'required',
+        // 'ipAddress' => 'required',
+        // 'about' => 'required',
 
     ];
     protected $validationMessages   = [];

@@ -353,9 +353,8 @@ class Teachers extends ResourceController
         } else {
 
             $user =  $this->model
-                ->select("teachers.*,p.name as privilege, s.name as subject")
+                ->select("teachers.*,p.name as privilege")
                 ->join('privileges p', 'p.id=teachers.privilegeId')
-                ->join('subjects s', 's.id=teachers.subjectId')
                 ->where('email', $email)
                 ->first();
 
@@ -386,7 +385,6 @@ class Teachers extends ResourceController
                 'gender' => $user->gender,
                 'position' => $user->position,
                 'dob' => $user->dob,
-                'subject' => $user->subject,
                 'email' => $user->email,
                 'image' => $user->image,
                 'status' => $user->status,
@@ -575,7 +573,7 @@ class Teachers extends ResourceController
             $entity->mutation = $row[19];
 
             if (!$this->model->save($entity)) {
-                return  $this->respond([$this->model->getLastQuery()->getQuery()]);
+                // return  $this->respond([$this->model->getLastQuery()->getQuery()]);
 
                 return $this->failValidationErrors(
                     [

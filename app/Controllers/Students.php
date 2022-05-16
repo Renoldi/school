@@ -190,6 +190,65 @@ class Students extends ResourceController
 
         return $this->respond($record);
     }
+    /**
+     * Return the properties of a resource object
+     *
+     * @return mixed
+     */
+    /**
+     * @OA\Post(
+     *   path="/api/Students/count",
+     *   summary="Students",
+     *   description="Students",
+     *   tags={"Students"},
+     * @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *      @OA\Schema(ref="#/components/schemas/Students"),
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Students")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function count()
+    {
+        $data = $this->request->getVar();
+        // $record = $this->model
+        // ->select('count(gender) total')
+        // ->where($data)
+        // ->groupBy('gender')
+        // ->findAll();
+        // return  $this->respond([$this->model->getLastQuery()->getQuery()]);
+
+        // if (!$record) {
+        //     return $this->failNotFound(sprintf(
+        //         'user with id %d not found',
+        //     ));
+        // }
+
+
+
+        return $this->respond($data);
+    }
 
     /**
      * Create a new resource object, from "posted" parameters
@@ -202,7 +261,6 @@ class Students extends ResourceController
      *   summary="Students",
      *   description="Students",
      *   tags={"Students"},
-    
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
@@ -557,8 +615,6 @@ class Students extends ResourceController
         }
     }
 
-
-
     /**
      * @OA\Post(
      *   path="/api/Students/fromXl",
@@ -648,9 +704,10 @@ class Students extends ResourceController
             $subjectEntity->status = $row[5];
             $subjectEntity->classId = $row[6];
             $subjectEntity->roomId = $row[7];
-            $subjectEntity->privilegeId = $row[7];
+            $subjectEntity->privilegeId = $row[8];
 
             if (!$this->model->save($subjectEntity)) {
+
                 return $this->failValidationErrors(
                     [
                         'row' => $x + 1,
