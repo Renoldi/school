@@ -272,7 +272,7 @@ class Students extends ResourceController
 
         if (!$record) {
             return $this->failNotFound(sprintf(
-                'user with id %d not found',
+                'user not found',
             ));
         }
         return $this->respond(
