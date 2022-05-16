@@ -205,7 +205,20 @@ class Students extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Students"),
+      *       @OA\Schema(
+     *          @OA\Property(
+     *              property="select",
+     *              type="string",
+     *          ),
+     *          @OA\Property(
+     *              property="groupBy",
+     *              type="string",
+     *          ),
+     *          @OA\Property(
+     *              property="where", type="object", 
+     *           @OA\Property(property="id", type="string"),
+     *           )
+     *      ),
      *     )
      *   ),
      *   @OA\Response(

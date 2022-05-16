@@ -136,7 +136,7 @@ class Classes extends ResourceController
         if ($data == null) {
             return $this->fail("data not valid");
         }
-         
+
         $entity = new EntitiesClasses();
         $array = new StdobjeToArray($data);
 
@@ -199,7 +199,7 @@ class Classes extends ResourceController
         if ($data == null) {
             return $this->fail("data not valid");
         }
-         
+
         $entity = new EntitiesClasses();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -210,7 +210,7 @@ class Classes extends ResourceController
         return $this->respondUpdated($data, "updated");
     }
 
-      /**
+    /**
      * @OA\Post(
      *   path="/api/Classes/count",
      *   summary="Classes",
@@ -220,7 +220,20 @@ class Classes extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Classes"),
+     *       @OA\Schema(
+     *          @OA\Property(
+     *              property="select",
+     *              type="string",
+     *          ),
+     *          @OA\Property(
+     *              property="groupBy",
+     *              type="string",
+     *          ),
+     *          @OA\Property(
+     *              property="where", type="object", 
+     *           @OA\Property(property="id", type="string"),
+     *           )
+     *      ),
      *     )
      *   ),
      *   @OA\Response(
