@@ -136,7 +136,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->resource('Teachers', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'delete,new']);
     $routes->resource('TeacherTasks', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'delete,new']);
 
-    $routes->resource('Privileges', ['filter' => ['Auth', 'Role:superadmin,admin']]);
+    $routes->resource('Privileges', ['filter' => ['Role:superadmin,admin']]);
 });
 
 /*
