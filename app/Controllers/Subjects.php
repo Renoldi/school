@@ -380,32 +380,84 @@ class Subjects extends ResourceController
         }
     }
 
-    public function getSubject()
+      /**
+     * @OA\Post(
+     *   path="/api/Teachers/count",
+     *   summary="Teachers",
+     *   description="Teachers",
+     *   tags={"Teachers"},
+     * @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *      @OA\Schema(ref="#/components/schemas/Teachers"),
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Teachers")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function count()
     {
-        $key = getenv('JWT_SECRET');
-        $header = $this->request->getServer('HTTP_AUTHORIZATION');
-        $token = null;
+        // {
+        //     "select": "gender",
+        //     "groupBy": "gender",
+        //     "where": {
+        //       "classId": 2,
+        //       "roomId": 1
+        //     }
+        //   }
+        $data = $this->request->getVar();
+        if ($data == null) {
+            return $this->fail("data not valid");
+        }
 
-        // extract the token from the header
-        if (!empty($header)) {
-            if (preg_match('/Bearer\s(\S+)/', $header, $matches)) {
-                $token = $matches[1];
+        $array = new StdobjeToArray($data);
+        $select = $array->param('select');;
+        $where = $array->param('where');
+        $groupBy = $array->param('groupBy');
+        $record = $this->model;
+        if ($select != null) {
+            $record = $this->model->select($select);
+        }
+
+        if ($where != null) {
+            $record = $this->model->where($where);
+        }
+
+        if ($groupBy != null) {
+            if ($select == null) {
+                $record = $this->model->select($groupBy . ',count(*) total');
             }
+            $record = $this->model->groupBy($groupBy);
         }
 
-        // // check if token is null or empty
-        if (is_null($token) || empty($token)) {
-            return $this->failUnauthorized();
+        $record = $this->model->findAll();
+
+        if (!$record) {
+            return $this->failNotFound(sprintf(
+                'user not found',
+            ));
         }
-        try {
-            $decoded = JWT::decode($token, new Key($key, 'HS256'));
-            $response = [
-                'message' => 'detail student',
-                'decoded' => $decoded,
-            ];
-            return $this->respond($response);
-        } catch (Exception $ex) {
-            return $this->failUnauthorized();
-        }
+        return $this->respond(
+            $record
+        );
     }
 }

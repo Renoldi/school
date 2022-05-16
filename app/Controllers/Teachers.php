@@ -542,10 +542,6 @@ class Teachers extends ResourceController
 
         $record = $this->model->findAll();
 
-        // return  $this->respond([
-        //     $this->model->getLastQuery()->getQuery(),
-        // ]);
-
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user not found',
