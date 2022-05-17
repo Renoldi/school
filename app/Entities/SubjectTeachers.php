@@ -20,6 +20,8 @@ class SubjectTeachers extends Entity
     protected $attributes = [
         'teacherId' => null,
         'subjectId' => null,
+        'classId ' => null,
+        'duration' => null,
     ];
 
     
@@ -34,4 +36,15 @@ class SubjectTeachers extends Entity
      * @OA\Property()
      */
     protected $subjectId;
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $classId;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $duration;
 }

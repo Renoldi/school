@@ -16,12 +16,14 @@ class SubjectTeachers extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'teacherId',
-        'subjectId'
+        'subjectId',
+        'classId',
+        'duration',
     ];
 
     // Dates
     protected $useTimestamps = true;
-    protected $dateFormat   = 'int';  
+    protected $dateFormat   = 'int';
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';
@@ -29,7 +31,9 @@ class SubjectTeachers extends Model
     // Validation
     protected $validationRules      = [
         'teachersId' => 'required|integer',
-        'subjectId' => 'required|integer', 
+        'subjectId' => 'required|integer',
+        'classId' => 'required|integer',
+        'duration' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

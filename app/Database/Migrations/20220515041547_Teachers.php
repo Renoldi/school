@@ -35,6 +35,7 @@ class Teachers extends Migration
                 ],
                 'dob' => [
                     'type' => 'date',
+                    'null' => true,
                 ],
                 'privilegeId' => [
                     'type' => 'INT',

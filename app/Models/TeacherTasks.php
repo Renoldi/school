@@ -15,12 +15,15 @@ class TeacherTasks extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'teachersId','subjectId'
+        'teachersId',
+        'subjectId',
+        'tmtTask',
+        'duration',
     ];
 
     // Dates
     protected $useTimestamps = true;
-    protected $dateFormat   = 'int';  
+    protected $dateFormat   = 'int';
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';
@@ -28,7 +31,7 @@ class TeacherTasks extends Model
     // Validation
     protected $validationRules      = [
         'teachersId' => 'required|integer',
-        'subjectId' => 'required|integer', 
+        'subjectId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
