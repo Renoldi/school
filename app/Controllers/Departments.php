@@ -20,21 +20,33 @@ class Departments extends ResourceController
      *   summary="Departments",
      *   description="Departments",
      *   tags={"Departments"},
-     *   @OA\Parameter(
-     *         name="status",
-     *         in="path",
-     *         required=true,
-     *   ),
-     *   @OA\Parameter(
-     *         name="perpage",
-     *         in="path",
-     *         required=true,
-     *   ),
-     *   @OA\Parameter(
-     *         name="page",
-     *         in="path",
-     *         required=true,
-     *   ),
+      *   @OA\Parameter(
+    *         name="status",
+    *         in="path",
+    *         required=true,
+    *         @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
+    *   @OA\Parameter(
+    *         name="perpage",
+    *         in="path",
+    *         required=true,
+    *              @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
+    *   @OA\Parameter(
+    *         name="page",
+    *         in="path",
+    *         required=true,
+    *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
      *   @OA\Response(
      *     response=200,description="ok",
      *      @OA\JsonContent(ref="#/components/schemas/Departments")
@@ -142,6 +154,10 @@ class Departments extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
+     *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -349,6 +365,10 @@ class Departments extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
+     *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
      *   ), 
      *  @OA\RequestBody(
      *     required=true,
@@ -410,6 +430,10 @@ class Departments extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
+     *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",

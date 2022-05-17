@@ -58,21 +58,33 @@ class Students extends ResourceController
      *   summary="Students",
      *   description="Students",
      *   tags={"Students"},
-     *   @OA\Parameter(
-     *         name="status",
-     *         in="path",
-     *         required=true,
-     *   ),
-     *   @OA\Parameter(
-     *         name="perpage",
-     *         in="path",
-     *         required=true,
-     *   ),
-     *   @OA\Parameter(
-     *         name="page",
-     *         in="path",
-     *         required=true,
-     *   ),
+      *   @OA\Parameter(
+    *         name="status",
+    *         in="path",
+    *         required=true,
+    *         @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
+    *   @OA\Parameter(
+    *         name="perpage",
+    *         in="path",
+    *         required=true,
+    *              @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
+    *   @OA\Parameter(
+    *         name="page",
+    *         in="path",
+    *         required=true,
+    *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
      *   @OA\Parameter(
      *         name="classId",
      *         in="path",

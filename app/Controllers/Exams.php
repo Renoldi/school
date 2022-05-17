@@ -20,21 +20,33 @@ class Exams extends ResourceController
      *   summary="Exams",
      *   description="Exams",
      *   tags={"Exams"},
-     *   @OA\Parameter(
-     *         name="status",
-     *         in="path",
-     *         required=true,
-     *   ),
-     *   @OA\Parameter(
-     *         name="perpage",
-     *         in="path",
-     *         required=true,
-     *   ),
-     *   @OA\Parameter(
-     *         name="page",
-     *         in="path",
-     *         required=true,
-     *   ),
+      *   @OA\Parameter(
+    *         name="status",
+    *         in="path",
+    *         required=true,
+    *         @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
+    *   @OA\Parameter(
+    *         name="perpage",
+    *         in="path",
+    *         required=true,
+    *              @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
+    *   @OA\Parameter(
+    *         name="page",
+    *         in="path",
+    *         required=true,
+    *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",
@@ -144,6 +156,10 @@ class Exams extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
+     *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -546,6 +562,10 @@ class Exams extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
+     *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
      *   ), 
      *  @OA\RequestBody(
      *     required=true,
@@ -609,6 +629,10 @@ class Exams extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
+     *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",

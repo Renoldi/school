@@ -22,21 +22,33 @@ class Subjects extends ResourceController
      *   summary="Subjects",
      *   description="Subjects",
      *   tags={"Subjects"},
-     *   @OA\Parameter(
-     *         name="status",
-     *         in="path",
-     *         required=true,
-     *   ),
-     *   @OA\Parameter(
-     *         name="perpage",
-     *         in="path",
-     *         required=true,
-     *   ),
-     *   @OA\Parameter(
-     *         name="page",
-     *         in="path",
-     *         required=true,
-     *   ),
+      *   @OA\Parameter(
+    *         name="status",
+    *         in="path",
+    *         required=true,
+    *         @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
+    *   @OA\Parameter(
+    *         name="perpage",
+    *         in="path",
+    *         required=true,
+    *              @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
+    *   @OA\Parameter(
+    *         name="page",
+    *         in="path",
+    *         required=true,
+    *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",
@@ -146,6 +158,10 @@ class Subjects extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
+     *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -250,6 +266,10 @@ class Subjects extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
+     *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
      *   ), 
      *  @OA\RequestBody(
      *     required=true,
@@ -313,6 +333,10 @@ class Subjects extends ResourceController
      *         name="id",
      *         in="path",
      *         required=true,
+     *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",

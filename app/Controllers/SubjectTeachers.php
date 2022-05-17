@@ -19,21 +19,33 @@ class SubjectTeachers extends ResourceController
      *   summary="SubjectTeachers",
      *   description="SubjectTeachers",
      *   tags={"SubjectTeachers"},
-     *   @OA\Parameter(
-     *         name="status",
-     *         in="path",
-     *         required=true,
-     *   ),
-     *   @OA\Parameter(
-     *         name="perpage",
-     *         in="path",
-     *         required=true,
-     *   ),
-     *   @OA\Parameter(
-     *         name="page",
-     *         in="path",
-     *         required=true,
-     *   ),
+      *   @OA\Parameter(
+    *         name="status",
+    *         in="path",
+    *         required=true,
+    *         @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
+    *   @OA\Parameter(
+    *         name="perpage",
+    *         in="path",
+    *         required=true,
+    *              @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
+    *   @OA\Parameter(
+    *         name="page",
+    *         in="path",
+    *         required=true,
+    *           @OA\Schema(
+    *              type="integer",
+    *              format="int64",
+    *          )
+    *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",
