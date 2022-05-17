@@ -719,7 +719,7 @@ class Teachers extends ResourceController
      */
     public function  fromFile()
     {
-        var_dump("renoldi");exit;
+        // var_dump("renoldi");exit;
         $validationRule = [
             'userfile' => [
                 'label' => 'xls File',
