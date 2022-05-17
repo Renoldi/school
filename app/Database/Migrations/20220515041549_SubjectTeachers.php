@@ -22,11 +22,11 @@ class SubjectTeachers extends Migration
                 'type' => 'INT',
                 'constraint' => 11,
             ],
-            'duration' => [
-                'type' => 'INT',
-                'constraint' => 3,
-            ],
             'classId' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ],
+            'duration' => [
                 'type' => 'INT',
                 'constraint' => 3,
             ],
