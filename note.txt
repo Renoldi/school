@@ -1,6 +1,7 @@
  add new subdomain
   maindoamin->manageNameServer->pengelolaanDns->addNewRecord->Record Type = a ip base on ip current ip
-
+swagger
+  https://medium.com/@tatianaensslin/how-to-add-swagger-ui-to-php-server-code-f1610c01dc03
  composer update update vendor
 
  php spark migrate genarate table
