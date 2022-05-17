@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Scheduleexams as EntitiesScheduleexams;
+ use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Scheduleexams as ModelsScheduleexams;
 use CodeIgniter\API\ResponseTrait;

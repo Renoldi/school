@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Privileges as EntitiesPrivileges;
+ use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Privileges as ModelsPrivileges;
 use CodeIgniter\API\ResponseTrait;

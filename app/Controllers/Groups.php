@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Groups as EntitiesGroups;
+ use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Groups as ModelsGroups;
 use CodeIgniter\API\ResponseTrait;

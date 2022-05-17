@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\SubjectDepartements as EntitiesSubjectDepartements;
+ use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;

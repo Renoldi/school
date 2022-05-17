@@ -22,6 +22,14 @@ class SubjectTeachers extends Migration
                 'type' => 'INT',
                 'constraint' => 11,
             ],
+            'duration' => [
+                'type' => 'INT',
+                'constraint' => 3,
+            ],
+            'classId' => [
+                'type' => 'INT',
+                'constraint' => 3,
+            ],
             'createdAt' => [
                 'type' => 'bigint',
             ],
@@ -35,6 +43,7 @@ class SubjectTeachers extends Migration
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('teacherId', 'teachers', 'id');
         $this->forge->addForeignKey('subjectId', 'subjects', 'id');
+        $this->forge->addForeignKey('classId', 'classes', 'id');
         $this->forge->createTable('subjectteachers');
     }
 

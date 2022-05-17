@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Hoomrooms as EntitiesHoomrooms;
+ use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Hoomrooms as ModelsHoomrooms;
 use CodeIgniter\API\ResponseTrait;

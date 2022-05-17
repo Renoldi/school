@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Resultexams as EntitiesResultexams;
+ use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Resultexams as ModelsResultexams;
 use CodeIgniter\API\ResponseTrait;

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Schools as EntitiesSchools;
+ use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Schools as ModelsSchools;
 use CodeIgniter\API\ResponseTrait;

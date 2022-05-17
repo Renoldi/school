@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Subjects as EntitiesSubjects;
+ use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Subjects as ModelsSubjects;
 use CodeIgniter\API\ResponseTrait;

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Exams as EntitiesExams;
+ use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Exams as ModelsExams;
 use CodeIgniter\API\ResponseTrait;

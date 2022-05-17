@@ -25,6 +25,10 @@ class TeacherTasks extends Migration
             'tmtTask' => [
                 'type' => 'date',
             ],
+            'duration' => [
+                'type' => 'INT',
+                'constraint' => 3,
+            ],
             'createdAt' => [
                 'type' => 'bigint',
             ],

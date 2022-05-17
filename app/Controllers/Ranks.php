@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Ranks as EntitiesRanks;
+ use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Ranks as ModelsRanks;
 use CodeIgniter\API\ResponseTrait;

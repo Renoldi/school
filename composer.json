@@ -10,7 +10,8 @@
         "firebase/php-jwt": "^6.1",
         "phpoffice/phpspreadsheet": "^1.22",
         "fakerphp/faker": "^1.19",
-        "zircote/swagger-php": "^4.3"
+        "zircote/swagger-php": "^4.3",
+        "doctrine/annotations": "^1.13"
     },
     "require-dev": {
         "mikey179/vfsstream": "^1.6",
