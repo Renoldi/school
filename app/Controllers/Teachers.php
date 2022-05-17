@@ -749,7 +749,7 @@ class Teachers extends ResourceController
             if ($x == 0) {
                 continue;
             }
-            if ($row[0] == '')
+            if ($row[1] == '')
                 continue;
             $entity->nip  = $row[0];
             $entity->name = $row[1];
