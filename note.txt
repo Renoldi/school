@@ -145,3 +145,21 @@ JOIN teachers t on t.id = tt.teacherId
 left JOIN subjectteachers st on t.id = st.teacherId
 LEFT JOIN hoomrooms hr on hr.teacherId = t.id 
 group by t.id order by t.id;
+ 
+SELECT t.id,t.name, ifnull(tt.teachertasks,0) teachertasks,ifnull(hr.hoomrooms,0)hoomrooms,ifnull(st.subjectteachers,0)subjectteachers , (ifnull(tt.teachertasks,0)+ifnull(hr.hoomrooms,0)+ifnull(st.subjectteachers,0) ) total FROM teachers t
+ JOIN 
+(SELECT t.id,t.name, sum(ifnull(tt.duration, 0)) as teachertasks from 
+ teachers t
+ JOIN teachertasks tt
+ on t.id = tt.teacherId group by t.id ) tt on tt.id = t.id
+ LEFT JOIN 
+(SELECT t.id,t.name, sum(ifnull(hr.duration, 0)) as hoomrooms from 
+ teachers t
+  JOIN  hoomrooms hr
+ on t.id = hr.teacherId group by t.id  ) hr on hr.id = t.id
+ LEFT JOIN 
+  (SELECT t.id,t.name,sum(ifnull(st.duration, 0)) as subjectteachers from 
+ teachers t
+  JOIN  subjectteachers st
+ on t.id = st.teacherId group by t.id ) st on st.id = t.id  
+ORDER BY `t`.`id` ASC;
