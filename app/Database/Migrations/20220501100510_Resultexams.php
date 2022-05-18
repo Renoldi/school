@@ -9,43 +9,40 @@ class Resultexams extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'          => [
-                'type'           => 'INT',
-                
+            'id' => [
+                'type' => 'INT',
                 'auto_increment' => true,
                 'constraint' => 11,
             ],
-            'studentId'       => [
-                'type'       => 'INT',
+            'studentId' => [
+                'type' => 'INT',
                 'constraint' => 11,
             ],
-            'examId'       => [
-                'type'       => 'INT',
+            'examId' => [
+                'type' => 'INT',
                 'constraint' => 11,
             ],
-            'choise'       => [
-                'type'       => 'VARCHAR',
+            'choise' => [
+                'type' => 'VARCHAR',
                 'constraint' => 1,
             ],
-             
-            'status'      => [
-                'type'           => 'tinyint',
-                'constraint'     => 1,
+            'statusId' => [
+                'type' => 'int',
             ],
-           
             'createdAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'updatedAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'deletedAt' => [
-                 'type' => 'bigint', 
+                'type' => 'bigint',
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('studentId', 'students','id');
-        $this->forge->addForeignKey('examId', 'exams','id');
+        $this->forge->addForeignKey('statusId', 'status', 'id');
+        $this->forge->addForeignKey('studentId', 'students', 'id');
+        $this->forge->addForeignKey('examId', 'exams', 'id');
         $this->forge->createTable('resultexams');
     }
 

@@ -19,7 +19,7 @@ class Scheduleexams extends Model
         'classId',
         'start',
         'end',
-        'status',
+        'statusId',
     ];
 
     // Dates
@@ -35,7 +35,7 @@ class Scheduleexams extends Model
         'classId' => 'required|integer',
         'start' => 'required|valid_date',
         'end' => 'required|valid_date',
-        'status' => 'required|integer',
+        'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

@@ -2,25 +2,23 @@
 
 namespace App\Controllers;
 
-use App\Entities\Departments as EntitiesDepartments;
-use OpenApi\Annotations as OA;
+use App\Entities\Status as EntitiesStatus;
 use App\Libraries\StdobjeToArray;
-use App\Models\Departments as ModelsDepartments;
+use App\Models\Status as ModelsStatus;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
-class Departments extends ResourceController
+class Status extends ResourceController
 {
-    protected $modelName = ModelsDepartments::class;
+    protected $modelName = ModelsStatus::class;
     protected $format    = 'json';
     use ResponseTrait;
-
     /**
      * @OA\Get(
-     *   path="/api/Departments/paging/{status}/{perpage}/{page}",
-     *   summary="Departments",
-     *   description="Departments",
-     *   tags={"Departments"},
+     *   path="/api/Status/paging/{status}/{perpage}/{page}",
+     *   summary="Status",
+     *   description="Status",
+     *   tags={"Status"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -50,7 +48,7 @@ class Departments extends ResourceController
      *   ),
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Departments")
+     *      @OA\JsonContent(ref="#/components/schemas/Status")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"
@@ -79,7 +77,6 @@ class Departments extends ResourceController
         }
 
         $data = $model
-
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -118,15 +115,15 @@ class Departments extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Departments",
-     *   summary="Departments",
-     *   description="Departments",
-     *   tags={"Departments"},
+     *   path="/api/Status",
+     *   summary="Status",
+     *   description="Status",
+     *   tags={"Status"},
      *   @OA\Response(
      *     response=200, description="ok",
      *     @OA\JsonContent(
      *      type="array",
-     *       @OA\Items(ref="#/components/schemas/Departments")
+     *       @OA\Items(ref="#/components/schemas/Status")
      *     ),
      *   ),
      *   @OA\Response(
@@ -147,10 +144,10 @@ class Departments extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Departments/{id}",
-     *   summary="Departments",
-     *   description="Departments",
-     *   tags={"Departments"},
+     *   path="/api/Status/{id}",
+     *   summary="Status",
+     *   description="Status",
+     *   tags={"Status"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -162,7 +159,7 @@ class Departments extends ResourceController
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Departments")
+     *      @OA\JsonContent(ref="#/components/schemas/Status")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -201,21 +198,21 @@ class Departments extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/Departments",
-     *   summary="Departments",
-     *   description="Departments",
-     *   tags={"Departments"},
+     *   path="/api/Status",
+     *   summary="Status",
+     *   description="Status",
+     *   tags={"Status"},
     
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Departments"),
+     *      @OA\Schema(ref="#/components/schemas/Status"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=201, description="created",
-     *      @OA\JsonContent(ref="#/components/schemas/Departments")
+     *      @OA\JsonContent(ref="#/components/schemas/Status")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Request error",
@@ -238,7 +235,7 @@ class Departments extends ResourceController
             return $this->fail("data not valid");
         }
 
-        $entity = new EntitiesDepartments();
+        $entity = new EntitiesStatus();
         $array = new StdobjeToArray($data);
 
         $entity->fill($array->get());
@@ -251,16 +248,81 @@ class Departments extends ResourceController
     }
 
     /**
+     * Add or update a model resource, from "posted" properties
+     *
+     * @return mixed
+     */
+    /**
+     * @OA\Put(
+     *   path="/api/Status/{id}",
+     *   summary="Status",
+     *   description="Status",
+     *   tags={"Status"},
+     *   @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ), 
+     *  @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *      @OA\Schema(ref="#/components/schemas/Status"),
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200, description="updated",
+     *      @OA\JsonContent(ref="#/components/schemas/Status")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function update($id = null)
+    {
+        $data = $this->request->getVar();
+        if ($data == null) {
+            return $this->fail("data not valid");
+        }
+
+        $entity = new EntitiesStatus();
+        $array = new StdobjeToArray($data);
+        $entity->fill($array->get());
+        if (!$this->model->update($id, $entity)) {
+            return $this->failValidationErrors($this->model->errors());
+        }
+
+        return $this->respondUpdated($data, "updated");
+    }
+
+    /**
      * @OA\Post(
-     *   path="/api/Departments/count",
-     *   summary="Departments",
-     *   description="Departments",
-     *   tags={"Departments"},
+     *   path="/api/Status/count",
+     *   summary="Status",
+     *   description="Status",
+     *   tags={"Status"},
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(
+     *       @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -272,14 +334,13 @@ class Departments extends ResourceController
      *          @OA\Property(
      *              property="where", type="object", 
      *           @OA\Property(property="id", type="string"),
-     *              )
-     *          ),
+     *           )
+     *      ),
      *     )
-     *     
      *   ),
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Departments")
+     *      @OA\JsonContent(ref="#/components/schemas/Status")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -352,81 +413,16 @@ class Departments extends ResourceController
     }
 
     /**
-     * Add or update a model resource, from "posted" properties
-     *
-     * @return mixed
-     */
-    /**
-     * @OA\Put(
-     *   path="/api/Departments/{id}",
-     *   summary="Departments",
-     *   description="Departments",
-     *   tags={"Departments"},
-     *   @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *           @OA\Schema(
-     *              type="integer",
-     *              format="int64",
-     *          )
-     *   ), 
-     *  @OA\RequestBody(
-     *     required=true,
-     *     @OA\MediaType(
-     *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Departments"),
-     *     )
-     *   ),
-     *   @OA\Response(
-     *     response=200, description="updated",
-     *      @OA\JsonContent(ref="#/components/schemas/Departments")
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
-     *   ),
-     *   @OA\Response(
-     *     response=404, description="404 not found",
-     *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 404),
-     *      @OA\Property(property="error", type="double", example = 404),
-     *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
-     *       )
-     *     )
-     *   ),
-     *   security={{"token": {}}},
-     * )
-     */
-    public function update($id = null)
-    {
-        $data = $this->request->getVar();
-        if ($data == null) {
-            return $this->fail("data not valid");
-        }
-
-        $entity = new EntitiesDepartments();
-        $array = new StdobjeToArray($data);
-        $entity->fill($array->get());
-        if (!$this->model->update($id, $entity)) {
-            return $this->failValidationErrors($this->model->errors());
-        }
-
-        return $this->respondUpdated($data, "updated");
-    }
-
-    /**
      * Delete the designated resource object from the model
      *
      * @return mixed
      */
     /**
      * @OA\Delete(
-     *   path="/api/Departments/{id}",
-     *   summary="Departments",
-     *   description="Departments",
-     *   tags={"Departments"},
+     *   path="/api/Status/{id}",
+     *   summary="Status",
+     *   description="Status",
+     *   tags={"Status"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -486,10 +482,10 @@ class Departments extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Departments/fromFile",
-     *   summary="Departments",
-     *   description="Departments",
-     *   tags={"Departments"},
+     *   path="/api/Status/fromFile",
+     *   summary="Status",
+     *   description="Status",
+     *   tags={"Status"},
      *   @OA\RequestBody(
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",
@@ -557,7 +553,7 @@ class Departments extends ResourceController
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
 
-        $subjectEntity = new EntitiesDepartments();
+        $subjectEntity = new EntitiesStatus();
         $this->model->transStart();
         foreach ($data as $x => $row) {
             if ($x == 0) {

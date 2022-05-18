@@ -16,7 +16,7 @@ class Privileges extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'name',
-        'status',
+        'statusId',
     ];
 
     // Dates
@@ -29,7 +29,7 @@ class Privileges extends Model
     // Validation
     protected $validationRules      = [
         'name' => 'required|is_unique[privileges.name,id,{id}]',
-        'status' => 'required|integer',
+        'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

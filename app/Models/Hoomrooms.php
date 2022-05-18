@@ -19,7 +19,7 @@ class Hoomrooms extends Model
         'classId',
         'teacherId',
         'duration',
-        'status',
+        'statusId',
     ];
 
     // Dates
@@ -35,7 +35,7 @@ class Hoomrooms extends Model
         'classId' => 'required|integer',
         'teacherId' => 'required|integer',
         'duration' => 'required|integer',
-        'status' => 'required|integer',
+        'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

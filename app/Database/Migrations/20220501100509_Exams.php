@@ -9,72 +9,71 @@ class Exams extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'          => [
-                'type'           => 'INT',
+            'id' => [
+                'type' => 'INT',
                 'auto_increment' => true,
                 'constraint' => 11,
             ],
-            'classId'          => [
-                'type'           => 'INT',
-                'constraint'     => 11,
+            'classId' => [
+                'type' => 'INT',
+                'constraint' => 11,
             ],
-            'subjectId'       => [
-                'type'           => 'INT',
-                'constraint'     => 11,
+            'subjectId' => [
+                'type' => 'INT',
+                'constraint' => 11,
             ],
-            'question'      => [
-                'type'           => 'TEXT',
-                'null'        => true,
+            'question' => [
+                'type' => 'TEXT',
+                'null' => true,
             ],
             'questionImage' => [
-                'type'           => 'VARCHAR',
-                'constraint'     => 50,
-                'null'        => true,
+                'type' => 'VARCHAR',
+                'constraint' => 50,
+                'null' => true,
             ],
             'show' => [
-                'type'           => 'ENUM("both","text","image")',
+                'type' => 'ENUM("both","text","image")',
             ],
-            'a'       => [
-                'type'           => 'TEXT',
+            'a' => [
+                'type' => 'TEXT',
             ],
-            'b'       => [
-                'type'           => 'TEXT',
+            'b' => [
+                'type' => 'TEXT',
             ],
-            'c'       => [
-                'type'           => 'TEXT',
+            'c' => [
+                'type' => 'TEXT',
             ],
-            'd'       => [
-                'type'           => 'TEXT',
+            'd' => [
+                'type' => 'TEXT',
             ],
-            'e'       => [
-                'type'           => 'TEXT',
+            'e' => [
+                'type' => 'TEXT',
             ],
-            'point'       => [
-                'type'           => 'INT',
-                'constraint'     => 3,
+            'point' => [
+                'type' => 'INT',
+                'constraint' => 3,
             ],
-
-            'answer'       => [
-                'type'       => 'CHAR',
+            'answer' => [
+                'type' => 'CHAR',
                 'constraint' => 1,
             ],
-            'status'      => [
-                'type'           => 'tinyint',
-                'constraint'     => 1,
+            'statusId' => [
+                'type' => 'int',
             ],
             'createdAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'updatedAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'deletedAt' => [
-                 'type' => 'bigint', 
+                'type' => 'bigint',
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('subjectId', 'subjects','id');
-        $this->forge->addForeignKey('classId', 'classes','id');
+        $this->forge->addForeignKey('statusId', 'status', 'id');
+        $this->forge->addForeignKey('subjectId', 'subjects', 'id');
+        $this->forge->addForeignKey('classId', 'classes', 'id');
         $this->forge->createTable('exams');
     }
 

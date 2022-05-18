@@ -23,7 +23,7 @@ class Scheduleexams extends Entity
         'classId' => null,
         'start' => null,
         'end' => null,
-        'status' => null,
+        'statusId' => null,
     ];
 
 
@@ -55,5 +55,5 @@ class Scheduleexams extends Entity
      * @var integer
      * @OA\Property()
      */
-    protected $status;
+    protected $statusId;
 }

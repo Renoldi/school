@@ -14,82 +14,25 @@ class Tasks extends Seeder
         $entities = new EntitiesTasks();
 
         $data = [
-            [
-                'name'  => 'Kepala Madrasah',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Wakamad Kurikulum',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Wakamad Kesiswaan',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Wakamad Humas',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Wakamad Sarpras',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Kepala Perpustakaan',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Kepala Laboratorium IPA',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Kepala Laboratorium Komputer',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Pembina UKS',
-                'status'  =>  1,
-            ], 
-            [
-                'name'  => 'Pembina Olah Raga',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Pembina PIK KRR',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Koord BK',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Pembina Osim',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Pembina Pramuka',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Pembina Rohis',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'Bendahara Komite',
-                'status'  =>  1,
-            ], 
-            [
-                'name'  => 'Guru Madya',
-                'status'  =>  1,
-            ], 
-            [
-                'name'  => 'Piket',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'bandahara osim',
-                'status'  =>  1,
-            ],
+            ['name' => 'Kepala Madrasah', 'statusId' => 1,],
+            ['name' => 'Wakamad Kurikulum', 'statusId' => 1,],
+            ['name' => 'Wakamad Kesiswaan', 'statusId' => 1,],
+            ['name' => 'Wakamad Humas', 'statusId' => 1,],
+            ['name' => 'Wakamad Sarpras', 'statusId' => 1,],
+            ['name' => 'Kepala Perpustakaan', 'statusId' => 1,],
+            ['name' => 'Kepala Laboratorium IPA', 'statusId' => 1,],
+            ['name' => 'Kepala Laboratorium Komputer', 'statusId' => 1,],
+            ['name' => 'Pembina UKS', 'statusId' => 1,],
+            ['name' => 'Pembina Olah Raga', 'statusId' => 1,],
+            ['name' => 'Pembina PIK KRR', 'statusId' => 1,],
+            ['name' => 'Koord BK', 'statusId' => 1,],
+            ['name' => 'Pembina Osim', 'statusId' => 1,],
+            ['name' => 'Pembina Pramuka', 'statusId' => 1,],
+            ['name' => 'Pembina Rohis', 'statusId' => 1,],
+            ['name' => 'Bendahara Komite', 'statusId' => 1,],
+            ['name' => 'Guru Madya', 'statusId' => 1,],
+            ['name' => 'Piket', 'statusId' => 1,],
+            ['name' => 'bandahara osim', 'statusId' => 1,],
         ];
         foreach ($data as $data) {
             $entities->fill($data);

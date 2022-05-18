@@ -9,66 +9,65 @@ class Students extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'          => [
-                'type'           => 'INT',
-                'constraint'     => 11,
+            'id' => [
+                'type' => 'INT',
+                'constraint' => 11,
                 'auto_increment' => true,
             ],
-            'nisn'       => [
-                'type'       => 'VARCHAR',
+            'nisn' => [
+                'type' => 'VARCHAR',
                 'constraint' => 100,
-                'null'        => true,
+                'null' => true,
             ],
-            'email'      => [
-                'type'           => 'VARCHAR',
-                'unique'         => true,
-                'constraint'     => 255,
+            'email' => [
+                'type' => 'VARCHAR',
+                'unique' => true,
+                'constraint' => 255,
             ],
-            'name'       => [
-                'type'       => 'VARCHAR',
+            'name' => [
+                'type' => 'VARCHAR',
                 'constraint' => 100,
-            ], 'image'       => [
-                'type'       => 'VARCHAR',
+            ], 'image' => [
+                'type' => 'VARCHAR',
                 'constraint' => 50,
-                'null'        => true,
+                'null' => true,
             ],
-            'password'       => [
-                'type'       => 'VARCHAR',
+            'password' => [
+                'type' => 'VARCHAR',
                 'constraint' => 60,
             ],
-            'classId'       => [
-                'type'       => 'INT',
+            'classId' => [
+                'type' => 'INT',
                 'constraint' => 11,
             ],
-            'roomId'       => [
-                'type'       => 'INT',
+            'roomId' => [
+                'type' => 'INT',
                 'constraint' => 11,
             ],
-            'gender'       => [
-                'type'       => 'VARCHAR',
+            'gender' => [
+                'type' => 'VARCHAR',
                 'constraint' => 1,
             ],
-            'ipAddress'       => [
-                'type'       => 'VARCHAR',
+            'ipAddress' => [
+                'type' => 'VARCHAR',
                 'constraint' => 255,
-                'null'        => true,
+                'null' => true,
             ],
-            'about'       => [
-                'type'       => 'VARCHAR',
+            'about' => [
+                'type' => 'VARCHAR',
                 'constraint' => 255,
-                'null'        => true,
+                'null' => true,
             ],
-            'dob'       => [
-                'type'       => 'date',
-                'null'        => true,
+            'dob' => [
+                'type' => 'date',
+                'null' => true,
             ],
-            'status'      => [
-                'type'           => 'tinyint',
-                'constraint'     => 1,
+            'statusId' => [
+                'type' => 'int',
             ],
-            'privilegeId'      => [
-                'type'           => 'INT',
-                'constraint'     => 11,
+            'privilegeId' => [
+                'type' => 'INT',
+                'constraint' => 11,
             ],
             'createdAt' => [
                 'type' => 'bigint',
@@ -81,6 +80,7 @@ class Students extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('statusId', 'status', 'id');
         $this->forge->addForeignKey('roomId', 'rooms', 'id');
         $this->forge->addForeignKey('classId', 'classes', 'id');
         $this->forge->addForeignKey('privilegeId', 'privileges', 'id');

@@ -94,9 +94,8 @@ class Teachers extends Migration
                     'constraint' => 255,
                     'null' => true,
                 ],
-                'status' => [
-                    'type' => 'tinyint',
-                    'constraint' => 1,
+                'statusId' => [
+                    'type' => 'int',
                 ],
                 'isPn' => [
                     'type' => 'tinyint',
@@ -128,6 +127,7 @@ class Teachers extends Migration
             ]
         );
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('statusId', 'status', 'id');
         $this->forge->addForeignKey('privilegeId', 'privileges', 'id');
         $this->forge->addForeignKey('rankId', 'ranks', 'id');
         $this->forge->addForeignKey('groupId', 'groups', 'id');

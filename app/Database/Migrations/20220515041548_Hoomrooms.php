@@ -9,45 +9,45 @@ class Hoomrooms extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'          => [
-                'type'           => 'INT',
+            'id' => [
+                'type' => 'INT',
                 'auto_increment' => true,
                 'constraint' => 11,
             ],
-            'roomId'       => [
-                'type'       => 'INT',
+            'roomId' => [
+                'type' => 'INT',
                 'constraint' => 11,
             ],
-            'classId'       => [
-                'type'       => 'INT',
+            'classId' => [
+                'type' => 'INT',
                 'constraint' => 11,
             ],
-            'teacherId'       => [
-                'type'       => 'INT',
+            'teacherId' => [
+                'type' => 'INT',
                 'constraint' => 11,
             ],
             'duration' => [
                 'type' => 'INT',
                 'constraint' => 3,
             ],
-            'status'      => [
-                'type'           => 'tinyint',
-                'constraint'     => 1,
+            'statusId' => [
+                'type' => 'int',
             ],
             'createdAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'updatedAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'deletedAt' => [
-                 'type' => 'bigint', 
+                'type' => 'bigint',
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('roomId', 'rooms','id');
-        $this->forge->addForeignKey('classId', 'classes','id');
-        $this->forge->addForeignKey('teacherId', 'teachers','id');
+        $this->forge->addForeignKey('statusId', 'status', 'id');
+        $this->forge->addForeignKey('roomId', 'rooms', 'id');
+        $this->forge->addForeignKey('classId', 'classes', 'id');
+        $this->forge->addForeignKey('teacherId', 'teachers', 'id');
         $this->forge->createTable('hoomrooms');
     }
 

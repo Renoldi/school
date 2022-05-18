@@ -14,22 +14,10 @@ class Ranks extends Seeder
         $entities = new EntitiesRanks();
 
         $data = [
-            [
-                'name'  => 'I',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'II',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'III',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'IV',
-                'status'  =>  1,
-            ],
+            ['name' => 'I', 'statusId' => 1,],
+            ['name' => 'II', 'statusId' => 1,],
+            ['name' => 'III', 'statusId' => 1,],
+            ['name' => 'IV', 'statusId' => 1,],
         ];
         foreach ($data as $data) {
             $entities->fill($data);

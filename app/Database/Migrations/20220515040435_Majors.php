@@ -14,14 +14,13 @@ class Majors extends Migration
                 'auto_increment' => true,
                 'constraint' => 11,
             ],
-            'name'  => [
-                'type'  => 'VARCHAR',
+            'name' => [
+                'type' => 'VARCHAR',
                 'constraint' => '100',
-                'unique'    => true,
+                'unique' => true,
             ],
-            'status' => [
-                'type' => 'tinyint',
-                'constraint' => 1,
+            'statusId' => [
+                'type' => 'int',
             ],
             'createdAt' => [
                 'type' => 'bigint',
@@ -34,6 +33,7 @@ class Majors extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('statusId', 'status', 'id');
         $this->forge->createTable('majors');
     }
 

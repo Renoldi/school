@@ -27,7 +27,7 @@ class Students extends Seeder
                 'classId' => rand(1, 3),
                 'roomId' => rand(1, 7),
                 'gender' => generateRandomString(1, 'LP'),
-                'status' => 1,
+                'statusId' => 1,
                 'about' => 'created',
                 'ipAddress' => '127.0.0.1',
                 'privilegeId' => 5,

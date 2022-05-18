@@ -4,56 +4,29 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Teachers extends Model
+class Status extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'teachers';
+    protected $table            = 'status';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Teachers::class;
+    protected $returnType       = \App\Entities\Status::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'email',
-        'nip',
         'name',
-        'gender',
-        'dob',
-        'privilegeId',
-        'rankId',
-        'rankTmt',
-        'groupId',
-        'educationLevelId',
-        'schoolId',
-        'majorId',
-        'finishEducationLevel',
-        'mutation',
-        'ipAddress',
-        'about',
-        'image',
-        'statusId',
-        'isPn',
-        'password',
-        'address',
-        'phone',
     ];
 
-    // Dates
     protected $useTimestamps = true;
     protected $dateFormat   = 'int';  
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';
-
+    
     // Validation
     protected $validationRules      = [
-        'email' => 'required|valid_email|is_unique[teachers.email,id,{id}]',
-        'name' => 'required|min_length[4]',
-        'password' => 'required|min_length[5]',
-        'statusId' => 'required|integer', 
-        'privilegeId' => 'required|integer',
-        'isPn' => 'required|integer',
+        'name' => 'required|is_unique[status.name,id,{id}]',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

@@ -139,7 +139,7 @@ class Exams extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->where('status', 1)->findAll());
+        return $this->respond($this->model->where('statusId', 1)->findAll());
     }
 
     /**
@@ -185,7 +185,7 @@ class Exams extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->where('status', 1)->find($id);
+        $record = $this->model->where('statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -770,7 +770,7 @@ class Exams extends ResourceController
             $subjectEntity->d = $row[7];
             $subjectEntity->e = $row[8];
             $subjectEntity->answer = $row[9];
-            $subjectEntity->status = $row[10];
+            $subjectEntity->statusId = $row[10];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(

@@ -22,7 +22,7 @@ class Students extends Entity
         'name' => null,
         'gender' => null,
         'password' => null,
-        'status' => null,
+        'statusId' => null,
         'classId' => null,
         'roomId' => null,
         'image' => null,
@@ -62,7 +62,7 @@ class Students extends Entity
      * @var integer
      * @OA\Property()
      */
-    protected $status;
+    protected $statusId;
     
     /**
      * @var integer

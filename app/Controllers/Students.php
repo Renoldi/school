@@ -209,7 +209,7 @@ class Students extends ResourceController
     {
         $record = $this->model
             ->select('id,nisn,email,name,CONCAT("' . base_url() . '/",image) as image,classId,roomId,gender,ipAddress,about,dob,status,privilegeId,createdAt,updatedAt,deletedAt')
-            ->where('status', 1)->find($id);
+            ->where('statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -770,7 +770,7 @@ class Students extends ResourceController
             $subjectEntity->name = $row[2];
             $subjectEntity->gender = $row[3];
             $subjectEntity->password = $row[4];
-            $subjectEntity->status = $row[5];
+            $subjectEntity->statusId = $row[5];
             $subjectEntity->classId = $row[6];
             $subjectEntity->roomId = $row[7];
             $subjectEntity->privilegeId = $row[8];

@@ -13,79 +13,24 @@ class Majors extends Seeder
         $model = new ModelsMajors();
         $entities = new EntitiesMajors();
         $data = [
-            [
-                'name' => 'Biologi',
-                'status' => 1
-            ],
-            [
-                'name' => 'PKn',
-                'status' => 1
-            ],
-            [
-                'name' => 'Sosiologi',
-                'status' => 1
-            ],
-            [
-                'name' => 'Ekonomi',
-                'status' => 1
-            ],
-            [
-                'name' => 'B. Indonesia',
-                'status' => 1
-            ],
-            [
-                'name' => 'Kimia',
-                'status' => 1
-            ],
-            [
-                'name' => 'TIA',
-                'status' => 1
-            ],
-            [
-                'name' => 'Fiqih',
-                'status' => 1
-            ],
-            [
-                'name' => 'Penjaskes',
-                'status' => 1
-            ],
-
-            [
-                'name' => 'B. Inggris',
-                'status' => 1
-            ],
-            [
-                'name' => 'B. Arab',
-                'status' => 1
-            ],
-            [
-                'name' => 'BK',
-                'status' => 1
-            ],
-            [
-                'name' => 'Fisika',
-                'status' => 1
-            ],
-            [
-                'name' => 'PAI',
-                'status' => 1
-            ],
-            [
-                'name' => 'Sejarah',
-                'status' => 1
-            ],
-            [
-                'name' => 'Matematika',
-                'status' => 1
-            ],
-            [
-                'name' => 'IPA',
-                'status' => 1
-            ],
-            [
-                'name' => 'Perdagangan',
-                'status' => 1
-            ],
+            ['name' => 'Biologi', 'statusId' => 1],
+            ['name' => 'PKn', 'statusId' => 1],
+            ['name' => 'Sosiologi', 'statusId' => 1],
+            ['name' => 'Ekonomi', 'statusId' => 1],
+            ['name' => 'B. Indonesia', 'statusId' => 1],
+            ['name' => 'Kimia', 'statusId' => 1],
+            ['name' => 'TIA', 'statusId' => 1],
+            ['name' => 'Fiqih', 'statusId' => 1],
+            ['name' => 'Penjaskes', 'statusId' => 1],
+            ['name' => 'B. Inggris', 'statusId' => 1],
+            ['name' => 'B. Arab', 'statusId' => 1],
+            ['name' => 'BK', 'statusId' => 1],
+            ['name' => 'Fisika', 'statusId' => 1],
+            ['name' => 'PAI', 'statusId' => 1],
+            ['name' => 'Sejarah', 'statusId' => 1],
+            ['name' => 'Matematika', 'statusId' => 1],
+            ['name' => 'IPA', 'statusId' => 1],
+            ['name' => 'Perdagangan', 'statusId' => 1],
         ];
         foreach ($data as $data) {
             $entities->fill($data);

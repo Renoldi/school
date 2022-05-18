@@ -22,7 +22,7 @@ class TeacherTasks extends Entity
         'taskId' => null,
         'tmtTask' => null,
         'duration' => null,
-        'status' => null,
+        'statusId' => null,
     ];
     
     /**
@@ -52,5 +52,5 @@ class TeacherTasks extends Entity
      * @var integer
      * @OA\Property()
      */
-    protected $status;
+    protected $statusId;
 }

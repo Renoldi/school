@@ -29,11 +29,7 @@ class TeacherTasks extends Migration
             'duration' => [
                 'type' => 'INT',
                 'constraint' => 3,
-            ],
-            'status' => [
-                'type' => 'tinyint',
-                'constraint'     => 1,
-            ],
+            ], 
             'createdAt' => [
                 'type' => 'bigint',
             ],

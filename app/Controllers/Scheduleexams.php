@@ -422,7 +422,7 @@ class Scheduleexams extends ResourceController
             $subjectEntity->classId = $row[1];
             $subjectEntity->start = $row[2];
             $subjectEntity->end = $row[3];
-            $subjectEntity->status = $row[4];
+            $subjectEntity->statusId = $row[4];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(

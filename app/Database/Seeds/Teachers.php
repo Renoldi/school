@@ -25,11 +25,11 @@ class Teachers extends Seeder
                 'image' => 'assets/avatar.png',
                 'password' => ($i == 0) ? 'admin' : 'admin123',
                 'gender' => generateRandomString(1, 'LP'),
-                'status' => 1,
+                'statusId' => 1,
                 'privilegeId' => ($i == 0) ? 1 : 4,
                 'about' => 'created',
                 'ipAddress' => '127.0.0.1',
-                'isPn'=>rand(0,1)
+                'isPn' => rand(0, 1)
             ];
             $entities->fill($data);
             if (!$model->save($entities)) {

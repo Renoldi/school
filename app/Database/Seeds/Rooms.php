@@ -13,41 +13,13 @@ class Rooms extends Seeder
         $model = new ModelsRooms();
         $entities = new EntitiesRooms();
         $data = [
-            [
-                'name'  => 'IPA 1',
-                'status'  =>  1,
-                'departmentId' => 1
-            ],
-            [
-                'name'  => 'IPA 2',
-                'status'  =>  1,
-                'departmentId' => 1
-            ],
-            [
-                'name'  => 'IPA 3',
-                'status'  =>  1,
-                'departmentId ' => 1
-            ],
-            [
-                'name'  => 'IPA 4',
-                'status'  =>  1,
-                'departmentId ' => 1
-            ],
-            [
-                'name'  => 'IPS 1',
-                'status'  =>  1,
-                'departmentId' => 2
-            ],
-            [
-                'name'  => 'IPS 2',
-                'status'  =>  1,
-                'departmentId' => 2
-            ],
-            [
-                'name'  => 'IPS 3',
-                'status'  =>  1,
-                'departmentId' => 2
-            ],
+            ['name' => 'IPA 1', 'statusId' => 1, 'departmentId' => 1],
+            ['name' => 'IPA 2', 'statusId' => 1, 'departmentId' => 1],
+            ['name' => 'IPA 3', 'statusId' => 1, 'departmentId ' => 1],
+            ['name' => 'IPA 4', 'statusId' => 1, 'departmentId ' => 1],
+            ['name' => 'IPS 1', 'statusId' => 1, 'departmentId' => 2],
+            ['name' => 'IPS 2', 'statusId' => 1, 'departmentId' => 2],
+            ['name' => 'IPS 3', 'statusId' => 1, 'departmentId' => 2],
         ];
         foreach ($data as $datass) {
             $entities->fill($datass);

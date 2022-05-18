@@ -16,7 +16,7 @@ class Majors extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'name',
-        'status',
+        'statusId',
     ];
 
     // Dates
@@ -29,7 +29,7 @@ class Majors extends Model
     // Validation
     protected $validationRules      = [
         'name' => 'required|is_unique[majors.name,id,{id}]',
-        'status' => 'required|integer',
+        'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

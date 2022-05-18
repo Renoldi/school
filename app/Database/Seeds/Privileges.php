@@ -14,26 +14,11 @@ class Privileges extends Seeder
         $model = new ModelsPrivileges();
         $entities = new EntitiesPrivileges();
         $data = [
-            [
-                'name'  => 'superadmin',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'admin',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'editor',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'teacher',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'student',
-                'status'  =>  1,
-            ],
+            ['name' => 'superadmin', 'statusId' => 1,],
+            ['name' => 'admin', 'statusId' => 1,],
+            ['name' => 'editor', 'statusId' => 1,],
+            ['name' => 'teacher', 'statusId' => 1,],
+            ['name' => 'student', 'statusId' => 1,],
         ];
         foreach ($data as $data) {
             $entities->fill($data);

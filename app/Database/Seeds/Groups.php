@@ -14,22 +14,10 @@ class Groups extends Seeder
         $entities = new EntitiesGroups();
 
         $data = [
-            [
-                'name'  => 'a',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'b',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'c',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'd',
-                'status'  =>  1,
-            ],
+            ['name'  => 'a', 'statusId' => 1,],
+            ['name'  => 'b', 'statusId' => 1,],
+            ['name'  => 'c', 'statusId' => 1,],
+            ['name'  => 'd', 'statusId' => 1,],
         ];
         foreach ($data as $data) {
             $entities->fill($data);

@@ -19,7 +19,7 @@ class TeacherTasks extends Model
         'taskId',
         'tmtTask',
         'duration',
-        'status',
+        'statusId',
     ];
 
     // Dates
@@ -34,7 +34,7 @@ class TeacherTasks extends Model
         'teacherId' => 'required|integer',
         'taskId' => 'required|integer',
         'duration' => 'required|integer',
-        'status' => 'required|integer',
+        'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

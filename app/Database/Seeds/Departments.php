@@ -14,14 +14,8 @@ class Departments extends Seeder
         $model = new ModelsDepartments();
         $entities = new EntitiesDepartments();
         $data = [
-            [
-                'name'  => 'IPA',
-                'status'  =>  1, 
-            ],
-            [
-                'name'  => 'IPS',
-                'status'  =>  1, 
-            ],
+            ['name' => 'IPA', 'statusId' => 1,],
+            ['name' => 'IPS', 'statusId' => 1,],
         ];
         foreach ($data as $datass) {
             $entities->fill($datass);

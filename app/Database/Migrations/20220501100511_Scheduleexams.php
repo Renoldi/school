@@ -9,7 +9,7 @@ class Scheduleexams extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'   => [
+            'id' => [
                 'type' => 'bigint',
                 'constraint' => 11,
                 'auto_increment' => true,
@@ -28,9 +28,8 @@ class Scheduleexams extends Migration
             'end' => [
                 'type' => 'bigint ',
             ],
-            'status' => [
-                'type' => 'tinyint',
-                'constraint' => 1,
+            'statusId' => [
+                'type' => 'int',
             ],
             'createdAt' => [
                 'type' => 'bigint',
@@ -43,6 +42,7 @@ class Scheduleexams extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('statusId', 'status', 'id');
         $this->forge->addForeignKey('subjectId', 'subjects', 'id');
         $this->forge->addForeignKey('classId', 'classes', 'id');
         $this->forge->createTable('scheduleexams');

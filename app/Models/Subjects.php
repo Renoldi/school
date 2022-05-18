@@ -16,7 +16,7 @@ class Subjects extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'name',
-        'status',
+        'statusId',
         // 'departmentId',
         // 'classId',
     ];
@@ -31,7 +31,7 @@ class Subjects extends Model
     // Validation
     protected $validationRules      = [
         'name' => 'required|is_unique[subjects.name,id,{id}]',
-        'status' => 'required|integer',
+        'statusId' => 'required|integer',
         // 'departmentId' => 'required|integer',
         // 'classId' => 'required|integer',
     ];

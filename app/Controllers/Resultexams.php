@@ -647,7 +647,7 @@ class Resultexams extends ResourceController
             $subjectEntity->studentId  = $row[0];
             $subjectEntity->examId = $row[1];
             $subjectEntity->choise = $row[2];
-            $subjectEntity->status = $row[3];
+            $subjectEntity->statusId = $row[3];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(

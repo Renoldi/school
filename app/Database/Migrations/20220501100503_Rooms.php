@@ -9,36 +9,36 @@ class Rooms extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'          => [
-                'type'           => 'INT',
-                'constraint'     => 11,
+            'id' => [
+                'type' => 'INT',
+                'constraint' => 11,
                 'auto_increment' => true,
             ],
-            'name'       => [
-                'type'       => 'VARCHAR',
-                'unique'         => true,
+            'name'  => [
+                'type'  => 'VARCHAR',
+                'unique' => true,
                 'constraint' => 100,
             ],
-            'status'      => [
-                'type'           => 'tinyint',
-                'constraint'     => 1,
+            'statusId' => [
+                'type' => 'int',
             ],
-            'departmentId'      => [
-                'type'           => 'INT',
-                'constraint'     => 1,
+            'departmentId' => [
+                'type' => 'INT',
+                'constraint' => 1,
             ],
             'createdAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'updatedAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'deletedAt' => [
-                 'type' => 'bigint', 
+                'type' => 'bigint',
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('departmentId', 'departments','id');
+        $this->forge->addForeignKey('statusId', 'status', 'id');
+        $this->forge->addForeignKey('departmentId', 'departments', 'id');
         $this->forge->createTable('rooms');
     }
 

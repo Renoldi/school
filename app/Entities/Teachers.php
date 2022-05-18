@@ -36,7 +36,7 @@ class Teachers extends Entity
         'ipAddress' => null,
         'about' => null,
         'image' => null,
-        'status' => null,
+        'statusId' => null,
         'isPn' => null,
         'password' => null,
         'address' => null,
@@ -156,7 +156,7 @@ class Teachers extends Entity
      * @var integer
      * @OA\Property()
      */
-    protected $status;
+    protected $statusId;
 
     /**
      * @var integer

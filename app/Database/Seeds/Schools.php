@@ -13,17 +13,17 @@ class Schools extends Seeder
         $model = new ModelsSchools();
         $entities = new EntitiesSchools();
         $data = [
-            ['name' => 'UNJ', 'status' => 1],
-            ['name' => 'IAIN', 'status' => 1],
-            ['name' => 'USU', 'status' => 1],
-            ['name' => 'FKIP', 'status' => 1],
-            ['name' => 'STAI', 'status' => 1],
-            ['name' => 'UNSYIAH', 'status' => 1],
-            ['name' => 'STKIP', 'status' => 1],
-            ['name' => 'STAIN', 'status' => 1],
-            ['name' => 'UNSYAH', 'status' => 1],
-            ['name' => 'MAN', 'status' => 1],
-            ['name' => 'SMEA', 'status' => 1],
+            ['name' => 'UNJ', 'statusId' => 1],
+            ['name' => 'IAIN', 'statusId' => 1],
+            ['name' => 'USU', 'statusId' => 1],
+            ['name' => 'FKIP', 'statusId' => 1],
+            ['name' => 'STAI', 'statusId' => 1],
+            ['name' => 'UNSYIAH', 'statusId' => 1],
+            ['name' => 'STKIP', 'statusId' => 1],
+            ['name' => 'STAIN', 'statusId' => 1],
+            ['name' => 'UNSYAH', 'statusId' => 1],
+            ['name' => 'MAN', 'statusId' => 1],
+            ['name' => 'SMEA', 'statusId' => 1],
         ];
         foreach ($data as $data) {
             $entities->fill($data);

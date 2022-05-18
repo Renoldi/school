@@ -21,7 +21,7 @@ class Resultexams extends Entity
         'studentId' => null,
         'examId' => null,
         'choise' => null,
-        'status' => null,
+        'statusId' => null,
     ];
 
     /**
@@ -45,5 +45,5 @@ class Resultexams extends Entity
      * @var integer
      * @OA\Property()
      */
-    protected $status;
+    protected $statusId;
 }

@@ -178,7 +178,7 @@ class SubjectDepartements extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->where('status', 1)->find($id);
+        $record = $this->model->where('statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',

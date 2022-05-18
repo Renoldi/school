@@ -28,5 +28,5 @@ class Groups extends Entity
      * @var integer
      * @OA\Property()
      */
-    protected $status;
+    protected $statusId;
 }

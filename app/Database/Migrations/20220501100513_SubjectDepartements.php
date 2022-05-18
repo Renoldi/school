@@ -9,30 +9,30 @@ class SubjectDepartements extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'          => [
-                'type'           => 'INT',
+            'id' => [
+                'type' => 'INT',
                 'auto_increment' => true,
                 'constraint' => 11,
             ],
-            'departmentId'       => [
-                'type'       => 'INT',
+            'departmentId' => [
+                'type' => 'INT',
                 'constraint' => 11,
             ],
-            'subjectId'       => [
-                'type'       => 'INT',
+            'subjectId' => [
+                'type' => 'INT',
                 'constraint' => 11,
-            ],
+            ], 
             'createdAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'updatedAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'deletedAt' => [
-                 'type' => 'bigint', 
+                'type' => 'bigint',
             ],
         ]);
-        $this->forge->addKey('id', true);
+        $this->forge->addKey('id', true); 
         $this->forge->addForeignKey('departmentId', 'departments', 'id');
         $this->forge->addForeignKey('subjectId', 'subjects', 'id');
         $this->forge->createTable('subjectDepartements');

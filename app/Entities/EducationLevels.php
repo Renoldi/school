@@ -19,7 +19,7 @@ class EducationLevels extends Entity
     protected $casts   = [];
     protected $attributes = [
         'name' => null,
-        'status' => null,
+        'statusId' => null,
     ];
 
     /**
@@ -31,5 +31,5 @@ class EducationLevels extends Entity
      * @var integer
      * @OA\Property()
      */
-    protected $status;
+    protected $statusId;
 }

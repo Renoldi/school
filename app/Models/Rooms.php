@@ -16,7 +16,7 @@ class Rooms extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'name',
-        'status',
+        'statusId',
         'departmentId',
     ];
 
@@ -30,7 +30,7 @@ class Rooms extends Model
     // Validation
     protected $validationRules      = [
         'name' => 'required|is_unique[rooms.name,id,{id}]',
-        'status' => 'required|integer',
+        'statusId' => 'required|integer',
         'departmentId' => 'required|integer',
     ];
     protected $validationMessages   = [];

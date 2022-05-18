@@ -143,7 +143,7 @@ class Teachers extends ResourceController
   return $this->respond(
    $this->model
     ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,status,isPn,address,phone,createdAt,updatedAt,deletedAt')
-    ->where('status', 1)
+    ->where('statusId', 1)
     ->findAll()
   );
  }

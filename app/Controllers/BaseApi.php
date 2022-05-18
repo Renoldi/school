@@ -131,7 +131,7 @@ class BaseApi extends ResourceController
             }
             $subjectEntity->name  = $row[0]; if ($row[0] == '')
                 continue;
-            $subjectEntity->status = $row[1];
+            $subjectEntity->statusId = $row[1];
 
             if (!$subject->save($subjectEntity)) {
                 return $this->failValidationErrors(

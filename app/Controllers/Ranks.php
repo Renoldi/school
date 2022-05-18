@@ -183,7 +183,7 @@ class Ranks extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->where('status', 1)->find($id);
+        $record = $this->model->where('statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',
@@ -567,7 +567,7 @@ class Ranks extends ResourceController
             if ($row[0] == '')
                 continue;
             $subjectEntity->name  = $row[0];
-            $subjectEntity->status = $row[1];
+            $subjectEntity->statusId = $row[1];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(

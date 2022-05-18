@@ -19,9 +19,8 @@ class Tasks extends Migration
                 'constraint' => '100',
                 'unique' => true,
             ],
-            'status' => [
-                'type' => 'tinyint',
-                'constraint' => 1,
+            'statusId' => [
+                'type' => 'int',
             ],
             'createdAt' => [
                 'type' => 'bigint',
@@ -34,6 +33,7 @@ class Tasks extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('statusId', 'status', 'id');
         $this->forge->createTable('tasks');
     }
 

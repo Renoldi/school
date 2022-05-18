@@ -20,7 +20,7 @@ class Subjects extends Entity
     protected $casts   = [];
     protected $attributes = [
         'name' => null,
-        'status' => null,
+        'statusId' => null,
         // 'departmentId' => null,
         // 'classId' => null,
     ];
@@ -35,7 +35,7 @@ class Subjects extends Entity
     //  * @var integer
     //  * @OA\Property()
     //  */
-    // protected $status;
+    // protected $statusId;
 
     // /**
     //  * @var integer

@@ -9,6 +9,7 @@ class RunSeeder extends Seeder
     public function run()
     {
         // master
+        $this->call('Status');
         $this->call('Classes');
         $this->call('Departments');
         $this->call('Privileges');

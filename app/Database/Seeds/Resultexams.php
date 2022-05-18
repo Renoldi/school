@@ -41,7 +41,7 @@ class Resultexams extends Seeder
                     'studentId' => $dat->id, 
                     'examId' => $examsDat->id,
                     'choise' => generateRandomString(1, 'abcde'),
-                    'status' => 1,
+                     'statusId' => 1,
                 ];
                 $entities->fill($resExam);
                 if (!$model->save($entities)) {

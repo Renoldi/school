@@ -27,7 +27,7 @@ class Exams extends Model
         'e',
         'answer',
         'point',
-        'status',
+        'statusId',
     ];
 
     // Dates
@@ -50,7 +50,7 @@ class Exams extends Model
         'e' => 'required',
         'answer' => 'required',
         'point' => 'required|integer',
-        'status' => 'required|integer',
+        'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

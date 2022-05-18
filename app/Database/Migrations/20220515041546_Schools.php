@@ -17,11 +17,10 @@ class Schools extends Migration
             'name'  => [
                 'type'  => 'VARCHAR',
                 'constraint' => '100',
-                'unique'    => true,
+                'unique' => true,
             ],
-            'status' => [
-                'type' => 'tinyint',
-                'constraint' => 1,
+            'statusId' => [
+                'type' => 'int',
             ],
             'createdAt' => [
                 'type' => 'bigint',
@@ -34,6 +33,7 @@ class Schools extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('statusId', 'status', 'id');
         $this->forge->createTable('schools');
     }
 

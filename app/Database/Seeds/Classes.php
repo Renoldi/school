@@ -14,18 +14,9 @@ class Classes extends Seeder
         $entities = new EntitiesClasses();
 
         $data = [
-            [
-                'name'  => 'X',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'XI',
-                'status'  =>  1,
-            ],
-            [
-                'name'  => 'XII',
-                'status'  =>  1,
-            ],
+            ['name' => 'X', 'statusId' => 1,],
+            ['name' => 'XI', 'statusId' => 1,],
+            ['name' => 'XII', 'statusId' => 1,],
         ];
         foreach ($data as $data) {
             $entities->fill($data);

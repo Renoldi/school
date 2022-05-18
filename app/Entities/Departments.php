@@ -20,7 +20,7 @@ class Departments extends Entity
     protected $casts   = [];
     protected $attributes = [
         'name' => null,
-        'status' => null,
+        'statusId' => null,
     ];
 
     /**
@@ -32,5 +32,5 @@ class Departments extends Entity
      * @var integer
      * @OA\Property()
      */
-    protected $status;
+    protected $statusId;
 }

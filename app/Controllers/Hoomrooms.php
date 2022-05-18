@@ -138,7 +138,7 @@ class Hoomrooms extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->where('status', 1)->findAll());
+        return $this->respond($this->model->where('statusId', 1)->findAll());
     }
 
     /**
@@ -184,7 +184,7 @@ class Hoomrooms extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->where('status', 1)->find($id);
+        $record = $this->model->where('statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -567,7 +567,7 @@ class Hoomrooms extends ResourceController
             $subjectEntity->classId = $row[1];
             $subjectEntity->teacherId = $row[2];
             $subjectEntity->duration = $row[3];
-            $subjectEntity->status = $row[4];
+            $subjectEntity->statusId = $row[4];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(

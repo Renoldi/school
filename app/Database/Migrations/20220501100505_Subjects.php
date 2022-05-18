@@ -9,30 +9,30 @@ class Subjects extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id'          => [
-                'type'           => 'INT',
-                'constraint'     => 11,
+            'id'   => [
+                'type' => 'INT',
+                'constraint' => 11,
                 'auto_increment' => true,
             ],
-            'name'       => [
-                'type'       => 'VARCHAR',
+            'name' => [
+                'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
-            'status'      => [
-                'type'           => 'tinyint',
-                'constraint'     => 1,
+            'statusId' => [
+                'type' => 'int',
             ],
             'createdAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'updatedAt' => [
-                 'type' => 'bigint',
+                'type' => 'bigint',
             ],
             'deletedAt' => [
-                 'type' => 'bigint', 
+                'type' => 'bigint',
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('statusId', 'status', 'id');
         $this->forge->createTable('subjects');
     }
 
