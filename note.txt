@@ -96,3 +96,19 @@ JOIN teachers t on t.id = st.teacherId
 JOIN subjects s on s.id = st.subjectId
 JOIN classes c on c.id = st.classId
 GROUP BY t.id;
+
+
+SELECT t.name, sum( st.duration) , IFNULL(hr.duration,0) duration FROM `subjectteachers` st
+JOIN teachers t on t.id = st.teacherId
+JOIN subjects s on s.id = st.subjectId
+JOIN classes c on c.id = st.classId
+LEFT JOIN hoomrooms hr on hr.teacherId = t.id 
+GROUP by t.id;
+
+duration homeroom subjet
+SELECT t.name, sum(st.duration) durationsubject, IFNULL(hr.duration,0) durationhoomrom,(sum( st.duration)+IFNULL(hr.duration,0) ) total FROM `subjectteachers` st
+JOIN teachers t on t.id = st.teacherId
+JOIN subjects s on s.id = st.subjectId
+JOIN classes c on c.id = st.classId
+LEFT JOIN hoomrooms hr on hr.teacherId = t.id 
+GROUP by t.id;
