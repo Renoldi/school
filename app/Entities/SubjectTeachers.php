@@ -24,7 +24,6 @@ class SubjectTeachers extends Entity
         'duration' => null,
     ];
 
-    
     /**
      * @var integer
      * @OA\Property()

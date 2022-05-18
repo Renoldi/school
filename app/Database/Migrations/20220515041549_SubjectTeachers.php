@@ -25,6 +25,7 @@ class SubjectTeachers extends Migration
             'classId' => [
                 'type' => 'INT',
                 'constraint' => 11,
+                'null' => true,
             ],
             'duration' => [
                 'type' => 'INT',

@@ -30,9 +30,9 @@ class SubjectTeachers extends Model
 
     // Validation
     protected $validationRules      = [
-        'teachersId' => 'required|integer',
+        'teacherId' => 'required|integer',
         'subjectId' => 'required|integer',
-        'classId' => 'required|integer',
+        // 'classId' => 'required|integer',
         'duration' => 'required|integer',
     ];
     protected $validationMessages   = [];

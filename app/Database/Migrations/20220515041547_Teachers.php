@@ -23,7 +23,7 @@ class Teachers extends Migration
                 'nip' => [
                     'type' => 'VARCHAR',
                     'constraint' => 60,
-                    'unique' => true,
+                    'null' => true,
                 ],
                 'name' => [
                     'type' => 'VARCHAR',

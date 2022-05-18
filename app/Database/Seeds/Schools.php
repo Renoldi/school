@@ -13,6 +13,7 @@ class Schools extends Seeder
         $model = new ModelsSchools();
         $entities = new EntitiesSchools();
         $data = [
+            ['name' => 'UNJ', 'status' => 1],
             ['name' => 'IAIN', 'status' => 1],
             ['name' => 'USU', 'status' => 1],
             ['name' => 'FKIP', 'status' => 1],

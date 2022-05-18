@@ -83,3 +83,16 @@ https://localhost.com/api/Students/countGender
 {
   "groupBy":"gender,classId,roomId"
 }
+
+SELECT t.name, s.name,c.name, st.duration FROM `subjectteachers` st
+JOIN teachers t on t.id = st.teacherId
+JOIN subjects s on s.id = st.subjectId
+JOIN classes c on c.id = st.classId
+where t.id = 4;
+
+total duration
+SELECT t.name, sum( st.duration) duration FROM `subjectteachers` st
+JOIN teachers t on t.id = st.teacherId
+JOIN subjects s on s.id = st.subjectId
+JOIN classes c on c.id = st.classId
+GROUP BY t.id;

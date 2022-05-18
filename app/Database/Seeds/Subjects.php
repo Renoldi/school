@@ -36,9 +36,13 @@ class Subjects extends Seeder
             ['name' => 'lintas minat sosiologi', 'status' => 1,],
             ['name' => 'geografi', 'status' => 1,],
             ['name' => 'seni budaya', 'status' => 1,],
-            ['name' => 'prakarya', 'status' => 1,],
+            ['name' => 'prakarya & Kewirausahaan', 'status' => 1,],
             ['name' => 'penjas', 'status' => 1,],
             ['name' => 'pkn', 'status' => 1,],
+            ['name' => 'pjok', 'status' => 1,],
+            ['name' => 'Muatan Lokal Riset', 'status' => 1,],
+            ['name' => 'bk', 'status' => 1,],
+            ['name' => 'riset biologi', 'status' => 1,],
         ];
         foreach ($data as $data) {
             $entities->fill($data);

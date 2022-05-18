@@ -17,7 +17,7 @@ class Students extends Migration
             'nisn'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
-                'unique' => true,
+                'null'        => true,
             ],
             'email'      => [
                 'type'           => 'VARCHAR',

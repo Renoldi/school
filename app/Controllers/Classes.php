@@ -78,7 +78,6 @@ class Classes extends ResourceController
         }
 
         $data = $model
-
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
