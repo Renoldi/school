@@ -568,7 +568,7 @@ class Groups extends ResourceController
             $subjectEntity->status = $row[1];
 
             if (!$this->model->save($subjectEntity)) {
-                return $this->failValidationErrors(
+                return $this->respond(
                     [
                         'row' => $x + 1,
                         'fields' => $this->model->errors()

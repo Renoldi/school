@@ -18,6 +18,7 @@ class Hoomrooms extends Model
         'roomId',
         'classId',
         'teacherId',
+        'duration',
         'status',
     ];
 
@@ -33,6 +34,7 @@ class Hoomrooms extends Model
         'roomId' => 'required|integer',
         'classId' => 'required|integer',
         'teacherId' => 'required|integer',
+        'duration' => 'required|integer',
         'status' => 'required|integer',
     ];
     protected $validationMessages   = [];

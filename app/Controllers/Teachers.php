@@ -775,7 +775,7 @@ class Teachers extends ResourceController
             if (!$this->model->save($entity)) {
                 // return  $this->respond([$this->model->getLastQuery()->getQuery()]);
 
-                return $this->failValidationErrors(
+                return $this->respond(
                     [
                         'row' => $x + 1,
                         'fields' => $this->model->errors()

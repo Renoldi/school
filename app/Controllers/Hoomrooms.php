@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Hoomrooms as EntitiesHoomrooms;
- use OpenApi\Annotations as OA;
+use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Hoomrooms as ModelsHoomrooms;
 use CodeIgniter\API\ResponseTrait;
@@ -13,40 +13,40 @@ class Hoomrooms extends ResourceController
 {
     protected $modelName = ModelsHoomrooms::class;
     protected $format    = 'json';
-     use ResponseTrait;
-/**
+    use ResponseTrait;
+    /**
      * @OA\Get(
      *   path="/api/Hoomrooms/paging/{status}/{perpage}/{page}",
      *   summary="Hoomrooms",
      *   description="Hoomrooms",
      *   tags={"Hoomrooms"},
-      *   @OA\Parameter(
-    *         name="status",
-    *         in="path",
-    *         required=true,
-    *         @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="perpage",
-    *         in="path",
-    *         required=true,
-    *              @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="page",
-    *         in="path",
-    *         required=true,
-    *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
+     *   @OA\Parameter(
+     *         name="status",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *              @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",
@@ -78,7 +78,7 @@ class Hoomrooms extends ResourceController
             $model = $this->model->where(['status' => 0]);
         }
 
-       $data = $model 
+        $data = $model
 
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -157,9 +157,9 @@ class Hoomrooms extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -265,9 +265,9 @@ class Hoomrooms extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *  @OA\RequestBody(
      *     required=true,
@@ -314,7 +314,7 @@ class Hoomrooms extends ResourceController
         return $this->respondUpdated($data, "updated");
     }
 
-      /**
+    /**
      * @OA\Post(
      *   path="/api/Hoomrooms/count",
      *   summary="Hoomrooms",
@@ -324,7 +324,7 @@ class Hoomrooms extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-      *       @OA\Schema(
+     *       @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -385,7 +385,7 @@ class Hoomrooms extends ResourceController
             $record = $this->model->select($select);
         }
 
-         if ($where != null) {
+        if ($where != null) {
             $record = $this->model->where((array)$where);
         }
 
@@ -396,7 +396,7 @@ class Hoomrooms extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-         try {
+        try {
             $record = $this->model->findAll();
 
             if (!$record) {
@@ -409,7 +409,7 @@ class Hoomrooms extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
-             return $this->failNotFound('not found');
+            return $this->failNotFound('not found');
             //return $this->failNotFound( $th->getMessage());
         }
     }
@@ -430,9 +430,9 @@ class Hoomrooms extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -508,7 +508,6 @@ class Hoomrooms extends ResourceController
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
 
-        $subject = new Subjects();
         $subjectEntity = new EntitiesHoomrooms();
         $this->model->transStart();
         foreach ($data as $x => $row) {
@@ -520,10 +519,11 @@ class Hoomrooms extends ResourceController
             $subjectEntity->roomId  = $row[0];
             $subjectEntity->classId = $row[1];
             $subjectEntity->teacherId = $row[2];
-            $subjectEntity->status = $row[3];
+            $subjectEntity->duration = $row[3];
+            $subjectEntity->status = $row[4];
 
             if (!$this->model->save($subjectEntity)) {
-                return $this->failValidationErrors(
+                return $this->respond(
                     [
                         'row' => $x + 1,
                         'fields' => $this->model->errors()

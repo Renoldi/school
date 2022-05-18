@@ -26,6 +26,10 @@ class Hoomrooms extends Migration
                 'type'       => 'INT',
                 'constraint' => 11,
             ],
+            'duration' => [
+                'type' => 'INT',
+                'constraint' => 3,
+            ],
             'status'      => [
                 'type'           => 'tinyint',
                 'constraint'     => 1,
@@ -44,7 +48,6 @@ class Hoomrooms extends Migration
         $this->forge->addForeignKey('roomId', 'rooms','id');
         $this->forge->addForeignKey('classId', 'classes','id');
         $this->forge->addForeignKey('teacherId', 'teachers','id');
-
         $this->forge->createTable('hoomrooms');
     }
 

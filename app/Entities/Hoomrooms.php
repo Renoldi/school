@@ -22,6 +22,7 @@ class Hoomrooms extends Entity
         'roomId' => null,
         'classId' => null,
         'teacherId' => null,
+        'duration' => null,
         'status' => null,
     ];
 
@@ -30,16 +31,25 @@ class Hoomrooms extends Entity
      * @OA\Property()
      */
     protected $roomId;
+    
     /**
      * @var integer
      * @OA\Property()
      */
     protected $classId;
+
     /**
      * @var integer
      * @OA\Property()
      */
     protected $teacherId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $duration;
+
     /**
      * @var integer
      * @OA\Property()

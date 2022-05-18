@@ -425,7 +425,7 @@ class Scheduleexams extends ResourceController
             $subjectEntity->status = $row[4];
 
             if (!$this->model->save($subjectEntity)) {
-                return $this->failValidationErrors(
+                return $this->respond(
                     [
                         'row' => $x + 1,
                         'fields' => $this->model->errors()
