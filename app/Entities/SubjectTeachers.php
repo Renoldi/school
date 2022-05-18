@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
+use OpenApi\Annotations as OA;
 /**
  * @OA\Schema(
  *   schema="SubjectTeachers",
