@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Teachers as EntitiesTeachers;
- use OpenApi\Annotations as OA;
+use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Teachers as ModelsTeachers;
 use CodeIgniter\API\ResponseTrait;
@@ -22,33 +22,33 @@ class Teachers extends ResourceController
      *   summary="Teachers",
      *   description="Teachers",
      *   tags={"Teachers"},
-      *   @OA\Parameter(
-    *         name="status",
-    *         in="path",
-    *         required=true,
-    *         @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="perpage",
-    *         in="path",
-    *         required=true,
-    *              @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="page",
-    *         in="path",
-    *         required=true,
-    *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
+     *   @OA\Parameter(
+     *         name="status",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *              @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",

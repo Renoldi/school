@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Majors as EntitiesMajors;
- use OpenApi\Annotations as OA;
+use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Majors as ModelsMajors;
 use CodeIgniter\API\ResponseTrait;
@@ -13,40 +13,40 @@ class Majors extends ResourceController
 {
     protected $modelName = ModelsMajors::class;
     protected $format    = 'json';
-     use ResponseTrait;
-/**
+    use ResponseTrait;
+    /**
      * @OA\Get(
      *   path="/api/Majors/paging/{status}/{perpage}/{page}",
      *   summary="Majors",
      *   description="Majors",
      *   tags={"Majors"},
-      *   @OA\Parameter(
-    *         name="status",
-    *         in="path",
-    *         required=true,
-    *         @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="perpage",
-    *         in="path",
-    *         required=true,
-    *              @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="page",
-    *         in="path",
-    *         required=true,
-    *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
+     *   @OA\Parameter(
+     *         name="status",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *              @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",
@@ -78,7 +78,7 @@ class Majors extends ResourceController
             $model = $this->model->where(['status' => 0]);
         }
 
-       $data = $model 
+        $data = $model
 
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -156,9 +156,9 @@ class Majors extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -266,9 +266,9 @@ class Majors extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *  @OA\RequestBody(
      *     required=true,
@@ -315,7 +315,7 @@ class Majors extends ResourceController
         return $this->respondUpdated($data, "updated");
     }
 
-      /**
+    /**
      * @OA\Post(
      *   path="/api/Majors/count",
      *   summary="Majors",
@@ -325,7 +325,7 @@ class Majors extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-      *       @OA\Schema(
+     *       @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -386,7 +386,7 @@ class Majors extends ResourceController
             $record = $this->model->select($select);
         }
 
-         if ($where != null) {
+        if ($where != null) {
             $record = $this->model->where((array)$where);
         }
 
@@ -397,7 +397,7 @@ class Majors extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-         try {
+        try {
             $record = $this->model->findAll();
 
             if (!$record) {
@@ -410,7 +410,7 @@ class Majors extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
-             return $this->failNotFound('not found');
+            return $this->failNotFound('not found');
             //return $this->failNotFound( $th->getMessage());
         }
     }
@@ -431,9 +431,9 @@ class Majors extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",

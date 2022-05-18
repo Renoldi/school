@@ -429,7 +429,7 @@ class SubjectTeachers extends ResourceController
                     . '|mime_in[userfile,application/xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]'
             ],
         ];
-        
+
         if (!$this->validate($validationRule)) {
             return $this->failValidationErrors($this->validator->getErrors());
         }
@@ -455,7 +455,7 @@ class SubjectTeachers extends ResourceController
             }
             if ($row[0] == '')
                 continue;
-                
+
             $subjectEntity->teacherId = $row[0];
             $subjectEntity->subjectId = $row[1];
             $subjectEntity->classId = $row[2];

@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Rooms as EntitiesRooms;
- use OpenApi\Annotations as OA;
+use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Rooms as ModelsRooms;
 use CodeIgniter\API\ResponseTrait;
@@ -20,33 +20,33 @@ class Rooms extends ResourceController
      *   summary="Rooms",
      *   description="Rooms",
      *   tags={"Rooms"},
-      *   @OA\Parameter(
-    *         name="status",
-    *         in="path",
-    *         required=true,
-    *         @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="perpage",
-    *         in="path",
-    *         required=true,
-    *              @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="page",
-    *         in="path",
-    *         required=true,
-    *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
+     *   @OA\Parameter(
+     *         name="status",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *              @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",
@@ -157,9 +157,9 @@ class Rooms extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -265,9 +265,9 @@ class Rooms extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *  @OA\RequestBody(
      *     required=true,
@@ -332,9 +332,9 @@ class Rooms extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",

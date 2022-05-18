@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Privileges as EntitiesPrivileges;
- use OpenApi\Annotations as OA;
+use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Privileges as ModelsPrivileges;
 use CodeIgniter\API\ResponseTrait;
@@ -13,40 +13,40 @@ class Privileges extends ResourceController
 {
     protected $modelName = ModelsPrivileges::class;
     protected $format    = 'json';
-     use ResponseTrait;
-/**
+    use ResponseTrait;
+    /**
      * @OA\Get(
      *   path="/api/Privileges/paging/{status}/{perpage}/{page}",
      *   summary="Privileges",
      *   description="Privileges",
      *   tags={"Privileges"},
-      *   @OA\Parameter(
-    *         name="status",
-    *         in="path",
-    *         required=true,
-    *         @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="perpage",
-    *         in="path",
-    *         required=true,
-    *              @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="page",
-    *         in="path",
-    *         required=true,
-    *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
+     *   @OA\Parameter(
+     *         name="status",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *              @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",
@@ -78,7 +78,7 @@ class Privileges extends ResourceController
             $model = $this->model->where(['status' => 0]);
         }
 
-       $data = $model 
+        $data = $model
 
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -157,9 +157,9 @@ class Privileges extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -265,9 +265,9 @@ class Privileges extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *  @OA\RequestBody(
      *     required=true,
@@ -332,9 +332,9 @@ class Privileges extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -486,7 +486,7 @@ class Privileges extends ResourceController
         }
     }
 
-      /**
+    /**
      * @OA\Post(
      *   path="/api/Privileges/count",
      *   summary="Privileges",
@@ -496,7 +496,7 @@ class Privileges extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-      *       @OA\Schema(
+     *       @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -557,7 +557,7 @@ class Privileges extends ResourceController
             $record = $this->model->select($select);
         }
 
-         if ($where != null) {
+        if ($where != null) {
             $record = $this->model->where((array)$where);
         }
 
@@ -568,7 +568,7 @@ class Privileges extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-         try {
+        try {
             $record = $this->model->findAll();
 
             if (!$record) {
@@ -581,7 +581,7 @@ class Privileges extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
-             return $this->failNotFound('not found');
+            return $this->failNotFound('not found');
             //return $this->failNotFound( $th->getMessage());
         }
     }

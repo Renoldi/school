@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\TeacherTasks as EntitiesTeacherTasks;
- use OpenApi\Annotations as OA;
+use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\TeacherTasks as ModelsTeacherTasks;
 use CodeIgniter\API\ResponseTrait;
@@ -13,40 +13,40 @@ class TeacherTasks extends ResourceController
 {
     protected $modelName = ModelsTeacherTasks::class;
     protected $format  = 'json';
-     use ResponseTrait;
-/**
+    use ResponseTrait;
+    /**
      * @OA\Get(
      *   path="/api/TeacherTasks/paging/{status}/{perpage}/{page}",
      *   summary="TeacherTasks",
      *   description="TeacherTasks",
      *   tags={"TeacherTasks"},
-      *   @OA\Parameter(
-    *         name="status",
-    *         in="path",
-    *         required=true,
-    *         @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="perpage",
-    *         in="path",
-    *         required=true,
-    *              @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="page",
-    *         in="path",
-    *         required=true,
-    *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
+     *   @OA\Parameter(
+     *         name="status",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *              @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",
@@ -78,7 +78,7 @@ class TeacherTasks extends ResourceController
             $model = $this->model->where(['status' => 0]);
         }
 
-       $data = $model 
+        $data = $model
 
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -475,7 +475,7 @@ class TeacherTasks extends ResourceController
         }
     }
 
-      /**
+    /**
      * @OA\Post(
      *   path="/api/TeacherTasks/count",
      *   summary="TeacherTasks",
@@ -485,7 +485,7 @@ class TeacherTasks extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-      *       @OA\Schema(
+     *       @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -546,7 +546,7 @@ class TeacherTasks extends ResourceController
             $record = $this->model->select($select);
         }
 
-         if ($where != null) {
+        if ($where != null) {
             $record = $this->model->where((array)$where);
         }
 
@@ -557,7 +557,7 @@ class TeacherTasks extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-         try {
+        try {
             $record = $this->model->findAll();
 
             if (!$record) {
@@ -570,7 +570,7 @@ class TeacherTasks extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
-             return $this->failNotFound('not found');
+            return $this->failNotFound('not found');
             //return $this->failNotFound( $th->getMessage());
         }
     }

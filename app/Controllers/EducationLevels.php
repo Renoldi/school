@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\EducationLevels as EntitiesEducationLevels;
- use OpenApi\Annotations as OA;
+use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\EducationLevels as ModelsEducationLevels;
 use CodeIgniter\API\ResponseTrait;
@@ -20,33 +20,33 @@ class EducationLevels extends ResourceController
      *   summary="EducationLevels",
      *   description="EducationLevels",
      *   tags={"EducationLevels"},
-      *   @OA\Parameter(
-    *         name="status",
-    *         in="path",
-    *         required=true,
-    *         @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="perpage",
-    *         in="path",
-    *         required=true,
-    *              @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="page",
-    *         in="path",
-    *         required=true,
-    *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
+     *   @OA\Parameter(
+     *         name="status",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *              @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",
@@ -156,9 +156,9 @@ class EducationLevels extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -366,9 +366,9 @@ class EducationLevels extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *  @OA\RequestBody(
      *     required=true,
@@ -433,9 +433,9 @@ class EducationLevels extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",

@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Ranks as EntitiesRanks;
- use OpenApi\Annotations as OA;
+use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Ranks as ModelsRanks;
 use CodeIgniter\API\ResponseTrait;
@@ -13,40 +13,40 @@ class Ranks extends ResourceController
 {
     protected $modelName = ModelsRanks::class;
     protected $format    = 'json';
-     use ResponseTrait;
-/**
+    use ResponseTrait;
+    /**
      * @OA\Get(
      *   path="/api/Ranks/paging/{status}/{perpage}/{page}",
      *   summary="Ranks",
      *   description="Ranks",
      *   tags={"Ranks"},
-      *   @OA\Parameter(
-    *         name="status",
-    *         in="path",
-    *         required=true,
-    *         @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="perpage",
-    *         in="path",
-    *         required=true,
-    *              @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="page",
-    *         in="path",
-    *         required=true,
-    *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
+     *   @OA\Parameter(
+     *         name="status",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *              @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",
@@ -78,7 +78,7 @@ class Ranks extends ResourceController
             $model = $this->model->where(['status' => 0]);
         }
 
-       $data = $model 
+        $data = $model
 
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -156,9 +156,9 @@ class Ranks extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -250,7 +250,7 @@ class Ranks extends ResourceController
         return $this->respondCreated($record, 'post created');
     }
 
-      /**
+    /**
      * @OA\Post(
      *   path="/api/Ranks/count",
      *   summary="Ranks",
@@ -260,7 +260,7 @@ class Ranks extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-      *       @OA\Schema(
+     *       @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -321,7 +321,7 @@ class Ranks extends ResourceController
             $record = $this->model->select($select);
         }
 
-         if ($where != null) {
+        if ($where != null) {
             $record = $this->model->where((array)$where);
         }
 
@@ -332,7 +332,7 @@ class Ranks extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-         try {
+        try {
             $record = $this->model->findAll();
 
             if (!$record) {
@@ -345,7 +345,7 @@ class Ranks extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
-             return $this->failNotFound('not found');
+            return $this->failNotFound('not found');
             //return $this->failNotFound( $th->getMessage());
         }
     }
@@ -366,9 +366,9 @@ class Ranks extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *  @OA\RequestBody(
      *     required=true,
@@ -433,9 +433,9 @@ class Ranks extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",

@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Scheduleexams as EntitiesScheduleexams;
- use OpenApi\Annotations as OA;
+use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
 use App\Models\Scheduleexams as ModelsScheduleexams;
 use CodeIgniter\API\ResponseTrait;
@@ -13,40 +13,40 @@ class Scheduleexams extends ResourceController
 {
     protected $modelName = ModelsScheduleexams::class;
     protected $format    = 'json';
-     use ResponseTrait;
-/**
+    use ResponseTrait;
+    /**
      * @OA\Get(
      *   path="/api/Scheduleexams/paging/{status}/{perpage}/{page}",
      *   summary="Scheduleexams",
      *   description="Scheduleexams",
      *   tags={"Scheduleexams"},
-      *   @OA\Parameter(
-    *         name="status",
-    *         in="path",
-    *         required=true,
-    *         @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="perpage",
-    *         in="path",
-    *         required=true,
-    *              @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
-    *   @OA\Parameter(
-    *         name="page",
-    *         in="path",
-    *         required=true,
-    *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
-    *   ),
+     *   @OA\Parameter(
+     *         name="status",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *              @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *          )
+     *   ),
   
      *   @OA\Response(
      *     response=200,description="ok",
@@ -78,7 +78,7 @@ class Scheduleexams extends ResourceController
             $model = $this->model->where(['status' => 0]);
         }
 
-       $data = $model 
+        $data = $model
 
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -157,9 +157,9 @@ class Scheduleexams extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -265,9 +265,9 @@ class Scheduleexams extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *  @OA\RequestBody(
      *     required=true,
@@ -332,9 +332,9 @@ class Scheduleexams extends ResourceController
      *         in="path",
      *         required=true,
      *           @OA\Schema(
-    *              type="integer",
-    *              format="int64",
-    *          )
+     *              type="integer",
+     *              format="int64",
+     *          )
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
@@ -442,7 +442,7 @@ class Scheduleexams extends ResourceController
         }
     }
 
-      /**
+    /**
      * @OA\Post(
      *   path="/api/Scheduleexams/count",
      *   summary="Scheduleexams",
@@ -452,7 +452,7 @@ class Scheduleexams extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-      *       @OA\Schema(
+     *       @OA\Schema(
      *          @OA\Property(
      *              property="select",
      *              type="string",
@@ -513,7 +513,7 @@ class Scheduleexams extends ResourceController
             $record = $this->model->select($select);
         }
 
-         if ($where != null) {
+        if ($where != null) {
             $record = $this->model->where((array)$where);
         }
 
@@ -524,7 +524,7 @@ class Scheduleexams extends ResourceController
             $record = $this->model->groupBy($groupBy);
         }
 
-         try {
+        try {
             $record = $this->model->findAll();
 
             if (!$record) {
@@ -537,7 +537,7 @@ class Scheduleexams extends ResourceController
                 $record
             );
         } catch (\Throwable $th) {
-             return $this->failNotFound('not found');
+            return $this->failNotFound('not found');
             //return $this->failNotFound( $th->getMessage());
         }
     }
