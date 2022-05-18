@@ -106,9 +106,42 @@ LEFT JOIN hoomrooms hr on hr.teacherId = t.id
 GROUP by t.id;
 
 duration homeroom subjet
-SELECT t.name, sum(st.duration) durationsubject, IFNULL(hr.duration,0) durationhoomrom,(sum( st.duration)+IFNULL(hr.duration,0) ) total FROM `subjectteachers` st
+SELECT t.name, sum( st.duration) durationsubject, sum(IFNULL(hr.duration,0)) durationhoomrom,(sum( st.duration)+IFNULL(hr.duration,0) ) total FROM `subjectteachers` st
 JOIN teachers t on t.id = st.teacherId
 JOIN subjects s on s.id = st.subjectId
 JOIN classes c on c.id = st.classId
 LEFT JOIN hoomrooms hr on hr.teacherId = t.id 
 GROUP by t.id;
+
+SELECT t.id, t.name, sum( st.duration) durationsubject,sum( tt.duration) durationtask,  sum(IFNULL(hr.duration,0)) durationhoomrom,(sum( st.duration)+IFNULL(hr.duration,0) ) total FROM `subjectteachers` st
+JOIN teachers t on t.id = st.teacherId
+JOIN subjects s on s.id = st.subjectId
+JOIN classes c on c.id = st.classId
+LEFT JOIN hoomrooms hr on hr.teacherId = t.id 
+RIGHT JOIN teachertasks tt on tt.teacherId = t.id 
+JOIN tasks ta on ta.id = tt.taskId
+GROUP by t.id
+ORDER BY t.id;
+
+SELECT t.id, t.name, 
+sum( st.duration) durationsubject,
+sum( tt.duration) durationtask,  
+sum(IFNULL(hr.duration,0)) durationhoomrom,
+sum( st.duration)+IFNULL(hr.duration,0)+sum( tt.duration)  total 
+FROM `subjectteachers` st
+JOIN teachers t on t.id = st.teacherId
+JOIN subjects s on s.id = st.subjectId
+JOIN classes c on c.id = st.classId
+LEFT JOIN hoomrooms hr on hr.teacherId = t.id 
+LEFT JOIN teachertasks tt on tt.teacherId = t.id 
+JOIN tasks ta on ta.id = tt.taskId
+GROUP by t.id
+ORDER BY t.id;
+
+SELECT t.id,  t.name,sum(ifnull(tt.duration, 0)) as task  ,sum(ifnull(st.duration, 0)) as subject, sum(IFNULL(hr.duration,0)) as hoomroom , 
+(sum(ifnull(tt.duration, 0))+sum(ifnull(st.duration, 0))+sum(IFNULL(hr.duration,0))) duration
+FROM teachertasks tt
+JOIN teachers t on t.id = tt.teacherId
+left JOIN subjectteachers st on t.id = st.teacherId
+LEFT JOIN hoomrooms hr on hr.teacherId = t.id 
+group by t.id order by t.id;

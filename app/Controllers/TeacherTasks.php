@@ -454,8 +454,11 @@ class TeacherTasks extends ResourceController
             }
             if ($row[0] == '')
                 continue;
-            $subjectEntity->departmentId  = $row[0];
-            $subjectEntity->subjectId = $row[1];
+            $subjectEntity->teacherId   = $row[0];
+            $subjectEntity->taskId  = $row[1];
+            $subjectEntity->tmtTask  = $row[2];
+            $subjectEntity->duration = $row[3];
+            $subjectEntity->status  = $row[4];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(

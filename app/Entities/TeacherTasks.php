@@ -20,6 +20,9 @@ class TeacherTasks extends Entity
     protected $attributes = [
         'teacherId' => null,
         'taskId' => null,
+        'tmtTask' => null,
+        'duration' => null,
+        'status' => null,
     ];
     
     /**
@@ -33,4 +36,21 @@ class TeacherTasks extends Entity
      * @OA\Property()
      */
     protected $taskId;
+    /**
+     * @var date
+     * @OA\Property()
+     */
+    protected $tmtTask;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $duration;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $status;
 }

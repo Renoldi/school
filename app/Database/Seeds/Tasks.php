@@ -86,6 +86,10 @@ class Tasks extends Seeder
                 'name'  => 'Piket',
                 'status'  =>  1,
             ],
+            [
+                'name'  => 'bandahara osim',
+                'status'  =>  1,
+            ],
         ];
         foreach ($data as $data) {
             $entities->fill($data);

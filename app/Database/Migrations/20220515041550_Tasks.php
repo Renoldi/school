@@ -21,7 +21,7 @@ class Tasks extends Migration
             ],
             'status' => [
                 'type' => 'tinyint',
-                'constraint'     => 1,
+                'constraint' => 1,
             ],
             'createdAt' => [
                 'type' => 'bigint',
