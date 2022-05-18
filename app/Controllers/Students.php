@@ -568,12 +568,15 @@ class Students extends ResourceController
         } else {
 
             $user =  $this->model
-                ->select("students.*,c.name as class,p.name as privilege,d.id as departmentId,d.name as department,r.name as room")
+                ->select("students.*,c.name as class,p.name as privilege,d.id as departmentId,d.name as department,r.name as room, s.name status")
                 ->join('rooms r', 'r.id=students.roomId')
                 ->join('privileges p', 'p.id=students.privilegeId')
                 ->join('classes c', 'c.id=students.classId')
                 ->join('departments d', 'd.id=r.departmentId')
-                ->where('email', $email)->first();
+                ->join('status s', 's.id=students.statusId')
+                ->where('email', $email)
+                ->where('students.statusId', 1)
+                ->first();
 
             if (is_null($user)) {
                 return $this->fail(['error' => 'Invalid username '], 401);
@@ -599,6 +602,7 @@ class Students extends ResourceController
                 "name" => $user->name,
                 "email" =>  $user->email,
                 "image" =>  $user->image,
+                "statusId" => $user->statusId,
                 "status" => $user->status,
                 "departmentId" => $user->departmentId,
                 "department" => $user->department,
