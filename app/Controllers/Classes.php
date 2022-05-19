@@ -20,13 +20,14 @@ class Classes extends ResourceController
      *   summary="Classes",
      *   description="Classes",
      *   tags={"Classes"},
-     *   @OA\Parameter(
+      *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
      *         @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -36,6 +37,7 @@ class Classes extends ResourceController
      *              @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="20"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -45,6 +47,7 @@ class Classes extends ResourceController
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
      *   @OA\Response(
@@ -72,9 +75,9 @@ class Classes extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
+            $model = $this->model->where(['statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
+            $model = $this->model->where(['statusId' => 0]);
         }
 
         $data = $model
@@ -150,12 +153,13 @@ class Classes extends ResourceController
      *   description="Classes",
      *   tags={"Classes"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *   @OA\Response(
@@ -260,12 +264,13 @@ class Classes extends ResourceController
      *   description="Classes",
      *   tags={"Classes"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *  @OA\RequestBody(
@@ -425,12 +430,13 @@ class Classes extends ResourceController
      *   description="Classes",
      *   tags={"Classes"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *   @OA\Response(

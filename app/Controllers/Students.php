@@ -59,13 +59,14 @@ class Students extends ResourceController
      *   summary="Students",
      *   description="Students",
      *   tags={"Students"},
-     *   @OA\Parameter(
+      *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
      *         @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -75,6 +76,7 @@ class Students extends ResourceController
      *              @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="20"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -84,6 +86,7 @@ class Students extends ResourceController
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
      *   @OA\Parameter(

@@ -21,13 +21,14 @@ class Exams extends ResourceController
      *   summary="Exams",
      *   description="Exams",
      *   tags={"Exams"},
-     *   @OA\Parameter(
+      *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
      *         @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -37,6 +38,7 @@ class Exams extends ResourceController
      *              @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="20"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -46,6 +48,7 @@ class Exams extends ResourceController
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
   
@@ -154,12 +157,13 @@ class Exams extends ResourceController
      *   description="exams",
      *   tags={"Exams"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *   @OA\Response(
@@ -560,12 +564,13 @@ class Exams extends ResourceController
      *   description="exams",
      *   tags={"Exams"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *  @OA\RequestBody(
@@ -627,12 +632,13 @@ class Exams extends ResourceController
      *   description="exams",
      *   tags={"Exams"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *   @OA\Response(

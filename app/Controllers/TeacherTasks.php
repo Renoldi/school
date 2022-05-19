@@ -20,13 +20,14 @@ class TeacherTasks extends ResourceController
      *   summary="TeacherTasks",
      *   description="TeacherTasks",
      *   tags={"TeacherTasks"},
-     *   @OA\Parameter(
+      *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
      *         @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -36,6 +37,7 @@ class TeacherTasks extends ResourceController
      *              @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="20"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -45,6 +47,7 @@ class TeacherTasks extends ResourceController
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
   

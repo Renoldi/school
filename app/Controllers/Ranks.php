@@ -20,13 +20,14 @@ class Ranks extends ResourceController
      *   summary="Ranks",
      *   description="Ranks",
      *   tags={"Ranks"},
-     *   @OA\Parameter(
+      *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
      *         @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -36,6 +37,7 @@ class Ranks extends ResourceController
      *              @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="20"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -45,6 +47,7 @@ class Ranks extends ResourceController
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
   
@@ -152,12 +155,13 @@ class Ranks extends ResourceController
      *   description="Ranks",
      *   tags={"Ranks"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *   @OA\Response(
@@ -362,12 +366,13 @@ class Ranks extends ResourceController
      *   description="Ranks",
      *   tags={"Ranks"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *  @OA\RequestBody(
@@ -429,12 +434,13 @@ class Ranks extends ResourceController
      *   description="Ranks",
      *   tags={"Ranks"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *   @OA\Response(

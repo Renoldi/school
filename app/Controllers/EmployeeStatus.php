@@ -20,13 +20,14 @@ class EmployeeStatus extends ResourceController
      *   summary="EmployeeStatus",
      *   description="EmployeeStatus",
      *   tags={"EmployeeStatus"},
-     *   @OA\Parameter(
+      *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
      *         @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -36,6 +37,7 @@ class EmployeeStatus extends ResourceController
      *              @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="20"
      *          )
      *   ),
      *   @OA\Parameter(
@@ -45,6 +47,7 @@ class EmployeeStatus extends ResourceController
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ),
      *   @OA\Response(
@@ -150,12 +153,13 @@ class EmployeeStatus extends ResourceController
      *   description="EmployeeStatus",
      *   tags={"EmployeeStatus"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *   @OA\Response(
@@ -260,12 +264,13 @@ class EmployeeStatus extends ResourceController
      *   description="EmployeeStatus",
      *   tags={"EmployeeStatus"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *  @OA\RequestBody(
@@ -425,12 +430,13 @@ class EmployeeStatus extends ResourceController
      *   description="EmployeeStatus",
      *   tags={"EmployeeStatus"},
      *   @OA\Parameter(
-     *         name="id",
+          *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
      *              type="integer",
      *              format="int64",
+     *              example="1"
      *          )
      *   ), 
      *   @OA\Response(
