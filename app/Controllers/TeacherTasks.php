@@ -20,7 +20,7 @@ class TeacherTasks extends ResourceController
      *   summary="TeacherTasks",
      *   description="TeacherTasks",
      *   tags={"TeacherTasks"},
-      *   @OA\Parameter(
+     *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
@@ -75,14 +75,11 @@ class TeacherTasks extends ResourceController
     public function paging($status = "all", $perpage = 20, $page = 1)
     {
         $model = $this->model;
-        if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
-        } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
-        }
 
         $data = $model
-
+            ->select('t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertasks.duration')
+            ->join('teachers t', 't.id = teachertasks.teacherId')
+            ->join('tasks ta', 'ta.id = teachertasks.taskId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -158,7 +155,7 @@ class TeacherTasks extends ResourceController
      *     name="id",
      *     in="path",
      *     required=true,
- *           @OA\Schema(
+     *           @OA\Schema(
      *              type="integer",
      *              format="int64",
      *              example="1"
@@ -187,7 +184,11 @@ class TeacherTasks extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->where('statusId', 1)->find($id);
+        $record = $this->model
+            ->select('t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertasks.duration')
+            ->join('teachers t', 't.id = teachertasks.teacherId')
+            ->join('tasks ta', 'ta.id = teachertasks.taskId')
+            ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',
@@ -269,7 +270,7 @@ class TeacherTasks extends ResourceController
      *     name="id",
      *     in="path",
      *     required=true,
- *           @OA\Schema(
+     *           @OA\Schema(
      *              type="integer",
      *              format="int64",
      *              example="1"
@@ -310,8 +311,6 @@ class TeacherTasks extends ResourceController
             return $this->fail("data not valid");
         }
 
-
-
         $entity = new EntitiesTeacherTasks();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -337,7 +336,7 @@ class TeacherTasks extends ResourceController
      *     name="id",
      *     in="path",
      *     required=true,
- *           @OA\Schema(
+     *           @OA\Schema(
      *              type="integer",
      *              format="int64",
      *              example="1"
@@ -475,7 +474,7 @@ class TeacherTasks extends ResourceController
             $subjectEntity->teacherId   = $row[0];
             $subjectEntity->taskId  = $row[1];
             $subjectEntity->tmtTask  = $row[2];
-            $subjectEntity->duration = $row[3]; 
+            $subjectEntity->duration = $row[3];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(
