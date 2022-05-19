@@ -610,19 +610,17 @@ class Students extends ResourceController
                 "class" => $user->class,
                 "roomId" => $user->roomId,
                 "room" => $user->room,
-                "privilegeId" => $user->privilegeId,
+                // "privilegeId" => $user->privilegeId,
                 "privilege" => $user->privilege,
             );
 
-
             $payload = array(
-                "iss" => base_url(),
+                "iss" => $user->privilege,
                 "aud" => array(
                     "my-api-User",
-                    base_url('api/Students/details'),
                     $this->request->getServer('REMOTE_ADDR')
                 ),
-                "sub" => "school|" . $this->request->getServer('REQUEST_TIME'),
+                "sub" => base_url('api/Students/details'),
                 "iat" => $iat->getTimestamp(), //Time the JWT issued at
                 "exp" =>  $exp->getTimestamp(), // Expiration time of token,
                 "user" => $users,

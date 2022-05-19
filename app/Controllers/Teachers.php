@@ -498,13 +498,12 @@ class Teachers extends ResourceController
         'privilege' => $user->privilege,
       );
       $payload = array(
-        "iss" => base_url(),
+        "iss" => $user->privilege,
         "aud" => array(
           "my-api-Teachers",
-          base_url('api/Teachers/details'),
           $this->request->getServer('REMOTE_ADDR')
         ),
-        "sub" => "school|" . $this->request->getServer('REQUEST_TIME'),
+        "sub" => base_url('api/Teachers/details'),
         "iat" => $iat->getTimestamp(), //Time the JWT issued at
         "exp" => $exp->getTimestamp(),
         "user" => $users,
