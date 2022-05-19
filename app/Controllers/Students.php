@@ -808,15 +808,42 @@ class Students extends ResourceController
             }
             if ($row[0] == '')
                 continue;
-            $subjectEntity->nisn  = $row[0];
+
             $subjectEntity->email = $row[1];
             $subjectEntity->name = $row[2];
-            $subjectEntity->gender = $row[3];
-            $subjectEntity->password = $row[4];
-            $subjectEntity->statusId = $row[5];
-            $subjectEntity->classId = $row[6];
-            $subjectEntity->roomId = $row[7];
-            $subjectEntity->privilegeId = $row[8];
+            $subjectEntity->classId = $row[3];
+            $subjectEntity->roomId = $row[4];
+            $subjectEntity->gender = $row[5];
+            $subjectEntity->placeOfBirth = $row[6];
+            $subjectEntity->dayOfBirth = $row[7];
+            $subjectEntity->nis = $row[8];
+            $subjectEntity->nisn = $row[9];
+            $subjectEntity->noKk = $row[10];
+            $subjectEntity->nik = $row[11];
+            $subjectEntity->numberOfSiblings = $row[12];
+            $subjectEntity->fromOfSiblings = $row[13];
+            $subjectEntity->orphan = $row[14];
+            $subjectEntity->schoolId = $row[15];
+            $subjectEntity->address = $row[16];
+            $subjectEntity->fatherNik = $row[17];
+            $subjectEntity->fatherName = $row[18];
+            $subjectEntity->fatherEmployeeId = $row[19];
+            $subjectEntity->fatherSchoolId = $row[20];
+            $subjectEntity->fatherincome = $row[21];
+            $subjectEntity->motherNik = $row[22];
+            $subjectEntity->motherName = $row[23];
+            $subjectEntity->motherEmployeeId = $row[24];
+            $subjectEntity->motherSchoolId = $row[25];
+            $subjectEntity->motherincome = $row[26];
+            $subjectEntity->image = $row[27];
+            $subjectEntity->phone = $row[28];
+            $subjectEntity->phoneFamily = $row[29];
+            $subjectEntity->password = $row[30];
+            $subjectEntity->ipAddress = $row[31];
+            $subjectEntity->about = $row[32];
+            $subjectEntity->statusId = $row[33];
+            $subjectEntity->privilegeId = $row[34];
+
 
             if (!$this->model->save($subjectEntity)) {
 
