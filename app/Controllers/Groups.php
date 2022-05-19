@@ -76,13 +76,14 @@ class Groups extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['statusId' => 1]);
+            $model = $this->model->where(['groups.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['statusId' => 0]);
+            $model = $this->model->where(['groups.statusId' => 0]);
         }
 
         $data = $model
-
+            ->select('groups.*, s.name statusName')
+            ->join('status s', 's.id=groups.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -187,7 +188,10 @@ class Groups extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->where('statusId', 1)->find($id);
+        $record = $this->model
+            ->select('groups.*, s.name statusName')
+            ->join('status s', 's.id=groups.statusId')
+            ->where('groups.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',

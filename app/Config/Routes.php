@@ -47,6 +47,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->get('Resultexams/exam/(:any)/(:any)/(:num)/(:num)/(:num)', 'Resultexams::exam/$1/$2/$3/$4/$5', ['filter' => ['Role:superadmin,admin,editor']]);
 
     // paging
+    $routes->get('Employee/paging/(:any)/(:num)/(:num)', 'Employee::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('Classes/paging/(:any)/(:num)/(:num)', 'Classes::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('Departments/paging/(:any)/(:num)/(:num)', 'Departments::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('EducationLevels/paging/(:any)/(:num)/(:num)', 'EducationLevels::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
@@ -69,7 +70,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->get('Students/paging/(:any)/(:num)/(:num)/(:num)/(:num)', 'Students::paging/$1/$2/$3/$4/$5', ['filter' => ['Role:superadmin,admin,editor']]);
 
     // count
-    // $routes->post('Status/count', 'Status::count', ['filter' => ['Role:superadmin,admin']]);
+    $routes->post('Employee/count', 'Employee::count', ['filter' => ['Role:superadmin,admin']]);
     $routes->post('Classes/count', 'Classes::count', ['filter' => ['Role:superadmin,admin']]);
     $routes->post('Departments/count', 'Departments::count', ['filter' => ['Role:superadmin,admin']]);
     $routes->post('EducationLevels/count', 'EducationLevels::count', ['filter' => ['Role:superadmin,admin']]);
@@ -160,10 +161,10 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->resource('Tasks', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
     $routes->resource('Teachers', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
     $routes->resource('TeacherTasks', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
+    $routes->resource('Employee', ['filter' => ['Role:superadmin'], 'except' => 'index,delete,new']);
 
     $routes->resource('Privileges', ['filter' => ['Role:superadmin'], 'only' => 'index,create,show']);
     $routes->resource('Status', ['filter' => ['Role:superadmin'], 'only' => 'index,create,show']);
-    $routes->resource('EmployeeStatus', ['filter' => ['Role:superadmin'], 'only' => 'index,create,show']);
 });
 
 /*

@@ -76,13 +76,14 @@ class Schools extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['statusId' => 1]);
+            $model = $this->model->where(['Schools.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['statusId' => 0]);
+            $model = $this->model->where(['Schools.statusId' => 0]);
         }
 
         $data = $model
-
+        ->select('Schools.*, s.name statusName')
+        ->join('status s', 's.id=Schools.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -140,7 +141,10 @@ class Schools extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->findAll());
+        return $this->respond($this->model
+        ->select('Schools.*, s.name statusName')
+        ->join('status s', 's.id=Schools.statusId')
+        ->findAll());
     }
 
     /**
@@ -287,7 +291,10 @@ class Schools extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->where('statusId', 1)->find($id);
+        $record = $this->model
+        ->select('Schools.*, s.name statusName')
+        ->join('status s', 's.id=Schools.statusId')
+        ->where('Schools.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',
