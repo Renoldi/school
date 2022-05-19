@@ -123,3 +123,13 @@ LEFT JOIN schools sch ON sch.id=t.schoolId
 LEFT JOIN majors m ON m.id=t.majorId
 
 ORDER BY t.id;
+
+insert table
+  - status
+  - privilage
+  - school
+  - teacher
+  - teachertask
+  - subjectTeacher
+  - hoomrooms
+  - student
