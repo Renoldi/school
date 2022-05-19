@@ -24,7 +24,6 @@ class Teachers extends Model
         'rankId',
         'rankTmt',
         'groupId',
-        'educationLevelId',
         'schoolId',
         'majorId',
         'finishEducationLevel',

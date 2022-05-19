@@ -22,6 +22,7 @@ class Schools extends Migration
             'address'  => [
                 'type'  => 'VARCHAR',
                 'constraint' => '255',
+                'null' => true,
             ],
             'educationLevelId' => [
                 'type' => 'int',

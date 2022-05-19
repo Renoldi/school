@@ -29,7 +29,6 @@ class Teachers extends Entity
         'rankId' => null,
         'rankTmt' => null,
         'groupId' => null,
-        'educationLevelId' => null,
         'schoolId' => null,
         'majorId' => null,
         'finishEducationLevel' => null,
@@ -104,12 +103,6 @@ class Teachers extends Entity
      * @OA\Property()
      */
     protected $groupId;
-
-    /**
-     * @var integer
-     * @OA\Property()
-     */
-    protected $educationLevelId;
 
     /**
      * @var integer
