@@ -596,7 +596,7 @@ class Students extends ResourceController
                 return $this->fail(['error' => 'fail login'], 401);
             }
 
-            $exp = $iat->addYears(1);
+            $exp = $iat->addMonths(1);
             $users = array(
                 "id" =>  $user->id,
                 "name" => $user->name,
