@@ -75,15 +75,15 @@ class Teachers extends ResourceController
   {
     $model = $this->model;
     if ($status == 1) {
-      $model = $this->model->where( ['statusId' => 1]);
+      $model = $this->model->where(['statusId' => 1]);
     } elseif ($status == 0) {
-      $model = $this->model->where( ['statusId' => 0]);
+      $model = $this->model->where(['statusId' => 0]);
     }
 
     $data = $model
       ->select('id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,statusId,employeeStatusId,es.name employeeStatusname,address,phone,createdAt,updatedAt,deletedAt')
-      ->join('employeeStatus es','es.id=teachers.employeeStatusId')
-      ->join('status s','s.id=teachers.statusId')
+      ->join('employeeStatus es', 'es.id=teachers.employeeStatusId')
+      ->join('status s', 's.id=teachers.statusId')
       ->paginate($perpage, 'default', $page);
     $countPage = $model->pager->getPageCount();
     $currentPage = $model->pager->getCurrentPage();
@@ -457,7 +457,7 @@ class Teachers extends ResourceController
         ->select("teachers.*,p.name privilege, s.name status,es.name employeeStatusName")
         ->join('privileges p', 'p.id=teachers.privilegeId')
         ->join('status s', 's.id=teachers.statusId')
-        ->join('employeeStatus es','es.id=teachers.employeeStatusId') 
+        ->join('employeeStatus es', 'es.id=teachers.employeeStatusId')
         ->where('email', $email)
         ->where('teachers.statusId', 1)
         ->first();
@@ -513,7 +513,7 @@ class Teachers extends ResourceController
       helper('jwt');
       $token = generate($payload);
       $response = [
-        "users" =>$users,
+        "users" => $users,
         "token" => $token,
       ];
       return $this->respond($response);
@@ -821,7 +821,7 @@ class Teachers extends ResourceController
       $entity->statusId = $row[6];
       $entity->privilegeId = $row[7];
       $entity->password = $row[8];
-      $entity->isPn = $row[9];
+      $entity->employeeStatusId = $row[9];
       $entity->address = $row[10];
       $entity->phone = $row[11];
       $entity->rankId = $row[12];
