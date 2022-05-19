@@ -513,7 +513,6 @@ class Teachers extends ResourceController
       helper('jwt');
       $token = generate($payload);
       $response = [
-        "users" => $users,
         "token" => $token,
       ];
       return $this->respond($response);
