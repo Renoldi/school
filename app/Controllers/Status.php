@@ -15,20 +15,10 @@ class Status extends ResourceController
     use ResponseTrait;
     /**
      * @OA\Get(
-     *   path="/api/Status/paging/{status}/{perpage}/{page}",
+     *   path="/api/Status/paging/{perpage}/{page}",
      *   summary="Status",
      *   description="Status",
      *   tags={"Status"},
-     *   @OA\Parameter(
-     *         name="status",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(
-     *              type="integer",
-     *              format="int64",
-     *              example="1"
-     *          )
-     *   ),
      *   @OA\Parameter(
      *         name="perpage",
      *         in="path",
@@ -73,12 +63,7 @@ class Status extends ResourceController
     public function paging($status = "all", $perpage = 20, $page = 1)
     {
         $model = $this->model;
-        if ($status == 1) {
-            $model = $this->model->where(['statusId' => 1]);
-        } elseif ($status == 0) {
-            $model = $this->model->where(['statusId' => 0]);
-        }
-
+        
         $data = $model
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
