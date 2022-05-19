@@ -21,7 +21,7 @@ class Resultexams extends ResourceController
      *   summary="Resultexams",
      *   description="Resultexams",
      *   tags={"Resultexams"},
-      *   @OA\Parameter(
+     *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
@@ -77,9 +77,9 @@ class Resultexams extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
+            $model = $this->model->where(['statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
+            $model = $this->model->where(['statusId' => 0]);
         }
 
         $data = $model
@@ -157,7 +157,7 @@ class Resultexams extends ResourceController
      *   description="Resultexams",
      *   tags={"Resultexams"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -444,7 +444,7 @@ class Resultexams extends ResourceController
      *   description="Resultexams",
      *   tags={"Resultexams"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -512,7 +512,7 @@ class Resultexams extends ResourceController
      *   description="Resultexams",
      *   tags={"Resultexams"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(

@@ -20,7 +20,7 @@ class Groups extends ResourceController
      *   summary="Groups",
      *   description="Groups",
      *   tags={"Groups"},
-      *   @OA\Parameter(
+     *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
@@ -76,9 +76,9 @@ class Groups extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
+            $model = $this->model->where(['statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
+            $model = $this->model->where(['statusId' => 0]);
         }
 
         $data = $model
@@ -155,7 +155,7 @@ class Groups extends ResourceController
      *   description="Groups",
      *   tags={"Groups"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -266,7 +266,7 @@ class Groups extends ResourceController
      *   description="Groups",
      *   tags={"Groups"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -432,7 +432,7 @@ class Groups extends ResourceController
      *   description="Groups",
      *   tags={"Groups"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(

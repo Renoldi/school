@@ -20,7 +20,7 @@ class Hoomrooms extends ResourceController
      *   summary="Hoomrooms",
      *   description="Hoomrooms",
      *   tags={"Hoomrooms"},
-      *   @OA\Parameter(
+     *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
@@ -76,9 +76,9 @@ class Hoomrooms extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
+            $model = $this->model->where(['statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
+            $model = $this->model->where(['statusId' => 0]);
         }
 
         $data = $model
@@ -156,7 +156,7 @@ class Hoomrooms extends ResourceController
      *   description="Hoomrooms",
      *   tags={"Hoomrooms"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -265,7 +265,7 @@ class Hoomrooms extends ResourceController
      *   description="Hoomrooms",
      *   tags={"Hoomrooms"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -431,7 +431,7 @@ class Hoomrooms extends ResourceController
      *   description="Hoomrooms",
      *   tags={"Hoomrooms"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(

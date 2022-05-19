@@ -20,7 +20,7 @@ class EmployeeStatus extends ResourceController
      *   summary="EmployeeStatus",
      *   description="EmployeeStatus",
      *   tags={"EmployeeStatus"},
-      *   @OA\Parameter(
+     *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
@@ -75,9 +75,9 @@ class EmployeeStatus extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
+            $model = $this->model->where(['statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
+            $model = $this->model->where(['statusId' => 0]);
         }
 
         $data = $model
@@ -153,7 +153,7 @@ class EmployeeStatus extends ResourceController
      *   description="EmployeeStatus",
      *   tags={"EmployeeStatus"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -264,7 +264,7 @@ class EmployeeStatus extends ResourceController
      *   description="EmployeeStatus",
      *   tags={"EmployeeStatus"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -430,7 +430,7 @@ class EmployeeStatus extends ResourceController
      *   description="EmployeeStatus",
      *   tags={"EmployeeStatus"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(

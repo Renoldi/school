@@ -20,7 +20,7 @@ class Ranks extends ResourceController
      *   summary="Ranks",
      *   description="Ranks",
      *   tags={"Ranks"},
-      *   @OA\Parameter(
+     *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
@@ -76,9 +76,9 @@ class Ranks extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
+            $model = $this->model->where(['statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
+            $model = $this->model->where(['statusId' => 0]);
         }
 
         $data = $model
@@ -155,7 +155,7 @@ class Ranks extends ResourceController
      *   description="Ranks",
      *   tags={"Ranks"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -366,7 +366,7 @@ class Ranks extends ResourceController
      *   description="Ranks",
      *   tags={"Ranks"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -434,7 +434,7 @@ class Ranks extends ResourceController
      *   description="Ranks",
      *   tags={"Ranks"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(

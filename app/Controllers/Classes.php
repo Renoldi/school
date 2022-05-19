@@ -20,7 +20,7 @@ class Classes extends ResourceController
      *   summary="Classes",
      *   description="Classes",
      *   tags={"Classes"},
-      *   @OA\Parameter(
+     *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
@@ -153,7 +153,7 @@ class Classes extends ResourceController
      *   description="Classes",
      *   tags={"Classes"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -264,7 +264,7 @@ class Classes extends ResourceController
      *   description="Classes",
      *   tags={"Classes"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -430,7 +430,7 @@ class Classes extends ResourceController
      *   description="Classes",
      *   tags={"Classes"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(

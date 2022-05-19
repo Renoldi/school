@@ -19,7 +19,7 @@ class SubjectDepartements extends ResourceController
      *   summary="SubjectDepartements",
      *   description="SubjectDepartements",
      *   tags={"SubjectDepartements"},
-      *   @OA\Parameter(
+     *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
@@ -73,22 +73,15 @@ class SubjectDepartements extends ResourceController
      */
     public function paging($status = "all", $perpage = 20, $page = 1)
     {
-        $model = $this->model;
-        if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
-        } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
-        }
 
-        $data = $model
-
+        $data = $this->model
             ->paginate($perpage, 'default', $page);
-        $countPage = $model->pager->getPageCount();
-        $currentPage = $model->pager->getCurrentPage();
-        $lastPage = $model->pager->getLastPage();
-        $firstPage = $model->pager->getFirstPage();
-        $perPage = $model->pager->getPerPage();
-        // $details = $model->pager->getDetails();
+        $countPage = $this->model->pager->getPageCount();
+        $currentPage = $this->model->pager->getCurrentPage();
+        $lastPage = $this->model->pager->getLastPage();
+        $firstPage = $this->model->pager->getFirstPage();
+        $perPage = $this->model->pager->getPerPage();
+        // $details = $this->model->pager->getDetails();
 
         if ($page > $countPage)
             return  $this->respond([
@@ -157,6 +150,11 @@ class SubjectDepartements extends ResourceController
      *     name="id",
      *     in="path",
      *     required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
      *  ), 
      *  @OA\Response(
      *   response=200, description="ok",
@@ -263,6 +261,11 @@ class SubjectDepartements extends ResourceController
      *     name="id",
      *     in="path",
      *     required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
      *  ), 
      * @OA\RequestBody(
      *   required=true,
@@ -326,6 +329,11 @@ class SubjectDepartements extends ResourceController
      *     name="id",
      *     in="path",
      *     required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
      *  ), 
      *  @OA\Response(
      *   response=200, description="ok",

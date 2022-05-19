@@ -21,7 +21,7 @@ class Exams extends ResourceController
      *   summary="Exams",
      *   description="Exams",
      *   tags={"Exams"},
-      *   @OA\Parameter(
+     *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
@@ -77,9 +77,9 @@ class Exams extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
+            $model = $this->model->where(['statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
+            $model = $this->model->where(['statusId' => 0]);
         }
 
         $data = $model
@@ -157,7 +157,7 @@ class Exams extends ResourceController
      *   description="exams",
      *   tags={"Exams"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -564,7 +564,7 @@ class Exams extends ResourceController
      *   description="exams",
      *   tags={"Exams"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -632,7 +632,7 @@ class Exams extends ResourceController
      *   description="exams",
      *   tags={"Exams"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(

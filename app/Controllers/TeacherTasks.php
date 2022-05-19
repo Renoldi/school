@@ -158,6 +158,11 @@ class TeacherTasks extends ResourceController
      *     name="id",
      *     in="path",
      *     required=true,
+ *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
      *  ), 
      *  @OA\Response(
      *   response=200, description="ok",
@@ -264,6 +269,11 @@ class TeacherTasks extends ResourceController
      *     name="id",
      *     in="path",
      *     required=true,
+ *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
      *  ), 
      * @OA\RequestBody(
      *   required=true,
@@ -327,6 +337,11 @@ class TeacherTasks extends ResourceController
      *     name="id",
      *     in="path",
      *     required=true,
+ *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
      *  ), 
      *  @OA\Response(
      *   response=200, description="ok",

@@ -21,7 +21,7 @@ class Departments extends ResourceController
      *   summary="Departments",
      *   description="Departments",
      *   tags={"Departments"},
-      *   @OA\Parameter(
+     *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
@@ -76,9 +76,9 @@ class Departments extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
+            $model = $this->model->where(['statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
+            $model = $this->model->where(['statusId' => 0]);
         }
 
         $data = $model
@@ -155,7 +155,7 @@ class Departments extends ResourceController
      *   description="Departments",
      *   tags={"Departments"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -367,7 +367,7 @@ class Departments extends ResourceController
      *   description="Departments",
      *   tags={"Departments"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -433,7 +433,7 @@ class Departments extends ResourceController
      *   description="Departments",
      *   tags={"Departments"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(

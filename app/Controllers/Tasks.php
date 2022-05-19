@@ -20,7 +20,7 @@ class Tasks extends ResourceController
      *   summary="Tasks",
      *   description="Tasks",
      *   tags={"Tasks"},
-      *   @OA\Parameter(
+     *   @OA\Parameter(
      *         name="status",
      *         in="path",
      *         required=true,
@@ -76,9 +76,9 @@ class Tasks extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
+            $model = $this->model->where(['statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
+            $model = $this->model->where(['statusId' => 0]);
         }
 
         $data = $model
@@ -155,7 +155,7 @@ class Tasks extends ResourceController
      *   description="Tasks",
      *   tags={"Tasks"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -266,7 +266,7 @@ class Tasks extends ResourceController
      *   description="Tasks",
      *   tags={"Tasks"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
@@ -334,7 +334,7 @@ class Tasks extends ResourceController
      *   description="Tasks",
      *   tags={"Tasks"},
      *   @OA\Parameter(
-          *         name="id",
+     *         name="id",
      *         in="path",
      *         required=true,
      *           @OA\Schema(
