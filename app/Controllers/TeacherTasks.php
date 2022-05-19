@@ -16,20 +16,10 @@ class TeacherTasks extends ResourceController
     use ResponseTrait;
     /**
      * @OA\Get(
-     *   path="/api/TeacherTasks/paging/{status}/{perpage}/{page}",
+     *   path="/api/TeacherTasks/paging/{perpage}/{page}",
      *   summary="TeacherTasks",
      *   description="TeacherTasks",
      *   tags={"TeacherTasks"},
-     *   @OA\Parameter(
-     *         name="status",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(
-     *              type="integer",
-     *              format="int64",
-     *              example="1"
-     *          )
-     *   ),
      *   @OA\Parameter(
      *         name="perpage",
      *         in="path",
@@ -72,14 +62,15 @@ class TeacherTasks extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function paging($status = "all", $perpage = 20, $page = 1)
+    public function paging($perpage = 20, $page = 1)
     {
         $model = $this->model;
 
         $data = $model
-            ->select('t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertasks.duration')
+            ->select('teachertasks.id,t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertasks.duration')
             ->join('teachers t', 't.id = teachertasks.teacherId')
             ->join('tasks ta', 'ta.id = teachertasks.taskId')
+            ->orderBy('t.id')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -185,7 +176,7 @@ class TeacherTasks extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertasks.duration')
+            ->select('teachertasks.id,t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertasks.duration')
             ->join('teachers t', 't.id = teachertasks.teacherId')
             ->join('tasks ta', 'ta.id = teachertasks.taskId')
             ->find($id);

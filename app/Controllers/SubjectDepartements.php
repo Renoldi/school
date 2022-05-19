@@ -16,20 +16,10 @@ class SubjectDepartements extends ResourceController
     use ResponseTrait;
     /**
      * @OA\Get(
-     *   path="/api/SubjectDepartements/paging/{status}/{perpage}/{page}",
+     *   path="/api/SubjectDepartements/paging/{perpage}/{page}",
      *   summary="SubjectDepartements",
      *   description="SubjectDepartements",
      *   tags={"SubjectDepartements"},
-     *   @OA\Parameter(
-     *         name="status",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(
-     *              type="integer",
-     *              format="int64",
-     *              example="1"
-     *          )
-     *   ),
      *   @OA\Parameter(
      *         name="perpage",
      *         in="path",
@@ -72,10 +62,12 @@ class SubjectDepartements extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function paging($status = "all", $perpage = 20, $page = 1)
+    public function paging($perpage = 20, $page = 1)
     {
-
         $data = $this->model
+            ->select('subjectdepartements.id, d.id departmentId, d.name departmentName, s.id subjectId, s.name subjectName')
+            ->join('departments d', 'd.id =subjectdepartements.departmentId')
+            ->join('subjects s', 's.id = subjectdepartements.subjectId')
             ->paginate($perpage, 'default', $page);
         $countPage = $this->model->pager->getPageCount();
         $currentPage = $this->model->pager->getCurrentPage();
@@ -180,8 +172,11 @@ class SubjectDepartements extends ResourceController
      */
     public function show($id = null)
     {
-        
-        $record = $this->model->find($id);
+        $record = $this->model
+            ->select('subjectdepartements.id, d.id departmentId, d.name departmentName, s.id subjectId, s.name subjectName')
+            ->join('departments d', 'd.id =subjectdepartements.departmentId')
+            ->join('subjects s', 's.id = subjectdepartements.subjectId')
+            ->find($id);
         // return $this->respond([
         //     $this->model->getLastQuery()->getQuery()
         // ]);
