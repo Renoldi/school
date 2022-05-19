@@ -613,7 +613,6 @@ class Students extends ResourceController
                 // "privilegeId" => $user->privilegeId,
                 "privilege" => $user->privilege,
             );
-
             $payload = array(
                 "iss" => $user->privilege,
                 "aud" => array(
@@ -625,7 +624,6 @@ class Students extends ResourceController
                 "exp" =>  $exp->getTimestamp(), // Expiration time of token,
                 "user" => $users,
             );
-
             helper('jwt');
             $token = generate($payload);
             $response = [
