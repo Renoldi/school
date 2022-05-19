@@ -91,7 +91,6 @@ class Teachers extends ResourceController
       es.id employeeId, es.name employeeName,
       r.id rankId, r.name rankName,
       g.id groupId, g.name groupName,
-      el.id educationlevelId, el.name educationlevelName,
       sch.id schoolId, sch.name schoolName,
       m.id majorId, m.name majorName')
       // ->alias('t')
@@ -100,7 +99,6 @@ class Teachers extends ResourceController
       ->join('employee es', 'es.id=teachers.employeeId', 'left')
       ->join('ranks r', 'r.id=teachers.rankId', 'left')
       ->join('groups g', 'g.id=teachers.groupId', 'left')
-      ->join('educationlevels el', 'el.id=teachers.educationLevelId', 'left')
       ->join('schools sch', 'sch.id=teachers.schoolId', 'left')
       ->join('majors m', 'm.id=teachers.majorId', 'left')
       ->paginate($perpage, 'default', $page);
@@ -166,7 +164,7 @@ class Teachers extends ResourceController
   {
     return $this->respond(
       $this->model
-        ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,s.id statusId, s.name statusName, es.id employeeId, es.name employeeName ,isPn,address,phone,createdAt,updatedAt,deletedAt')
+        ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,s.id statusId, s.name statusName, es.id employeeId, es.name employeeName ,isPn,address,phone,createdAt,updatedAt,deletedAt')
         ->where('statusId', 1)
         ->join('status s', 's.id=teachers.statusId')
 
@@ -226,7 +224,6 @@ class Teachers extends ResourceController
     es.id employeeId, es.name employeeName,
     r.id rankId, r.name rankName,
     g.id groupId, g.name groupName,
-    el.id educationlevelId, el.name educationlevelName,
     sch.id schoolId, sch.name schoolName,
     m.id majorId, m.name majorName')
       ->join('status s', 's.id=teachers.statusId', 'left')
@@ -234,7 +231,6 @@ class Teachers extends ResourceController
       ->join('employee es', 'es.id=teachers.employeeId', 'left')
       ->join('ranks r', 'r.id=teachers.rankId', 'left')
       ->join('groups g', 'g.id=teachers.groupId', 'left')
-      ->join('educationlevels el', 'el.id=teachers.educationLevelId', 'left')
       ->join('schools sch', 'sch.id=teachers.schoolId', 'left')
       ->join('majors m', 'm.id=teachers.majorId', 'left')
       ->find($id);
@@ -882,11 +878,10 @@ class Teachers extends ResourceController
       $entity->rankId = $row[12];
       $entity->rankTmt = $row[13];
       $entity->groupId = $row[14];
-      $entity->educationLevelId = $row[15];
-      $entity->schoolId = $row[16];
-      $entity->majorId = $row[17];
-      $entity->finishEducationLevel = $row[18];
-      $entity->mutation = $row[19];
+      $entity->schoolId = $row[15];
+      $entity->majorId = $row[16];
+      $entity->finishEducationLevel = $row[17];
+      $entity->mutation = $row[18];
 
       if (!$this->model->save($entity)) {
         // return $this->respond([$this->model->getLastQuery()->getQuery()]);
