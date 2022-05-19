@@ -21,6 +21,7 @@ class RunSeeder extends Seeder
         $this->call('Majors');
         $this->call('Subjects');
         $this->call('Schools');
+        $this->call('EmployeeStatus');
         
         // $this->call('Students');
         $this->call('Teachers');

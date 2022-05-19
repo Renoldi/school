@@ -29,7 +29,7 @@ class Teachers extends Seeder
                 'privilegeId' => ($i == 0) ? 1 : 4,
                 'about' => 'created',
                 'ipAddress' => '127.0.0.1',
-                'isPn' => rand(0, 1)
+                'employeeStatusId' => rand(1,2)
             ];
             $entities->fill($data);
             if (!$model->save($entities)) {

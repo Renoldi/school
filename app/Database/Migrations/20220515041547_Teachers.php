@@ -97,9 +97,9 @@ class Teachers extends Migration
                 'statusId' => [
                     'type' => 'int',
                 ],
-                'isPn' => [
-                    'type' => 'tinyint',
-                    'constraint' => 1,
+                'employeeStatusId' => [
+                    'type' => 'INT',
+                    'constraint' => 11,
                 ],
                 'password' => [
                     'type' => 'VARCHAR',
@@ -127,6 +127,7 @@ class Teachers extends Migration
             ]
         );
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('employeeStatusId', 'EmployeeStatus', 'id');
         $this->forge->addForeignKey('statusId', 'status', 'id');
         $this->forge->addForeignKey('privilegeId', 'privileges', 'id');
         $this->forge->addForeignKey('rankId', 'ranks', 'id');

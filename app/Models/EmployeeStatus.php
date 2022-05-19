@@ -4,39 +4,19 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Teachers extends Model
+class EmployeeStatus extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'teachers';
+    protected $table            = 'employeeStatus';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Teachers::class;
+    protected $returnType       = \App\Entities\EmployeeStatus::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'email',
-        'nip',
         'name',
-        'gender',
-        'dob',
-        'privilegeId',
-        'rankId',
-        'rankTmt',
-        'groupId',
-        'educationLevelId',
-        'schoolId',
-        'majorId',
-        'finishEducationLevel',
-        'mutation',
-        'ipAddress',
-        'about',
-        'image',
         'statusId',
-        'employeeStatusId',
-        'password',
-        'address',
-        'phone',
     ];
 
     // Dates
@@ -45,15 +25,11 @@ class Teachers extends Model
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';
-
+    
     // Validation
     protected $validationRules      = [
-        'email' => 'required|valid_email|is_unique[teachers.email,id,{id}]',
-        'name' => 'required|min_length[4]',
-        'password' => 'required|min_length[5]',
-        'statusId' => 'required|integer', 
-        'privilegeId' => 'required|integer',
-        'employeeStatusId' => 'required|integer',
+        'name' => 'required|is_unique[classes.name,id,{id}]',
+        'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

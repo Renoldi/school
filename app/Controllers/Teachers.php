@@ -81,7 +81,9 @@ class Teachers extends ResourceController
     }
 
     $data = $model
-      ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,statusId,isPn,address,phone,createdAt,updatedAt,deletedAt')
+      ->select('id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,statusId,employeeStatusId,es.name employeeStatusname,address,phone,createdAt,updatedAt,deletedAt')
+      ->join('employeeStatus es','es.id=teachers.employeeStatusId')
+      ->join('status s','s.id=teachers.statusId')
       ->paginate($perpage, 'default', $page);
     $countPage = $model->pager->getPageCount();
     $currentPage = $model->pager->getCurrentPage();
@@ -452,9 +454,10 @@ class Teachers extends ResourceController
     } else {
 
       $user = $this->model
-        ->select("teachers.*,p.name privilege, s.name status")
+        ->select("teachers.*,p.name privilege, s.name status,es.name employeeStatusName")
         ->join('privileges p', 'p.id=teachers.privilegeId')
         ->join('status s', 's.id=teachers.statusId')
+        ->join('employeeStatus es','es.id=teachers.employeeStatusId') 
         ->where('email', $email)
         ->where('teachers.statusId', 1)
         ->first();
@@ -484,11 +487,14 @@ class Teachers extends ResourceController
         'nip' => $user->nip,
         'name' => $user->name,
         'gender' => $user->gender,
-        'position' => $user->position,
         'dob' => $user->dob,
         'email' => $user->email,
         'image' => $user->image,
+        'statusid' => $user->statusId,
         'status' => $user->status,
+        'employeeStatusId' => $user->employeeStatusId,
+        'employeeStatusName' => $user->employeeStatusName,
+        'privilegeId' => $user->privilegeId,
         'privilege' => $user->privilege,
       );
       $payload = array(
@@ -507,6 +513,7 @@ class Teachers extends ResourceController
       helper('jwt');
       $token = generate($payload);
       $response = [
+        "users" =>$users,
         "token" => $token,
       ];
       return $this->respond($response);
