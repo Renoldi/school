@@ -47,7 +47,6 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->get('Resultexams/exam/(:any)/(:any)/(:num)/(:num)/(:num)', 'Resultexams::exam/$1/$2/$3/$4/$5', ['filter' => ['Role:superadmin,admin,editor']]);
 
     // paging
-    // $routes->get('Status/paging/(:any)/(:num)/(:num)', 'Status::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('Classes/paging/(:any)/(:num)/(:num)', 'Classes::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('Departments/paging/(:any)/(:num)/(:num)', 'Departments::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('EducationLevels/paging/(:any)/(:num)/(:num)', 'EducationLevels::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
@@ -162,8 +161,9 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->resource('Teachers', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
     $routes->resource('TeacherTasks', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
 
-    $routes->resource('Privileges', ['filter' => ['Role:superadmin'], 'only' => 'index']);
-    $routes->resource('Status', ['filter' => ['Role:superadmin'], 'only' => 'index']);
+    $routes->resource('Privileges', ['filter' => ['Role:superadmin'], 'only' => 'index,create']);
+    $routes->resource('Status', ['filter' => ['Role:superadmin'], 'only' => 'index,create']);
+    $routes->resource('EmployeeStatus', ['filter' => ['Role:superadmin'], 'only' => 'index,create']);
 });
 
 /*
