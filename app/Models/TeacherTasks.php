@@ -33,8 +33,7 @@ class TeacherTasks extends Model
     protected $validationRules      = [
         'teacherId' => 'required|integer',
         'taskId' => 'required|integer',
-        'duration' => 'required|integer',
-        'statusId' => 'required|integer',
+        'duration' => 'required|integer', 
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

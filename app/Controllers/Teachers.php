@@ -706,7 +706,7 @@ class Teachers extends ResourceController
   public function countDuration()
   {
 
-    $record = $this->model->select('teachers.id,teachers.name, ifnull(tt.teachertasks,0) tasks,ifnull(hr.hoomrooms,0)rooms,ifnull(st.subjectteachers,0)subjects , (ifnull(tt.teachertasks,0)+ifnull(hr.hoomrooms,0)+ifnull(st.subjectteachers,0) ) total')
+      $this->model->select('teachers.id,teachers.name, ifnull(tt.teachertasks,0) tasks,ifnull(hr.hoomrooms,0)rooms,ifnull(st.subjectteachers,0)subjects , (ifnull(tt.teachertasks,0)+ifnull(hr.hoomrooms,0)+ifnull(st.subjectteachers,0) ) total')
       ->join('(SELECT t.id,t.name, sum(ifnull(tt.duration, 0)) as teachertasks from teachers t JOIN teachertasks tt on t.id = tt.teacherId group by t.id) tt', 'tt.id = teachers.id')
       ->join('(SELECT t.id,t.name, sum(ifnull(hr.duration, 0)) as hoomrooms from teachers t JOIN hoomrooms hr on t.id = hr.teacherId group by t.id ) hr', 'hr.id = teachers.id', 'left')
       ->join('(SELECT t.id,t.name,sum(ifnull(st.duration, 0)) as subjectteachers from teachers t JOIN subjectteachers st on t.id = st.teacherId group by t.id ) st', 'st.id = teachers.id', 'left');
