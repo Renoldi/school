@@ -15,25 +15,46 @@ class Students extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nisn',
+        'id',
+        'email',
         'name',
-        'gender',
-        'password',
-        'statusId',
         'classId',
         'roomId',
+        'gender',
+        'placeOfBirth',
+        'dayOfBirth',
+        'nis',
+        'nisn',
+        'noKk',
+        'nik',
+        'numberOfSiblings',
+        'fromOfSiblings',
+        'orphan',
+        'schoolId',
+        'address',
+        'fatherNik',
+        'fatherName',
+        'fatherEmployeeId',
+        'fatherSchoolId',
+        'fatherincome',
+        'motherNik',
+        'motherName',
+        'motherEmployeeId',
+        'motherSchoolId',
+        'motherincome',
         'image',
-        'privilegeId',
-        'email',
-        'dob',
+        'phone',
+        'phoneFamily',
+        'password',
         'ipAddress',
         'about',
-        'dob',
+        'statusId',
+        'privilegeId',
     ];
 
     // Dates
     protected $useTimestamps = true;
-    protected $dateFormat   = 'int';  
+    protected $dateFormat   = 'int';
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';

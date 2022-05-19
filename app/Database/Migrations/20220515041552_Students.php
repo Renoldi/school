@@ -112,7 +112,7 @@ class Students extends Migration
                 'type' => 'int',
                 'null' => true,
             ],
-            'fatherNik' => [
+            'motherNik' => [
                 'type' => 'VARCHAR',
                 'constraint' => 20,
                 'null' => true,

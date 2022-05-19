@@ -4,6 +4,7 @@ namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
 use OpenApi\Annotations as OA;
+
 /**
  * @OA\Schema(
  *   schema="Students",
@@ -19,51 +20,61 @@ class Students extends Entity
     protected $dates   = ['createdAt', 'updatedAt', 'deletedAt'];
     protected $casts   = [];
     protected $attributes = [
-        'nisn' => null,
+        'id' => null,
+        'email' => null,
         'name' => null,
-        'gender' => null,
-        'password' => null,
-        'statusId' => null,
         'classId' => null,
         'roomId' => null,
+        'gender' => null,
+        'placeOfBirth' => null,
+        'dayOfBirth' => null,
+        'nis' => null,
+        'nisn' => null,
+        'noKk' => null,
+        'nik' => null,
+        'numberOfSiblings' => null,
+        'fromOfSiblings' => null,
+        'orphan' => null,
+        'schoolId' => null,
+        'address' => null,
+        'fatherNik' => null,
+        'fatherName' => null,
+        'fatherEmployeeId' => null,
+        'fatherSchoolId' => null,
+        'fatherincome' => null,
+        'motherNik' => null,
+        'motherName' => null,
+        'motherEmployeeId' => null,
+        'motherSchoolId' => null,
+        'motherincome' => null,
         'image' => null,
-        'privilegeId' => null,
-        'email' => null,
+        'phone' => null,
+        'phoneFamily' => null,
+        'password' => null,
         'ipAddress' => null,
         'about' => null,
-        'dob' => null,
+        'statusId' => null,
+        'privilegeId' => null,
     ];
 
+    public function setPassword(string $pass)
+    {
+        $this->attributes['password'] = password_hash($pass, PASSWORD_BCRYPT);
+        return $this;
+    }
+ 
     
     /**
      * @var string
      * @OA\Property()
      */
-    protected $nisn;
+    protected $email;
     
     /**
      * @var string
      * @OA\Property()
      */
     protected $name;
-    
-    /**
-     * @var string
-     * @OA\Property()
-     */
-    protected $gender;
-    
-    /**
-     * @var string
-     * @OA\Property()
-     */
-    protected $password;
-    
-    /**
-     * @var integer
-     * @OA\Property()
-     */
-    protected $statusId;
     
     /**
      * @var integer
@@ -81,19 +92,157 @@ class Students extends Entity
      * @var string
      * @OA\Property()
      */
-    protected $image;
-    
-    /**
-     * @var integer
-     * @OA\Property()
-     */
-    protected $privilegeId;
+    protected $gender;
     
     /**
      * @var string
      * @OA\Property()
      */
-    protected $email;
+    protected $placeOfBirth;
+    
+    /**
+     * @var date
+     * @OA\Property()
+     */
+    protected $dayOfBirth;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $nis;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $nisn;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $noKk;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $nik;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $numberOfSiblings;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $fromOfSiblings;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $orphan;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $schoolId;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $address;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $fatherNik;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $fatherName;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $fatherEmployeeId;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $fatherSchoolId;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $fatherincome;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $motherNik;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $motherName;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $motherEmployeeId;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $motherSchoolId;
+    
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $motherincome;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $image;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $phone;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $phoneFamily;
+    
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $password;
     
     /**
      * @var string
@@ -106,15 +255,19 @@ class Students extends Entity
      * @OA\Property()
      */
     protected $about;
+    
     /**
-     * @var date
+     * @var integer
      * @OA\Property()
      */
-    protected $dob;
+    protected $statusId;
     
-    public function setPassword(string $pass)
-    {
-        $this->attributes['password'] = password_hash($pass, PASSWORD_BCRYPT);
-        return $this;
-    }
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $privilegeId;
+     
+
+    
 }
