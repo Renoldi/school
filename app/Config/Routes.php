@@ -161,9 +161,9 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->resource('Teachers', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
     $routes->resource('TeacherTasks', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
 
-    $routes->resource('Privileges', ['filter' => ['Role:superadmin'], 'only' => 'index,create']);
-    $routes->resource('Status', ['filter' => ['Role:superadmin'], 'only' => 'index,create']);
-    $routes->resource('EmployeeStatus', ['filter' => ['Role:superadmin'], 'only' => 'index,create']);
+    $routes->resource('Privileges', ['filter' => ['Role:superadmin'], 'only' => 'index,create,show']);
+    $routes->resource('Status', ['filter' => ['Role:superadmin'], 'only' => 'index,create,show']);
+    $routes->resource('EmployeeStatus', ['filter' => ['Role:superadmin'], 'only' => 'index,create,show']);
 });
 
 /*
