@@ -839,7 +839,8 @@ class Teachers extends ResourceController
       'userfile' => [
         'label' => 'xls File',
         'rules' => 'uploaded[userfile]'
-          . '|mime_in[userfile,application/xls,application/vnd.openxmlformats-officedocumenteachers.spreadsheetml.sheet]'
+          . '|mime_in[userfile,application/xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]'
+
       ],
     ];
     if (!$this->validate($validationRule)) {
