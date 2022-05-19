@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Entities\SubjectDepartements as EntitiesSubjectDepartements;
 use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
+use App\Models\SubjectDepartements as ModelsSubjectDepartements;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -179,7 +180,12 @@ class SubjectDepartements extends ResourceController
      */
     public function show($id = null)
     {
-        $record = $this->model->where('statusId', 1)->find($id);
+        
+        $record = $this->model->find($id);
+        // return $this->respond([
+        //     $this->model->getLastQuery()->getQuery()
+        // ]);
+
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',
@@ -301,8 +307,6 @@ class SubjectDepartements extends ResourceController
         if ($data == null) {
             return $this->fail("data not valid");
         }
-
-
 
         $entity = new EntitiesSubjectDepartements();
         $array = new StdobjeToArray($data);
