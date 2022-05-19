@@ -83,7 +83,7 @@ class Teachers extends ResourceController
       $model = $this->model->where(['teachers.statusId' => 0]);
     }
 
-    $data = $model 
+    $data = $model
       ->select('
       teachers.id,teachers.email,teachers.nip,teachers.name,teachers.gender,teachers.dob,teachers.mutation,teachers.ipAddress,teachers.about,teachers.finishEducationLevel,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.address,teachers.phone,
       s.id statusId, s.name statusName,
@@ -91,7 +91,7 @@ class Teachers extends ResourceController
       es.id employeeStatusId, es.name employeeStatusName,
       r.id rankId, r.name rankName,
       g.id groupId, g.name groupName,
-      el.id educationlevelId, g.name educationlevelName,
+      el.id educationlevelId, el.name educationlevelName,
       sch.id schoolId, sch.name schoolName,
       m.id majorId, m.name majorName')
       // ->alias('t')
@@ -189,6 +189,11 @@ class Teachers extends ResourceController
    *   name="id",
    *   in="path",
    *   required=true,
+   * @OA\Schema(
+   *              type="integer",
+   *              format="int64",
+   *              example="1"
+   *          )
    * ),
    * @OA\Response(
    *  response=200,description="ok",
@@ -214,24 +219,24 @@ class Teachers extends ResourceController
   public function show($id = null)
   {
     $record = $this->model
-    ->select('
+      ->select('
     teachers.id,teachers.email,teachers.nip,teachers.name,teachers.gender,teachers.dob,teachers.mutation,teachers.ipAddress,teachers.about,teachers.finishEducationLevel,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.address,teachers.phone,
     s.id statusId, s.name statusName,
     p.id privilegeId, p.name privilegeName,
     es.id employeeStatusId, es.name employeeStatusName,
     r.id rankId, r.name rankName,
     g.id groupId, g.name groupName,
-    el.id educationlevelId, g.name educationlevelName,
+    el.id educationlevelId, el.name educationlevelName,
     sch.id schoolId, sch.name schoolName,
     m.id majorId, m.name majorName')
-    ->join('status s', 's.id=teachers.statusId', 'left')
-    ->join('privileges p', 'p.id=teachers.privilegeId', 'left')
-    ->join('employeeStatus es', 'es.id=teachers.employeeStatusId', 'left')
-    ->join('ranks r', 'r.id=teachers.rankId', 'left')
-    ->join('groups g', 'g.id=teachers.groupId', 'left')
-    ->join('educationlevels el', 'el.id=teachers.educationLevelId', 'left')
-    ->join('schools sch', 'sch.id=teachers.schoolId', 'left')
-    ->join('majors m', 'm.id=teachers.majorId', 'left')
+      ->join('status s', 's.id=teachers.statusId', 'left')
+      ->join('privileges p', 'p.id=teachers.privilegeId', 'left')
+      ->join('employeeStatus es', 'es.id=teachers.employeeStatusId', 'left')
+      ->join('ranks r', 'r.id=teachers.rankId', 'left')
+      ->join('groups g', 'g.id=teachers.groupId', 'left')
+      ->join('educationlevels el', 'el.id=teachers.educationLevelId', 'left')
+      ->join('schools sch', 'sch.id=teachers.schoolId', 'left')
+      ->join('majors m', 'm.id=teachers.majorId', 'left')
       ->find($id);
     if (!$record) {
       return $this->failNotFound(sprintf(
@@ -312,6 +317,11 @@ class Teachers extends ResourceController
    *   name="id",
    *   in="path",
    *   required=true,
+   * @OA\Schema(
+   *              type="integer",
+   *              format="int64",
+   *              example="1"
+   *          )
    * ),
    * @OA\RequestBody(
    *  required=true,
@@ -373,6 +383,11 @@ class Teachers extends ResourceController
    *   name="id",
    *   in="path",
    *   required=true,
+   * @OA\Schema(
+   *              type="integer",
+   *              format="int64",
+   *              example="1"
+   *          )
    * ),
    * @OA\Response(
    *  response=200,description="ok",
