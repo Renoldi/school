@@ -490,11 +490,11 @@ class Teachers extends ResourceController
         'dob' => $user->dob,
         'email' => $user->email,
         'image' => $user->image,
-        'statusid' => $user->statusId,
+        // 'statusid' => $user->statusId,
         'status' => $user->status,
-        'employeeStatusId' => $user->employeeStatusId,
+        // 'employeeStatusId' => $user->employeeStatusId,
         'employeeStatusName' => $user->employeeStatusName,
-        'privilegeId' => $user->privilegeId,
+        // 'privilegeId' => $user->privilegeId,
         'privilege' => $user->privilege,
       );
       $payload = array(
