@@ -36,7 +36,6 @@ class EducationLevels extends Migration
         $this->forge->addForeignKey('statusId', 'status', 'id');
         $this->forge->createTable('EducationLevels');
     }
-
     public function down()
     {
         $this->forge->dropTable('EducationLevels');

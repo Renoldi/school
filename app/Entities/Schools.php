@@ -22,6 +22,8 @@ class Schools extends Entity
     protected $attributes = [
         'name' => null,
         'statusId' => null,
+        'address' => null,
+        'educationLevelId' => null,
     ];
 
     /**
@@ -34,4 +36,14 @@ class Schools extends Entity
      * @OA\Property()
      */
     protected $statusId;
+    /**
+     * @var string
+     * @OA\Property()
+     */
+    protected $address;
+     /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $educationLevelId;
 }

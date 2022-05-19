@@ -20,7 +20,7 @@ class RunSeeder extends Seeder
         $this->call('EducationLevels');
         $this->call('Majors');
         $this->call('Subjects');
-        $this->call('Schools');
+        // $this->call('Schools');
         $this->call('Employee');
         $this->call('SubjectDepartements');
         

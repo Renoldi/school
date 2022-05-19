@@ -573,7 +573,9 @@ class Schools extends ResourceController
             $subjectEntity->name  = $row[0];
             if ($row[0] == '')
                 continue;
-            $subjectEntity->statusId = $row[1];
+            $subjectEntity->address = $row[1];
+            $subjectEntity->educationLevelId = $row[2];
+            $subjectEntity->statusId  = $row[3];
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(

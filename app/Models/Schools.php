@@ -16,7 +16,9 @@ class Schools extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'name',
-        'statusId',
+        'address',
+        'educationLevelId',
+        'statusId', 
     ];
 
     // Dates
@@ -30,6 +32,7 @@ class Schools extends Model
     protected $validationRules      = [
         'name' => 'required|is_unique[schools.name,id,{id}]',
         'statusId' => 'required|integer',
+        'educationLevelId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
