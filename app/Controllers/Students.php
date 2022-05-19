@@ -101,11 +101,21 @@ class Students extends ResourceController
      *         name="classId",
      *         in="path",
      *         required=true,
+     *            @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
      *   ),
      *   @OA\Parameter(
      *         name="roomId",
      *         in="path",
      *         required=true,
+     *            @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
      *   ),
      *   @OA\Response(
      *     response=200,description="ok",
