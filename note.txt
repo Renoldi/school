@@ -124,9 +124,7 @@ LEFT JOIN majors m ON m.id=t.majorId
 
 ORDER BY t.id;
 
-insert table
-  - status
-  - privilage
+insert file
   - school
   - teacher
   - teachertask
