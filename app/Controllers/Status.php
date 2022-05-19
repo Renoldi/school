@@ -71,9 +71,9 @@ class Status extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['status' => 1]);
+            $model = $this->model->where( ['statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['status' => 0]);
+            $model = $this->model->where( ['statusId' => 0]);
         }
 
         $data = $model

@@ -75,13 +75,13 @@ class Teachers extends ResourceController
   {
     $model = $this->model;
     if ($status == 1) {
-      $model = $this->model->where(['status' => 1]);
+      $model = $this->model->where( ['statusId' => 1]);
     } elseif ($status == 0) {
-      $model = $this->model->where(['status' => 0]);
+      $model = $this->model->where( ['statusId' => 0]);
     }
 
     $data = $model
-      ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,status,isPn,address,phone,createdAt,updatedAt,deletedAt')
+      ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,statusId,isPn,address,phone,createdAt,updatedAt,deletedAt')
       ->paginate($perpage, 'default', $page);
     $countPage = $model->pager->getPageCount();
     $currentPage = $model->pager->getCurrentPage();
