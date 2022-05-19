@@ -88,7 +88,7 @@ class Teachers extends ResourceController
       teachers.id,teachers.email,teachers.nip,teachers.name,teachers.gender,teachers.dob,teachers.mutation,teachers.ipAddress,teachers.about,teachers.finishEducationLevel,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.address,teachers.phone,
       s.id statusId, s.name statusName,
       p.id privilegeId, p.name privilegeName,
-      es.id employeeStatusId, es.name employeeStatusName,
+      es.id employeeId, es.name employeeName,
       r.id rankId, r.name rankName,
       g.id groupId, g.name groupName,
       el.id educationlevelId, el.name educationlevelName,
@@ -97,7 +97,7 @@ class Teachers extends ResourceController
       // ->alias('t')
       ->join('status s', 's.id=teachers.statusId', 'left')
       ->join('privileges p', 'p.id=teachers.privilegeId', 'left')
-      ->join('employeeStatus es', 'es.id=teachers.employeeStatusId', 'left')
+      ->join('employee es', 'es.id=teachers.employeeId', 'left')
       ->join('ranks r', 'r.id=teachers.rankId', 'left')
       ->join('groups g', 'g.id=teachers.groupId', 'left')
       ->join('educationlevels el', 'el.id=teachers.educationLevelId', 'left')
@@ -166,7 +166,7 @@ class Teachers extends ResourceController
   {
     return $this->respond(
       $this->model
-        ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,s.id statusId, s.name statusName, es.id employeeStatusId, es.name employeeStatusName ,isPn,address,phone,createdAt,updatedAt,deletedAt')
+        ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,s.id statusId, s.name statusName, es.id employeeId, es.name employeeName ,isPn,address,phone,createdAt,updatedAt,deletedAt')
         ->where('statusId', 1)
         ->join('status s', 's.id=teachers.statusId')
 
@@ -223,7 +223,7 @@ class Teachers extends ResourceController
     teachers.id,teachers.email,teachers.nip,teachers.name,teachers.gender,teachers.dob,teachers.mutation,teachers.ipAddress,teachers.about,teachers.finishEducationLevel,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.address,teachers.phone,
     s.id statusId, s.name statusName,
     p.id privilegeId, p.name privilegeName,
-    es.id employeeStatusId, es.name employeeStatusName,
+    es.id employeeId, es.name employeeName,
     r.id rankId, r.name rankName,
     g.id groupId, g.name groupName,
     el.id educationlevelId, el.name educationlevelName,
@@ -231,7 +231,7 @@ class Teachers extends ResourceController
     m.id majorId, m.name majorName')
       ->join('status s', 's.id=teachers.statusId', 'left')
       ->join('privileges p', 'p.id=teachers.privilegeId', 'left')
-      ->join('employeeStatus es', 'es.id=teachers.employeeStatusId', 'left')
+      ->join('employee es', 'es.id=teachers.employeeId', 'left')
       ->join('ranks r', 'r.id=teachers.rankId', 'left')
       ->join('groups g', 'g.id=teachers.groupId', 'left')
       ->join('educationlevels el', 'el.id=teachers.educationLevelId', 'left')
@@ -510,10 +510,10 @@ class Teachers extends ResourceController
     } else {
 
       $user = $this->model
-        ->select("teachers.*,p.name privilege, s.name status,es.name employeeStatusName")
+        ->select("teachers.*,p.name privilege, s.name status,es.name employeeName")
         ->join('privileges p', 'p.id=teachers.privilegeId')
         ->join('status s', 's.id=teachers.statusId')
-        ->join('employeeStatus es', 'es.id=teachers.employeeStatusId')
+        ->join('employee es', 'es.id=teachers.employeeId')
         ->where('email', $email)
         ->where('teachers.statusId', 1)
         ->first();
@@ -548,8 +548,8 @@ class Teachers extends ResourceController
         'image' => $user->image,
         // 'statusid' => $user->statusId,
         'status' => $user->status,
-        // 'employeeStatusId' => $user->employeeStatusId,
-        'employeeStatusName' => $user->employeeStatusName,
+        // 'employeeId' => $user->employeeId,
+        'employeeName' => $user->employeeName,
         // 'privilegeId' => $user->privilegeId,
         'privilege' => $user->privilege,
       );
@@ -875,7 +875,7 @@ class Teachers extends ResourceController
       $entity->statusId = $row[6];
       $entity->privilegeId = $row[7];
       $entity->password = $row[8];
-      $entity->employeeStatusId = $row[9];
+      $entity->employeeId = $row[9];
       $entity->address = $row[10];
       $entity->phone = $row[11];
       $entity->rankId = $row[12];

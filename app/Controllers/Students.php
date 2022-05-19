@@ -43,7 +43,15 @@ class Students extends ResourceController
      */
     public function index()
     {
-        $model = $this->model->select(' id,nisn,email,name,image,classId,roomId,gender,ipAddress,about,dob,status,privilegeId,createdAt,updatedAt,deletedAt')->findAll();
+        $model = $this->model
+            ->select('
+                students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dob,
+                c.id classId,c.name className,
+                s.id statusId s.name statusName,
+                p.id privilegeId p.name privilegeName,
+                students.roomId,
+                students.createdAt,students.updatedAt,students.deletedAt')
+            ->findAll();
 
         return $this->respond($model);
     }
@@ -124,22 +132,32 @@ class Students extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['statusId' => 1]);
+            $model = $this->model->where(['students.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['statusId' => 0]);
+            $model = $this->model->where(['students.statusId' => 0]);
         }
 
         if ($classId != 0) {
-            $model = $this->model->where(['classId' => $classId]);
+            $model = $this->model->where(['students.classId' => $classId]);
         }
 
         if ($roomId != 0) {
-            $model = $this->model->where(['roomId' => $roomId]);
+            $model = $this->model->where(['students.roomId' => $roomId]);
         }
 
         $data = $model
-            // ->select('id,nisn,name,gender,status,classId,roomId,CONCAT("' . base_url() . '/",image) as image,privilegeId,email,createdAt,updatedAt')
-            ->select('id,nisn,email,name,CONCAT("' . base_url() . '/",image) as image,classId,roomId,gender,ipAddress,about,dob,status,privilegeId,createdAt,updatedAt,deletedAt')
+            ->select('
+            students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dob,
+            c.id classId,c.name className,
+            s.id statusId s.name statusName,
+            p.id privilegeId p.name privilegeName,
+            students.roomId,
+            students.createdAt,students.updatedAt,students.deletedAt')
+            ->join('status s', 's.id=students.statusId')
+            ->join('privileges p', 'p.id=students.privilegeId')
+            ->join('classes c', 'c.id=students.classId')
+            ->join('rooms r', 'r.id=students.roomId')
+
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -211,8 +229,20 @@ class Students extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('id,nisn,email,name,CONCAT("' . base_url() . '/",image) as image,classId,roomId,gender,ipAddress,about,dob,status,privilegeId,createdAt,updatedAt,deletedAt')
-            ->where('statusId', 1)->find($id);
+            ->select('
+                students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dob,
+                c.id classId,c.name className,
+                s.id statusId s.name statusName,
+                p.id privilegeId p.name privilegeName,
+                students.roomId,
+                students.createdAt,students.updatedAt,students.deletedAt')
+            ->join('status s', 's.id=students.statusId')
+            ->join('privileges p', 'p.id=students.privilegeId')
+            ->join('classes c', 'c.id=students.classId')
+            ->join('rooms r', 'r.id=students.roomId')
+            ->where('statusId', 1)
+
+            ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',

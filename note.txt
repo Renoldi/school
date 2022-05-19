@@ -106,7 +106,7 @@ SELECT
 t.id, t.name,
 s.id statusId, s.name statusName,
 p.id privilegeId, p.name privilegeName,
-es.id employeeStatusId, es.name employeeStatusName,
+es.id employeeId, es.name employeeStatusName,
 r.id rankId, r.name rankName,
 g.id groupId, g.name groupName,
 el.id educationlevelId, g.name educationlevelName,
@@ -115,7 +115,7 @@ m.id majorId, m.name majorName
 FROM teachers t
 LEFT JOIN status s ON s.id=t.statusId
 LEFT JOIN privileges p ON p.id=t.privilegeId
-LEFT JOIN employeeStatus es ON es.id=t.employeeStatusId
+LEFT JOIN employeeStatus es ON es.id=t.employeeId
 LEFT JOIN ranks r ON r.id=t.rankId
 LEFT JOIN groups g ON g.id=t.groupId
 LEFT JOIN educationlevels el ON el.id=t.educationLevelId

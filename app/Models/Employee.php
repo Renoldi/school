@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class EmployeeStatus extends Model
+class Employee extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'employeeStatus';
+    protected $table            = 'employee';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\EmployeeStatus::class;
+    protected $returnType       = \App\Entities\Employee::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [

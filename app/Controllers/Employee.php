@@ -2,24 +2,24 @@
 
 namespace App\Controllers;
 
-use App\Entities\EmployeeStatus as EntitiesEmployeeStatus;
+use App\Entities\Employee as EntitiesEmployee;
 use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
-use App\Models\EmployeeStatus as ModelsEmployeeStatus;
+use App\Models\Employee as ModelsEmployee;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
-class EmployeeStatus extends ResourceController
+class Employee extends ResourceController
 {
-    protected $modelName = ModelsEmployeeStatus::class;
+    protected $modelName = ModelsEmployee::class;
     protected $format    = 'json';
     use ResponseTrait;
     /**
      * @OA\Get(
-     *   path="/api/EmployeeStatus/paging/{status}/{perpage}/{page}",
-     *   summary="EmployeeStatus",
-     *   description="EmployeeStatus",
-     *   tags={"EmployeeStatus"},
+     *   path="/api/Employee/paging/{status}/{perpage}/{page}",
+     *   summary="Employee",
+     *   description="Employee",
+     *   tags={"Employee"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -52,7 +52,7 @@ class EmployeeStatus extends ResourceController
      *   ),
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/EmployeeStatus")
+     *      @OA\JsonContent(ref="#/components/schemas/Employee")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"
@@ -119,15 +119,15 @@ class EmployeeStatus extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/EmployeeStatus",
-     *   summary="EmployeeStatus",
-     *   description="EmployeeStatus",
-     *   tags={"EmployeeStatus"},
+     *   path="/api/Employee",
+     *   summary="Employee",
+     *   description="Employee",
+     *   tags={"Employee"},
      *   @OA\Response(
      *     response=200, description="ok",
      *     @OA\JsonContent(
      *      type="array",
-     *       @OA\Items(ref="#/components/schemas/EmployeeStatus")
+     *       @OA\Items(ref="#/components/schemas/Employee")
      *     ),
      *   ),
      *   @OA\Response(
@@ -148,10 +148,10 @@ class EmployeeStatus extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/EmployeeStatus/{id}",
-     *   summary="EmployeeStatus",
-     *   description="EmployeeStatus",
-     *   tags={"EmployeeStatus"},
+     *   path="/api/Employee/{id}",
+     *   summary="Employee",
+     *   description="Employee",
+     *   tags={"Employee"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -164,7 +164,7 @@ class EmployeeStatus extends ResourceController
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/EmployeeStatus")
+     *      @OA\JsonContent(ref="#/components/schemas/Employee")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -203,21 +203,21 @@ class EmployeeStatus extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/EmployeeStatus",
-     *   summary="EmployeeStatus",
-     *   description="EmployeeStatus",
-     *   tags={"EmployeeStatus"},
+     *   path="/api/Employee",
+     *   summary="Employee",
+     *   description="Employee",
+     *   tags={"Employee"},
     
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/EmployeeStatus"),
+     *      @OA\Schema(ref="#/components/schemas/Employee"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=201, description="created",
-     *      @OA\JsonContent(ref="#/components/schemas/EmployeeStatus")
+     *      @OA\JsonContent(ref="#/components/schemas/Employee")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Request error",
@@ -240,7 +240,7 @@ class EmployeeStatus extends ResourceController
             return $this->fail("data not valid");
         }
 
-        $entity = new EntitiesEmployeeStatus();
+        $entity = new EntitiesEmployee();
         $array = new StdobjeToArray($data);
 
         $entity->fill($array->get());
@@ -259,10 +259,10 @@ class EmployeeStatus extends ResourceController
      */
     /**
      * @OA\Put(
-     *   path="/api/EmployeeStatus/{id}",
-     *   summary="EmployeeStatus",
-     *   description="EmployeeStatus",
-     *   tags={"EmployeeStatus"},
+     *   path="/api/Employee/{id}",
+     *   summary="Employee",
+     *   description="Employee",
+     *   tags={"Employee"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -277,12 +277,12 @@ class EmployeeStatus extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/EmployeeStatus"),
+     *      @OA\Schema(ref="#/components/schemas/Employee"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="updated",
-     *      @OA\JsonContent(ref="#/components/schemas/EmployeeStatus")
+     *      @OA\JsonContent(ref="#/components/schemas/Employee")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -308,7 +308,7 @@ class EmployeeStatus extends ResourceController
             return $this->fail("data not valid");
         }
 
-        $entity = new EntitiesEmployeeStatus();
+        $entity = new EntitiesEmployee();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->update($id, $entity)) {
@@ -320,10 +320,10 @@ class EmployeeStatus extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/EmployeeStatus/count",
-     *   summary="EmployeeStatus",
-     *   description="EmployeeStatus",
-     *   tags={"EmployeeStatus"},
+     *   path="/api/Employee/count",
+     *   summary="Employee",
+     *   description="Employee",
+     *   tags={"Employee"},
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
@@ -346,7 +346,7 @@ class EmployeeStatus extends ResourceController
      *   ),
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/EmployeeStatus")
+     *      @OA\JsonContent(ref="#/components/schemas/Employee")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -425,10 +425,10 @@ class EmployeeStatus extends ResourceController
      */
     /**
      * @OA\Delete(
-     *   path="/api/EmployeeStatus/{id}",
-     *   summary="EmployeeStatus",
-     *   description="EmployeeStatus",
-     *   tags={"EmployeeStatus"},
+     *   path="/api/Employee/{id}",
+     *   summary="Employee",
+     *   description="Employee",
+     *   tags={"Employee"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -489,10 +489,10 @@ class EmployeeStatus extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/EmployeeStatus/fromFile",
-     *   summary="EmployeeStatus",
-     *   description="EmployeeStatus",
-     *   tags={"EmployeeStatus"},
+     *   path="/api/Employee/fromFile",
+     *   summary="Employee",
+     *   description="Employee",
+     *   tags={"Employee"},
      *   @OA\RequestBody(
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",
@@ -560,7 +560,7 @@ class EmployeeStatus extends ResourceController
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
 
-        $subjectEntity = new EntitiesEmployeeStatus();
+        $subjectEntity = new EntitiesEmployee();
         $this->model->transStart();
         foreach ($data as $x => $row) {
             if ($x == 0) {
