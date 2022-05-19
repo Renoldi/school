@@ -29,6 +29,7 @@ class Teachers extends ResourceController
    *   @OA\Schema(
    *    type="integer",
    *    format="int64",
+   *  example="1"
    *   )
    * ),
    * @OA\Parameter(
@@ -38,6 +39,7 @@ class Teachers extends ResourceController
    *    @OA\Schema(
    *    type="integer",
    *    format="int64",
+   *  example="20"
    *   )
    * ),
    * @OA\Parameter(
@@ -47,6 +49,7 @@ class Teachers extends ResourceController
    *   @OA\Schema(
    *    type="integer",
    *    format="int64",
+   *  example="1"
    *   )
    * ),
  
@@ -75,16 +78,35 @@ class Teachers extends ResourceController
   {
     $model = $this->model;
     if ($status == 1) {
-      $model = $this->model->where(['statusId' => 1]);
+      $model = $this->model->where(['teachers.statusId' => 1]);
     } elseif ($status == 0) {
-      $model = $this->model->where(['statusId' => 0]);
+      $model = $this->model->where(['teachers.statusId' => 0]);
     }
 
-    $data = $model
-      ->select('id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,statusId,employeeStatusId,es.name employeeStatusname,address,phone,createdAt,updatedAt,deletedAt')
-      ->join('employeeStatus es', 'es.id=teachers.employeeStatusId')
-      ->join('status s', 's.id=teachers.statusId')
+    $data = $model 
+      ->select('
+      teachers.id,teachers.email,teachers.nip,teachers.name,teachers.gender,teachers.dob,teachers.mutation,teachers.ipAddress,teachers.about,teachers.finishEducationLevel,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.address,teachers.phone,
+      s.id statusId, s.name statusName,
+      p.id privilegeId, p.name privilegeName,
+      es.id employeeStatusId, es.name employeeStatusName,
+      r.id rankId, r.name rankName,
+      g.id groupId, g.name groupName,
+      el.id educationlevelId, g.name educationlevelName,
+      sch.id schoolId, sch.name schoolName,
+      m.id majorId, m.name majorName')
+      // ->alias('t')
+      ->join('status s', 's.id=teachers.statusId', 'left')
+      ->join('privileges p', 'p.id=teachers.privilegeId', 'left')
+      ->join('employeeStatus es', 'es.id=teachers.employeeStatusId', 'left')
+      ->join('ranks r', 'r.id=teachers.rankId', 'left')
+      ->join('groups g', 'g.id=teachers.groupId', 'left')
+      ->join('educationlevels el', 'el.id=teachers.educationLevelId', 'left')
+      ->join('schools sch', 'sch.id=teachers.schoolId', 'left')
+      ->join('majors m', 'm.id=teachers.majorId', 'left')
       ->paginate($perpage, 'default', $page);
+    // ->findAll();
+    // return  $this->respond([$model->getLastQuery()->getQuery()]);
+
     $countPage = $model->pager->getPageCount();
     $currentPage = $model->pager->getCurrentPage();
     $lastPage = $model->pager->getLastPage();
@@ -144,8 +166,10 @@ class Teachers extends ResourceController
   {
     return $this->respond(
       $this->model
-        ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,status,isPn,address,phone,createdAt,updatedAt,deletedAt')
+        ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,s.id statusId, s.name statusName, es.id employeeStatusId, es.name employeeStatusName ,isPn,address,phone,createdAt,updatedAt,deletedAt')
         ->where('statusId', 1)
+        ->join('status s', 's.id=teachers.statusId')
+
         ->findAll()
     );
   }
@@ -190,7 +214,24 @@ class Teachers extends ResourceController
   public function show($id = null)
   {
     $record = $this->model
-      ->select('id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,educationLevelId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,status,isPn, address,phone,createdAt,updatedAt,deletedAt')
+    ->select('
+    teachers.id,teachers.email,teachers.nip,teachers.name,teachers.gender,teachers.dob,teachers.mutation,teachers.ipAddress,teachers.about,teachers.finishEducationLevel,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.address,teachers.phone,
+    s.id statusId, s.name statusName,
+    p.id privilegeId, p.name privilegeName,
+    es.id employeeStatusId, es.name employeeStatusName,
+    r.id rankId, r.name rankName,
+    g.id groupId, g.name groupName,
+    el.id educationlevelId, g.name educationlevelName,
+    sch.id schoolId, sch.name schoolName,
+    m.id majorId, m.name majorName')
+    ->join('status s', 's.id=teachers.statusId', 'left')
+    ->join('privileges p', 'p.id=teachers.privilegeId', 'left')
+    ->join('employeeStatus es', 'es.id=teachers.employeeStatusId', 'left')
+    ->join('ranks r', 'r.id=teachers.rankId', 'left')
+    ->join('groups g', 'g.id=teachers.groupId', 'left')
+    ->join('educationlevels el', 'el.id=teachers.educationLevelId', 'left')
+    ->join('schools sch', 'sch.id=teachers.schoolId', 'left')
+    ->join('majors m', 'm.id=teachers.majorId', 'left')
       ->find($id);
     if (!$record) {
       return $this->failNotFound(sprintf(
@@ -706,10 +747,10 @@ class Teachers extends ResourceController
   public function countDuration()
   {
 
-      $this->model->select('teachers.id,teachers.name, ifnull(tt.teachertasks,0) tasks,ifnull(hr.hoomrooms,0)rooms,ifnull(st.subjectteachers,0)subjects , (ifnull(tt.teachertasks,0)+ifnull(hr.hoomrooms,0)+ifnull(st.subjectteachers,0) ) total')
-      ->join('(SELECT t.id,t.name, sum(ifnull(tt.duration, 0)) as teachertasks from teachers t JOIN teachertasks tt on t.id = tt.teacherId group by t.id) tt', 'tt.id = teachers.id')
-      ->join('(SELECT t.id,t.name, sum(ifnull(hr.duration, 0)) as hoomrooms from teachers t JOIN hoomrooms hr on t.id = hr.teacherId group by t.id ) hr', 'hr.id = teachers.id', 'left')
-      ->join('(SELECT t.id,t.name,sum(ifnull(st.duration, 0)) as subjectteachers from teachers t JOIN subjectteachers st on t.id = st.teacherId group by t.id ) st', 'st.id = teachers.id', 'left');
+    $this->model->select('teachers.id,teachers.name, ifnull(tteachers.teachertasks,0) tasks,ifnull(hr.hoomrooms,0)rooms,ifnull(steachers.subjectteachers,0)subjects , (ifnull(tteachers.teachertasks,0)+ifnull(hr.hoomrooms,0)+ifnull(steachers.subjectteachers,0) ) total')
+      ->join('(SELECT teachers.id,teachers.name, sum(ifnull(tteachers.duration, 0)) as teachertasks from teachers t JOIN teachertasks tt on teachers.id = tteachers.teacherId group by teachers.id) tt', 'tteachers.id = teachers.id')
+      ->join('(SELECT teachers.id,teachers.name, sum(ifnull(hr.duration, 0)) as hoomrooms from teachers t JOIN hoomrooms hr on teachers.id = hr.teacherId group by teachers.id ) hr', 'hr.id = teachers.id', 'left')
+      ->join('(SELECT teachers.id,teachers.name,sum(ifnull(steachers.duration, 0)) as subjectteachers from teachers t JOIN subjectteachers st on teachers.id = steachers.teacherId group by teachers.id ) st', 'steachers.id = teachers.id', 'left');
 
     try {
       $record = $this->model->findAll();
@@ -783,7 +824,7 @@ class Teachers extends ResourceController
       'userfile' => [
         'label' => 'xls File',
         'rules' => 'uploaded[userfile]'
-          . '|mime_in[userfile,application/xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]'
+          . '|mime_in[userfile,application/xls,application/vnd.openxmlformats-officedocumenteachers.spreadsheetml.sheet]'
       ],
     ];
     if (!$this->validate($validationRule)) {

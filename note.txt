@@ -101,3 +101,25 @@ SELECT t.id,t.name, ifnull(tt.teachertasks,0) tasks,ifnull(hr.hoomrooms,0)rooms,
   JOIN  subjectteachers st
  on t.id = st.teacherId group by t.id ) st on st.id = t.id  
 ORDER BY `t`.`id` ASC;
+
+SELECT 
+t.id, t.name,
+s.id statusId, s.name statusName,
+p.id privilegeId, p.name privilegeName,
+es.id employeeStatusId, es.name employeeStatusName,
+r.id rankId, r.name rankName,
+g.id groupId, g.name groupName,
+el.id educationlevelId, g.name educationlevelName,
+sch.id schoolId, sch.name schoolName,
+m.id majorId, m.name majorName
+FROM teachers t
+LEFT JOIN status s ON s.id=t.statusId
+LEFT JOIN privileges p ON p.id=t.privilegeId
+LEFT JOIN employeeStatus es ON es.id=t.employeeStatusId
+LEFT JOIN ranks r ON r.id=t.rankId
+LEFT JOIN groups g ON g.id=t.groupId
+LEFT JOIN educationlevels el ON el.id=t.educationLevelId
+LEFT JOIN schools sch ON sch.id=t.schoolId
+LEFT JOIN majors m ON m.id=t.majorId
+
+ORDER BY t.id;

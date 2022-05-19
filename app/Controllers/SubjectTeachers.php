@@ -16,70 +16,58 @@ class SubjectTeachers extends ResourceController
     use ResponseTrait;
     /**
      * @OA\Get(
-     *path="/api/SubjectTeachers/paging/{status}/{perpage}/{page}",
-     *summary="SubjectTeachers",
-     *description="SubjectTeachers",
-     *tags={"SubjectTeachers"},
-     *@OA\Parameter(
-     *name="status",
-     *in="path",
-     *required=true,
-     *@OA\Schema(
-     *  type="integer",
-     *  format="int64",
-     * )
-     *),
-     *@OA\Parameter(
-     *name="perpage",
-     *in="path",
-     *required=true,
-     *  @OA\Schema(
-     *  type="integer",
-     *  format="int64",
-     * )
-     *),
-     *@OA\Parameter(
-     *name="page",
-     *in="path",
-     *required=true,
-     *  @OA\Schema(
-     *  type="integer",
-     *  format="int64",
-     * )
-     *),
-  
-     *@OA\Response(
-     *  response=200,description="ok",
-     *@OA\JsonContent(ref="#/components/schemas/SubjectTeachers")
-     *),
-     *@OA\Response(
-     *  response=400,description="Bad Request"
-     *),
-     *@OA\Response(
-     *  response=404,description="404 not found",
-     *  @OA\JsonContent(  
-     *@OA\Property(property="status",type="double",example = 404),
-     *@OA\Property(property="error",type="double",example = 404),
-     *  @OA\Property(
-     * property="messages",type="object",
-     * @OA\Property(property="error",type="string",example = "not found"),
-     * )
-     *  )
-     *),
-     *security={{"token": {}}},
+     *   path="/api/SubjectTeachers/paging/{perpage}/{page}",
+     *   summary="SubjectTeachers",
+     *   description="SubjectTeachers",
+     *   tags={"SubjectTeachers"},
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *              @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="20"
+     *          )
+     *   ),
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
+     *   ),
+     *   @OA\Response(
+     *     response=200,description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/SubjectTeachers")
+     *   ),
+     *   @OA\Response(
+     *     response=400,description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404,description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status",type="double",example = 404),
+     *      @OA\Property(property="error",type="double",example = 404),
+     *        @OA\Property(
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
      * )
      */
-    public function paging($status = "all", $perpage = 20, $page = 1)
+    public function paging($perpage = 20, $page = 1)
     {
         $model = $this->model;
-        if ($status == 1) {
-            $model = $this->model->where( ['statusId' => 1]);
-        } elseif ($status == 0) {
-            $model = $this->model->where( ['statusId' => 0]);
-        }
-
         $data = $model
-
+            ->select('subjectteachers.id, s.id subjectId, s.name subjectName, t.id teacherId, t.name teacherName')
+            ->join('teachers t', 't.id = subjectteachers.teacherId')
+            ->join('subjects s', 's.id = subjectteachers.subjectId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -144,42 +132,51 @@ class SubjectTeachers extends ResourceController
      * Return the properties of a resource object
      *
      * @return mixed
-     */
-    /**
+     */ 
+     /**
      * @OA\Get(
      *  path="/api/SubjectTeachers/{id}",
      *  summary="SubjectTeachers",
      *  description="SubjectTeachers",
      *  tags={"SubjectTeachers"},
      *  @OA\Parameter(
-     *  name="id",
-     *  in="path",
-     *  required=true,
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
      *  ), 
      *  @OA\Response(
-     *response=200, description="ok",
-     *@OA\JsonContent(ref="#/components/schemas/SubjectTeachers")
+     *   response=200, description="ok",
+     *   @OA\JsonContent(ref="#/components/schemas/SubjectTeachers")
      *  ), 
      *  @OA\Response(
-     *response=400, description="Bad Request"
+     *   response=400, description="Bad Request"
      *  ),
      *  @OA\Response(
-     *response=404, description="404 not found",
-     *@OA\JsonContent( 
-     *@OA\Property(property="status", type="double",example = 404),
-     *@OA\Property(property="error", type="double", example = 404),
-     * @OA\Property(
-     *  property="messages", type="object", 
-     *  @OA\Property(property="error", type="string", example = "not found"),
-     * )
-     *)
+     *   response=404, description="404 not found",
+     *   @OA\JsonContent( 
+     *   @OA\Property(property="status", type="double",example = 404),
+     *   @OA\Property(property="error", type="double", example = 404),
+     *    @OA\Property(
+     *     property="messages", type="object", 
+     *     @OA\Property(property="error", type="string", example = "not found"),
+     *    )
+     *   )
      *  ),
      *  security={{"token": {}}},
      * )
      */
     public function show($id = null)
     {
-        $record = $this->model->where('statusId', 1)->find($id);
+        $record = $this->model
+            ->select('subjectteachers.id, s.id subjectId, s.name subjectName, t.id teacherId, t.name teacherName')
+            ->join('teachers t', 't.id = subjectteachers.teacherId')
+            ->join('subjects s', 's.id = subjectteachers.subjectId')
+            ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',
@@ -251,6 +248,7 @@ class SubjectTeachers extends ResourceController
      *
      * @return mixed
      */
+
     /**
      * @OA\Put(
      *  path="/api/SubjectTeachers/{id}",
@@ -258,34 +256,32 @@ class SubjectTeachers extends ResourceController
      *  description="SubjectTeachers",
      *  tags={"SubjectTeachers"},
      *  @OA\Parameter(
-     *  name="id",
-     *  in="path",
-     *  required=true,
-     *  ), 
-     * @OA\RequestBody(
-     *required=true,
-     *@OA\MediaType(
-     * mediaType="application/json",
-     *@OA\Schema(ref="#/components/schemas/SubjectTeachers"),
-     *)
-     *  ),
-     *  @OA\Response(
-     *response=200, description="updated",
-     *@OA\JsonContent(ref="#/components/schemas/SubjectTeachers")
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
      *  ), 
      *  @OA\Response(
-     *response=400, description="Bad Request"
+     *   response=200, description="ok",
+     *   @OA\JsonContent(ref="#/components/schemas/SubjectTeachers")
+     *  ), 
+     *  @OA\Response(
+     *   response=400, description="Bad Request"
      *  ),
      *  @OA\Response(
-     *response=404, description="404 not found",
-     *@OA\JsonContent( 
-     *@OA\Property(property="status", type="double",example = 404),
-     *@OA\Property(property="error", type="double", example = 404),
-     * @OA\Property(
-     *  property="messages", type="object", 
-     *  @OA\Property(property="error", type="string", example = "not found"),
-     * )
-     *)
+     *   response=404, description="404 not found",
+     *   @OA\JsonContent( 
+     *   @OA\Property(property="status", type="double",example = 404),
+     *   @OA\Property(property="error", type="double", example = 404),
+     *    @OA\Property(
+     *     property="messages", type="object", 
+     *     @OA\Property(property="error", type="string", example = "not found"),
+     *    )
+     *   )
      *  ),
      *  security={{"token": {}}},
      * )
@@ -321,34 +317,32 @@ class SubjectTeachers extends ResourceController
      *  description="SubjectTeachers",
      *  tags={"SubjectTeachers"},
      *  @OA\Parameter(
-     *  name="id",
-     *  in="path",
-     *  required=true,
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
      *  ), 
      *  @OA\Response(
-     *response=200, description="ok",
-     *@OA\JsonContent( 
-     *@OA\Property(property="status", type="double",example = 200),
-     *@OA\Property(property="error", type="double", example = null),
-     * @OA\Property(
-     *  property="messages", type="object", 
-     *  @OA\Property(property="error", type="string", example = "not found"),
-     * )
-     *)
+     *   response=200, description="ok",
+     *   @OA\JsonContent(ref="#/components/schemas/SubjectTeachers")
      *  ), 
      *  @OA\Response(
-     *response=400, description="Bad Request"
+     *   response=400, description="Bad Request"
      *  ),
      *  @OA\Response(
-     *response=404, description="404 not found",
-     *@OA\JsonContent( 
-     *@OA\Property(property="status", type="double",example = 404),
-     *@OA\Property(property="error", type="double", example = 404),
-     * @OA\Property(
-     *  property="messages", type="object", 
-     *  @OA\Property(property="error", type="string", example = "Data Deleted"),
-     * )
-     *)
+     *   response=404, description="404 not found",
+     *   @OA\JsonContent( 
+     *   @OA\Property(property="status", type="double",example = 404),
+     *   @OA\Property(property="error", type="double", example = 404),
+     *    @OA\Property(
+     *     property="messages", type="object", 
+     *     @OA\Property(property="error", type="string", example = "not found"),
+     *    )
+     *   )
      *  ),
      *  security={{"token": {}}},
      * )
