@@ -84,6 +84,8 @@ class Privileges extends ResourceController
         $data = $model
         ->select('Privileges.*, s.name statusName')
         ->join('status s', 's.id=Privileges.statusId')
+        ->where('privileges.id !=',1)
+
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -145,7 +147,9 @@ class Privileges extends ResourceController
         return $this->respond($this->model
         ->select('Privileges.*, s.name statusName')
         ->join('status s', 's.id=Privileges.statusId')
-        ->where('Privileges.statusId', 1)->findAll());
+        ->where('Privileges.statusId', 1)
+        ->where('privileges.id !=',1)
+        ->findAll());
     }
 
     /**
@@ -195,7 +199,9 @@ class Privileges extends ResourceController
         $record = $this->model
         ->select('Privileges.*, s.name statusName')
         ->join('status s', 's.id=Privileges.statusId')
-        ->where('Privileges.statusId', 1)->find($id);
+        ->where('Privileges.statusId', 1)
+        ->where('privileges.id !=',1)       
+        ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -379,7 +385,9 @@ class Privileges extends ResourceController
      */
     public function delete($id = null)
     {
-        $data = $this->model->find($id);
+        $data = $this->model
+        ->where('privileges.id !=',1)
+        ->find($id);
         if ($data) {
             if ($this->model->delete($id)) {
                 $response = [
