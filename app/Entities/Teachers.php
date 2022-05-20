@@ -38,6 +38,7 @@ class Teachers extends Entity
         'image' => null,
         'statusId' => null,
         'employeeId' => null,
+        'educationlevelId' => null,
         'password' => null,
         'address' => null,
         'phone' => null,
@@ -80,6 +81,12 @@ class Teachers extends Entity
      */
     protected $dob;
 
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $educationlevelId;
+    
     /**
      * @var integer
      * @OA\Property()

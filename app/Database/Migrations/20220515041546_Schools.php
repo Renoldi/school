@@ -29,9 +29,7 @@ class Schools extends Migration
                 'constraint' => '255',
                 'null' => true,
             ],
-            'educationLevelId' => [
-                'type' => 'int',
-            ],
+             
             'statusId' => [
                 'type' => 'int',
             ],
@@ -46,7 +44,6 @@ class Schools extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('educationLevelId', 'educationLevels', 'id');
         $this->forge->addForeignKey('statusId', 'status', 'id');
         $this->forge->createTable('schools');
     }

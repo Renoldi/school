@@ -33,6 +33,7 @@ class Teachers extends Model
         'image',
         'statusId',
         'employeeId',
+        'educationlevelId',
         'password',
         'address',
         'phone',
@@ -52,7 +53,9 @@ class Teachers extends Model
         'password' => 'required|min_length[5]',
         'statusId' => 'required|integer', 
         'privilegeId' => 'required|integer',
+        'schoolId' => 'required|integer',
         'employeeId' => 'required|integer',
+        'educationlevelId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

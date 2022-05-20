@@ -18,7 +18,6 @@ class Schools extends Model
         'name',
         'npsn',
         'address',
-        'educationLevelId',
         'statusId', 
     ];
 
@@ -33,7 +32,6 @@ class Schools extends Model
     protected $validationRules      = [
         'name' => 'required|is_unique[schools.name,id,{id}]',
         'statusId' => 'required|integer',
-        'educationLevelId' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
