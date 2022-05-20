@@ -450,10 +450,10 @@ class SubjectTeachers extends ResourceController
             if ($row[0] == '')
                 continue;
 
-            $subjectEntity->teacherId = trim($row[0]);
-            $subjectEntity->subjectId = trim($row[1]);
-            $subjectEntity->classId = trim($row[2]);
-            $subjectEntity->duration = trim($row[3]);
+            $subjectEntity->teacherId = ($row[0]);
+            $subjectEntity->subjectId = ($row[1]);
+            $subjectEntity->classId = ($row[2]);
+            $subjectEntity->duration = ($row[3]);
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(

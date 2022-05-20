@@ -770,17 +770,17 @@ class Exams extends ResourceController
             }
             if ($row[0] == '')
                 continue;
-            $subjectEntity->classId  = trim($row[0]);
-            $subjectEntity->subjectId = trim($row[1]);
-            $subjectEntity->question = trim($row[2]);
-            $subjectEntity->questionImage = trim($row[3]);
-            $subjectEntity->a = trim($row[4]);
-            $subjectEntity->b = trim($row[5]);
-            $subjectEntity->c = trim($row[6]);
-            $subjectEntity->d = trim($row[7]);
-            $subjectEntity->e = trim($row[8]);
-            $subjectEntity->answer = trim($row[9]);
-            $subjectEntity->statusId = trim($row[10]);
+            $subjectEntity->classId  = ($row[0]);
+            $subjectEntity->subjectId = ($row[1]);
+            $subjectEntity->question = ($row[2]);
+            $subjectEntity->questionImage = ($row[3]);
+            $subjectEntity->a = ($row[4]);
+            $subjectEntity->b = ($row[5]);
+            $subjectEntity->c = ($row[6]);
+            $subjectEntity->d = ($row[7]);
+            $subjectEntity->e = ($row[8]);
+            $subjectEntity->answer = ($row[9]);
+            $subjectEntity->statusId = ($row[10]);
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(

@@ -17,7 +17,7 @@ class Schools extends Migration
             'npsn' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
-                'unique' => true,
+                'null' => true,
             ],
             'name' => [
                 'type' => 'VARCHAR',

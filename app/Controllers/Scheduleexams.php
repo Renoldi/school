@@ -431,11 +431,11 @@ class Scheduleexams extends ResourceController
             }
             if ($row[0] == '')
                 continue;
-            $subjectEntity->subjectId  = trim($row[0]);
-            $subjectEntity->classId = trim($row[1]);
-            $subjectEntity->start = trim($row[2]);
-            $subjectEntity->end = trim($row[3]);
-            $subjectEntity->statusId = trim($row[4]);
+            $subjectEntity->subjectId  = ($row[0]);
+            $subjectEntity->classId = ($row[1]);
+            $subjectEntity->start = ($row[2]);
+            $subjectEntity->end = ($row[3]);
+            $subjectEntity->statusId = ($row[4]);
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(

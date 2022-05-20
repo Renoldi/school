@@ -657,10 +657,10 @@ class Resultexams extends ResourceController
             }
             if ($row[0] == '')
                 continue;
-            $subjectEntity->studentId  = trim($row[0]);
-            $subjectEntity->examId = trim($row[1]);
-            $subjectEntity->choise = trim($row[2]);
-            $subjectEntity->statusId = trim($row[3]);
+            $subjectEntity->studentId  = ($row[0]);
+            $subjectEntity->examId = ($row[1]);
+            $subjectEntity->choise = ($row[2]);
+            $subjectEntity->statusId = ($row[3]);
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(
