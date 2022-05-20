@@ -810,32 +810,31 @@ class Students extends ResourceController
             if ($row[0] == '')
                 continue;
 
-            $subjectEntity->email = ($row[1]);
-            $subjectEntity->name = ($row[2]);
-            $subjectEntity->classId = ($row[3]);
-            $subjectEntity->roomId = ($row[4]);
-            $subjectEntity->gender = ($row[5]);
-            $subjectEntity->placeOfBirth = ($row[6]);
-            $subjectEntity->dayOfBirth = ($row[7]);
-            $subjectEntity->nis = ($row[8]);
-            $subjectEntity->nisn = ($row[9]);
-            $subjectEntity->noKk = ($row[10]);
-            $subjectEntity->nik = ($row[11]);
-            $subjectEntity->numberOfSiblings = ($row[12]);
-            $subjectEntity->fromOfSiblings = ($row[13]);
-            $subjectEntity->orphan = ($row[14]);
-            $subjectEntity->schoolId = ($row[15]);
-            $subjectEntity->address = ($row[16]); 
-            $subjectEntity->fatherName = ($row[17]);
-            $subjectEntity->fatherEmployeeId = ($row[18]); 
-            $subjectEntity->motherName = ($row[19]);
-            $subjectEntity->motherEmployeeId = ($row[20]); 
-            $subjectEntity->phoneFamily = ($row[21]);
-            $subjectEntity->password = ($row[22]); 
-            $subjectEntity->about = ($row[23]);
-            $subjectEntity->statusId = ($row[24]);
-            $subjectEntity->privilegeId = ($row[25]);
-            
+            $subjectEntity->email = ($row[0]);
+            $subjectEntity->name = ($row[1]);
+            $subjectEntity->classId = ($row[2]);
+            $subjectEntity->roomId = ($row[3]);
+            $subjectEntity->gender = ($row[4]);
+            $subjectEntity->placeOfBirth = ($row[5]);
+            $subjectEntity->dayOfBirth = ($row[6]);
+            $subjectEntity->nis = ($row[7]);
+            $subjectEntity->nisn = ($row[8]);
+            $subjectEntity->noKk = ($row[9]);
+            $subjectEntity->nik = ($row[10]);
+            $subjectEntity->numberOfSiblings = ($row[11]);
+            $subjectEntity->fromOfSiblings = ($row[12]);
+            $subjectEntity->orphan = ($row[13]);
+            $subjectEntity->schoolId = ($row[14]);
+            $subjectEntity->address = ($row[15]);
+            $subjectEntity->fatherName = ($row[16]);
+            $subjectEntity->fatherEmployeeId = ($row[17]);
+            $subjectEntity->motherName = ($row[18]);
+            $subjectEntity->motherEmployeeId = ($row[19]);
+            $subjectEntity->phoneFamily = ($row[20]);
+            $subjectEntity->password = ($row[21]);
+            $subjectEntity->statusId = ($row[22]);
+            $subjectEntity->privilegeId = ($row[23]); 
+
             if (!$this->model->save($subjectEntity)) {
 
                 return $this->respond(

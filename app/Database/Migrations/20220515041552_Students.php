@@ -135,7 +135,6 @@ class Students extends Migration
                 'type' => 'int',
                 'null' => true,
             ],
-             
             'image' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
@@ -185,6 +184,7 @@ class Students extends Migration
         
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('statusId', 'status', 'id');
+        $this->forge->addForeignKey('schoolId', 'schools', 'id');
         $this->forge->addForeignKey('fatherSchoolId', 'schools', 'id');
         $this->forge->addForeignKey('motherSchoolId', 'schools', 'id');
         $this->forge->addForeignKey('motherEmployeeId', 'employee', 'id');
