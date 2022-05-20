@@ -82,9 +82,9 @@ class Privileges extends ResourceController
         }
 
         $data = $model
-        ->select('Privileges.*, s.name statusName')
-        ->join('status s', 's.id=Privileges.statusId')
-        ->where('privileges.id !=',1)
+            ->select('Privileges.*, s.name statusName')
+            ->join('status s', 's.id=Privileges.statusId')
+            ->where('privileges.id !=', 1)
 
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -145,11 +145,11 @@ class Privileges extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-        ->select('Privileges.*, s.name statusName')
-        ->join('status s', 's.id=Privileges.statusId')
-        ->where('Privileges.statusId', 1)
-        ->where('privileges.id !=',1)
-        ->findAll());
+            ->select('Privileges.*, s.name statusName')
+            ->join('status s', 's.id=Privileges.statusId')
+            ->where('Privileges.statusId', 1)
+            ->where('privileges.id !=', 1)
+            ->findAll());
     }
 
     /**
@@ -197,11 +197,11 @@ class Privileges extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-        ->select('Privileges.*, s.name statusName')
-        ->join('status s', 's.id=Privileges.statusId')
-        ->where('Privileges.statusId', 1)
-        ->where('privileges.id !=',1)       
-        ->find($id);
+            ->select('Privileges.*, s.name statusName')
+            ->join('status s', 's.id=Privileges.statusId')
+            ->where('Privileges.statusId', 1)
+            ->where('privileges.id !=', 1)
+            ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -327,7 +327,9 @@ class Privileges extends ResourceController
         $entity = new EntitiesPrivileges();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        if (!$this->model->update($id, $entity)) {
+        if (!$this->model
+            ->where('privileges.id !=', 1)
+            ->update($id, $entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
 
@@ -386,8 +388,8 @@ class Privileges extends ResourceController
     public function delete($id = null)
     {
         $data = $this->model
-        ->where('privileges.id !=',1)
-        ->find($id);
+            ->where('privileges.id !=', 1)
+            ->find($id);
         if ($data) {
             if ($this->model->delete($id)) {
                 $response = [
