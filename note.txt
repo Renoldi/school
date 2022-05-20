@@ -124,6 +124,9 @@ LEFT JOIN majors m ON m.id=t.majorId
 
 ORDER BY t.id;
 
+prefend reexam 
+  if classId examId semesters studentId equal
+
 insert file
   - school
   - teacher
