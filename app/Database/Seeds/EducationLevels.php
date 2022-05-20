@@ -18,7 +18,12 @@ class EducationLevels extends Seeder
             ['name' => 'Sekolah dasar', 'statusId' => 1,],
             ['name' => 'Sekolah menengah pertama', 'statusId' => 1,],
             ['name' => 'Sekolah menengah atas', 'statusId' => 1,],
-            ['name' => 'Pendidikan tinggi', 'statusId' => 1,], 
+            ['name' => 'D1', 'statusId' => 1,], 
+            ['name' => 'D2', 'statusId' => 1,], 
+            ['name' => 'D3', 'statusId' => 1,], 
+            ['name' => 'S1', 'statusId' => 1,], 
+            ['name' => 'S2', 'statusId' => 1,], 
+            ['name' => 'S3', 'statusId' => 1,], 
         ];
         foreach ($data as $data) {
             $entities->fill($data);
