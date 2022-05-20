@@ -12,6 +12,7 @@ class RunSeeder extends Seeder
         $this->call('Status');
         $this->call('Classes');
         $this->call('Departments');
+        $this->call('Groups');
         $this->call('Privileges');
         $this->call('Rooms');
         $this->call('Semester');

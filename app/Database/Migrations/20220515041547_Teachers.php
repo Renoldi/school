@@ -56,6 +56,9 @@ class Teachers extends Migration
                     'constraint' => 11,
                     'null' => true,
                 ],
+                'educationlevelId' => [
+                    'type' => 'INT',
+                ],
                 'schoolId' => [
                     'type' => 'INT',
                     'constraint' => 11,
@@ -95,9 +98,7 @@ class Teachers extends Migration
                 'employeeId' => [
                     'type' => 'INT',
                 ],
-                'educationlevelId' => [
-                    'type' => 'INT',
-                ],
+                
                 'password' => [
                     'type' => 'VARCHAR',
                     'constraint' => 60,
