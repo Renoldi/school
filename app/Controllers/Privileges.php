@@ -259,7 +259,9 @@ class Privileges extends ResourceController
         $entity = new EntitiesPrivileges();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        if (!$this->model->save($entity)) {
+        if (!$this->model
+        ->where('privileges.id !=', 1)
+        ->save($entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
 
@@ -321,8 +323,6 @@ class Privileges extends ResourceController
         if ($data == null) {
             return $this->fail("data not valid");
         }
-
-
 
         $entity = new EntitiesPrivileges();
         $array = new StdobjeToArray($data);
