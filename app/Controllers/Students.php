@@ -617,7 +617,8 @@ class Students extends ResourceController
                 ->join('classes c', 'c.id=students.classId')
                 ->join('departments d', 'd.id=r.departmentId')
                 ->join('status s', 's.id=students.statusId')
-                ->where('email', $email)
+                ->where('students.email', $email)
+                ->where('students.privilegeId !=', 8)
                 ->where('students.statusId', 1)
                 ->first();
 
