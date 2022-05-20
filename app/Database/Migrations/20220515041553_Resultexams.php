@@ -25,7 +25,7 @@ class Resultexams extends Migration
             'choise' => [
                 'type' => 'VARCHAR',
                 'constraint' => 1,
-            ],
+            ],            
             'semesterId' => [
                 'type' => 'int',
             ],
