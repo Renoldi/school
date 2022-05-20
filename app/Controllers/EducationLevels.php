@@ -576,8 +576,8 @@ class EducationLevels extends ResourceController
             }
             if ($row[0] == '')
                 continue;
-            $subjectEntity->name  = $row[0];
-            $subjectEntity->statusId = $row[1];
+            $subjectEntity->name  = trim($row[0]);
+            $subjectEntity->statusId = trim($row[1]);
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(

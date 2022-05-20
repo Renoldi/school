@@ -462,10 +462,10 @@ class TeacherTasks extends ResourceController
             }
             if ($row[0] == '')
                 continue;
-            $subjectEntity->teacherId   = $row[0];
-            $subjectEntity->taskId  = $row[1];
-            $subjectEntity->tmtTask  = $row[2];
-            $subjectEntity->duration = $row[3];
+            $subjectEntity->teacherId   = trim($row[0]);
+            $subjectEntity->taskId  = trim($row[1]);
+            $subjectEntity->tmtTask  = trim($row[2]);
+            $subjectEntity->duration = trim($row[3]);
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(

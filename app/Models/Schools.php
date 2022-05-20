@@ -16,6 +16,7 @@ class Schools extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'name',
+        'npsn',
         'address',
         'educationLevelId',
         'statusId', 

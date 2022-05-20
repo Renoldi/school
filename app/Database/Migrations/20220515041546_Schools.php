@@ -14,13 +14,18 @@ class Schools extends Migration
                 'auto_increment' => true,
                 'constraint' => 11,
             ],
-            'name'  => [
-                'type'  => 'VARCHAR',
+            'npsn' => [
+                'type' => 'VARCHAR',
                 'constraint' => '255',
                 'unique' => true,
             ],
-            'address'  => [
-                'type'  => 'VARCHAR',
+            'name' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'unique' => true,
+            ],
+            'address' => [
+                'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => true,
             ],

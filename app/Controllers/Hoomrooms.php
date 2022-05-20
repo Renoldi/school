@@ -581,11 +581,11 @@ class Hoomrooms extends ResourceController
             }
             if ($row[0] == '')
                 continue;
-            $subjectEntity->roomId  = $row[0];
-            $subjectEntity->classId = $row[1];
-            $subjectEntity->teacherId = $row[2];
-            $subjectEntity->duration = $row[3];
-            $subjectEntity->statusId = $row[4];
+            $subjectEntity->roomId  = trim($row[0]);
+            $subjectEntity->classId = trim($row[1]);
+            $subjectEntity->teacherId = trim($row[2]);
+            $subjectEntity->duration = trim($row[3]);
+            $subjectEntity->statusId = trim($row[4]);
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(

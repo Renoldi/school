@@ -863,25 +863,25 @@ class Teachers extends ResourceController
       }
       if ($row[1] == '')
         continue;
-      $entity->nip = $row[0];
-      $entity->name = $row[1];
-      $entity->gender = $row[2];
-      $entity->dob = $row[3];
-      $entity->email = $row[4];
-      $entity->image = $row[5];
-      $entity->statusId = $row[6];
-      $entity->privilegeId = $row[7];
-      $entity->password = $row[8];
-      $entity->employeeId = $row[9];
-      $entity->address = $row[10];
-      $entity->phone = $row[11];
-      $entity->rankId = $row[12];
-      $entity->rankTmt = $row[13];
-      $entity->groupId = $row[14];
-      $entity->schoolId = $row[15];
-      $entity->majorId = $row[16];
-      $entity->finishEducationLevel = $row[17];
-      $entity->mutation = $row[18];
+      $entity->nip = trim($row[0]);
+      $entity->name = trim($row[1]);
+      $entity->gender = trim($row[2]);
+      $entity->dob = trim($row[3]);
+      $entity->email = trim($row[4]);
+      $entity->image = trim($row[5]);
+      $entity->statusId = trim($row[6]);
+      $entity->privilegeId = trim($row[7]);
+      $entity->password = trim($row[8]);
+      $entity->employeeId = trim($row[9]);
+      $entity->address = trim($row[10]);
+      $entity->phone = trim($row[11]);
+      $entity->rankId = trim($row[12]);
+      $entity->rankTmt = trim($row[13]);
+      $entity->groupId = trim($row[14]);
+      $entity->schoolId = trim($row[15]);
+      $entity->majorId = trim($row[16]);
+      $entity->finishEducationLevel = trim($row[17]);
+      $entity->mutation = trim($row[18]);
 
       if (!$this->model->save($entity)) {
         // return $this->respond([$this->model->getLastQuery()->getQuery()]);

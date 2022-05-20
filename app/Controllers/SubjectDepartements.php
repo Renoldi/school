@@ -463,8 +463,8 @@ class SubjectDepartements extends ResourceController
             }
             if ($row[0] == '')
                 continue;
-            $subjectEntity->departmentId  = $row[0];
-            $subjectEntity->subjectId = $row[1];
+            $subjectEntity->departmentId  = trim($row[0]);
+            $subjectEntity->subjectId = trim($row[1]);
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->respond(
