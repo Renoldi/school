@@ -14,17 +14,29 @@ class ReportStudent extends Model
     protected $returnType       = \App\Entities\ReportStudent::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'roomId',
+        'classId',
+        'semesterId',
+        'subjectId',
+        'point',
+    ];
 
     // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
-
+    protected $useTimestamps = true;
+    protected $dateFormat   = 'int';  
+    protected $createdField  = 'createdAt';
+    protected $updatedField  = 'updatedAt';
+    protected $deletedField  = 'deletedAt';
+    
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'roomId' => 'required|integer',
+        'classId' => 'required|integer',
+        'semesterId' => 'required|integer',
+        'subjectId' => 'required|integer',
+        'point' => 'required|integer',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
