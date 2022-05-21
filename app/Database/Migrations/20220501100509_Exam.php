@@ -60,6 +60,9 @@ class Exams extends Migration
             'statusId' => [
                 'type' => 'int',
             ],
+            'semesterId' => [
+                'type' => 'int',
+            ],
             'createdAt' => [
                 'type' => 'bigint',
             ],
@@ -71,6 +74,7 @@ class Exams extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
+         $this->forge->addForeignKey('semesterId', 'semesters', 'id');
          $this->forge->addForeignKey('statusId', 'statuss', 'id');
         $this->forge->addForeignKey('subjectId', 'subjects', 'id');
         $this->forge->addForeignKey('classId', 'classes', 'id');
