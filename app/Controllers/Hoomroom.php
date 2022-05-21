@@ -77,15 +77,15 @@ class Hoomroom extends ResourceController
         $model = $this->model;
         if ($status == 1) {
             $model = $this->model
-                ->where(['hoomroom.statusId' => 1]);
+                ->where(['hoomrooms.statusId' => 1]);
         } elseif ($status == 0) {
             $model = $this->model
-                ->where(['hoomroom.statusId' => 0]);
+                ->where(['hoomrooms.statusId' => 0]);
         }
 
         $data = $model
-            ->select('hoomroom.*, s.name statusName')
-            ->join('status s', 's.id=hoomroom.statusId')
+            ->select('hoomrooms.*, s.name statusName')
+            ->join('status s', 's.id=hoomrooms.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -145,9 +145,9 @@ class Hoomroom extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-            ->select('hoomroom.*, s.name statusName')
-            ->join('status s', 's.id=hoomroom.statusId')
-            ->where('hoomroom.statusId', 1)->findAll());
+            ->select('hoomrooms.*, s.name statusName')
+            ->join('status s', 's.id=hoomrooms.statusId')
+            ->where('hoomrooms.statusId', 1)->findAll());
     }
 
     /**
@@ -195,9 +195,9 @@ class Hoomroom extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('hoomroom.*, s.name statusName')
-            ->join('status s', 's.id=hoomroom.statusId')
-            ->where('hoomroom.statusId', 1)->find($id);
+            ->select('hoomrooms.*, s.name statusName')
+            ->join('status s', 's.id=hoomrooms.statusId')
+            ->where('hoomrooms.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -401,8 +401,8 @@ class Hoomroom extends ResourceController
 
         if ($where != null) {
             $record = $this->model
-                ->select('hoomroom.*, s.name statusName')
-                ->join('status s', 's.id=hoomroom.statusId')
+                ->select('hoomrooms.*, s.name statusName')
+                ->join('status s', 's.id=hoomrooms.statusId')
                 ->where((array)$where);
         }
 

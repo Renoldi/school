@@ -45,12 +45,12 @@ class Student extends ResourceController
     {
         $model = $this->model
             ->select('
-                student.id,student.nisn,student.email,student.name,CONCAT("' . base_url() . '/",image) as image,student.gender,student.ipAddress,student.about,student.dob,
+                students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dob,
                 c.id classId,c.name className,
                 s.id statusId s.name statusName,
                 p.id privilegeId p.name privilegeName,
-                student.roomId,
-                student.createdAt,student.updatedAt,student.deletedAt')
+                students.roomId,
+                students.createdAt,students.updatedAt,students.deletedAt')
             ->findAll();
 
         return $this->respond($model);
@@ -142,31 +142,31 @@ class Student extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['student.statusId' => 1]);
+            $model = $this->model->where(['students.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['student.statusId' => 0]);
+            $model = $this->model->where(['students.statusId' => 0]);
         }
 
         if ($classId != 0) {
-            $model = $this->model->where(['student.classId' => $classId]);
+            $model = $this->model->where(['students.classId' => $classId]);
         }
 
         if ($roomId != 0) {
-            $model = $this->model->where(['student.roomId' => $roomId]);
+            $model = $this->model->where(['students.roomId' => $roomId]);
         }
 
         $data = $model
             ->select('
-            student.id,student.nisn,student.email,student.name,CONCAT("' . base_url() . '/",image) as image,student.gender,student.ipAddress,student.about,student.dob,
+            students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dob,
             c.id classId,c.name className,
             s.id statusId s.name statusName,
             p.id privilegeId p.name privilegeName,
-            student.roomId,
-            student.createdAt,student.updatedAt,student.deletedAt')
-            ->join('status s', 's.id=student.statusId')
-            ->join('privileges p', 'p.id=student.privilegeId')
-            ->join('classes c', 'c.id=student.classId')
-            ->join('rooms r', 'r.id=student.roomId')
+            students.roomId,
+            students.createdAt,students.updatedAt,students.deletedAt')
+            ->join('status s', 's.id=students.statusId')
+            ->join('privileges p', 'p.id=students.privilegeId')
+            ->join('classes c', 'c.id=students.classId')
+            ->join('rooms r', 'r.id=students.roomId')
 
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -240,16 +240,16 @@ class Student extends ResourceController
     {
         $record = $this->model
             ->select('
-                student.id,student.nisn,student.email,student.name,CONCAT("' . base_url() . '/",image) as image,student.gender,student.ipAddress,student.about,student.dob,
+                students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dob,
                 c.id classId,c.name className,
                 s.id statusId s.name statusName,
                 p.id privilegeId p.name privilegeName,
-                student.roomId,
-                student.createdAt,student.updatedAt,student.deletedAt')
-            ->join('status s', 's.id=student.statusId')
-            ->join('privileges p', 'p.id=student.privilegeId')
-            ->join('classes c', 'c.id=student.classId')
-            ->join('rooms r', 'r.id=student.roomId')
+                students.roomId,
+                students.createdAt,students.updatedAt,students.deletedAt')
+            ->join('status s', 's.id=students.statusId')
+            ->join('privileges p', 'p.id=students.privilegeId')
+            ->join('classes c', 'c.id=students.classId')
+            ->join('rooms r', 'r.id=students.roomId')
             ->where('statusId', 1)
 
             ->find($id);
@@ -611,15 +611,15 @@ class Student extends ResourceController
         } else {
 
             $user =  $this->model
-                ->select("student.*,c.name as class,p.name as privilege,d.id as departmentId,d.name as department,r.name as room, s.name status")
-                ->join('rooms r', 'r.id=student.roomId')
-                ->join('privileges p', 'p.id=student.privilegeId')
-                ->join('classes c', 'c.id=student.classId')
+                ->select("students.*,c.name as class,p.name as privilege,d.id as departmentId,d.name as department,r.name as room, s.name status")
+                ->join('rooms r', 'r.id=students.roomId')
+                ->join('privileges p', 'p.id=students.privilegeId')
+                ->join('classes c', 'c.id=students.classId')
                 ->join('departments d', 'd.id=r.departmentId')
-                ->join('status s', 's.id=student.statusId')
-                ->where('student.email', $email)
-                ->where('student.privilegeId !=', 8)
-                ->where('student.statusId', 1)
+                ->join('status s', 's.id=students.statusId')
+                ->where('students.email', $email)
+                ->where('students.privilegeId !=', 8)
+                ->where('students.statusId', 1)
                 ->first();
 
             if (is_null($user)) {

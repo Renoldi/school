@@ -77,14 +77,14 @@ class Resultexam extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['Resultexam.statusId' => 1]);
+            $model = $this->model->where(['Resultexams.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['Resultexam.statusId' => 0]);
+            $model = $this->model->where(['Resultexams.statusId' => 0]);
         }
 
         $data = $model
-        ->select('Resultexam.*, s.name statusName')
-        ->join('status s', 's.id=Resultexam.statusId')
+        ->select('Resultexams.*, s.name statusName')
+        ->join('status s', 's.id=Resultexams.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -144,8 +144,8 @@ class Resultexam extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-        ->select('Resultexam.*, s.name statusName')
-        ->join('status s', 's.id=Resultexam.statusId')
+        ->select('Resultexams.*, s.name statusName')
+        ->join('status s', 's.id=Resultexams.statusId')
         ->findAll());
     }
 
@@ -194,8 +194,8 @@ class Resultexam extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-        ->select('Resultexam.*, s.name statusName')
-        ->join('status s', 's.id=Resultexam.statusId')
+        ->select('Resultexams.*, s.name statusName')
+        ->join('status s', 's.id=Resultexams.statusId')
         ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
@@ -261,14 +261,14 @@ class Resultexam extends ResourceController
         $studentId = $decoded->user->id;
 
         $record = $this->model
-            ->select('e.subjectId,sb.name, sum(if(e.answer= resultexam.choise,e.point,0)) point')
-            ->join('Resultexam s', 's.id = resultexam.studentId')
-            ->join('exams e', 'e.id = resultexam.examId and e.classId = s.classId')
+            ->select('e.subjectId,sb.name, sum(if(e.answer= resultexams.choise,e.point,0)) point')
+            ->join('Resultexam s', 's.id = resultexams.studentId')
+            ->join('exams e', 'e.id = resultexams.examId and e.classId = s.classId')
             ->join('subjects sb', 'sb.id = e.subjectId')
             ->join('rooms r', 'r.id = s.roomId')
             ->join('departments d', 'd.id = r.departmentId')
             ->join('classes c', 'c.id = s.classId')
-            ->where('resultexam.createdAt BETWEEN "' . $start . '" and "' . $end . '"')
+            ->where('resultexams.createdAt BETWEEN "' . $start . '" and "' . $end . '"')
             ->where('s.roomId', $roomId)
             ->where('s.classId', $classId)
             ->where('s.id', $studentId)
@@ -341,14 +341,14 @@ class Resultexam extends ResourceController
     public function exam($start = '1652500511', $end = '1652500511', $roomId, $classId, $status = 1)
     {
         $record = $this->model
-            ->select('s.id, s.name, s.classId, c.name className,r.id roomId, r.name roomName,d.id departmentId, d.name departmentName, e.subjectId, sb.name subjectName,sum(if(e.answer= resultexam.choise,e.point,0)) point')
-            ->join('Resultexam s', 's.id = resultexam.studentId')
-            ->join('exams e', 'e.id = resultexam.examId and e.classId = s.classId')
+            ->select('s.id, s.name, s.classId, c.name className,r.id roomId, r.name roomName,d.id departmentId, d.name departmentName, e.subjectId, sb.name subjectName,sum(if(e.answer= resultexams.choise,e.point,0)) point')
+            ->join('Resultexam s', 's.id = resultexams.studentId')
+            ->join('exams e', 'e.id = resultexams.examId and e.classId = s.classId')
             ->join('subjects sb', 'sb.id = e.subjectId')
             ->join('rooms r', 'r.id = s.roomId')
             ->join('departments d', 'd.id = r.departmentId')
             ->join('classes c', 'c.id = s.classId')
-            ->where('resultexam.createdAt BETWEEN "' . $start . '" and "' . $end . '"')
+            ->where('resultexams.createdAt BETWEEN "' . $start . '" and "' . $end . '"')
             ->where('s.roomId', $roomId)
             ->where('s.classId', $classId)
             ->where('s.status', $status)

@@ -76,14 +76,14 @@ class School extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['School.statusId' => 1]);
+            $model = $this->model->where(['Schools.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['School.statusId' => 0]);
+            $model = $this->model->where(['Schools.statusId' => 0]);
         }
 
         $data = $model
-        ->select('School.*, s.name statusName')
-        ->join('status s', 's.id=School.statusId')
+        ->select('Schools.*, s.name statusName')
+        ->join('status s', 's.id=Schools.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -142,8 +142,8 @@ class School extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-        ->select('School.*, s.name statusName')
-        ->join('status s', 's.id=School.statusId')
+        ->select('Schools.*, s.name statusName')
+        ->join('status s', 's.id=Schools.statusId')
         ->findAll());
     }
 
@@ -292,9 +292,9 @@ class School extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-        ->select('School.*, s.name statusName')
-        ->join('status s', 's.id=School.statusId')
-        ->where('School.statusId', 1)->find($id);
+        ->select('Schools.*, s.name statusName')
+        ->join('status s', 's.id=Schools.statusId')
+        ->where('Schools.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',

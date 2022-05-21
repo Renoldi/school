@@ -76,14 +76,14 @@ class EducationLevel extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['EducationLevel.statusId' => 1]);
+            $model = $this->model->where(['EducationLevels.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['EducationLevel.statusId' => 0]);
+            $model = $this->model->where(['EducationLevels.statusId' => 0]);
         }
 
         $data = $model
-            ->select('EducationLevel.*, s.name statusName')
-            ->join('status s', 's.id=EducationLevel.statusId')
+            ->select('EducationLevels.*, s.name statusName')
+            ->join('status s', 's.id=EducationLevels.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -189,9 +189,9 @@ class EducationLevel extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('educationLevel.*, s.name statusName')
-            ->join('status s', 's.id=educationLevel.statusId')
-            ->where('educationLevel.statusId', 1)->find($id);
+            ->select('educationLevels.*, s.name statusName')
+            ->join('status s', 's.id=educationLevels.statusId')
+            ->where('educationLevels.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',

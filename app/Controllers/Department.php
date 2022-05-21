@@ -76,14 +76,14 @@ class Department extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['statusId' => 1]);
+            $model = $this->model->where(['departments.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['statusId' => 0]);
+            $model = $this->model->where(['departments.statusId' => 0]);
         }
 
         $data = $model
-            ->select('department.*, s.name statusName')
-            ->join('status s', 's.id=department.statusId')
+            ->select('departments.*, s.name statusName')
+            ->join('status s', 's.id=departments.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -189,9 +189,9 @@ class Department extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('department.*, s.name statusName')
-            ->join('status s', 's.id=department.statusId')
-            ->where('department.statusId', 1)->find($id);
+            ->select('departments.*, s.name statusName')
+            ->join('status s', 's.id=departments.statusId')
+            ->where('departments.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',

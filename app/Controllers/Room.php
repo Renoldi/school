@@ -76,14 +76,14 @@ class Room extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['Room.statusId' => 1]);
+            $model = $this->model->where(['Rooms.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['Room.statusId' => 0]);
+            $model = $this->model->where(['Rooms.statusId' => 0]);
         }
 
         $data = $model
-        ->select('Room.*, s.name statusName')
-        ->join('status s', 's.id=Room.statusId')
+        ->select('Rooms.*, s.name statusName')
+        ->join('status s', 's.id=Rooms.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -143,9 +143,9 @@ class Room extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-        ->select('Room.*, s.name statusName')
-        ->join('status s', 's.id=Room.statusId')
-        ->where('Room.statusId', 1)->findAll());
+        ->select('Rooms.*, s.name statusName')
+        ->join('status s', 's.id=Rooms.statusId')
+        ->where('Rooms.statusId', 1)->findAll());
     }
 
     /**
@@ -193,9 +193,9 @@ class Room extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-        ->select('Room.*, s.name statusName')
-        ->join('status s', 's.id=Room.statusId')
-        ->where('Room.statusId', 1)->find($id);
+        ->select('Rooms.*, s.name statusName')
+        ->join('status s', 's.id=Rooms.statusId')
+        ->where('Rooms.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',

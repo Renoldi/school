@@ -76,14 +76,14 @@ class Major extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['Major.statusId' => 1]);
+            $model = $this->model->where(['Majors.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['Major.statusId' => 0]);
+            $model = $this->model->where(['Majors.statusId' => 0]);
         }
 
         $data = $model
-        ->select('Major.*, s.name statusName')
-        ->join('status s', 's.id=Major.statusId')
+        ->select('Majors.*, s.name statusName')
+        ->join('status s', 's.id=Majors.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -189,9 +189,9 @@ class Major extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-        ->select('Major.*, s.name statusName')
-        ->join('status s', 's.id=Major.statusId')
-        ->where('Major.statusId', 1)->find($id);
+        ->select('Majors.*, s.name statusName')
+        ->join('status s', 's.id=Majors.statusId')
+        ->where('Majors.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',

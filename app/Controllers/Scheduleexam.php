@@ -76,14 +76,14 @@ class Scheduleexam extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['Scheduleexam.statusId' => 1]);
+            $model = $this->model->where(['Scheduleexams.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['Scheduleexam.statusId' => 0]);
+            $model = $this->model->where(['Scheduleexams.statusId' => 0]);
         }
 
         $data = $model
-        ->select('Scheduleexam.*, s.name statusName')
-        ->join('status s', 's.id=Scheduleexam.statusId')
+        ->select('Scheduleexams.*, s.name statusName')
+        ->join('status s', 's.id=Scheduleexams.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -143,8 +143,8 @@ class Scheduleexam extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-        ->select('Scheduleexam.*, s.name statusName')
-        ->join('status s', 's.id=Scheduleexam.statusId')
+        ->select('Scheduleexams.*, s.name statusName')
+        ->join('status s', 's.id=Scheduleexams.statusId')
         ->findAll());
     }
 
@@ -193,8 +193,8 @@ class Scheduleexam extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-        ->select('Scheduleexam.*, s.name statusName')
-        ->join('status s', 's.id=Scheduleexam.statusId')
+        ->select('Scheduleexams.*, s.name statusName')
+        ->join('status s', 's.id=Scheduleexams.statusId')
         ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

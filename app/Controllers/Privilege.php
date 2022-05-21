@@ -76,15 +76,15 @@ class Privilege extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['Privilege.statusId' => 1]);
+            $model = $this->model->where(['Privileges.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['Privilege.statusId' => 0]);
+            $model = $this->model->where(['Privileges.statusId' => 0]);
         }
 
         $data = $model
-            ->select('Privilege.*, s.name statusName')
-            ->join('status s', 's.id=Privilege.statusId')
-            ->where('privilege.id !=', 1)
+            ->select('Privileges.*, s.name statusName')
+            ->join('status s', 's.id=Privileges.statusId')
+            ->where('privileges.id !=', 1)
 
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -145,10 +145,10 @@ class Privilege extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-            ->select('Privilege.*, s.name statusName')
-            ->join('status s', 's.id=Privilege.statusId')
-            ->where('Privilege.statusId', 1)
-            ->where('privilege.id !=', 1)
+            ->select('Privileges.*, s.name statusName')
+            ->join('status s', 's.id=Privileges.statusId')
+            ->where('Privileges.statusId', 1)
+            ->where('privileges.id !=', 1)
             ->findAll());
     }
 
@@ -197,10 +197,10 @@ class Privilege extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('Privilege.*, s.name statusName')
-            ->join('status s', 's.id=Privilege.statusId')
-            ->where('Privilege.statusId', 1)
-            ->where('privilege.id !=', 1)
+            ->select('Privileges.*, s.name statusName')
+            ->join('status s', 's.id=Privileges.statusId')
+            ->where('Privileges.statusId', 1)
+            ->where('privileges.id !=', 1)
             ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
@@ -260,7 +260,7 @@ class Privilege extends ResourceController
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model
-        ->where('privilege.id !=', 1)
+        ->where('privileges.id !=', 1)
         ->save($entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
@@ -328,7 +328,7 @@ class Privilege extends ResourceController
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model
-            ->where('privilege.id !=', 1)
+            ->where('privileges.id !=', 1)
             ->update($id, $entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
@@ -388,7 +388,7 @@ class Privilege extends ResourceController
     public function delete($id = null)
     {
         $data = $this->model
-            ->where('privilege.id !=', 1)
+            ->where('privileges.id !=', 1)
             ->find($id);
         if ($data) {
             if ($this->model->delete($id)) {

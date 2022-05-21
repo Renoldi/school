@@ -65,9 +65,9 @@ class SubjectDepartement extends ResourceController
     public function paging($perpage = 20, $page = 1)
     {
         $data = $this->model
-            ->select('subjectdepartement.id, d.id departmentId, d.name departmentName, s.id subjectId, s.name subjectName')
-            ->join('departments d', 'd.id =subjectdepartement.departmentId')
-            ->join('subjects s', 's.id = subjectdepartement.subjectId')
+            ->select('subjectdepartements.id, d.id departmentId, d.name departmentName, s.id subjectId, s.name subjectName')
+            ->join('departments d', 'd.id =subjectdepartements.departmentId')
+            ->join('subjects s', 's.id = subjectdepartements.subjectId')
             ->paginate($perpage, 'default', $page);
         $countPage = $this->model->pager->getPageCount();
         $currentPage = $this->model->pager->getCurrentPage();
@@ -173,9 +173,9 @@ class SubjectDepartement extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('subjectdepartement.id, d.id departmentId, d.name departmentName, s.id subjectId, s.name subjectName')
-            ->join('departments d', 'd.id =subjectdepartement.departmentId')
-            ->join('subjects s', 's.id = subjectdepartement.subjectId')
+            ->select('subjectdepartements.id, d.id departmentId, d.name departmentName, s.id subjectId, s.name subjectName')
+            ->join('departments d', 'd.id =subjectdepartements.departmentId')
+            ->join('subjects s', 's.id = subjectdepartements.subjectId')
             ->find($id);
         // return $this->respond([
         //     $this->model->getLastQuery()->getQuery()
