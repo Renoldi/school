@@ -78,14 +78,14 @@ class Teacher extends ResourceController
   {
     $model = $this->model;
     if ($status == 1) {
-      $model = $this->model->where(['teacher.statusId' => 1]);
+      $model = $this->model->where(['teachers.statusId' => 1]);
     } elseif ($status == 0) {
-      $model = $this->model->where(['teacher.statusId' => 0]);
+      $model = $this->model->where(['teachers.statusId' => 0]);
     }
 
     $data = $model
       ->select('
-      teacher.id,teacher.email,teacher.nip,teacher.name,teacher.gender,teacher.dob,teacher.mutation,teacher.ipAddress,teacher.about,teacher.finishEducationLevel,CONCAT("' . base_url() . '/",teacher.image) as image,teacher.address,teacher.phone,
+      teachers.id,teachers.email,teachers.nip,teachers.name,teachers.gender,teachers.dob,teachers.mutation,teachers.ipAddress,teachers.about,teachers.finishEducationLevel,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.address,teachers.phone,
       s.id statusId, s.name statusName,
       p.id privilegeId, p.name privilegeName,
       es.id employeeId, es.name employeeName,
@@ -94,14 +94,14 @@ class Teacher extends ResourceController
       sch.id schoolId, sch.name schoolName,
       m.id majorId, m.name majorName')
       // ->alias('t')
-      ->join('status s', 's.id=teacher.statusId', 'left')
-      ->join('privileges p', 'p.id=teacher.privilegeId', 'left')
-      ->join('employee es', 'es.id=teacher.employeeId', 'left')
-      ->join('ranks r', 'r.id=teacher.rankId', 'left')
-      ->join('groups g', 'g.id=teacher.groupId', 'left')
-      ->join('schools sch', 'sch.id=teacher.schoolId', 'left')
-      ->join('majors m', 'm.id=teacher.majorId', 'left')
-      ->where('teacher.privilegeId !=',1)
+      ->join('status s', 's.id=teachers.statusId', 'left')
+      ->join('privileges p', 'p.id=teachers.privilegeId', 'left')
+      ->join('employee es', 'es.id=teachers.employeeId', 'left')
+      ->join('ranks r', 'r.id=teachers.rankId', 'left')
+      ->join('groups g', 'g.id=teachers.groupId', 'left')
+      ->join('schools sch', 'sch.id=teachers.schoolId', 'left')
+      ->join('majors m', 'm.id=teachers.majorId', 'left')
+      ->where('teachers.privilegeId !=',1)
       ->paginate($perpage, 'default', $page);
     // ->findAll();
     // return  $this->respond([$model->getLastQuery()->getQuery()]);
@@ -167,8 +167,8 @@ class Teacher extends ResourceController
       $this->model
         ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,s.id statusId, s.name statusName, es.id employeeId, es.name employeeName ,isPn,address,phone,createdAt,updatedAt,deletedAt')
         ->where('statusId', 1)
-        ->where('teacher.privilegeId !=',1)
-        ->join('status s', 's.id=teacher.statusId')
+        ->where('teachers.privilegeId !=',1)
+        ->join('status s', 's.id=teachers.statusId')
 
         ->findAll()
     );
@@ -220,7 +220,7 @@ class Teacher extends ResourceController
   {
     $record = $this->model
       ->select('
-    teacher.id,teacher.email,teacher.nip,teacher.name,teacher.gender,teacher.dob,teacher.mutation,teacher.ipAddress,teacher.about,teacher.finishEducationLevel,CONCAT("' . base_url() . '/",teacher.image) as image,teacher.address,teacher.phone,
+    teachers.id,teachers.email,teachers.nip,teachers.name,teachers.gender,teachers.dob,teachers.mutation,teachers.ipAddress,teachers.about,teachers.finishEducationLevel,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.address,teachers.phone,
     s.id statusId, s.name statusName,
     p.id privilegeId, p.name privilegeName,
     es.id employeeId, es.name employeeName,
@@ -228,14 +228,14 @@ class Teacher extends ResourceController
     g.id groupId, g.name groupName,
     sch.id schoolId, sch.name schoolName,
     m.id majorId, m.name majorName')
-      ->join('status s', 's.id=teacher.statusId', 'left')
-      ->join('privileges p', 'p.id=teacher.privilegeId', 'left')
-      ->join('employee es', 'es.id=teacher.employeeId', 'left')
-      ->join('ranks r', 'r.id=teacher.rankId', 'left')
-      ->join('groups g', 'g.id=teacher.groupId', 'left')
-      ->join('schools sch', 'sch.id=teacher.schoolId', 'left')
-      ->join('majors m', 'm.id=teacher.majorId', 'left')
-      ->where('teacher.privilegeId !=',1)
+      ->join('status s', 's.id=teachers.statusId', 'left')
+      ->join('privileges p', 'p.id=teachers.privilegeId', 'left')
+      ->join('employee es', 'es.id=teachers.employeeId', 'left')
+      ->join('ranks r', 'r.id=teachers.rankId', 'left')
+      ->join('groups g', 'g.id=teachers.groupId', 'left')
+      ->join('schools sch', 'sch.id=teachers.schoolId', 'left')
+      ->join('majors m', 'm.id=teachers.majorId', 'left')
+      ->where('teachers.privilegeId !=',1)
       ->find($id);
     if (!$record) {
       return $this->failNotFound(sprintf(
@@ -421,7 +421,7 @@ class Teacher extends ResourceController
     $data = $this->model->find($id);
     if ($data) {
       if ($this->model
-      ->where('teacher.privilegeId !=',1)
+      ->where('teachers.privilegeId !=',1)
       ->delete($id)) {
         $response = [
           'status' => 200,
@@ -511,12 +511,12 @@ class Teacher extends ResourceController
     } else {
 
       $user = $this->model
-        ->select("teacher.*,p.name privilege, s.name status,es.name employeeName")
-        ->join('privileges p', 'p.id=teacher.privilegeId')
-        ->join('status s', 's.id=teacher.statusId')
-        ->join('employee es', 'es.id=teacher.employeeId')
+        ->select("teachers.*,p.name privilege, s.name status,es.name employeeName")
+        ->join('privileges p', 'p.id=teachers.privilegeId')
+        ->join('status s', 's.id=teachers.statusId')
+        ->join('employee es', 'es.id=teachers.employeeId')
         ->where('email', $email)
-        ->where('teacher.statusId', 1)
+        ->where('teachers.statusId', 1)
         ->first();
 
       if (is_null($user)) {
@@ -712,7 +712,7 @@ class Teacher extends ResourceController
     if ($groupBy != null) {
       if ($select == null) {
         $record = $this->model
-        ->where('teacher.privilegeId !=',1)
+        ->where('teachers.privilegeId !=',1)
         ->select($groupBy . ',count(*) total');
       }
       $record = $this->model->groupBy($groupBy);
@@ -765,11 +765,11 @@ class Teacher extends ResourceController
   public function countDuration()
   {
 
-    $this->model->select('teacher.id,teacher.name, ifnull(tteacher.teachertasks,0) tasks,ifnull(hr.hoomrooms,0)rooms,ifnull(steacher.subjectteacher,0)subjects , (ifnull(tteacher.teachertasks,0)+ifnull(hr.hoomrooms,0)+ifnull(steacher.subjectteacher,0) ) total')
-      ->join('(SELECT teacher.id,teacher.name, sum(ifnull(tteacher.duration, 0)) as teachertasks from teacher t JOIN teachertasks tt on teacher.id = tteacher.teacherId group by teacher.id) tt', 'tteacher.id = teacher.id')
-      ->join('(SELECT teacher.id,teacher.name, sum(ifnull(hr.duration, 0)) as hoomrooms from teacher t JOIN hoomrooms hr on teacher.id = hr.teacherId group by teacher.id ) hr', 'hr.id = teacher.id', 'left')
-      ->join('(SELECT teacher.id,teacher.name,sum(ifnull(steacher.duration, 0)) as subjectteacher from teacher t JOIN subjectteacher st on teacher.id = steacher.teacherId group by teacher.id ) st', 'steacher.id = teacher.id', 'left')
-      ->where('teacher.privilegeId !=',1);
+    $this->model->select('teachers.id,teachers.name, ifnull(tteachers.teachertasks,0) tasks,ifnull(hr.hoomrooms,0)rooms,ifnull(steachers.subjectteacher,0)subjects , (ifnull(tteachers.teachertasks,0)+ifnull(hr.hoomrooms,0)+ifnull(steachers.subjectteacher,0) ) total')
+      ->join('(SELECT teachers.id,teachers.name, sum(ifnull(tteachers.duration, 0)) as teachertasks from teacher t JOIN teachertasks tt on teachers.id = tteachers.teacherId group by teachers.id) tt', 'tteachers.id = teachers.id')
+      ->join('(SELECT teachers.id,teachers.name, sum(ifnull(hr.duration, 0)) as hoomrooms from teacher t JOIN hoomrooms hr on teachers.id = hr.teacherId group by teachers.id ) hr', 'hr.id = teachers.id', 'left')
+      ->join('(SELECT teachers.id,teachers.name,sum(ifnull(steachers.duration, 0)) as subjectteacher from teacher t JOIN subjectteacher st on teachers.id = steachers.teacherId group by teachers.id ) st', 'steachers.id = teachers.id', 'left')
+      ->where('teachers.privilegeId !=',1);
     try {
       $record = $this->model->findAll();
 

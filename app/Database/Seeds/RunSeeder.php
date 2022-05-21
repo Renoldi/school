@@ -10,23 +10,23 @@ class RunSeeder extends Seeder
     {
         // master
         $this->call('Status');
-        $this->call('Classes');
-        $this->call('Departments');
-        $this->call('Groups');
-        $this->call('Privileges');
-        $this->call('Rooms');
+        $this->call('Classs');
+        $this->call('Department');
+        $this->call('Group');
+        $this->call('Privilege');
+        $this->call('Room');
         $this->call('Semester');
-        $this->call('Ranks');
-        $this->call('Tasks');
-        $this->call('EducationLevels');
-        $this->call('Majors');
-        $this->call('Subjects');
+        $this->call('Rank');
+        $this->call('Task');
+        $this->call('EducationLevel');
+        $this->call('Major');
+        $this->call('Subject');
         // $this->call('Schools');
         $this->call('Employee');
-        $this->call('SubjectDepartements');
+        $this->call('SubjectDepartement');
         
         // $this->call('Students');
-        $this->call('Teachers');
+        $this->call('Teacher');
         // $this->call('Exams');
         // $this->call('Resultexams');
         // $this->call('Hoomrooms');
