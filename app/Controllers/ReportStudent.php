@@ -4,7 +4,10 @@ namespace App\Controllers;
 
 use App\Entities\ReportStudent as EntitiesReportStudent;
 use App\Libraries\StdobjeToArray;
+use App\Models\Classs;
 use App\Models\ReportStudent as ModelsReportStudent;
+use App\Models\Semester;
+use App\Models\Student;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -139,7 +142,20 @@ class ReportStudent extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->findAll());
+        // return $this->respond($this->model->findAll());
+
+        $student = new Student();
+        $student = new Classs();
+        $students = $student->findAll();
+        foreach($students as $cl){
+            
+            $student->select()
+            ->findAll();
+        }
+
+        return $this->respond([
+            'done'
+        ]);
     }
 
     /**

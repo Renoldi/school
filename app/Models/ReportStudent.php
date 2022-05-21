@@ -20,6 +20,7 @@ class ReportStudent extends Model
         'semesterId',
         'subjectId',
         'point',
+        'studentId',
     ];
 
     // Dates
@@ -35,6 +36,7 @@ class ReportStudent extends Model
         'classId' => 'required|integer',
         'semesterId' => 'required|integer',
         'subjectId' => 'required|integer',
+        'studentId' => 'required|integer',
         'point' => 'required|integer',
     ];
     protected $validationMessages   = [];

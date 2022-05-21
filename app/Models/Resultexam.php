@@ -20,6 +20,7 @@ class Resultexam extends Model
         'choise',
         'semesterId',
         'statusId',
+        'classId',
     ];
 
     // Dates
@@ -36,6 +37,7 @@ class Resultexam extends Model
         'statusId' => 'required|integer',
         'semesterId' => 'required|integer',
         'choise' => 'required|string',
+        'classId' => 'required|string',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

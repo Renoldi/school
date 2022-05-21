@@ -5,6 +5,7 @@ namespace App\Database\Seeds;
 use App\Entities\Resultexam as EntitiesResultexam;
 use App\Models\Exam;
 use App\Models\Resultexam as ModelsResultexam;
+use App\Models\Semester;
 use App\Models\Student;
 use CodeIgniter\Database\Seeder;
 
@@ -18,27 +19,26 @@ class Resultexam extends Seeder
 
         $exams = new Exam();
         $students = new Student();
+        $semesters = new Semester();
 
-        $data  = $students
-            ->select('students.id,ss.id subjectsid, students.classId as classId,d.id, d.name departmentName')
+        $student = $students
+            ->select('students.id, ss.id subjectId, students.classId')
             ->join('rooms r', 'r.id = students.roomId')
             ->join('departments d', 'd.id = r.departmentId')
             ->join('subjectdepartements sd', 'sd.departmentId = d.id')
             ->join('subjects ss', 'ss.id = sd.subjectId')
+            ->orderBy('students.id, students.classId,students.roomId')
             ->findAll();
 
-        // print_r($model->getLastQuery()->getQuery());
-
-        foreach ($data as $dat) {
+        $no = 0;
+        foreach ($student as $dat) {
             $examsData = $exams
                 ->select('id,semesterId')
                 ->where('classId', $dat->classId)
-                ->where('subjectId', $dat->subjectsid)
+                ->where('subjectId', $dat->subjectId)
                 ->where('semesterId', 1)
                 ->findAll();
-            // print_r($model->getLastQuery()->getQuery());
-            // exit;
-
+             
             foreach ($examsData as $examsDat) {
                 $entities->fill(
                     [

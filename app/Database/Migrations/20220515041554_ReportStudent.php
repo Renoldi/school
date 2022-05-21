@@ -14,6 +14,9 @@ class ReportStudent extends Migration
                 'constraint' => 11,
                 'auto_increment' => true,
             ], 
+            'studentId' => [
+                'type' => 'INT', 
+            ], 
             'roomId' => [
                 'type' => 'INT', 
             ], 
@@ -45,6 +48,7 @@ class ReportStudent extends Migration
         $this->forge->addForeignKey('classId', 'classes', 'id'); 
         $this->forge->addForeignKey('semesterId', 'semesters', 'id'); 
         $this->forge->addForeignKey('subjectId', 'subjects', 'id'); 
+        $this->forge->addForeignKey('studentId', 'students', 'id'); 
         $this->forge->createTable('reportstudents');
     }
 

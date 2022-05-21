@@ -19,22 +19,49 @@ class ReportStudent extends Entity
     protected $datamap = [];
     protected $dates   = ['createdAt', 'updatedAt', 'deletedAt'];
     protected $casts   = [];
-    protected $attributes = [ 
-        'roomId' => null, 
-        'classId' => null, 
-        'semesterId' => null, 
-        'subjectId' =>null, 
-        'point' => null, 
+    protected $attributes = [
+        'roomId' => null,
+        'classId' => null,
+        'semesterId' => null,
+        'subjectId' => null,
+        'studentId' => null,
+        'point' => null,
     ];
 
-    /**
-     * @var string
-     * @OA\Property()
-     */
-    protected $name;
+
     /**
      * @var integer
      * @OA\Property()
      */
-    protected $statusId;
+    protected $roomId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $classId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $semesterId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $subjectId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $studentId;
+
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $point;
 }

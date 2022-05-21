@@ -24,6 +24,7 @@ class Resultexam extends Entity
         'choise' => null,
         'statusId' => null,
         'semesterId' => null,
+        'classId' => null,
     ];
 
     /**
@@ -54,5 +55,10 @@ class Resultexam extends Entity
      * @var integer
      * @OA\Property()
      */
-    protected $integer;
+    protected $semesterId;
+   /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $classId;
 }

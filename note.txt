@@ -134,3 +134,21 @@ insert file
   - subjectTeacher
   - hoomrooms
   - student
+
+
+SELECT s.name, sb.id, sb.name subjectName,  sum(if(e.answer= re.choise, `e`.`point`, 0)) point FROM resultexams re
+JOIN `students` `s` ON `s`.`id` = `re`.`studentId`
+JOIN `exams` `e` ON `e`.`id` = `re`.`examId` and `e`.`classId` = `s`.`classId`
+JOIN `subjects` `sb` ON `sb`.`id` = `e`.`subjectId`
+JOIN `rooms` `r` ON `r`.`id` = `s`.`roomId`
+JOIN `departments` `d` ON `d`.`id` = `r`.`departmentId`
+JOIN `classes` `c` ON `c`.`id` = `s`.`classId`
+WHERE 
+	re.semesterId = 1
+and 
+	s.classId = 1
+and 
+	s.roomId = 1
+and 
+	s.id = 1
+GROUP BY s.id,sb.id,re.semesterId;

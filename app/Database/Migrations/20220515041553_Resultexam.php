@@ -29,6 +29,9 @@ class Resultexams extends Migration
             'semesterId' => [
                 'type' => 'int',
             ],
+            'classId' => [
+                'type' => 'int',
+            ],
             'statusId' => [
                 'type' => 'int',
             ],
@@ -43,7 +46,8 @@ class Resultexams extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-         $this->forge->addForeignKey('statusId', 'statuss', 'id');
+         $this->forge->addForeignKey('statusId', 'classes', 'id');
+         $this->forge->addForeignKey('classId', 'statuss', 'id');
         $this->forge->addForeignKey('semesterId', 'semesters', 'id');
         $this->forge->addForeignKey('studentId', 'students', 'id');
         $this->forge->addForeignKey('examId', 'exams', 'id');
