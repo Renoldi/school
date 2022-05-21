@@ -82,8 +82,8 @@ class Students extends Migration
                 'null' => true,
             ],
             'schoolId' => [
-                'type' => 'int', 
-            ],            
+                'type' => 'int',
+            ],
             'address' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
@@ -181,14 +181,14 @@ class Students extends Migration
                 'type' => 'bigint',
             ],
         ]);
-        
+
         $this->forge->addKey('id', true);
-         $this->forge->addForeignKey('statusId', 'statuss', 'id');
+        $this->forge->addForeignKey('statusId', 'statuss', 'id');
         $this->forge->addForeignKey('schoolId', 'schools', 'id');
         $this->forge->addForeignKey('fatherSchoolId', 'schools', 'id');
         $this->forge->addForeignKey('motherSchoolId', 'schools', 'id');
-        $this->forge->addForeignKey('motherEmployeeId', 'employee', 'id');
-        $this->forge->addForeignKey('fatherEmployeeId', 'employee', 'id');
+        $this->forge->addForeignKey('motherEmployeeId', 'employees', 'id');
+        $this->forge->addForeignKey('fatherEmployeeId', 'employees', 'id');
         $this->forge->addForeignKey('roomId', 'rooms', 'id');
         $this->forge->addForeignKey('classId', 'classes', 'id');
         $this->forge->addForeignKey('privilegeId', 'privileges', 'id');

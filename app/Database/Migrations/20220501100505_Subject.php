@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Subjects extends Migration
+class Subject extends Migration
 {
     public function up()
     {

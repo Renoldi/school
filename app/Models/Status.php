@@ -26,7 +26,7 @@ class Status extends Model
     
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[status.name,id,{id}]',
+        'name' => 'required|is_unique[statuss.name,id,{id}]',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
