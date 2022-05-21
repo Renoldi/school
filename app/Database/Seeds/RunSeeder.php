@@ -21,15 +21,15 @@ class RunSeeder extends Seeder
         // $this->call('EducationLevel');
         // $this->call('Major');
         // $this->call('Subject');
-        // // $this->call('Schools');
+        // // $this->call('School');
         // $this->call('Employee');
         // $this->call('SubjectDepartement');
         
-        // // $this->call('Students');
+        // // $this->call('Student');
         // $this->call('Teacher');
         // $this->call('Exam');
-        $this->call('Resultexams');
-        // $this->call('Hoomrooms');
-        // $this->call('Scheduleexams');
+        $this->call('Resultexam');
+        // $this->call('Hoomroom');
+        // $this->call('Scheduleexam');
     }
 }

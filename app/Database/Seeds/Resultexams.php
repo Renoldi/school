@@ -17,7 +17,6 @@ class Resultexam extends Seeder
         $entities = new EntitiesResultexam();
 
         $exams = new Exam();
-
         $students = new Student();
 
         $data  = $students
