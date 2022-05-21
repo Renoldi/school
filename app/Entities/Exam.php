@@ -33,6 +33,7 @@ class Exam extends Entity
         'answer' => null,
         'point' => null,
         'statusId' => null,
+        'semesterId' => null,
     ];
 
     /**
@@ -106,6 +107,11 @@ class Exam extends Entity
      * @OA\Property()
      */
     protected $point;
+    /**
+     * @var integer
+     * @OA\Property()
+     */
+    protected $semesterId;
     /**
      * @var integer
      * @OA\Property()

@@ -374,10 +374,10 @@ class Exam extends ResourceController
                 ->join('classes c', 'c.id=exams.classId')
                 ->join('subjects s', 's.id=exams.subjectId')
                 ->join('subjectdepartements sd', 'sd.subjectId =s.id')
-                ->join('departments d', 'd.id=sd.departmentId');
-            $data = $model
+                ->join('departments d', 'd.id=sd.departmentId')
                 ->select('exams.id as id,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
-                ->orderBy('RAND()')
+                ->orderBy('RAND()');
+            $data = $model
                 ->paginate($perpage, 'default', $page);
             $countPage = $model->pager->getPageCount();
             $currentPage = $model->pager->getCurrentPage();
@@ -780,10 +780,14 @@ class Exam extends ResourceController
             $subjectEntity->e = ($row[8]);
             $subjectEntity->answer = ($row[9]);
             $subjectEntity->statusId = ($row[10]);
+            $subjectEntity->semesterId = ($row[11]);
 
             if (!$this->model->save($subjectEntity)) {
                 return $this->failValidationErrors(
-                    ['row' => $x + 1,    'fields' => $this->model->errors()]
+                    [
+                        'row' => $x + 1,
+                        'fields' => $this->model->errors()
+                    ]
                 );
             }
         }

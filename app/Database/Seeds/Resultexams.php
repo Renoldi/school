@@ -34,13 +34,14 @@ class Resultexam extends Seeder
                 ->where('classId', $dat->classId)
                 ->where('subjectId', $dat->subjectsid)
                 ->findAll();
-                
+
             foreach ($examsData as $examsDat) {
                 $resExam = [
-                    'studentId' => $dat->id, 
+                    'studentId' => $dat->id,
                     'examId' => $examsDat->id,
+                    'semesterId' => $examsDat->semesterId,
                     'choise' => generateRandomString(1, 'abcde'),
-                     'statusId' => 1,
+                    'statusId' => 1,
                 ];
                 $entities->fill($resExam);
                 if (!$model->save($entities)) {
