@@ -20,29 +20,35 @@ class Resultexam extends Seeder
         $students = new Student();
 
         $data  = $students
-            ->select('students.id,ss.id subjectsid, students.classId as classId')
+            ->select('students.id,ss.id subjectsid, students.classId as classId,d.id, d.name departmentName')
             ->join('rooms r', 'r.id = students.roomId')
             ->join('departments d', 'd.id = r.departmentId')
             ->join('subjectdepartements sd', 'sd.departmentId = d.id')
             ->join('subjects ss', 'ss.id = sd.subjectId')
             ->findAll();
 
+        // print_r($model->getLastQuery()->getQuery());
+
         foreach ($data as $dat) {
             $examsData = $exams
-                ->select('id')
+                ->select('id,semesterId')
                 ->where('classId', $dat->classId)
                 ->where('subjectId', $dat->subjectsid)
+                ->where('semesterId', 1)
                 ->findAll();
+            // print_r($model->getLastQuery()->getQuery());
+            // exit;
 
             foreach ($examsData as $examsDat) {
-                $resExam = [
-                    'studentId' => $dat->id,
-                    'examId' => $examsDat->id,
-                    'semesterId' => $examsDat->semesterId,
-                    'choise' => generateRandomString(1, 'abcde'),
-                    'statusId' => 1,
-                ];
-                $entities->fill($resExam);
+                $entities->fill(
+                    [
+                        'studentId' => $dat->id,
+                        'examId' => $examsDat->id,
+                        'semesterId' => $examsDat->semesterId,
+                        'choise' => generateRandomString(1, 'abcde'),
+                        'statusId' => 1,
+                    ]
+                );
                 if (!$model->save($entities)) {
                     var_dump($model->errors());
                 }

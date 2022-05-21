@@ -18,6 +18,7 @@ class Resultexam extends Model
         'studentId',
         'examId',
         'choise',
+        'semesterId',
         'statusId',
     ];
 
@@ -33,6 +34,7 @@ class Resultexam extends Model
         'studentId' => 'required|integer',
         'examId' => 'required|integer',
         'statusId' => 'required|integer',
+        'semesterId' => 'required|integer',
         'choise' => 'required|string',
     ];
     protected $validationMessages   = [];
