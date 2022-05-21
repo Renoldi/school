@@ -83,7 +83,7 @@ class Major extends ResourceController
 
         $data = $model
         ->select('Majors.*, s.name statusName')
-        ->join('status s', 's.id=Majors.statusId')
+        ->join('statuss s', 's.id=Majors.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -190,7 +190,7 @@ class Major extends ResourceController
     {
         $record = $this->model
         ->select('Majors.*, s.name statusName')
-        ->join('status s', 's.id=Majors.statusId')
+        ->join('statuss s', 's.id=Majors.statusId')
         ->where('Majors.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

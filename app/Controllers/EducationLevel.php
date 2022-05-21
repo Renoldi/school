@@ -83,7 +83,7 @@ class EducationLevel extends ResourceController
 
         $data = $model
             ->select('EducationLevels.*, s.name statusName')
-            ->join('status s', 's.id=EducationLevels.statusId')
+            ->join('statuss s', 's.id=EducationLevels.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -190,7 +190,7 @@ class EducationLevel extends ResourceController
     {
         $record = $this->model
             ->select('educationLevels.*, s.name statusName')
-            ->join('status s', 's.id=educationLevels.statusId')
+            ->join('statuss s', 's.id=educationLevels.statusId')
             ->where('educationLevels.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

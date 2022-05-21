@@ -83,7 +83,7 @@ class Scheduleexam extends ResourceController
 
         $data = $model
         ->select('Scheduleexams.*, s.name statusName')
-        ->join('status s', 's.id=Scheduleexams.statusId')
+        ->join('statuss s', 's.id=Scheduleexams.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -144,7 +144,7 @@ class Scheduleexam extends ResourceController
     {
         return $this->respond($this->model
         ->select('Scheduleexams.*, s.name statusName')
-        ->join('status s', 's.id=Scheduleexams.statusId')
+        ->join('statuss s', 's.id=Scheduleexams.statusId')
         ->findAll());
     }
 
@@ -194,7 +194,7 @@ class Scheduleexam extends ResourceController
     {
         $record = $this->model
         ->select('Scheduleexams.*, s.name statusName')
-        ->join('status s', 's.id=Scheduleexams.statusId')
+        ->join('statuss s', 's.id=Scheduleexams.statusId')
         ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

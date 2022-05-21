@@ -183,7 +183,7 @@ class Students extends Migration
         ]);
         
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('statusId', 'status', 'id');
+         $this->forge->addForeignKey('statusId', 'statuss', 'id');
         $this->forge->addForeignKey('schoolId', 'schools', 'id');
         $this->forge->addForeignKey('fatherSchoolId', 'schools', 'id');
         $this->forge->addForeignKey('motherSchoolId', 'schools', 'id');

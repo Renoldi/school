@@ -33,7 +33,7 @@ class EducationLevels extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('statusId', 'status', 'id');
+         $this->forge->addForeignKey('statusId', 'statuss', 'id');
         $this->forge->createTable('EducationLevels');
     }
     public function down()

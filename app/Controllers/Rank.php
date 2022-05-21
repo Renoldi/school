@@ -83,7 +83,7 @@ class Rank extends ResourceController
 
         $data = $model
         ->select('Ranks.*, s.name statusName')
-        ->join('status s', 's.id=Ranks.statusId')
+        ->join('statuss s', 's.id=Ranks.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -143,7 +143,7 @@ class Rank extends ResourceController
     {
         return $this->respond($this->model
         ->select('Ranks.*, s.name statusName')
-        ->join('status s', 's.id=Ranks.statusId')
+        ->join('statuss s', 's.id=Ranks.statusId')
         ->findAll());
     }
 
@@ -193,7 +193,7 @@ class Rank extends ResourceController
     {
         $record = $this->model
         ->select('Ranks.*, s.name statusName')
-        ->join('status s', 's.id=Ranks.statusId')
+        ->join('statuss s', 's.id=Ranks.statusId')
         ->where('Ranks.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

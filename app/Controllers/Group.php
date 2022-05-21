@@ -83,7 +83,7 @@ class Group extends ResourceController
 
         $data = $model
             ->select('groups.*, s.name statusName')
-            ->join('status s', 's.id=groups.statusId')
+            ->join('statuss s', 's.id=groups.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -190,7 +190,7 @@ class Group extends ResourceController
     {
         $record = $this->model
             ->select('groups.*, s.name statusName')
-            ->join('status s', 's.id=groups.statusId')
+            ->join('statuss s', 's.id=groups.statusId')
             ->where('groups.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

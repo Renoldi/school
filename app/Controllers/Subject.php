@@ -85,7 +85,7 @@ class Subject extends ResourceController
 
         $data = $model
         ->select('Subjects.*, s.name statusName')
-        ->join('status s', 's.id=Subjects.statusId')
+        ->join('statuss s', 's.id=Subjects.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -146,7 +146,7 @@ class Subject extends ResourceController
     {
         return $this->respond($this->model
         ->select('Subjects.*, s.name statusName')
-        ->join('status s', 's.id=Subjects.statusId')
+        ->join('statuss s', 's.id=Subjects.statusId')
         ->where('Subjects.statusId', 1)->findAll());
     }
 
@@ -196,7 +196,7 @@ class Subject extends ResourceController
     {
         $record = $this->model
         ->select('Subjects.*, s.name statusName')
-        ->join('status s', 's.id=Subjects.statusId')
+        ->join('statuss s', 's.id=Subjects.statusId')
         ->where('Subjects.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

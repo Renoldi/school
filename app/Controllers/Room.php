@@ -83,7 +83,7 @@ class Room extends ResourceController
 
         $data = $model
         ->select('Rooms.*, s.name statusName')
-        ->join('status s', 's.id=Rooms.statusId')
+        ->join('statuss s', 's.id=Rooms.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -144,7 +144,7 @@ class Room extends ResourceController
     {
         return $this->respond($this->model
         ->select('Rooms.*, s.name statusName')
-        ->join('status s', 's.id=Rooms.statusId')
+        ->join('statuss s', 's.id=Rooms.statusId')
         ->where('Rooms.statusId', 1)->findAll());
     }
 
@@ -194,7 +194,7 @@ class Room extends ResourceController
     {
         $record = $this->model
         ->select('Rooms.*, s.name statusName')
-        ->join('status s', 's.id=Rooms.statusId')
+        ->join('statuss s', 's.id=Rooms.statusId')
         ->where('Rooms.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

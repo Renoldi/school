@@ -83,7 +83,7 @@ class Task extends ResourceController
 
         $data = $model
         ->select('Tasks.*, s.name statusName')
-        ->join('status s', 's.id=Tasks.statusId')
+        ->join('statuss s', 's.id=Tasks.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -143,7 +143,7 @@ class Task extends ResourceController
     {
         return $this->respond($this->model
         ->select('Tasks.*, s.name statusName')
-        ->join('status s', 's.id=Tasks.statusId')
+        ->join('statuss s', 's.id=Tasks.statusId')
         ->findAll());
     }
 
@@ -193,7 +193,7 @@ class Task extends ResourceController
     {
         $record = $this->model
         ->select('Tasks.*, s.name statusName')
-        ->join('status s', 's.id=Tasks.statusId')
+        ->join('statuss s', 's.id=Tasks.statusId')
         ->where('Tasks.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

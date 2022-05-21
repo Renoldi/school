@@ -28,7 +28,7 @@ class Employee extends Model
     
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[classes.name,id,{id}]',
+        'name' => 'required|is_unique[employees.name,id,{id}]',
         'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];

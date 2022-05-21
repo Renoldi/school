@@ -82,7 +82,7 @@ class Employee extends ResourceController
 
         $data = $model
             ->select('Employees.*, s.name statusName')
-            ->join('status s', 's.id=Employees.statusId')
+            ->join('statuss s', 's.id=Employees.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -189,7 +189,7 @@ class Employee extends ResourceController
     {
         $record = $this->model
             ->select('Employees.*, s.name statusName')
-            ->join('status s', 's.id=Employees.statusId')
+            ->join('statuss s', 's.id=Employees.statusId')
             ->where('Employees.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

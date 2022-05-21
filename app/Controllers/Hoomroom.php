@@ -85,7 +85,7 @@ class Hoomroom extends ResourceController
 
         $data = $model
             ->select('hoomrooms.*, s.name statusName')
-            ->join('status s', 's.id=hoomrooms.statusId')
+            ->join('statuss s', 's.id=hoomrooms.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -146,7 +146,7 @@ class Hoomroom extends ResourceController
     {
         return $this->respond($this->model
             ->select('hoomrooms.*, s.name statusName')
-            ->join('status s', 's.id=hoomrooms.statusId')
+            ->join('statuss s', 's.id=hoomrooms.statusId')
             ->where('hoomrooms.statusId', 1)->findAll());
     }
 
@@ -196,7 +196,7 @@ class Hoomroom extends ResourceController
     {
         $record = $this->model
             ->select('hoomrooms.*, s.name statusName')
-            ->join('status s', 's.id=hoomrooms.statusId')
+            ->join('statuss s', 's.id=hoomrooms.statusId')
             ->where('hoomrooms.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
@@ -402,7 +402,7 @@ class Hoomroom extends ResourceController
         if ($where != null) {
             $record = $this->model
                 ->select('hoomrooms.*, s.name statusName')
-                ->join('status s', 's.id=hoomrooms.statusId')
+                ->join('statuss s', 's.id=hoomrooms.statusId')
                 ->where((array)$where);
         }
 

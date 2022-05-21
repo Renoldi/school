@@ -30,11 +30,11 @@ class Status extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('status');
+        $this->forge->createTable('statuss');
     }
 
     public function down()
     {
-        $this->forge->dropTable('status');
+        $this->forge->dropTable('statuss');
     }
 }

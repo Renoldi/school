@@ -163,7 +163,7 @@ class Student extends ResourceController
             p.id privilegeId p.name privilegeName,
             students.roomId,
             students.createdAt,students.updatedAt,students.deletedAt')
-            ->join('status s', 's.id=students.statusId')
+            ->join('statuss s', 's.id=students.statusId')
             ->join('privileges p', 'p.id=students.privilegeId')
             ->join('classes c', 'c.id=students.classId')
             ->join('rooms r', 'r.id=students.roomId')
@@ -246,7 +246,7 @@ class Student extends ResourceController
                 p.id privilegeId p.name privilegeName,
                 students.roomId,
                 students.createdAt,students.updatedAt,students.deletedAt')
-            ->join('status s', 's.id=students.statusId')
+            ->join('statuss s', 's.id=students.statusId')
             ->join('privileges p', 'p.id=students.privilegeId')
             ->join('classes c', 'c.id=students.classId')
             ->join('rooms r', 'r.id=students.roomId')
@@ -616,7 +616,7 @@ class Student extends ResourceController
                 ->join('privileges p', 'p.id=students.privilegeId')
                 ->join('classes c', 'c.id=students.classId')
                 ->join('departments d', 'd.id=r.departmentId')
-                ->join('status s', 's.id=students.statusId')
+                ->join('statuss s', 's.id=students.statusId')
                 ->where('students.email', $email)
                 ->where('students.privilegeId !=', 8)
                 ->where('students.statusId', 1)

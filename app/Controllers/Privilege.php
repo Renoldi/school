@@ -83,7 +83,7 @@ class Privilege extends ResourceController
 
         $data = $model
             ->select('Privileges.*, s.name statusName')
-            ->join('status s', 's.id=Privileges.statusId')
+            ->join('statuss s', 's.id=Privileges.statusId')
             ->where('privileges.id !=', 1)
 
             ->paginate($perpage, 'default', $page);
@@ -146,7 +146,7 @@ class Privilege extends ResourceController
     {
         return $this->respond($this->model
             ->select('Privileges.*, s.name statusName')
-            ->join('status s', 's.id=Privileges.statusId')
+            ->join('statuss s', 's.id=Privileges.statusId')
             ->where('Privileges.statusId', 1)
             ->where('privileges.id !=', 1)
             ->findAll());
@@ -198,7 +198,7 @@ class Privilege extends ResourceController
     {
         $record = $this->model
             ->select('Privileges.*, s.name statusName')
-            ->join('status s', 's.id=Privileges.statusId')
+            ->join('statuss s', 's.id=Privileges.statusId')
             ->where('Privileges.statusId', 1)
             ->where('privileges.id !=', 1)
             ->find($id);

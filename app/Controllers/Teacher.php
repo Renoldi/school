@@ -94,7 +94,7 @@ class Teacher extends ResourceController
       sch.id schoolId, sch.name schoolName,
       m.id majorId, m.name majorName')
       // ->alias('t')
-      ->join('status s', 's.id=teachers.statusId', 'left')
+      ->join('statuss s', 's.id=teachers.statusId', 'left')
       ->join('privileges p', 'p.id=teachers.privilegeId', 'left')
       ->join('employee es', 'es.id=teachers.employeeId', 'left')
       ->join('ranks r', 'r.id=teachers.rankId', 'left')
@@ -168,7 +168,7 @@ class Teacher extends ResourceController
         ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,s.id statusId, s.name statusName, es.id employeeId, es.name employeeName ,isPn,address,phone,createdAt,updatedAt,deletedAt')
         ->where('statusId', 1)
         ->where('teachers.privilegeId !=',1)
-        ->join('status s', 's.id=teachers.statusId')
+        ->join('statuss s', 's.id=teachers.statusId')
         ->findAll()
     );
   }
@@ -227,7 +227,7 @@ class Teacher extends ResourceController
     g.id groupId, g.name groupName,
     sch.id schoolId, sch.name schoolName,
     m.id majorId, m.name majorName')
-      ->join('status s', 's.id=teachers.statusId', 'left')
+      ->join('statuss s', 's.id=teachers.statusId', 'left')
       ->join('privileges p', 'p.id=teachers.privilegeId', 'left')
       ->join('employee es', 'es.id=teachers.employeeId', 'left')
       ->join('ranks r', 'r.id=teachers.rankId', 'left')
@@ -512,7 +512,7 @@ class Teacher extends ResourceController
       $user = $this->model
         ->select("teachers.*,p.name privilege, s.name status,es.name employeeName")
         ->join('privileges p', 'p.id=teachers.privilegeId')
-        ->join('status s', 's.id=teachers.statusId')
+        ->join('statuss s', 's.id=teachers.statusId')
         ->join('employee es', 'es.id=teachers.employeeId')
         ->where('email', $email)
         ->where('teachers.statusId', 1)

@@ -84,7 +84,7 @@ class Resultexam extends ResourceController
 
         $data = $model
         ->select('Resultexams.*, s.name statusName')
-        ->join('status s', 's.id=Resultexams.statusId')
+        ->join('statuss s', 's.id=Resultexams.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -145,7 +145,7 @@ class Resultexam extends ResourceController
     {
         return $this->respond($this->model
         ->select('Resultexams.*, s.name statusName')
-        ->join('status s', 's.id=Resultexams.statusId')
+        ->join('statuss s', 's.id=Resultexams.statusId')
         ->findAll());
     }
 
@@ -195,7 +195,7 @@ class Resultexam extends ResourceController
     {
         $record = $this->model
         ->select('Resultexams.*, s.name statusName')
-        ->join('status s', 's.id=Resultexams.statusId')
+        ->join('statuss s', 's.id=Resultexams.statusId')
         ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(

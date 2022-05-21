@@ -82,7 +82,7 @@ class Semester extends ResourceController
 
         $data = $model
             ->select('Semesters.*, s.name statusName')
-            ->join('status s', 's.id=Semesters.statusId')
+            ->join('statuss s', 's.id=Semesters.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -189,7 +189,7 @@ class Semester extends ResourceController
     {
         $record = $this->model
             ->select('Semesters.*, s.name statusName')
-            ->join('status s', 's.id=Semesters.statusId')
+            ->join('statuss s', 's.id=Semesters.statusId')
             ->where('Semesters.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
