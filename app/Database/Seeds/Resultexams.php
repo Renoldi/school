@@ -2,24 +2,23 @@
 
 namespace App\Database\Seeds;
 
-use App\Entities\Resultexams as EntitiesResultexams;
-use App\Models\Exams;
-use App\Models\Resultexams as ModelsResultexams;
-use App\Models\Students;
+use App\Entities\Resultexam as EntitiesResultexam;
+use App\Models\Exam;
+use App\Models\Resultexam as ModelsResultexam;
+use App\Models\Student;
 use CodeIgniter\Database\Seeder;
-use PhpParser\Node\Expr\New_;
 
-class Resultexams extends Seeder
+class Resultexam extends Seeder
 {
     public function run()
     {
         helper('genarator_string');
-        $model = new ModelsResultexams();
-        $entities = new EntitiesResultexams();
+        $model = new ModelsResultexam();
+        $entities = new EntitiesResultexam();
 
-        $exams = new Exams();
+        $exams = new Exam();
 
-        $students = new Students();
+        $students = new Student();
 
         $data  = $students
             ->select('students.id,ss.id subjectsid, students.classId as classId')

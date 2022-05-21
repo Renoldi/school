@@ -4,7 +4,7 @@ namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 
-class TeacherTask extends Seeder
+class SubjectTeacher extends Seeder
 {
     public function run()
     {

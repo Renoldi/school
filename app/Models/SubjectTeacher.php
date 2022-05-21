@@ -4,32 +4,36 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Employee extends Model
+class SubjectTeacher extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'employees';
+    protected $table            = 'subjectTeachers';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Employee::class;
+    protected $returnType       = \App\Entities\SubjectTeacher::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'name',
-        'statusId',
+        'teacherId',
+        'subjectId',
+        'classId',
+        'duration',
     ];
 
     // Dates
     protected $useTimestamps = true;
-    protected $dateFormat   = 'int';  
+    protected $dateFormat   = 'int';
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';
-    
+
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[classes.name,id,{id}]',
-        'statusId' => 'required|integer',
+        'teacherId' => 'required|integer',
+        'subjectId' => 'required|integer',
+        // 'classId' => 'required|integer',
+        'duration' => 'required|integer',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

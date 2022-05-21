@@ -4,18 +4,20 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Employee extends Model
+class Resultexam extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'employees';
+    protected $table            = 'resultexams';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Employee::class;
+    protected $returnType       = \App\Entities\Resultexam::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'name',
+        'studentId',
+        'examId',
+        'choise',
         'statusId',
     ];
 
@@ -25,11 +27,13 @@ class Employee extends Model
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';
-    
+
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[classes.name,id,{id}]',
+        'studentId' => 'required|integer',
+        'examId' => 'required|integer',
         'statusId' => 'required|integer',
+        'choise' => 'required|string',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

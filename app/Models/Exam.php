@@ -4,18 +4,29 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Employee extends Model
+class Exam extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'employees';
+    protected $table            = 'exams';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Employee::class;
+    protected $returnType       = \App\Entities\Exam::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'name',
+        'classId',
+        'subjectId',
+        'question',
+        'questionImage',
+        'show',
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'answer',
+        'point',
         'statusId',
     ];
 
@@ -25,10 +36,20 @@ class Employee extends Model
     protected $createdField  = 'createdAt';
     protected $updatedField  = 'updatedAt';
     protected $deletedField  = 'deletedAt';
-    
+
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[classes.name,id,{id}]',
+        'classId' => 'required|integer',
+        'subjectId' => 'required|integer',
+        // 'question' => 'required',
+        // 'questionImage' => 'required',
+        'a' => 'required',
+        'b' => 'required',
+        'c' => 'required',
+        'd' => 'required',
+        'e' => 'required',
+        'answer' => 'required',
+        'point' => 'required|integer',
         'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];

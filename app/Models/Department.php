@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Employee extends Model
+class Department extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'employees';
+    protected $table            = 'departments';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Employee::class;
+    protected $returnType       = \App\Entities\Department::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
@@ -28,7 +28,7 @@ class Employee extends Model
     
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[classes.name,id,{id}]',
+        'name' => 'required|is_unique[departments.name,id,{id}]',
         'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
