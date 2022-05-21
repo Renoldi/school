@@ -169,7 +169,6 @@ class Teacher extends ResourceController
         ->where('statusId', 1)
         ->where('teachers.privilegeId !=',1)
         ->join('status s', 's.id=teachers.statusId')
-
         ->findAll()
     );
   }
