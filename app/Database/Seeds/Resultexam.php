@@ -19,7 +19,6 @@ class Resultexam extends Seeder
 
         $exams = new Exam();
         $students = new Student();
-        $semesters = new Semester();
 
         $student = $students
             ->select('students.id, ss.id subjectId, students.classId')

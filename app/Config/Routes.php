@@ -35,7 +35,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 $routes->group('api', function ($routes) {
-    $routes->get('ReportStudent/index', 'Teacher::index');
+    $routes->get('ReportStudent', 'ReportStudent::index');
     $routes->get('Teacher/countDuration', 'Teacher::countDuration');
     $routes->post('Teacher/login', 'Teacher::login');
     $routes->post('Student/login', 'Student::login');

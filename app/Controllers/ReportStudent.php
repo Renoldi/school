@@ -6,8 +6,9 @@ use App\Entities\ReportStudent as EntitiesReportStudent;
 use App\Libraries\StdobjeToArray;
 use App\Models\Classs;
 use App\Models\ReportStudent as ModelsReportStudent;
+use App\Models\Resultexam;
+use App\Models\Room;
 use App\Models\Semester;
-use App\Models\Student;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -142,19 +143,106 @@ class ReportStudent extends ResourceController
      */
     public function index()
     {
-        // return $this->respond($this->model->findAll());
 
-        $student = new Student();
-        $student = new Classs();
-        $students = $student->findAll();
-        foreach($students as $cl){
-            
-            $student->select()
+        $resultexams = new Resultexam();
+        $classs = new Classs();
+        $semester = new Semester();
+
+        $semesters = $semester
+            ->select('id')
             ->findAll();
+
+        $class = $classs
+            ->select('id')
+            ->findAll();
+        // $students = $student->findAll();
+
+        // SELECT s.id studentId, r.id roomId, re.classId, sb.id subjectId, s.name, sum(if(e.answer= re.choise, e.point, 0)) point FROM resultexams re
+        // JOIN students s ON s.id = re.studentId
+        // JOIN exams e ON e.id = re.examId and e.classId = s.classId
+        // JOIN subjects sb ON sb.id = e.subjectId
+        // JOIN rooms r ON r.id = s.roomId
+        // JOIN departments d ON d.id = r.departmentId
+        // WHERE 
+        //     re.semesterId = 1
+        // and 
+        //     re.semesterId = 1
+        // GROUP BY s.id,sb.id,re.semesterId;
+        $query = '';
+        // var_dump( $query );exit;
+        $this->model->transStart();
+        $resultexams->transStart();
+        foreach ($class as $cl) {
+            foreach ($semesters as $semeste) {
+                $resultexam = $resultexams
+                    ->select('s.id studentId,resultexams.semesterId, r.id roomId, resultexams.classId, sb.id subjectId, s.name, sum(if(e.answer= resultexams.choise, e.point, 0)) point')
+                    ->join('students s', 's.id = resultexams.studentId')
+                    ->join('exams e', 'e.id = resultexams.examId')
+                    ->join('subjects sb', 'sb.id = e.subjectId')
+                    ->join('rooms r', 'r.id = s.roomId')
+                    ->join('departments d', 'd.id = r.departmentId')
+                    ->where('resultexams.semesterId', $semeste->id)
+                    ->where('resultexams.classId', $cl->id)
+                    ->groupBy('s.id,sb.id,resultexams.semesterId,resultexams.classId')
+                    ->findAll();
+                // return $this->respond([
+                //     $resultexams->getLastQuery()->getQuery()
+                // ]);
+                foreach ($resultexam as $resultexa) {
+                    $entity = new EntitiesReportStudent();
+                    $entity->studentId = $resultexa->studentId;
+                    $entity->roomId = $resultexa->roomId;
+                    $entity->classId = $resultexa->classId;
+                    $entity->subjectId = $resultexa->subjectId;
+                    $entity->semesterId = $resultexa->semesterId;
+                    $entity->point = $resultexa->point;
+
+                    $record = $this->model
+                        ->select('id')
+                        ->where('studentId', $resultexa->studentId)
+                        ->where('roomId', $resultexa->roomId)
+                        ->where('classId', $resultexa->classId)
+                        ->where('subjectId', $resultexa->subjectId)
+                        ->where('semesterId', $resultexa->semesterId)
+                        ->findAll();
+
+                    if (!$record) {
+                        if (!$this->model->save($entity)) {
+                            return $this->failValidationErrors($this->model->errors());
+                        }
+                    } else {
+                        $recor = $record[0];
+                        if (!$this->model->update($recor->id, $entity)) {
+                            return $this->failValidationErrors($this->model->errors());
+                        }
+                    }
+
+                    $resultexams
+                        ->where('studentId', $resultexa->studentId)
+                        ->where('classId', $resultexa->classId)
+                        ->where('semesterId', $resultexa->semesterId)
+                        ->delete();
+
+                }
+                if ($resultexams->transStatus() === false) {
+                    $resultexams->transRollback();
+                } else {
+                    $resultexams->transCommit();
+                }
+            }
+        }
+
+        // $resultexams->truncate();
+
+        if ($this->model->transStatus() === false) {
+            $this->model->transRollback();
+        } else {
+            $this->model->transCommit();
+            return $this->respondCreated(["result" => "success"]);
         }
 
         return $this->respond([
-            'done'
+            $query
         ]);
     }
 
