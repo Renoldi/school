@@ -222,8 +222,8 @@ class ReportStudent extends ResourceController
                         ->where('classId', $resultexa->classId)
                         ->where('semesterId', $resultexa->semesterId)
                         ->delete();
-
                 }
+
                 if ($resultexams->transStatus() === false) {
                     $resultexams->transRollback();
                 } else {
@@ -232,7 +232,12 @@ class ReportStudent extends ResourceController
             }
         }
 
-        // $resultexams->truncate();
+        $res = $resultexams->findAll();
+        if (count($res) > 0) {
+            $resultexams->truncate();
+        } else {
+            $resultexams->truncate();
+        }
 
         if ($this->model->transStatus() === false) {
             $this->model->transRollback();
@@ -240,10 +245,6 @@ class ReportStudent extends ResourceController
             $this->model->transCommit();
             return $this->respondCreated(["result" => "success"]);
         }
-
-        return $this->respond([
-            $query
-        ]);
     }
 
     /**
