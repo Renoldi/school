@@ -346,7 +346,7 @@ class ReportStudent extends ResourceController
 
         $record = $this->model
             ->select('
-                reportstudents.studentId,s.name,reportstudents.classId, c.name className,reportstudents.semesterId,se.name semesterName, reportstudents.roomId, r.name roomName,
+                reportstudents.studentId,s.nis,s.nisn, s.name,reportstudents.classId, c.name className,reportstudents.semesterId,se.name semesterName, reportstudents.roomId, r.name roomName,
                 sum(CASE WHEN reportstudents.subjectId=1 THEN point ELSE null END) subjectId1,
                 sum(CASE WHEN reportstudents.subjectId=2 THEN point ELSE null END) subjectId2,
                 sum(CASE WHEN reportstudents.subjectId=3 THEN point ELSE null END) subjectId3,
@@ -377,9 +377,6 @@ class ReportStudent extends ResourceController
             ->join('classes c', 'c.id = reportstudents.classId')
             ->join('rooms r', 'r.id = reportstudents.roomId')
             ->join('semesters se', 'se.id = reportstudents.semesterId')
-            // ->where('reportstudents.roomId', $roomId)
-            // ->where('reportstudents.classId',  $classId)
-            // ->where('reportstudents.semesterId',  $semesterId)
             ->groupBy('reportstudents.studentId, reportstudents.classId,reportstudents.semesterId')
             ->orderBy('reportstudents.studentId,reportstudents.classId, s.roomId')
             ->paginate($perpage, 'default', $page);
