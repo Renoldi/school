@@ -36,6 +36,7 @@ $routes->get('/', 'Home::index');
 
 $routes->group('api', function ($routes) {
     $routes->get('ReportStudent', 'ReportStudent::index');
+    $routes->get('ReportStudent/report/(:num)/(:num)/(:num)/(:num)/(:num)', 'ReportStudent::report/$1/$2/$3/$4/$5');
     $routes->get('Teacher/countDuration', 'Teacher::countDuration');
     $routes->post('Teacher/login', 'Teacher::login');
     $routes->post('Student/login', 'Student::login');
