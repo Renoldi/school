@@ -24,8 +24,8 @@ use CodeIgniter\RESTful\ResourceController;
  */
 class BaseApi extends ResourceController
 {
-     use ResponseTrait; 
-     
+    use ResponseTrait;
+
     /**
      * Return an array of resource objects, themselves in array format
      *
@@ -122,32 +122,33 @@ class BaseApi extends ResourceController
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
 
-        $subject = new Subjects();
-        $subjectEntity = new EntitiesSubjects();
-        $subject->transStart();
-        foreach ($data as $x => $row) {
-            if ($x == 0) {
-                continue;
-            }
-            $subjectEntity->name  = $row[0]; if ($row[0] == '')
-                continue;
-            $subjectEntity->status = $row[1];
+        // $subject = new Subjects();
+        // $subjectEntity = new EntitiesSubjects();
+        // $subject->transStart();
+        // foreach ($data as $x => $row) {
+        //     if ($x == 0) {
+        //         continue;
+        //     }
+        //     $subjectEntity->name  = ($row[0]);
+        //     if ($row[0] == '')
+        //         continue;
+        //     $subjectEntity->statusId = ($row[1]);
 
-            if (!$subject->save($subjectEntity)) {
-                return $this->failValidationErrors(
+        //     if (!$subject->save($subjectEntity)) {
+                return $this->fail(
                     [
-                        $x + 1,
-                        $subject->errors()
+                        // $x + 1,
+                        // $subject->errors()
                     ]
                 );
-            }
-        }
+        //     }
+        // }
 
-        if ($subject->transStatus() === false) {
-            $subject->transRollback();
-        } else {
-            $subject->transCommit();
-            return $this->respondCreated(["success upload"]);
-        }
+        // if ($subject->transStatus() === false) {
+        //     $subject->transRollback();
+        // } else {
+        //     $subject->transCommit();
+        //     return $this->respondCreated(["success upload"]);
+        // }
     }
 }

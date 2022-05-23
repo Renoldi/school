@@ -9,24 +9,27 @@ class RunSeeder extends Seeder
     public function run()
     {
         // master
-        $this->call('Classes');
-        $this->call('Departments');
-        $this->call('Privileges');
-        $this->call('Rooms');
-        $this->call('Groups');
-        $this->call('Ranks');
-        $this->call('Tasks');
-        $this->call('EducationLevels');
-        $this->call('Majors');
-        $this->call('Subjects');
-        $this->call('Schools');
+        // $this->call('Status');
+        // $this->call('Classs');
+        // $this->call('Department');
+        // $this->call('Group');
+        // $this->call('Privilege');
+        // $this->call('Room');
+        // $this->call('Semester');
+        // $this->call('Rank');
+        // $this->call('Task');
+        // $this->call('EducationLevel');
+        // $this->call('Major');
+        // $this->call('Subject');
+        // // $this->call('School');
+        // $this->call('Employee');
+        // $this->call('SubjectDepartement');
         
-        // $this->call('Students');
-        $this->call('Teachers');
-        // $this->call('SubjectDepartements');
-        // $this->call('Exams');
-        // $this->call('Resultexams');
-        // $this->call('Hoomrooms');
-        // $this->call('Scheduleexams');
+        // // $this->call('Student');
+        // $this->call('Teacher');
+        // $this->call('Exam');
+        $this->call('Resultexam');
+        // $this->call('Hoomroom');
+        // $this->call('Scheduleexam');
     }
 }
