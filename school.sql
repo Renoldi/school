@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2022 at 05:52 AM
+-- Generation Time: May 23, 2022 at 03:53 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -390,6 +390,7 @@ INSERT INTO `ranks` (`id`, `name`, `statusId`, `createdAt`, `updatedAt`, `delete
 
 CREATE TABLE `reportstudents` (
   `id` int(11) NOT NULL,
+  `studentId` int(11) NOT NULL,
   `roomId` int(11) NOT NULL,
   `classId` int(11) NOT NULL,
   `semesterId` int(11) NOT NULL,
@@ -412,6 +413,7 @@ CREATE TABLE `resultexams` (
   `examId` int(11) NOT NULL,
   `choise` varchar(1) NOT NULL,
   `semesterId` int(11) NOT NULL,
+  `classId` int(11) NOT NULL,
   `statusId` int(11) NOT NULL,
   `createdAt` bigint(20) NOT NULL,
   `updatedAt` bigint(20) NOT NULL,
@@ -725,10 +727,10 @@ CREATE TABLE `semesters` (
 --
 
 INSERT INTO `semesters` (`id`, `name`, `statusId`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, 'Semester 1', 1, 1653104868, 1653104868, 0),
-(2, 'Tengah Semester 1', 1, 1653104868, 1653104868, 0),
-(3, 'Semester 2', 1, 1653104868, 1653104868, 0),
-(4, 'Tengah Semester 2', 1, 1653104868, 1653104868, 0);
+(1, 'Semester 1', 1, 1653106664, 1653106664, 0),
+(2, 'Tengah Semester 1', 1, 1653106664, 1653106664, 0),
+(3, 'Semester 2', 1, 1653106664, 1653106664, 0),
+(4, 'Tengah Semester 2', 1, 1653106664, 1653106664, 0);
 
 -- --------------------------------------------------------
 
@@ -2041,7 +2043,8 @@ ALTER TABLE `reportstudents`
   ADD KEY `reportstudents_roomId_foreign` (`roomId`),
   ADD KEY `reportstudents_classId_foreign` (`classId`),
   ADD KEY `reportstudents_semesterId_foreign` (`semesterId`),
-  ADD KEY `reportstudents_subjectId_foreign` (`subjectId`);
+  ADD KEY `reportstudents_subjectId_foreign` (`subjectId`),
+  ADD KEY `reportstudents_studentId_foreign` (`studentId`);
 
 --
 -- Indexes for table `resultexams`
@@ -2051,7 +2054,8 @@ ALTER TABLE `resultexams`
   ADD KEY `resultexams_statusId_foreign` (`statusId`),
   ADD KEY `resultexams_semesterId_foreign` (`semesterId`),
   ADD KEY `resultexams_studentId_foreign` (`studentId`),
-  ADD KEY `resultexams_examId_foreign` (`examId`);
+  ADD KEY `resultexams_examId_foreign` (`examId`),
+  ADD KEY `resultexams_classId_foreign` (`classId`);
 
 --
 -- Indexes for table `rooms`
@@ -2397,12 +2401,14 @@ ALTER TABLE `reportstudents`
   ADD CONSTRAINT `reportstudents_classId_foreign` FOREIGN KEY (`classId`) REFERENCES `classes` (`id`),
   ADD CONSTRAINT `reportstudents_roomId_foreign` FOREIGN KEY (`roomId`) REFERENCES `rooms` (`id`),
   ADD CONSTRAINT `reportstudents_semesterId_foreign` FOREIGN KEY (`semesterId`) REFERENCES `semesters` (`id`),
+  ADD CONSTRAINT `reportstudents_studentId_foreign` FOREIGN KEY (`studentId`) REFERENCES `students` (`id`),
   ADD CONSTRAINT `reportstudents_subjectId_foreign` FOREIGN KEY (`subjectId`) REFERENCES `subjects` (`id`);
 
 --
 -- Constraints for table `resultexams`
 --
 ALTER TABLE `resultexams`
+  ADD CONSTRAINT `resultexams_classId_foreign` FOREIGN KEY (`classId`) REFERENCES `classes` (`id`),
   ADD CONSTRAINT `resultexams_examId_foreign` FOREIGN KEY (`examId`) REFERENCES `exams` (`id`),
   ADD CONSTRAINT `resultexams_semesterId_foreign` FOREIGN KEY (`semesterId`) REFERENCES `semesters` (`id`),
   ADD CONSTRAINT `resultexams_statusId_foreign` FOREIGN KEY (`statusId`) REFERENCES `statuss` (`id`),

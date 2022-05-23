@@ -222,8 +222,8 @@ class ReportStudent extends ResourceController
                         ->where('classId', $resultexa->classId)
                         ->where('semesterId', $resultexa->semesterId)
                         ->delete();
-
                 }
+
                 if ($resultexams->transStatus() === false) {
                     $resultexams->transRollback();
                 } else {
@@ -232,7 +232,12 @@ class ReportStudent extends ResourceController
             }
         }
 
-        // $resultexams->truncate();
+        $res = $resultexams->findAll();
+        if (count($res) > 0) {
+            $resultexams->truncate();
+        } else {
+            $resultexams->truncate();
+        }
 
         if ($this->model->transStatus() === false) {
             $this->model->transRollback();
@@ -240,10 +245,6 @@ class ReportStudent extends ResourceController
             $this->model->transCommit();
             return $this->respondCreated(["result" => "success"]);
         }
-
-        return $this->respond([
-            $query
-        ]);
     }
 
     /**
@@ -251,6 +252,166 @@ class ReportStudent extends ResourceController
      *
      * @return mixed
      */
+    /**
+     * @OA\Get(
+     *   path="/api/ReportStudent/report/{classId}/{roomId}/{semesterId}/{perpage}/{page}",
+     *   summary="ReportStudent",
+     *   description="ReportStudent",
+     *   tags={"ReportStudent"},
+     *   @OA\Parameter(
+     *         name="classId",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
+     *   ), 
+     *   @OA\Parameter(
+     *         name="roomId",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
+     *   ), 
+     *   @OA\Parameter(
+     *         name="semesterId",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
+     *   ), 
+     *   @OA\Parameter(
+     *         name="perpage",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="60"
+     *          )
+     *   ), 
+     *   @OA\Parameter(
+     *         name="page",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="integer",
+     *              format="int64",
+     *              example="1"
+     *          )
+     *   ), 
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/ReportStudent")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function report($classId = 1, $roomId = 1, $semesterId = 1, $perpage = 60, $page = 1)
+    {
+        if ($classId != 0) {
+            $this->model
+                ->where('reportstudents.classId',  $classId);
+        }
+        if ($semesterId != 0) {
+            $this->model
+                ->where('reportstudents.semesterId',  $semesterId);
+        }
+        if ($roomId != 0) {
+            $this->model
+                ->where('reportstudents.roomId', $roomId);
+        }
+
+        $record = $this->model
+            ->select('
+                reportstudents.studentId,s.name,reportstudents.classId, c.name className,reportstudents.semesterId,se.name semesterName, reportstudents.roomId, r.name roomName,
+                sum(CASE WHEN reportstudents.subjectId=1 THEN point ELSE null END) subjectId1,
+                sum(CASE WHEN reportstudents.subjectId=2 THEN point ELSE null END) subjectId2,
+                sum(CASE WHEN reportstudents.subjectId=3 THEN point ELSE null END) subjectId3,
+                sum(CASE WHEN reportstudents.subjectId=4 THEN point ELSE null END) subjectId4,
+                sum(CASE WHEN reportstudents.subjectId=5 THEN point ELSE null END) subjectId5,
+                sum(CASE WHEN reportstudents.subjectId=6 THEN point ELSE null END) subjectId6,
+                sum(CASE WHEN reportstudents.subjectId=7 THEN point ELSE null END) subjectId7,
+                sum(CASE WHEN reportstudents.subjectId=8 THEN point ELSE null END) subjectId8,
+                sum(CASE WHEN reportstudents.subjectId=9 THEN point ELSE null END) subjectId9,
+                sum(CASE WHEN reportstudents.subjectId=10 THEN point ELSE null END) subjectId10,
+                sum(CASE WHEN reportstudents.subjectId=11 THEN point ELSE null END) subjectId11,
+                sum(CASE WHEN reportstudents.subjectId=12 THEN point ELSE null END) subjectId12,
+                sum(CASE WHEN reportstudents.subjectId=13 THEN point ELSE null END) subjectId13,
+                sum(CASE WHEN reportstudents.subjectId=14 THEN point ELSE null END) subjectId14,
+                sum(CASE WHEN reportstudents.subjectId=15 THEN point ELSE null END) subjectId15,
+                sum(CASE WHEN reportstudents.subjectId=16 THEN point ELSE null END) subjectId16,
+                sum(CASE WHEN reportstudents.subjectId=17 THEN point ELSE null END) subjectId17,
+                sum(CASE WHEN reportstudents.subjectId=18 THEN point ELSE null END) subjectId18,
+                sum(CASE WHEN reportstudents.subjectId=19 THEN point ELSE null END) subjectId19,
+                sum(CASE WHEN reportstudents.subjectId=20 THEN point ELSE null END) subjectId20,
+                sum(CASE WHEN reportstudents.subjectId=21 THEN point ELSE null END) subjectId21,
+                sum(CASE WHEN reportstudents.subjectId=22 THEN point ELSE null END) subjectId22,
+                sum(CASE WHEN reportstudents.subjectId=23 THEN point ELSE null END) subjectId23,
+                sum(CASE WHEN reportstudents.subjectId=24 THEN point ELSE null END) subjectId24,
+                sum(CASE WHEN reportstudents.subjectId=25 THEN point ELSE null END) subjectId25
+                 ')
+            ->join('students s', 's.id = reportstudents.studentId')
+            ->join('classes c', 'c.id = reportstudents.classId')
+            ->join('rooms r', 'r.id = reportstudents.roomId')
+            ->join('semesters se', 'se.id = reportstudents.semesterId')
+            // ->where('reportstudents.roomId', $roomId)
+            // ->where('reportstudents.classId',  $classId)
+            // ->where('reportstudents.semesterId',  $semesterId)
+            ->groupBy('reportstudents.studentId, reportstudents.classId,reportstudents.semesterId')
+            ->orderBy('reportstudents.studentId,reportstudents.classId, s.roomId')
+            ->paginate($perpage, 'default', $page);
+
+        $countPage =  $this->model->pager->getPageCount();
+        $currentPage =  $this->model->pager->getCurrentPage();
+        $lastPage =  $this->model->pager->getLastPage();
+        $firstPage =  $this->model->pager->getFirstPage();
+        $perPage =  $this->model->pager->getPerPage();
+        // $details = $model->pager->getDetails();
+
+        if ($page > $countPage)
+            return  $this->respond([
+                'totalPage' => $countPage,
+                'currentPage' => $currentPage,
+                'lastPage' => $lastPage,
+                'firstPage' => $firstPage,
+                'perPage' => $perPage,
+                'data' => []
+            ]);
+
+        else {
+            return  $this->respond([
+                'totalPage' => $countPage,
+                'currentPage' => $currentPage,
+                'lastPage' => $lastPage,
+                'firstPage' => $firstPage,
+                'perPage' => $perPage,
+                'data' => $record
+            ]);
+        }
+    }
     /**
      * @OA\Get(
      *   path="/api/ReportStudent/{id}",
