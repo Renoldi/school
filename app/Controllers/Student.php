@@ -623,13 +623,13 @@ class Student extends ResourceController
                 ->first();
 
             if (is_null($user)) {
-                return $this->fail(['error' => 'Invalid username '], 401);
+                return $this->failNotFound('username not found');
             }
 
             $pwd_verify = password_verify($password, $user->password);
 
             if (!$pwd_verify) {
-                return $this->fail(['error' => 'Invalid password.'], 401);
+                return $this->fail('Invalid password');
             }
             $iat = new Time(); // current timestamp value
             $entity = new EntitiesStudent();
