@@ -518,7 +518,8 @@ class Teacher extends ResourceController
       $pwd_verify = password_verify($password, $user->password);
 
       if (!$pwd_verify) {
-        return $this->fail('Invalid password');
+        return $this->fail('Invalid password'); 
+        
       }
       $iat = new Time(); // current timestamp value
       $entity = new EntitiesTeacher();
