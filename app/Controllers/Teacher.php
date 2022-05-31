@@ -503,7 +503,9 @@ class Teacher extends ResourceController
     } else {
 
       $user = $this->model
-        ->select("teachers.*,p.name privilege, s.name status,es.name employeeName")
+        ->select("
+        teachers.id, teachers.email, teachers.nip, teachers.name, teachers.gender, teachers.dob, teachers.privilegeId, teachers.rankId, teachers.rankTmt, teachers.groupId, teachers.educationlevelId, teachers.schoolId, teachers.majorId, teachers.finishEducationLevel, teachers.mutation, teachers.ipAddress, teachers.about, CONCAT('" . base_url() . "/,teachers.image) as image, teachers.statusId, teachers.employeeId, teachers.password, teachers.address, teachers.phone, teachers.createdAt, teachers.updatedAt, teachers.deletedAt,
+        p.name privilege, s.name status,es.name employeeName")
         ->join('privileges p', 'p.id=teachers.privilegeId')
         ->join('statuss s', 's.id=teachers.statusId')
         ->join('employees es', 'es.id=teachers.employeeId')
