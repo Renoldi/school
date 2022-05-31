@@ -501,17 +501,20 @@ class Teacher extends ResourceController
     if (!$this->validate($rules)) {
       return $this->fail($this->validator->getErrors());
     } else {
-
       $user = $this->model
-        ->select("
-        teachers.id, teachers.email, teachers.nip, teachers.name, teachers.gender, teachers.dob, teachers.privilegeId, teachers.rankId, teachers.rankTmt, teachers.groupId, teachers.educationlevelId, teachers.schoolId, teachers.majorId, teachers.finishEducationLevel, teachers.mutation, teachers.ipAddress, teachers.about, CONCAT('" . base_url() . "/,teachers.image) as image, teachers.statusId, teachers.employeeId, teachers.password, teachers.address, teachers.phone, teachers.createdAt, teachers.updatedAt, teachers.deletedAt,
-        p.name privilege, s.name status,es.name employeeName")
+        ->select('
+        teachers.id, teachers.email, teachers.nip, teachers.name, teachers.gender, teachers.dob, teachers.privilegeId, teachers.rankId, teachers.rankTmt, teachers.groupId, teachers.educationlevelId, teachers.schoolId, teachers.majorId, teachers.finishEducationLevel, teachers.mutation, teachers.ipAddress, teachers.about,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.statusId, teachers.employeeId, teachers.password, teachers.address, teachers.phone, teachers.createdAt, teachers.updatedAt, teachers.deletedAt,
+        p.name privilege, s.name status,es.name employeeName')
         ->join('privileges p', 'p.id=teachers.privilegeId')
         ->join('statuss s', 's.id=teachers.statusId')
         ->join('employees es', 'es.id=teachers.employeeId')
         ->where('email', $email)
         ->where('teachers.statusId', 1)
         ->first();
+
+      // return $this->respond([
+      //   $this->model->getLastQuery()->getQuery()
+      // ]);
 
       if (is_null($user)) {
         return $this->failNotFound('email not found');
@@ -520,8 +523,7 @@ class Teacher extends ResourceController
       $pwd_verify = password_verify($password, $user->password);
 
       if (!$pwd_verify) {
-        return $this->fail('Invalid password'); 
-        
+        return $this->fail('Invalid password');
       }
       $iat = new Time(); // current timestamp value
       $entity = new EntitiesTeacher();
