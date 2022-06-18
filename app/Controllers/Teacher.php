@@ -504,7 +504,7 @@ class Teacher extends ResourceController
       $user = $this->model
         ->select('
         teachers.id, teachers.email, teachers.nip, teachers.name, teachers.gender, teachers.dob, teachers.privilegeId, teachers.rankId, teachers.rankTmt, teachers.groupId, teachers.educationlevelId, teachers.schoolId, teachers.majorId, teachers.finishEducationLevel, teachers.mutation, teachers.ipAddress, teachers.about,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.statusId, teachers.employeeId, teachers.password, teachers.address, teachers.phone, teachers.createdAt, teachers.updatedAt, teachers.deletedAt,
-        p.name privilege, s.name status,es.name employeeName')
+        p.name privilegeName, s.name status,es.name employeeName')
         ->join('privileges p', 'p.id=teachers.privilegeId')
         ->join('statuss s', 's.id=teachers.statusId')
         ->join('employees es', 'es.id=teachers.employeeId')
@@ -549,7 +549,7 @@ class Teacher extends ResourceController
         // 'employeeId' => $user->employeeId,
         'employeeName' => $user->employeeName,
         // 'privilegeId' => $user->privilegeId,
-        'privilege' => $user->privilege,
+        'privilegeName' => $user->privilegeName,
       );
       $payload = array(
         "iss" => $user->privilege,

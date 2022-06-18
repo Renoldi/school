@@ -613,7 +613,7 @@ class Student extends ResourceController
             $user =  $this->model
                 ->select('
                 students.id, students.email, students.name, students.classId, students.roomId, students.gender, students.placeOfBirth, students.dayOfBirth, students.nis, students.nisn, students.noKk, students.nik, students.numberOfSiblings, students.fromOfSiblings, students.orphan, students.schoolId, students.address, students.fatherNik, students.fatherName, students.fatherEmployeeId, students.fatherSchoolId, students.fatherincome, students.motherNik, students.motherName, students.motherEmployeeId, students.motherSchoolId, students.motherincome, CONCAT("' . base_url() . '/",students.image) as image, students.phone, students.phoneFamily, students.password, students.ipAddress, students.about, students.statusId, students.privilegeId, students.createdAt, students.updatedAt, students.deletedAt,
-                c.name as class,p.name as privilege,d.id as departmentId,d.name as department,r.name as room, s.name status')
+                c.name as class,p.name privilegeName,d.id as departmentId,d.name as department,r.name as room, s.name status')
                 ->join('rooms r', 'r.id=students.roomId')
                 ->join('privileges p', 'p.id=students.privilegeId')
                 ->join('classes c', 'c.id=students.classId')
@@ -657,7 +657,7 @@ class Student extends ResourceController
                 "roomId" => $user->roomId,
                 "room" => $user->room,
                 // "privilegeId" => $user->privilegeId,
-                "privilege" => $user->privilege,
+                "privilegeName" => $user->privilegeName,
             );
             $payload = array(
                 "iss" => $user->privilege,
