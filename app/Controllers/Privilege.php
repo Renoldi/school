@@ -85,8 +85,8 @@ class Privilege extends ResourceController
             ->select('Privileges.*, s.name statusName')
             ->join('statuss s', 's.id=Privileges.statusId')
             ->where('privileges.id !=', 1)
-
             ->paginate($perpage, 'default', $page);
+            
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
         $lastPage = $model->pager->getLastPage();
