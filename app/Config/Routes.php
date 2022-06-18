@@ -49,6 +49,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->get('Resultexam/exam/(:any)/(:any)/(:num)/(:num)/(:num)', 'Resultexam::exam/$1/$2/$3/$4/$5', ['filter' => ['Role:superadmin,admin,editor']]);
 
     // paging
+    $routes->get('SubjectTeacher/paging/(:any)/(:num)', 'SubjectTeacher::paging/$1/$2', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('Employee/paging/(:any)/(:num)/(:num)', 'Employee::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('Semester/paging/(:any)/(:num)/(:num)', 'Semester::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('Classs/paging/(:any)/(:num)/(:num)', 'Classs::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
@@ -97,6 +98,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
 
     // upload excel
     // $routes->post('Status/fromFile', 'Status::fromFile', ['filter' => ['Role:superadmin,admin']]);
+    $routes->post('SubjectTeacher/fromFile', 'SubjectTeacher::fromFile', ['filter' => ['Role:superadmin,admin']]);
     $routes->post('Classs/fromFile', 'Classs::fromFile', ['filter' => ['Role:superadmin,admin']]);
     $routes->post('Department/fromFile', 'Department::fromFile', ['filter' => ['Role:superadmin,admin']]);
     $routes->post('EducationLevel/fromFile', 'EducationLevel::fromFile', ['filter' => ['Role:superadmin,admin']]);
@@ -123,6 +125,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
 
     // delete
     // $routes->delete('Status/(:num)', 'Status::delete/$1', ['filter' => ['Role:superadmin']]);
+    $routes->delete('SubjectTeacher/(:num)', 'SubjectTeacher::delete/$1', ['filter' => ['Role:superadmin,admin,editor']]);
     $routes->delete('Semester/(:num)', 'Semester::delete/$1', ['filter' => ['Role:superadmin,admin,editor']]);
     $routes->delete('Classs/(:num)', 'Classs::delete/$1', ['filter' => ['Role:superadmin,admin,editor']]);
     $routes->delete('Department/(:num)', 'Department::delete/$1', ['filter' => ['Role:superadmin,admin,editor']]);
@@ -146,6 +149,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->delete('TeacherTask/(:num)', 'TeacherTask::delete/$1', ['filter' => ['Role:superadmin,admin,editor']]);
 
     // resource
+    $routes->resource('SubjectTeacher', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
     $routes->resource('Semester', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
     $routes->resource('Classs', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
     $routes->resource('Department', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
