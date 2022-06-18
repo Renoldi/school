@@ -76,17 +76,17 @@ class Privilege extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['Privileges.statusId' => 1]);
+            $model = $this->model->where(['privileges.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['Privileges.statusId' => 0]);
+            $model = $this->model->where(['privileges.statusId' => 0]);
         }
 
         $data = $model
-            ->select('Privileges.*, s.name statusName')
-            ->join('statuss s', 's.id=Privileges.statusId')
+            ->select('privileges.*, s.name statusName')
+            ->join('statuss s', 's.id=privileges.statusId')
             ->where('privileges.id !=', 1)
             ->paginate($perpage, 'default', $page);
-            
+
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
         $lastPage = $model->pager->getLastPage();
@@ -145,9 +145,9 @@ class Privilege extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-            ->select('Privileges.*, s.name statusName')
-            ->join('statuss s', 's.id=Privileges.statusId')
-            ->where('Privileges.statusId', 1)
+            ->select('privileges.*, s.name statusName')
+            ->join('statuss s', 's.id=privileges.statusId')
+            ->where('privileges.statusId', 1)
             ->where('privileges.id !=', 1)
             ->findAll());
     }
@@ -197,9 +197,9 @@ class Privilege extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('Privileges.*, s.name statusName')
-            ->join('statuss s', 's.id=Privileges.statusId')
-            ->where('Privileges.statusId', 1)
+            ->select('privileges.*, s.name statusName')
+            ->join('statuss s', 's.id=privileges.statusId')
+            ->where('privileges.statusId', 1)
             ->where('privileges.id !=', 1)
             ->find($id);
         if (!$record) {
