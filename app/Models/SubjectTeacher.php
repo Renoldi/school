@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class SubjectTeacher extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'subjectTeachers';
+    protected $table            = 'subjectteachers';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
