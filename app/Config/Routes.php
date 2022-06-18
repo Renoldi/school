@@ -50,6 +50,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
 
     // paging
     $routes->get('Employee/paging/(:any)/(:num)/(:num)', 'Employee::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
+    $routes->get('Semester/paging/(:any)/(:num)/(:num)', 'Semester::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('Classs/paging/(:any)/(:num)/(:num)', 'Classs::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('Department/paging/(:any)/(:num)/(:num)', 'Department::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
     $routes->get('EducationLevel/paging/(:any)/(:num)/(:num)', 'EducationLevel::paging/$1/$2/$3', ['filter' => ['Role:superadmin,admin']]);
@@ -122,6 +123,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
 
     // delete
     // $routes->delete('Status/(:num)', 'Status::delete/$1', ['filter' => ['Role:superadmin']]);
+    $routes->delete('Semester/(:num)', 'Semester::delete/$1', ['filter' => ['Role:superadmin,admin,editor']]);
     $routes->delete('Classs/(:num)', 'Classs::delete/$1', ['filter' => ['Role:superadmin,admin,editor']]);
     $routes->delete('Department/(:num)', 'Department::delete/$1', ['filter' => ['Role:superadmin,admin,editor']]);
     $routes->delete('EducationLevel/(:num)', 'EducationLevel::delete/$1', ['filter' => ['Role:superadmin,admin,editor']]);
@@ -144,6 +146,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->delete('TeacherTask/(:num)', 'TeacherTask::delete/$1', ['filter' => ['Role:superadmin,admin,editor']]);
 
     // resource
+    $routes->resource('Semester', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
     $routes->resource('Classs', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
     $routes->resource('Department', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
     $routes->resource('EducationLevel', ['filter' => ['Role:superadmin,admin,editor'], 'except' => 'index,delete,new']);
