@@ -75,14 +75,14 @@ class Semester extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['Semesters.statusId' => 1]);
+            $model = $this->model->where(['semesters.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['Semesters.statusId' => 0]);
+            $model = $this->model->where(['semesters.statusId' => 0]);
         }
 
         $data = $model
-            ->select('Semesters.*, s.name statusName')
-            ->join('statuss s', 's.id=Semesters.statusId')
+            ->select('semesters.*, s.name statusName')
+            ->join('statuss s', 's.id=semesters.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -188,9 +188,9 @@ class Semester extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('Semesters.*, s.name statusName')
-            ->join('statuss s', 's.id=Semesters.statusId')
-            ->where('Semesters.statusId', 1)->find($id);
+            ->select('semesters.*, s.name statusName')
+            ->join('statuss s', 's.id=semesters.statusId')
+            ->where('semesters.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',

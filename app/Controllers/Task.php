@@ -76,14 +76,14 @@ class Task extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['Tasks.statusId' => 1]);
+            $model = $this->model->where(['tasks.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['Tasks.statusId' => 0]);
+            $model = $this->model->where(['tasks.statusId' => 0]);
         }
 
         $data = $model
-        ->select('Tasks.*, s.name statusName')
-        ->join('statuss s', 's.id=Tasks.statusId')
+        ->select('tasks.*, s.name statusName')
+        ->join('statuss s', 's.id=tasks.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -142,8 +142,8 @@ class Task extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-        ->select('Tasks.*, s.name statusName')
-        ->join('statuss s', 's.id=Tasks.statusId')
+        ->select('tasks.*, s.name statusName')
+        ->join('statuss s', 's.id=tasks.statusId')
         ->findAll());
     }
 
@@ -192,9 +192,9 @@ class Task extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-        ->select('Tasks.*, s.name statusName')
-        ->join('statuss s', 's.id=Tasks.statusId')
-        ->where('Tasks.statusId', 1)->find($id);
+        ->select('tasks.*, s.name statusName')
+        ->join('statuss s', 's.id=tasks.statusId')
+        ->where('tasks.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',

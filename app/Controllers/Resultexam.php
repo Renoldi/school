@@ -77,14 +77,14 @@ class Resultexam extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['Resultexams.statusIdId' => 1]);
+            $model = $this->model->where(['resultexams.statusIdId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['Resultexams.statusIdId' => 0]);
+            $model = $this->model->where(['resultexams.statusIdId' => 0]);
         }
 
         $data = $model
-            ->select('Resultexams.*, s.name statusName')
-            ->join('statuss s', 's.id=Resultexams.statusIdId')
+            ->select('resultexams.*, s.name statusName')
+            ->join('statuss s', 's.id=resultexams.statusIdId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -144,8 +144,8 @@ class Resultexam extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-            ->select('Resultexams.*, s.name statusName')
-            ->join('statuss s', 's.id=Resultexams.statusIdId')
+            ->select('resultexams.*, s.name statusName')
+            ->join('statuss s', 's.id=resultexams.statusIdId')
             ->findAll());
     }
 
@@ -194,8 +194,8 @@ class Resultexam extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('Resultexams.*, s.name statusName')
-            ->join('statuss s', 's.id=Resultexams.statusIdId')
+            ->select('resultexams.*, s.name statusName')
+            ->join('statuss s', 's.id=resultexams.statusIdId')
             ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
