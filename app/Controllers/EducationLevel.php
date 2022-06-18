@@ -76,14 +76,14 @@ class EducationLevel extends ResourceController
     {
         $model = $this->model;
         if ($status == 1) {
-            $model = $this->model->where(['EducationLevels.statusId' => 1]);
+            $model = $this->model->where(['educationLevels.statusId' => 1]);
         } elseif ($status == 0) {
-            $model = $this->model->where(['EducationLevels.statusId' => 0]);
+            $model = $this->model->where(['educationLevels.statusId' => 0]);
         }
 
         $data = $model
-            ->select('EducationLevels.*, s.name statusName')
-            ->join('statuss s', 's.id=EducationLevels.statusId')
+            ->select('educationLevels.*, s.name statusName')
+            ->join('statuss s', 's.id=educationLevels.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
