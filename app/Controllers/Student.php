@@ -47,8 +47,8 @@ class Student extends ResourceController
             ->select('
                 students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dayOfBirth,
                 c.id classId,c.name className,
-                s.id statusId s.name statusName,
-                p.id privilegeId p.name privilegeName,
+                s.id statusId, s.name statusName,
+                p.id privilegeId, p.name privilegeName,
                 students.roomId,
                 students.createdAt,students.updatedAt,students.deletedAt')
             ->findAll();
@@ -159,8 +159,8 @@ class Student extends ResourceController
             ->select('
             students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dayOfBirth,
             c.id classId,c.name className,
-            s.id statusId s.name statusName,
-            p.id privilegeId p.name privilegeName,
+            s.id statusId, s.name statusName,
+            p.id privilegeId, p.name privilegeName,
             students.roomId,
             students.createdAt,students.updatedAt,students.deletedAt')
             ->join('statuss s', 's.id=students.statusId')
@@ -242,8 +242,8 @@ class Student extends ResourceController
             ->select('
                 students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dayOfBirth,
                 c.id classId,c.name className,
-                s.id statusId s.name statusName,
-                p.id privilegeId p.name privilegeName,
+                s.id statusId, s.name statusName,
+                p.id privilegeId, p.name privilegeName,
                 students.roomId,
                 students.createdAt,students.updatedAt,students.deletedAt')
             ->join('statuss s', 's.id=students.statusId')
