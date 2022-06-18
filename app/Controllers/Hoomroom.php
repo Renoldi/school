@@ -84,7 +84,10 @@ class Hoomroom extends ResourceController
         }
 
         $data = $model
-            ->select('hoomrooms.*, s.name statusName')
+            ->select('hoomrooms.*,r.name roomName,c.name className,t.name teacherName, s.name statusName')
+            ->join('rooms r', 'r.id=hoomrooms.roomId')
+            ->join('classes c', 'c.id=hoomrooms.classId')
+            ->join('teachers t', 'tid=hoomrooms.teacherId')
             ->join('statuss s', 's.id=hoomrooms.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -145,7 +148,10 @@ class Hoomroom extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-            ->select('hoomrooms.*, s.name statusName')
+            ->select('hoomrooms.*,r.name roomName,c.name className,t.name teacherName, s.name statusName')
+            ->join('rooms r', 'r.id=hoomrooms.roomId')
+            ->join('classes c', 'c.id=hoomrooms.classId')
+            ->join('teachers t', 'tid=hoomrooms.teacherId')
             ->join('statuss s', 's.id=hoomrooms.statusId')
             ->where('hoomrooms.statusId', 1)->findAll());
     }
@@ -195,7 +201,10 @@ class Hoomroom extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('hoomrooms.*, s.name statusName')
+            ->select('hoomrooms.*,r.name roomName,c.name className,t.name teacherName, s.name statusName')
+            ->join('rooms r', 'r.id=hoomrooms.roomId')
+            ->join('classes c', 'c.id=hoomrooms.classId')
+            ->join('teachers t', 'tid=hoomrooms.teacherId')
             ->join('statuss s', 's.id=hoomrooms.statusId')
             ->where('hoomrooms.statusId', 1)->find($id);
         if (!$record) {
