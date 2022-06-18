@@ -45,7 +45,7 @@ class Student extends ResourceController
     {
         $model = $this->model
             ->select('
-                students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dob,
+                students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dayOfBirth,
                 c.id classId,c.name className,
                 s.id statusId s.name statusName,
                 p.id privilegeId p.name privilegeName,
@@ -157,7 +157,7 @@ class Student extends ResourceController
 
         $data = $model
             ->select('
-            students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dob,
+            students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dayOfBirth,
             c.id classId,c.name className,
             s.id statusId s.name statusName,
             p.id privilegeId p.name privilegeName,
@@ -240,7 +240,7 @@ class Student extends ResourceController
     {
         $record = $this->model
             ->select('
-                students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dob,
+                students.id,students.nisn,students.email,students.name,CONCAT("' . base_url() . '/",image) as image,students.gender,students.ipAddress,students.about,students.dayOfBirth,
                 c.id classId,c.name className,
                 s.id statusId s.name statusName,
                 p.id privilegeId p.name privilegeName,
