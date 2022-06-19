@@ -91,7 +91,7 @@ class Teacher extends ResourceController
       es.id employeeId, es.name employeeName,
       r.id rankId, r.name rankName,
       g.id groupId, g.name groupName,
-      CONCAT(r.name,"/",g.name) rank,
+      IFNULL(CONCAT(r.name,"/",g.name),"") rank,
       sch.id schoolId, sch.name schoolName,
       m.id majorId, m.name majorName')
       // ->alias('t')
