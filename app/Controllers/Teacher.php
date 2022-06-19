@@ -88,9 +88,7 @@ class Teacher extends ResourceController
       teachers.id,teachers.email,teachers.nip,teachers.name,teachers.gender,teachers.dob,teachers.mutation,teachers.ipAddress,teachers.about,teachers.finishEducationLevel,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.address,teachers.phone,
       s.id statusId, s.name statusName,
       p.id privilegeId, p.name privilegeName,
-      es.id employeeId, es.name employeeName,
-      r.id rankId, r.name rankName,
-      g.id groupId, g.name groupName,
+      es.id employeeId, es.name employeeName, 
       IFNULL(CONCAT(r.name,"/",g.name),"") rank,
       sch.id schoolId, sch.name schoolName,
       m.id majorId, m.name majorName')
