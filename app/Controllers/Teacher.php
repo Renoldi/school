@@ -85,7 +85,7 @@ class Teacher extends ResourceController
 
     $data = $model
       ->select('
-      teachers.id,teachers.email,teachers.IFNULL(nip,"")nip,teachers.name,teachers.gender,teachers.dob,teachers.IFNULL(mutation,"")mutation,teachers.ipAddress,teachers.about,teachers.finishEducationLevel,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.address,teachers.phone,
+      teachers.id,teachers.email,IFNULL(teachers.nip,"")nip,teachers.name,teachers.gender,teachers.dob,IFNULL(teachers.mutation,"")mutation,teachers.ipAddress,teachers.about,teachers.finishEducationLevel,CONCAT("' . base_url() . '/",teachers.image) as image,teachers.address,teachers.phone,
       s.id statusId, s.name statusName,
       p.id privilegeId, p.name privilegeName,
       es.id employeeId, es.name employeeName,
