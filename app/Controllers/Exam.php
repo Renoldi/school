@@ -83,8 +83,10 @@ class Exam extends ResourceController
         }
 
         $data = $model
-            ->select('exams.*, s.name statusName')
+            ->select('exams.*, s.name statusName,c.name className,sj.name subjectName')
             ->join('statuss s', 's.id=exams.statusId')
+            ->join('classes c', 'c.id=exams.classId')
+            ->join('subjects sj', 'sj.id=exams.subjectId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -143,7 +145,12 @@ class Exam extends ResourceController
      */
     public function index()
     {
-        return $this->respond($this->model->where('exams.statusId', 1)->findAll());
+        return $this->respond($this->model
+            ->select('exams.*, s.name statusName,c.name className,sj.name subjectName')
+            ->join('statuss s', 's.id=exams.statusId')
+            ->join('classes c', 'c.id=exams.classId')
+            ->join('subjects sj', 'sj.id=exams.subjectId')
+            ->where('exams.statusId', 1)->findAll());
     }
 
     /**
@@ -191,8 +198,10 @@ class Exam extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('exams.*, s.name statusName')
+            ->select('exams.*, s.name statusName,c.name className,sj.name subjectName')
             ->join('statuss s', 's.id=exams.statusId')
+            ->join('classes c', 'c.id=exams.classId')
+            ->join('subjects sj', 'sj.id=exams.subjectId')
             ->where('exams.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
@@ -264,18 +273,16 @@ class Exam extends ResourceController
     {
 
         $model = $this->model
+        ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
+            ->join('statuss s', 's.id=exams.statusId')
+            ->join('classes c', 'c.id=exams.classId')
+            ->join('subjects sj', 'sj.id=exams.subjectId')
             ->where('exams.subjectId', $subjectId)
             ->where('classId', $classId)
-            ->where('exams.status', $status)
-            ->join('classes c', 'c.id=exams.classId')
-            ->join('subjects s', 's.id=exams.subjectId')
-            ->join('subjectdepartements sd', 'sd.subjectId =s.id')
-            ->join('departments d', 'd.id=sd.departmentId');
+            ->where('exams.status', $status);
 
         $data = $model
-            ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
             ->paginate($perpage, 'default', $page);
-        //     ->findAll();
 
         // return  $this->respond([
         //     $model->classes()->getQuery(),
