@@ -83,10 +83,11 @@ class Exam extends ResourceController
         }
 
         $data = $model
-            ->select('exams.*, s.name statusName,c.name className,sj.name subjectName')
+            ->select('exams.*, s.name statusName,c.name className,sj.name subjectName,sm.name semesterName')
             ->join('statuss s', 's.id=exams.statusId')
             ->join('classes c', 'c.id=exams.classId')
             ->join('subjects sj', 'sj.id=exams.subjectId')
+            ->join('semesters sm', 'sm.id=exams.semesterId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -146,10 +147,11 @@ class Exam extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-            ->select('exams.*, s.name statusName,c.name className,sj.name subjectName')
+            ->select('exams.*, s.name statusName,c.name className,sj.name subjectName,sm.name semesterName')
             ->join('statuss s', 's.id=exams.statusId')
             ->join('classes c', 'c.id=exams.classId')
             ->join('subjects sj', 'sj.id=exams.subjectId')
+            ->join('semesters sm', 'sm.id=exams.semesterId')
             ->where('exams.statusId', 1)->findAll());
     }
 
@@ -198,10 +200,11 @@ class Exam extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('exams.*, s.name statusName,c.name className,sj.name subjectName')
+            ->select('exams.*, s.name statusName,c.name className,sj.name subjectName,sm.name semesterName')
             ->join('statuss s', 's.id=exams.statusId')
             ->join('classes c', 'c.id=exams.classId')
             ->join('subjects sj', 'sj.id=exams.subjectId')
+            ->join('semesters sm', 'sm.id=exams.semesterId')
             ->where('exams.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
@@ -273,10 +276,11 @@ class Exam extends ResourceController
     {
 
         $model = $this->model
-            ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
+            ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name subjectName,d.name departmentName,sm.name semesterName')
             ->join('statuss s', 's.id=exams.statusId')
             ->join('classes c', 'c.id=exams.classId')
             ->join('subjects sj', 'sj.id=exams.subjectId')
+            ->join('semesters sm', 'sm.id=exams.semesterId')
             ->where('exams.subjectId', $subjectId)
             ->where('exams.classId', $classId)
             ->where('exams.statusId', $status);
@@ -374,11 +378,12 @@ class Exam extends ResourceController
             $departmentId = $decoded->user->departmentId;
 
             $model = $this->model
-                ->select('exams.id, exams.classId, exams.subjectId, exams.question, exams.questionImage, exams.show, exams.a, exams.b, exams.c, exams.d, exams.e, exams.statusId, exams.semesterId, exams.createdAt, exams.updatedAt, exams.deletedAt,s.name subjectName,d.name departmentName, c.name className')
+                ->select('exams.id, exams.classId, exams.subjectId, exams.question, exams.questionImage, exams.show, exams.a, exams.b, exams.c, exams.d, exams.e, exams.statusId, exams.semesterId, exams.createdAt, exams.updatedAt, exams.deletedAt,s.name subjectName,d.name departmentName, c.name className,sm.name semesterName')
                 ->join('classes c', 'c.id=exams.classId')
                 ->join('subjects s', 's.id=exams.subjectId')
                 ->join('subjectdepartements sd', 'sd.subjectId =s.id')
                 ->join('departments d', 'd.id=sd.departmentId')
+                ->join('semesters sm', 'sm.id=exams.semesterId')
                 ->where('exams.subjectId', $subjectId)
                 ->where('exams.classId', $classId)
                 ->where('exams.statusId', 1)
