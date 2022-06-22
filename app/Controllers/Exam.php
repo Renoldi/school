@@ -88,6 +88,7 @@ class Exam extends ResourceController
             ->join('classes c', 'c.id=exams.classId')
             ->join('subjects sj', 'sj.id=exams.subjectId')
             ->join('semesters sm', 'sm.id=exams.semesterId')
+            ->orderBy("exams.semesterId,exams.subjectId,exams.classId")
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -152,6 +153,7 @@ class Exam extends ResourceController
             ->join('classes c', 'c.id=exams.classId')
             ->join('subjects sj', 'sj.id=exams.subjectId')
             ->join('semesters sm', 'sm.id=exams.semesterId')
+            ->orderBy("exams.semesterId,exams.subjectId,exams.classId")
             ->where('exams.statusId', 1)->findAll());
     }
 
@@ -205,6 +207,7 @@ class Exam extends ResourceController
             ->join('classes c', 'c.id=exams.classId')
             ->join('subjects sj', 'sj.id=exams.subjectId')
             ->join('semesters sm', 'sm.id=exams.semesterId')
+            ->orderBy("exams.semesterId,exams.subjectId,exams.classId")
             ->where('exams.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
@@ -283,7 +286,8 @@ class Exam extends ResourceController
             ->join('semesters sm', 'sm.id=exams.semesterId')
             ->where('exams.subjectId', $subjectId)
             ->where('exams.classId', $classId)
-            ->where('exams.statusId', $status);
+            ->where('exams.statusId', $status)
+            ->orderBy("exams.semesterId,exams.subjectId,exams.classId");
 
         $data = $model
             ->paginate($perpage, 'default', $page);
