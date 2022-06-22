@@ -374,7 +374,7 @@ class Exam extends ResourceController
             $departmentId = $decoded->user->departmentId;
 
             $model = $this->model
-                ->select('exams.id as id,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
+                ->select('exams.id, exams.classId, exams.subjectId, exams.question, exams.questionImage, exams.show, exams.a, exams.b, exams.c, exams.d, exams.e, exams.statusId, exams.semesterId, exams.createdAt, exams.updatedAt, exams.deletedAt,s.name subjectName,d.name as departmentName')
                 ->join('classes c', 'c.id=exams.classId')
                 ->join('subjects s', 's.id=exams.subjectId')
                 ->join('subjectdepartements sd', 'sd.subjectId =s.id')
