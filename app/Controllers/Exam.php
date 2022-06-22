@@ -279,7 +279,7 @@ class Exam extends ResourceController
             ->join('subjects sj', 'sj.id=exams.subjectId')
             ->where('exams.subjectId', $subjectId)
             ->where('exams.classId', $classId)
-            ->where('exams.status', $status);
+            ->where('exams.statusId', $status);
 
         $data = $model
             ->paginate($perpage, 'default', $page);
