@@ -273,7 +273,7 @@ class Exam extends ResourceController
     {
 
         $model = $this->model
-        ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
+            ->select('exams.id as id, question,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
             ->join('statuss s', 's.id=exams.statusId')
             ->join('classes c', 'c.id=exams.classId')
             ->join('subjects sj', 'sj.id=exams.subjectId')
@@ -374,15 +374,15 @@ class Exam extends ResourceController
             $departmentId = $decoded->user->departmentId;
 
             $model = $this->model
-                ->where('exams.subjectId', $subjectId)
-                ->where('classId', $classId)
-                ->where('exams.status', 1)
-                ->where('d.id', $departmentId)
+                ->select('exams.id as id,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
                 ->join('classes c', 'c.id=exams.classId')
                 ->join('subjects s', 's.id=exams.subjectId')
                 ->join('subjectdepartements sd', 'sd.subjectId =s.id')
                 ->join('departments d', 'd.id=sd.departmentId')
-                ->select('exams.id as id,questionImage,show,a,b,c,d,e,c.name as class,s.name as subject,d.name as department')
+                ->where('exams.subjectId', $subjectId)
+                ->where('classId', $classId)
+                ->where('exams.statusId', 1)
+                ->where('d.id', $departmentId)
                 ->orderBy('RAND()');
             $data = $model
                 ->paginate($perpage, 'default', $page);
