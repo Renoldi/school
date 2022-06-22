@@ -374,13 +374,13 @@ class Exam extends ResourceController
             $departmentId = $decoded->user->departmentId;
 
             $model = $this->model
-                ->select('exams.id, exams.classId, exams.subjectId, exams.question, exams.questionImage, exams.show, exams.a, exams.b, exams.c, exams.d, exams.e, exams.statusId, exams.semesterId, exams.createdAt, exams.updatedAt, exams.deletedAt,s.name subjectName,d.name as departmentName')
+                ->select('exams.id, exams.classId, exams.subjectId, exams.question, exams.questionImage, exams.show, exams.a, exams.b, exams.c, exams.d, exams.e, exams.statusId, exams.semesterId, exams.createdAt, exams.updatedAt, exams.deletedAt,s.name subjectName,d.name departmentName, c.name className')
                 ->join('classes c', 'c.id=exams.classId')
                 ->join('subjects s', 's.id=exams.subjectId')
                 ->join('subjectdepartements sd', 'sd.subjectId =s.id')
                 ->join('departments d', 'd.id=sd.departmentId')
                 ->where('exams.subjectId', $subjectId)
-                ->where('classId', $classId)
+                ->where('exams.classId', $classId)
                 ->where('exams.statusId', 1)
                 ->where('d.id', $departmentId)
                 ->orderBy('RAND()');
