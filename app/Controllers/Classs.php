@@ -247,12 +247,18 @@ class Classs extends ResourceController
         $array = new StdobjeToArray($data);
 
         $entity->fill($array->get());
-        if (!$this->model->save($entity)) {
-            return $this->failValidationErrors($this->model->errors());
-        }
-        $record = $this->model->find($this->model->getInsertID());
 
-        return $this->respondCreated($record, 'post created');
+        $user = $this->model->where("name", $entity->name)->first();
+        
+        if ($user) {
+            return $this->fail( $user->name." exist");
+        } else {
+            if (!$this->model->save($entity)) {
+                return $this->failValidationErrors($this->model->errors());
+            }
+            $record = $this->model->find($this->model->getInsertID());
+            return $this->respondCreated($record, 'post created');
+        }
     }
 
     /**
