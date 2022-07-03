@@ -71,13 +71,11 @@ class Classs extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function paging($status = "all", $perpage = 20, $page = 1)
+    public function paging($status = 0, $perpage = 20, $page = 1)
     {
         $model = $this->model;
-        if ($status == 1) {
-            $model = $this->model->where(['classes.statusId' => 1]);
-        } elseif ($status == 0) {
-            $model = $this->model->where(['classes.statusId' => 0]);
+        if ($status != 0) {
+            $model = $this->model->where(['classes.statusId' => $status]);
         }
 
         $data = $model
