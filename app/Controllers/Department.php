@@ -75,11 +75,9 @@ class Department extends ResourceController
      public function paging($status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model;
-        if ($status == 1) {
-            $model = $this->model->where(['departments.statusId' => 1]);
-        } elseif ($status == 0) {
-            $model = $this->model->where(['departments.statusId' => 0]);
-        }
+        if ($status != 0) {
+            $model = $this->model->where(['departments.statusId' => $status]);
+        } 
 
         $data = $model
             ->select('departments.*, s.name statusName')
