@@ -251,7 +251,7 @@ class Classs extends ResourceController
         $user = $this->model->where("name", $entity->name)->first();
 
         if ($user) {
-            return $this->fail(["name" => $user->name . " exist"]);
+            return $this->fail(["name" => "name ". $user->name . " is exist"]);
         } else {
             if (!$this->model->save($entity)) {
                 return $this->failValidationErrors($this->model->errors());
