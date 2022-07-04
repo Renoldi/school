@@ -321,9 +321,8 @@ class Classs extends ResourceController
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->update($id, $entity)) {
-            return $this->failValidationErrors($this->model->errors());
+            return $this->fail($this->model->errors());
         }
-
         return $this->respondUpdated($data, "updated");
     }
 
