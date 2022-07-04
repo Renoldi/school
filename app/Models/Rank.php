@@ -28,7 +28,7 @@ class Rank extends Model
     
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[ranks.name,id,{id}]',
+        'name' => 'required',
         'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
