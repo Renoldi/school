@@ -71,7 +71,7 @@ class Classs extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function paging($status = 0, $perpage = 20, $page = 1)
+    public function paging($status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model;
         if ($status != 0) {

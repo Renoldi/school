@@ -172,7 +172,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->resource('TeacherTask', ['filter' => ['Role:Superadmin,Admin,Editor'], 'except' => 'index,delete,new']);
     $routes->resource('Employee', ['filter' => ['Role:Superadmin'], 'except' => 'index,delete,new']);
 
-    $routes->resource('Privilege', ['filter' => ['Role:Superadmin'], 'only' => 'index,create,show']);
+    $routes->resource('Privilege', ['filter' => ['Role:Superadmin'], 'only' => 'index,create,show']); //update,delete
     $routes->resource('Status', ['filter' => ['Role:Superadmin'], 'only' => 'index,create,show']);
 });
 
