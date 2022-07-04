@@ -245,11 +245,8 @@ class Classs extends ResourceController
 
         $entity = new EntitiesClasss();
         $array = new StdobjeToArray($data);
-
         $entity->fill($array->get());
-
         $user = $this->model->where("name", $entity->name)->first();
-
         if ($user) {
             return $this->fail(["name" => "name ". $user->name . " is exist"]);
         } else {
