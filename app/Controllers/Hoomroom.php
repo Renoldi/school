@@ -75,13 +75,10 @@ class Hoomroom extends ResourceController
      public function paging($status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model;
-        if ($status == 1) {
+        if ($status != 0) {
             $model = $this->model
-                ->where(['hoomrooms.statusId' => 1]);
-        } elseif ($status == 0) {
-            $model = $this->model
-                ->where(['hoomrooms.statusId' => 0]);
-        }
+                ->where(['hoomrooms.statusId' => $status]);
+        }  
 
         $data = $model
             ->select('hoomrooms.*,r.name roomName,c.name className,t.name teacherName, s.name statusName')

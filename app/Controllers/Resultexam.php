@@ -76,12 +76,9 @@ class Resultexam extends ResourceController
      public function paging($status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model;
-        if ($status == 1) {
-            $model = $this->model->where(['resultexams.statusId' => 1]);
-        } elseif ($status == 0) {
-            $model = $this->model->where(['resultexams.statusId' => 0]);
-        }
-
+        if ($status != 0) {
+            $model = $this->model->where(['resultexams.statusId' => $status]);
+        } 
         $data = $model
             ->select('resultexams.*, s.name statusName')
             ->join('statuss s', 's.id=resultexams.statusId')

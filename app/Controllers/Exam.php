@@ -76,11 +76,9 @@ class Exam extends ResourceController
      public function paging($status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model;
-        if ($status == 1) {
-            $model = $this->model->where(['exams.statusId' => 1]);
-        } elseif ($status == 0) {
-            $model = $this->model->where(['exams.statusId' => 0]);
-        }
+        if ($status != 0) {
+            $model = $this->model->where(['exams.statusId' => $status]);
+        } 
 
         $data = $model
             ->select('exams.*, s.name statusName,c.name className,sj.name subjectName,sm.name semesterName')

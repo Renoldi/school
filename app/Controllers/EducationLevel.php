@@ -75,11 +75,9 @@ class EducationLevel extends ResourceController
      public function paging($status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model;
-        if ($status == 1) {
-            $model = $this->model->where(['educationlevels.statusId' => 1]);
-        } elseif ($status == 0) {
-            $model = $this->model->where(['educationlevels.statusId' => 0]);
-        }
+        if ($status != 0) {
+            $model = $this->model->where(['educationlevels.statusId' => $status]);
+        } 
 
         $data = $model
             ->select('educationlevels.*, s.name statusName')

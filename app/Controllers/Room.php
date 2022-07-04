@@ -75,11 +75,9 @@ class Room extends ResourceController
      public function paging($status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model;
-        if ($status == 1) {
-            $model = $this->model->where(['rooms.statusId' => 1]);
-        } elseif ($status == 0) {
-            $model = $this->model->where(['rooms.statusId' => 0]);
-        }
+        if ($status != 0) {
+            $model = $this->model->where(['rooms.statusId' => $status]);
+        } 
 
         $data = $model
         ->select('rooms.*, s.name statusName')
