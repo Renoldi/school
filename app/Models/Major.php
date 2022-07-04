@@ -28,7 +28,7 @@ class Major extends Model
     
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[majors.name,id,{id}]',
+        'name' => 'required',
         'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
