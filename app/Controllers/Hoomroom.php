@@ -72,13 +72,13 @@ class Hoomroom extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-     public function paging($status = 1, $perpage = 20, $page = 1)
+    public function paging($status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model;
         if ($status != 0) {
             $model = $this->model
                 ->where(['hoomrooms.statusId' => $status]);
-        }  
+        }
 
         $data = $model
             ->select('hoomrooms.*,r.name roomName,c.name className,t.name teacherName, s.name statusName')
@@ -261,11 +261,15 @@ class Hoomroom extends ResourceController
         $entity = new EntitiesHoomroom();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        if (!$this->model->save($entity)) {
-            return $this->failValidationErrors($this->model->errors());
+        $user = $this->model->where("name", $entity->name)->first();
+        if ($user) {
+            return $this->fail(["name" => "name " . $user->name . " is exist"]);
+        } else {
+            if (!$this->model->save($entity)) {
+                return $this->failValidationErrors($this->model->errors());
+            }
+            return $this->respondCreated($entity, 'post created');
         }
-
-        return $this->respondCreated($entity, 'post created');
     }
 
     /**

@@ -72,16 +72,16 @@ class Room extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-     public function paging($status = 1, $perpage = 20, $page = 1)
+    public function paging($status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model;
         if ($status != 0) {
             $model = $this->model->where(['rooms.statusId' => $status]);
-        } 
+        }
 
         $data = $model
-        ->select('rooms.*, s.name statusName')
-        ->join('statuss s', 's.id=rooms.statusId')
+            ->select('rooms.*, s.name statusName')
+            ->join('statuss s', 's.id=rooms.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -141,9 +141,9 @@ class Room extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-        ->select('rooms.*, s.name statusName')
-        ->join('statuss s', 's.id=rooms.statusId')
-        ->where('rooms.statusId', 1)->findAll());
+            ->select('rooms.*, s.name statusName')
+            ->join('statuss s', 's.id=rooms.statusId')
+            ->where('rooms.statusId', 1)->findAll());
     }
 
     /**
@@ -191,9 +191,9 @@ class Room extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-        ->select('rooms.*, s.name statusName')
-        ->join('statuss s', 's.id=rooms.statusId')
-        ->where('rooms.statusId', 1)->find($id);
+            ->select('rooms.*, s.name statusName')
+            ->join('statuss s', 's.id=rooms.statusId')
+            ->where('rooms.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -251,11 +251,15 @@ class Room extends ResourceController
         $entity = new EntitiesRoom();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        if (!$this->model->save($entity)) {
-            return $this->failValidationErrors($this->model->errors());
+        $user = $this->model->where("name", $entity->name)->first();
+        if ($user) {
+            return $this->fail(["name" => "name " . $user->name . " is exist"]);
+        } else {
+            if (!$this->model->save($entity)) {
+                return $this->failValidationErrors($this->model->errors());
+            }
+            return $this->respondCreated($entity, 'post created');
         }
-
-        return $this->respondCreated($entity, 'post created');
     }
 
     /**

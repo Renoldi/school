@@ -262,7 +262,6 @@ class Privilege extends ResourceController
         ->save($entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
-
         return $this->respondCreated($entity, 'post created');
     }
 
