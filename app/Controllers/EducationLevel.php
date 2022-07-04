@@ -72,12 +72,12 @@ class EducationLevel extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-     public function paging($status = 1, $perpage = 20, $page = 1)
+    public function paging($status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model;
         if ($status != 0) {
             $model = $this->model->where(['educationlevels.statusId' => $status]);
-        } 
+        }
 
         $data = $model
             ->select('educationlevels.*, s.name statusName')
@@ -248,12 +248,17 @@ class EducationLevel extends ResourceController
         $array = new StdobjeToArray($data);
 
         $entity->fill($array->get());
-        if (!$this->model->save($entity)) {
-            return $this->failValidationErrors($this->model->errors());
-        }
-        $record = $this->model->find($this->model->getInsertID());
+        $user = $this->model->where("name", $entity->name)->first();
 
-        return $this->respondCreated($record, 'post created');
+        if ($user) {
+            return $this->fail(["name" => "name " . $user->name . " is exist"]);
+        } else {
+            if (!$this->model->save($entity)) {
+                return $this->failValidationErrors($this->model->errors());
+            }
+            $record = $this->model->find($this->model->getInsertID());
+            return $this->respondCreated($record, 'post created');
+        }
     }
 
     /**
@@ -412,15 +417,12 @@ class EducationLevel extends ResourceController
             return $this->fail("data not valid");
         }
 
-
-
         $entity = new EntitiesEducationLevel();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->update($id, $entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
-
         return $this->respondUpdated($data, "updated");
     }
 
