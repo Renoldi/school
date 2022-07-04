@@ -147,6 +147,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->delete('Task/(:num)', 'Task::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->delete('Teacher/(:num)', 'Teacher::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->delete('TeacherTask/(:num)', 'TeacherTask::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->delete('Employee/(:num)', 'Employee::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
 
     // resource
     $routes->resource('SubjectTeacher', ['filter' => ['Role:Superadmin,Admin,Editor'], 'except' => 'index,delete,new']);
