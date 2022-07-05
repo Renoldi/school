@@ -142,8 +142,9 @@ class Room extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-            ->select('rooms.*, s.name statusName')
+            ->select('rooms.*, s.name statusName,d.name departmentName')
             ->join('statuss s', 's.id=rooms.statusId')
+            ->join('departments d', 'd.id=rooms.departmentId')
             ->where('rooms.statusId', 1)->findAll());
     }
 
@@ -192,8 +193,9 @@ class Room extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('rooms.*, s.name statusName')
+            ->select('rooms.*, s.name statusName,d.name departmentName')
             ->join('statuss s', 's.id=rooms.statusId')
+            ->join('departments d', 'd.id=rooms.departmentId')
             ->where('rooms.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
