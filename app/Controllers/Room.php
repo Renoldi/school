@@ -80,8 +80,9 @@ class Room extends ResourceController
         }
 
         $data = $model
-            ->select('rooms.*, s.name statusName')
+            ->select('rooms.*, s.name statusName,d.name departmentName')
             ->join('statuss s', 's.id=rooms.statusId')
+            ->join('departments d', 'd.id=rooms.departmentId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
