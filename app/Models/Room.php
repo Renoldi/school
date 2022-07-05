@@ -29,7 +29,7 @@ class Room extends Model
 
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[rooms.name,id,{id}]',
+        'name' => 'required',
         'statusId' => 'required|integer',
         'departmentId' => 'required|integer',
     ];
