@@ -199,6 +199,70 @@ class Department extends ResourceController
 
         return $this->respond($record);
     }
+    /**
+     * @OA\Get(
+     *   path="/api/Department/where/{name}",
+     *   summary="Department",
+     *   description="Department",
+     *   tags={"Department"},
+     *   @OA\Parameter(
+     *         name="name",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="string",
+     *              example=""
+     *          )
+     *   ), 
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Department")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function where($name = "all")
+    {
+
+        if (is_numeric($name)) {
+            $this->model
+                ->where('departments.id', $name);
+        } else
+        if ($name != "all") {
+            $this->model
+                ->like('departments.name', $name);
+        } else {
+            $this->model
+                ->limit(10);
+        }
+        $record = $this->model
+            ->select('departments.*, s.name statusName')
+            ->join('statuss s', 's.id=departments.statusId')
+            ->where('departments.statusId', 1)
+            ->findAll();
+        if (!$record) {
+            return $this->failNotFound(sprintf(
+                'not found',
+                $name
+            ));
+        }
+
+        return $this->respond($record);
+    }
 
     /**
      * Create a new resource object, from "posted" parameters
