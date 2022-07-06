@@ -216,13 +216,13 @@ class Teacher extends ResourceController
         } else if ($name != "") {
             $this->model
                 ->like('name', $name);
-        } else {
-            $this->model
-                ->limit(10);
-        }
+        } 
+        
         $record = $this->model
             ->select('name')
             ->where('statusId', 1)
+            ->where('id !=', 1)
+            ->limit(10)
             ->findAll();
         if (!$record) {
             return $this->failNotFound(sprintf(
