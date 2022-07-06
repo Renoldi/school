@@ -243,9 +243,9 @@ class Department extends ResourceController
                 ->where('id', $name);
         } else if ($name != "") {
             $this->model
-                ->like('name', $name);
+                ->like('name', $name,'both');
         } 
-        
+
         $record = $this->model
             ->select('name')
             ->where('statusId', 1)
