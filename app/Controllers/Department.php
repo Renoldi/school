@@ -240,18 +240,17 @@ class Department extends ResourceController
 
         if (is_numeric($name)) {
             $this->model
-                ->where('departments.id', $name);
+                ->where('id', $name);
         } else if ($name != "") {
             $this->model
-                ->like('departments.name', $name);
+                ->like('name', $name);
         } else {
             $this->model
                 ->limit(10);
         }
         $record = $this->model
-            ->select('departments.*, s.name statusName')
-            ->join('statuss s', 's.id=departments.statusId')
-            ->where('departments.statusId', 1)
+            ->select('name')
+            ->where('statusId', 1)
             ->findAll();
         if (!$record) {
             return $this->failNotFound(sprintf(

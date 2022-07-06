@@ -164,13 +164,74 @@ class Teacher extends ResourceController
   {
     return $this->respond(
       $this->model
-        ->select(' id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,s.id statusId, s.name statusName, es.id employeeId, es.name employeeName ,isPn,address,phone,createdAt,updatedAt,deletedAt')
+        ->select('id,email,nip,name,gender,dob,privilegeId,rankId,rankTmt,groupId,schoolId,majorId,finishEducationLevel,mutation,ipAddress,about,CONCAT("' . base_url() . '/",image) as image,s.id statusId, s.name statusName, es.id employeeId, es.name employeeName ,isPn,address,phone,createdAt,updatedAt,deletedAt')
         ->where('statusId', 1)
         ->where('teachers.privilegeId !=', 1)
         ->join('statuss s', 's.id=teachers.statusId')
         ->findAll()
     );
   }
+
+   /**
+     * @OA\Get(
+     *   path="/api/Teacher/where/{name}",
+     *   summary="Teacher",
+     *   description="Teacher",
+     *   tags={"Teacher"},
+     *   @OA\Parameter(
+     *         name="name",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="string",
+     *              example=""
+     *          )
+     *   ), 
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Department")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function where($name = "all")
+    {
+        if (is_numeric($name)) {
+            $this->model
+                ->where('id', $name);
+        } else if ($name != "") {
+            $this->model
+                ->like('name', $name);
+        } else {
+            $this->model
+                ->limit(10);
+        }
+        $record = $this->model
+            ->select('name')
+            ->where('statusId', 1)
+            ->findAll();
+        if (!$record) {
+            return $this->failNotFound(sprintf(
+                'not found',
+                $name
+            ));
+        }
+        return $this->respond($record);
+    }
 
   /**
    * Return the properties of a resource object
