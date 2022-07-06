@@ -74,12 +74,12 @@ class Teacher extends ResourceController
    * security={{"token": {}}},
    * )
    */
-   public function paging($status = 1, $perpage = 20, $page = 1)
+  public function paging($status = 1, $perpage = 20, $page = 1)
   {
     $model = $this->model;
     if ($status != 0) {
       $model = $this->model->where(['teachers.statusId' => $status]);
-    } 
+    }
 
     $data = $model
       ->select('
@@ -172,66 +172,69 @@ class Teacher extends ResourceController
     );
   }
 
-   /**
-     * @OA\Get(
-     *   path="/api/Teacher/where/{name}",
-     *   summary="Teacher",
-     *   description="Teacher",
-     *   tags={"Teacher"},
-     *   @OA\Parameter(
-     *         name="name",
-     *         in="path",
-     *         required=true,
-     *           @OA\Schema(
-     *              type="string",
-     *              example=""
-     *          )
-     *   ), 
-     *   @OA\Response(
-     *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Department")
-     *   ), 
-     *   @OA\Response(
-     *     response=400, description="Bad Request"
-     *   ),
-     *   @OA\Response(
-     *     response=404, description="404 not found",
-     *     @OA\JsonContent(  
-     *      @OA\Property(property="status", type="double",example = 404),
-     *      @OA\Property(property="error", type="double", example = 404),
-     *        @OA\Property(
-     *          property="messages", type="object", 
-     *          @OA\Property(property="error", type="string", example = "not found"),
-     *       )
-     *     )
-     *   ),
-     *   security={{"token": {}}},
-     * )
-     */
-    public function where($name = '')
-    {
-        if (is_numeric($name)) {
-            $this->model
-                ->where('id', $name);
-        } else if ($name != "") {
-            $this->model
-                ->like('name', $name,'both');
-        } 
-
-        $record = $this->model
-            ->select('name')
-            ->where('statusId', 1)
-            ->where('id !=', 1)
-            ->limit(10)
-            ->findAll();
-        if (!$record) {
-            return $this->failNotFound(sprintf(
-                'not found',
-                $name
-            ));
-        }
-        return $this->respond($record);
+  /**
+   * @OA\Get(
+   *   path="/api/Teacher/where/{name}",
+   *   summary="Teacher",
+   *   description="Teacher",
+   *   tags={"Teacher"},
+   *   @OA\Parameter(
+   *         name="name",
+   *         in="path",
+   *         required=true,
+   *           @OA\Schema(
+   *              type="string",
+   *              example=""
+   *          )
+   *   ), 
+   *   @OA\Response(
+   *     response=200, description="ok",
+   *      @OA\JsonContent(ref="#/components/schemas/Department")
+   *   ), 
+   *   @OA\Response(
+   *     response=400, description="Bad Request"
+   *   ),
+   *   @OA\Response(
+   *     response=404, description="404 not found",
+   *     @OA\JsonContent(  
+   *      @OA\Property(property="status", type="double",example = 404),
+   *      @OA\Property(property="error", type="double", example = 404),
+   *        @OA\Property(
+   *          property="messages", type="object", 
+   *          @OA\Property(property="error", type="string", example = "not found"),
+   *       )
+   *     )
+   *   ),
+   *   security={{"token": {}}},
+   * )
+   */
+  public function where($name = '')
+  {
+    if (is_numeric($name)) {
+      $this->model
+        ->where('id', $name);
+    } else if ($name != "") {
+      $this->model
+        ->like('name', $name, 'both');
     }
+
+    $record = $this->model
+      ->select('name')
+      ->where('statusId', 1)
+      ->where('id !=', 1)
+      ->limit(10)
+      ->get()->getResult();
+    // return $this->respond([
+    //   $this->model->getLastQuery()->getQuery()
+    // ]);
+    if (!$record) {
+      return $this->failNotFound(sprintf(
+        'not found',
+        $name
+      ));
+    }
+    return $this->respond($record);
+  }
 
   /**
    * Return the properties of a resource object

@@ -250,7 +250,7 @@ class Department extends ResourceController
             ->select('name')
             ->where('statusId', 1)
             ->limit(10)
-            ->findAll();
+            ->get()->getResult();
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',
