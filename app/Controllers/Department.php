@@ -241,8 +241,7 @@ class Department extends ResourceController
         if (is_numeric($name)) {
             $this->model
                 ->where('departments.id', $name);
-        } else
-        if ($name != "all") {
+        } else if ($name != "") {
             $this->model
                 ->like('departments.name', $name);
         } else {
