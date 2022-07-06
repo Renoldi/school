@@ -261,15 +261,10 @@ class Hoomroom extends ResourceController
         $entity = new EntitiesHoomroom();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        $user = $this->model->where("name", $entity->name)->first();
-        if ($user) {
-            return $this->fail(["name" => "name " . $user->name . " is exist"]);
-        } else {
-            if (!$this->model->save($entity)) {
-                return $this->failValidationErrors($this->model->errors());
-            }
-            return $this->respondCreated($entity, 'post created');
+        if (!$this->model->save($entity)) {
+            return $this->failValidationErrors($this->model->errors());
         }
+        return $this->respondCreated($entity, 'post created');
     }
 
     /**
