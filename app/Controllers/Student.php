@@ -159,7 +159,7 @@ class Student extends ResourceController
             c.id classId,c.name className,
             s.id statusId, s.name statusName,
             p.id privilegeId, p.name privilegeName,
-            students.roomId,
+            students.roomId,r.name roomName,
             students.createdAt,students.updatedAt,students.deletedAt')
             ->join('statuss s', 's.id=students.statusId')
             ->join('privileges p', 'p.id=students.privilegeId')
@@ -242,7 +242,7 @@ class Student extends ResourceController
                 c.id classId,c.name className,
                 s.id statusId, s.name statusName,
                 p.id privilegeId, p.name privilegeName,
-                students.roomId,
+                students.roomId,r.name roomName,
                 students.createdAt,students.updatedAt,students.deletedAt')
             ->join('statuss s', 's.id=students.statusId')
             ->join('privileges p', 'p.id=students.privilegeId')
@@ -467,8 +467,6 @@ class Student extends ResourceController
             return $this->fail("data not valid");
         }
 
-
-
         $entity = new EntitiesStudent();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
@@ -611,7 +609,7 @@ class Student extends ResourceController
             $user =  $this->model
                 ->select('
                 students.id, students.email, students.name, students.classId, students.roomId, students.gender, students.placeOfBirth, students.dayOfBirth, students.nis, students.nisn, students.noKk, students.nik, students.numberOfSiblings, students.fromOfSiblings, students.orphan, students.schoolId, students.address, students.fatherNik, students.fatherName, students.fatherEmployeeId, students.fatherSchoolId, students.fatherincome, students.motherNik, students.motherName, students.motherEmployeeId, students.motherSchoolId, students.motherincome, CONCAT("' . base_url() . '/",students.image) as image, students.phone, students.phoneFamily, students.password, students.ipAddress, students.about, students.statusId, students.privilegeId, students.createdAt, students.updatedAt, students.deletedAt,
-                c.name as class,p.name privilegeName,d.id as departmentId,d.name as department,r.name as room, s.name status')
+                c.name as class,p.name privilegeName,d.id as departmentId,d.name as department,r.name as roomName, s.name status')
                 ->join('rooms r', 'r.id=students.roomId')
                 ->join('privileges p', 'p.id=students.privilegeId')
                 ->join('classes c', 'c.id=students.classId')
@@ -653,7 +651,7 @@ class Student extends ResourceController
                 "classId" => $user->classId,
                 "class" => $user->class,
                 "roomId" => $user->roomId,
-                "room" => $user->room,
+                "roomName" => $user->roomName,
                 // "privilegeId" => $user->privilegeId,
                 "privilegeName" => $user->privilegeName,
             );
