@@ -249,7 +249,7 @@ class Department extends ResourceController
         $record = $this->model
             ->select('name')
             ->where('statusId', 1)
-            ->limit(10)
+            ->limit(20)
             ->get()->getResult();
         if (!$record) {
             return $this->failNotFound(sprintf(
