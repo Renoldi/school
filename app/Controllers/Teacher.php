@@ -222,7 +222,7 @@ class Teacher extends ResourceController
       ->select('name')
       ->where('statusId', 1)
       ->where('id !=', 1)
-      ->limit(20)
+      ->limit(10)
       ->get()->getResult();
     // return $this->respond([
     //   $this->model->getLastQuery()->getQuery()
