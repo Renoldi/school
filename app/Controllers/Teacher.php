@@ -208,7 +208,7 @@ class Teacher extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function where($name = "all")
+    public function where($name = '')
     {
         if (is_numeric($name)) {
             $this->model

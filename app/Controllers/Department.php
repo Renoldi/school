@@ -235,7 +235,7 @@ class Department extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function where($name = "all")
+    public function where($name = '')
     {
 
         if (is_numeric($name)) {
@@ -243,8 +243,8 @@ class Department extends ResourceController
                 ->where('id', $name);
         } else if ($name != "") {
             $this->model
-                ->like('name', $name,'both');
-        } 
+                ->like('name', $name, 'both');
+        }
 
         $record = $this->model
             ->select('name')
