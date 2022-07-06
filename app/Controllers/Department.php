@@ -247,7 +247,7 @@ class Department extends ResourceController
         }
 
         $record = $this->model
-            ->select('name')
+            ->select('id,name')
             ->where('statusId', 1)
             ->limit(10)
             ->get()->getResult();

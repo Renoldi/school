@@ -219,7 +219,7 @@ class Teacher extends ResourceController
     }
 
     $record = $this->model
-      ->select('name')
+      ->select('id,name')
       ->where('statusId', 1)
       ->where('id !=', 1)
       ->limit(10)
