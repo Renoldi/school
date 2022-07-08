@@ -67,7 +67,7 @@ class TeacherTask extends ResourceController
         $model = $this->model;
 
         $data = $model
-            ->select('teachertasks.id,t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertasks.duration')
+            ->select('teachertasks.id,t.id teacherId, t.name teacherName,ta.id taskId, ta.name taskName, teachertasks.duration,teachertasks.createdAt,teachertasks.updatedAt,teachertasks.deletedAt')
             ->join('teachers t', 't.id = teachertasks.teacherId')
             ->join('tasks ta', 'ta.id = teachertasks.taskId')
             ->orderBy('t.id')
@@ -176,7 +176,7 @@ class TeacherTask extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('teachertasks.id,t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertasks.duration')
+            ->select('teachertasks.id,t.id teacherId, t.name teacherName,ta.id taskId, ta.name taskName, teachertasks.duration,teachertasks.createdAt,teachertasks.updatedAt,teachertasks.deletedAt')
             ->join('teachers t', 't.id = teachertasks.teacherId')
             ->join('tasks ta', 'ta.id = teachertasks.taskId')
             ->find($id);
