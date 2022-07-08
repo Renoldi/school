@@ -39,7 +39,7 @@ class Role implements FilterInterface
                     'status'   => 401,
                     'error'    => true,
                     'messages' => [
-                        'error' => 'Unauthorized forbiden access'
+                        'error' => 'Unauthorized forbiden access '. $decoded->user->privilegeName.$arguments
                     ]
                 ])
                 ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);

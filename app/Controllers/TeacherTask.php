@@ -67,9 +67,9 @@ class TeacherTask extends ResourceController
         $model = $this->model;
 
         $data = $model
-            ->select('teachertask.id,t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertask.duration')
-            ->join('teachers t', 't.id = teachertask.teacherId')
-            ->join('tasks ta', 'ta.id = teachertask.taskId')
+            ->select('teachertasks.id,t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertasks.duration')
+            ->join('teachers t', 't.id = teachertasks.teacherId')
+            ->join('tasks ta', 'ta.id = teachertasks.taskId')
             ->orderBy('t.id')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -176,9 +176,9 @@ class TeacherTask extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('teachertask.id,t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertask.duration')
-            ->join('teachers t', 't.id = teachertask.teacherId')
-            ->join('tasks ta', 'ta.id = teachertask.taskId')
+            ->select('teachertasks.id,t.id teacherId, t.name,ta.id taskId, ta.name taskName, teachertasks.duration')
+            ->join('teachers t', 't.id = teachertasks.teacherId')
+            ->join('tasks ta', 'ta.id = teachertasks.taskId')
             ->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
