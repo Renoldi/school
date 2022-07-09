@@ -28,7 +28,7 @@ class Task extends Model
     
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[tasks.name,id,{id}]',
+        'name' => 'required',
         'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
