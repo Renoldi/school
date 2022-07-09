@@ -28,7 +28,7 @@ class Semester extends Model
     
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[semesters.name,id,{id}]',
+        'name' => 'required',
         'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];

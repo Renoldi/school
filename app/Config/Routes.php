@@ -63,7 +63,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->get('Group/paging/(:any)/(:num)/(:num)', 'Group::paging/$1/$2/$3', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->get('Hoomroom/paging/(:any)/(:num)/(:num)', 'Hoomroom::paging/$1/$2/$3', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->get('Major/paging/(:any)/(:num)/(:num)', 'Major::paging/$1/$2/$3', ['filter' => ['Role:Superadmin,Admin']]);
-    $routes->get('Privilege/paging/(:any)/(:num)/(:num)', 'Privilege::paging/$1/$2/$3', ['filter' => ['Role:Superadmin,Admin']]);
+    // $routes->get('Privilege/paging/(:any)/(:num)/(:num)', 'Privilege::paging/$1/$2/$3', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->get('Rank/paging/(:any)/(:num)/(:num)', 'Rank::paging/$1/$2/$3', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->get('Resultexam/paging/(:any)/(:num)/(:num)', 'Resultexam::paging/$1/$2/$3', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->get('Room/paging/(:any)/(:num)/(:num)', 'Room::paging/$1/$2/$3', ['filter' => ['Role:Superadmin,Admin']]);
@@ -86,7 +86,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->post('Group/count', 'Group::count', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Hoomroom/count', 'Hoomroom::count', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Major/count', 'Major::count', ['filter' => ['Role:Superadmin,Admin']]);
-    $routes->post('Privilege/count', 'Privilege::count', ['filter' => ['Role:Superadmin,Admin']]);
+    // $routes->post('Privilege/count', 'Privilege::count', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Rank/count', 'Rank::count', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Resultexam/count', 'Resultexam::count', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Room/count', 'Room::count', ['filter' => ['Role:Superadmin,Admin']]);
@@ -110,7 +110,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->post('Group/fromFile', 'Group::fromFile', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Hoomroom/fromFile', 'Hoomroom::fromFile', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Major/fromFile', 'Major::fromFile', ['filter' => ['Role:Superadmin,Admin']]);
-    $routes->post('Privilege/fromFile', 'Privilege::fromFile', ['filter' => ['Role:Superadmin,Admin']]);
+    // $routes->post('Privilege/fromFile', 'Privilege::fromFile', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Rank/fromFile', 'Rank::fromFile', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Resultexam/fromFile', 'Resultexam::fromFile', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Room/fromFile', 'Room::fromFile', ['filter' => ['Role:Superadmin,Admin']]);
@@ -138,7 +138,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->delete('Group/(:num)', 'Group::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->delete('Hoomroom/(:num)', 'Hoomroom::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->delete('Major/(:num)', 'Major::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
-    $routes->delete('Privilege/(:num)', 'Privilege::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    // $routes->delete('Privilege/(:num)', 'Privilege::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->delete('Rank/(:num)', 'Rank::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->delete('Resultexam/(:num)', 'Resultexam::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->delete('Room/(:num)', 'Room::delete/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
@@ -177,8 +177,8 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->resource('TeacherTask', ['filter' => ['Role:Superadmin,Admin,Editor'], 'except' => 'index,delete,new']);
     $routes->resource('Employee', ['filter' => ['Role:Superadmin'], 'except' => 'index,delete,new']);
 
-    $routes->resource('Privilege', ['filter' => ['Role:Superadmin'], 'only' => 'index,create,show']); //update,delete
-    $routes->resource('Status', ['filter' => ['Role:Superadmin'], 'only' => 'index,create,show']);
+    $routes->resource('Privilege', ['filter' => ['Role:Superadmin'], 'only' => 'index']); //update,delete
+    $routes->resource('Status', ['filter' => ['Role:Superadmin'], 'only' => 'index']);
 });
 
 /*

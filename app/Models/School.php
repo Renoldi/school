@@ -30,7 +30,7 @@ class School extends Model
     
     // Validation
     protected $validationRules      = [
-        'name' => 'required|is_unique[schools.name,id,{id}]',
+        'name' => 'required',
         'statusId' => 'required|integer',
     ];
     protected $validationMessages   = [];
