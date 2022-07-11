@@ -60,10 +60,10 @@ class Status extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-     public function paging($status = 1, $perpage = 20, $page = 1)
+    public function paging($status = 1, $perpage = 20, $page = 1)
     {
         $model = $this->model;
-        
+
         $data = $model
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
@@ -132,26 +132,16 @@ class Status extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function where($name = '')
+    public function where()
     {
-
-        if (is_numeric($name)) {
-            $this->model
-                ->where('id', $name);
-        } else if ($name != "") {
-            $this->model
-                ->like('name', $name, 'both');
-        }
 
         $record = $this->model
             ->select('id,name')
-            ->where('statusId', 1)
             ->limit(10)
             ->get()->getResult();
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',
-                $name
             ));
         }
 
