@@ -97,6 +97,68 @@ class Status extends ResourceController
     }
 
     /**
+     * @OA\Get(
+     *   path="/api/Status/where/{name}",
+     *   summary="Status",
+     *   description="Status",
+     *   tags={"Status"},
+     *   @OA\Parameter(
+     *         name="name",
+     *         in="path",
+     *         required=true,
+     *           @OA\Schema(
+     *              type="string",
+     *              example=""
+     *          )
+     *   ), 
+     *   @OA\Response(
+     *     response=200, description="ok",
+     *      @OA\JsonContent(ref="#/components/schemas/Subject")
+     *   ), 
+     *   @OA\Response(
+     *     response=400, description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *     response=404, description="404 not found",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status", type="double",example = 404),
+     *      @OA\Property(property="error", type="double", example = 404),
+     *        @OA\Property(
+     *          property="messages", type="object", 
+     *          @OA\Property(property="error", type="string", example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function where($name = '')
+    {
+
+        if (is_numeric($name)) {
+            $this->model
+                ->where('id', $name);
+        } else if ($name != "") {
+            $this->model
+                ->like('name', $name, 'both');
+        }
+
+        $record = $this->model
+            ->select('id,name')
+            ->where('statusId', 1)
+            ->limit(10)
+            ->get()->getResult();
+        if (!$record) {
+            return $this->failNotFound(sprintf(
+                'not found',
+                $name
+            ));
+        }
+
+        return $this->respond($record);
+    }
+
+    /**
      * Return an array of resource objects, themselves in array format
      *
      * @return mixed
