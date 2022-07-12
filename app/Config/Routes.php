@@ -45,11 +45,20 @@ $routes->group('api', function ($routes) {
 $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->get('Status/where', 'Status::where', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     
-    $routes->get('Department/where/(:any)', 'Department::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
-    $routes->get('Teacher/where/(:any)', 'Teacher::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
-    $routes->get('Subject/where/(:any)', 'Subject::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->get('Classs/where/(:any)', 'Classs::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('Department/where/(:any)', 'Department::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('EducationLevel/where/(:any)', 'EducationLevel::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('Employee/where/(:any)', 'Employee::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('Group/where/(:any)', 'Group::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('Major/where/(:any)', 'Major::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('Rank/where/(:any)', 'Rank::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->get('Room/where/(:any)', 'Room::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('School/where/(:any)', 'School::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('Semester/where/(:any)', 'Semester::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('Student/where/(:any)', 'Student::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('Subject/where/(:any)', 'Subject::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('Task/where/(:any)', 'Task::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('Teacher/where/(:any)', 'Teacher::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     
     $routes->get('Exam/getExam/(:num)/(:num)/(:num)/(:num)/(:num)', 'Exam::getExam/$1/$2/$3/$4/$5', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->get('Exam/getExamStudent/(:num)/(:num)/(:num)', 'Exam::getExamStudent/$1/$2/$3', ['filter' => ['Role:Student']]);
