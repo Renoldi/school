@@ -311,7 +311,6 @@ class EducationLevel extends ResourceController
 
         $entity->fill($array->get());
         $user = $this->model->where("name", $entity->name)->first();
-
         if ($user) {
             return $this->fail(["name" => "name " . $user->name . " is exist"]);
         } else {
@@ -482,10 +481,15 @@ class EducationLevel extends ResourceController
         $entity = new EntitiesEducationLevel();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        if (!$this->model->update($id, $entity)) {
-            return $this->failValidationErrors($this->model->errors());
+        $user = $this->model->where("name", $entity->name)->first();
+        if ($user) {
+            return $this->fail(["name" => "name " . $user->name . " is exist"]);
+        } else {
+            if (!$this->model->update($id, $entity)) {
+                return $this->failValidationErrors($this->model->errors());
+            }
+            return $this->respondUpdated($data, "updated");
         }
-        return $this->respondUpdated($data, "updated");
     }
 
     /**

@@ -113,7 +113,7 @@ class Group extends ResourceController
         }
     }
 
-     /**
+    /**
      * @OA\Get(
      *   path="/api/Group/where/{name}",
      *   summary="Group",
@@ -379,11 +379,15 @@ class Group extends ResourceController
         $entity = new EntitiesGroup();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        if (!$this->model->update($id, $entity)) {
-            return $this->failValidationErrors($this->model->errors());
+        $user = $this->model->where("name", $entity->name)->first();
+        if ($user) {
+            return $this->fail(["name" => "name " . $user->name . " is exist"]);
+        } else {
+            if (!$this->model->update($id, $entity)) {
+                return $this->failValidationErrors($this->model->errors());
+            }
+            return $this->respondUpdated($data, "updated");
         }
-
-        return $this->respondUpdated($data, "updated");
     }
 
     /**

@@ -265,7 +265,7 @@ class Room extends ResourceController
         }
     }
 
-     /**
+    /**
      * @OA\Get(
      *   path="/api/Room/where/{name}",
      *   summary="Room",
@@ -316,7 +316,7 @@ class Room extends ResourceController
             ->where('statusId', 1)
             ->limit(10)
             ->get()->getResult();
-            
+
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',
@@ -382,17 +382,18 @@ class Room extends ResourceController
         if ($data == null) {
             return $this->fail("data not valid");
         }
-
-
-
         $entity = new EntitiesRoom();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        if (!$this->model->update($id, $entity)) {
-            return $this->failValidationErrors($this->model->errors());
+        $user = $this->model->where("name", $entity->name)->first();
+        if ($user) {
+            return $this->fail(["name" => "name " . $user->name . " is exist"]);
+        } else {
+            if (!$this->model->update($id, $entity)) {
+                return $this->failValidationErrors($this->model->errors());
+            }
+            return $this->respondUpdated($data, "updated");
         }
-
-        return $this->respondUpdated($data, "updated");
     }
 
     /**

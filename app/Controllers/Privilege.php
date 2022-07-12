@@ -76,8 +76,8 @@ class Privilege extends ResourceController
     {
         $model = $this->model;
         if ($status != 0) {
-            $model = $this->model->where(['privileges.statusId' =>$status]);
-        } 
+            $model = $this->model->where(['privileges.statusId' => $status]);
+        }
 
         $data = $model
             ->select('privileges.*, s.name statusName')
@@ -258,8 +258,8 @@ class Privilege extends ResourceController
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model
-        ->where('privileges.id !=', 1)
-        ->save($entity)) {
+            ->where('privileges.id !=', 1)
+            ->save($entity)) {
             return $this->failValidationErrors($this->model->errors());
         }
         return $this->respondCreated($entity, 'post created');
@@ -324,13 +324,17 @@ class Privilege extends ResourceController
         $entity = new EntitiesPrivilege();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        if (!$this->model
-            ->where('privileges.id !=', 1)
-            ->update($id, $entity)) {
-            return $this->failValidationErrors($this->model->errors());
+        $user = $this->model->where("name", $entity->name)->first();
+        if ($user) {
+            return $this->fail(["name" => "name " . $user->name . " is exist"]);
+        } else {
+            if (!$this->model
+                ->where('privileges.id !=', 1)
+                ->update($id, $entity)) {
+                return $this->failValidationErrors($this->model->errors());
+            }
+            return $this->respondUpdated($data, "updated");
         }
-
-        return $this->respondUpdated($data, "updated");
     }
 
     /**
