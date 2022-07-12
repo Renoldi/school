@@ -302,7 +302,6 @@ class Subject extends ResourceController
      */
     public function where($name = '')
     {
-
         if (is_numeric($name)) {
             $this->model
                 ->where('id', $name);
@@ -316,6 +315,7 @@ class Subject extends ResourceController
             ->where('statusId', 1)
             ->limit(10)
             ->get()->getResult();
+            
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',
