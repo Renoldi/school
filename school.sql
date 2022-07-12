@@ -201,10 +201,10 @@ INSERT INTO `groups` (`id`, `name`, `statusId`, `createdAt`, `updatedAt`, `delet
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hoomrooms`
+-- Table structure for table `homerooms`
 --
 
-CREATE TABLE `hoomrooms` (
+CREATE TABLE `homerooms` (
   `id` int(11) NOT NULL,
   `roomId` int(11) NOT NULL,
   `classId` int(11) NOT NULL,
@@ -217,10 +217,10 @@ CREATE TABLE `hoomrooms` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `hoomrooms`
+-- Dumping data for table `homerooms`
 --
 
-INSERT INTO `hoomrooms` (`id`, `roomId`, `classId`, `teacherId`, `duration`, `statusId`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+INSERT INTO `homerooms` (`id`, `roomId`, `classId`, `teacherId`, `duration`, `statusId`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
 (1, 1, 1, 63, 6, 1, 1653104988, 1653104988, 0),
 (2, 2, 1, 9, 6, 1, 1653104988, 1653104988, 0),
 (3, 3, 1, 10, 6, 1, 1653104988, 1653104988, 0),
@@ -320,7 +320,7 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 (87, '20220515040435', 'App\\Database\\Migrations\\Majors', 'default', 'App', 1653104866, 1),
 (88, '20220515041546', 'App\\Database\\Migrations\\Schools', 'default', 'App', 1653104866, 1),
 (89, '20220515041547', 'App\\Database\\Migrations\\Teachers', 'default', 'App', 1653104866, 1),
-(90, '20220515041548', 'App\\Database\\Migrations\\Hoomrooms', 'default', 'App', 1653104867, 1),
+(90, '20220515041548', 'App\\Database\\Migrations\\Homerooms', 'default', 'App', 1653104867, 1),
 (91, '20220515041549', 'App\\Database\\Migrations\\SubjectTeacher', 'default', 'App', 1653104867, 1),
 (92, '20220515041550', 'App\\Database\\Migrations\\Tasks', 'default', 'App', 1653104867, 1),
 (93, '20220515041551', 'App\\Database\\Migrations\\TeacherTasks', 'default', 'App', 1653104867, 1),
@@ -1996,14 +1996,14 @@ ALTER TABLE `groups`
   ADD KEY `groups_statusId_foreign` (`statusId`);
 
 --
--- Indexes for table `hoomrooms`
+-- Indexes for table `homerooms`
 --
-ALTER TABLE `hoomrooms`
+ALTER TABLE `homerooms`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `hoomrooms_statusId_foreign` (`statusId`),
-  ADD KEY `hoomrooms_roomId_foreign` (`roomId`),
-  ADD KEY `hoomrooms_classId_foreign` (`classId`),
-  ADD KEY `hoomrooms_teacherId_foreign` (`teacherId`);
+  ADD KEY `homerooms_statusId_foreign` (`statusId`),
+  ADD KEY `homerooms_roomId_foreign` (`roomId`),
+  ADD KEY `homerooms_classId_foreign` (`classId`),
+  ADD KEY `homerooms_teacherId_foreign` (`teacherId`);
 
 --
 -- Indexes for table `majors`
@@ -2211,9 +2211,9 @@ ALTER TABLE `groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `hoomrooms`
+-- AUTO_INCREMENT for table `homerooms`
 --
-ALTER TABLE `hoomrooms`
+ALTER TABLE `homerooms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
@@ -2368,13 +2368,13 @@ ALTER TABLE `groups`
   ADD CONSTRAINT `groups_statusId_foreign` FOREIGN KEY (`statusId`) REFERENCES `statuss` (`id`);
 
 --
--- Constraints for table `hoomrooms`
+-- Constraints for table `homerooms`
 --
-ALTER TABLE `hoomrooms`
-  ADD CONSTRAINT `hoomrooms_classId_foreign` FOREIGN KEY (`classId`) REFERENCES `classes` (`id`),
-  ADD CONSTRAINT `hoomrooms_roomId_foreign` FOREIGN KEY (`roomId`) REFERENCES `rooms` (`id`),
-  ADD CONSTRAINT `hoomrooms_statusId_foreign` FOREIGN KEY (`statusId`) REFERENCES `statuss` (`id`),
-  ADD CONSTRAINT `hoomrooms_teacherId_foreign` FOREIGN KEY (`teacherId`) REFERENCES `teachers` (`id`);
+ALTER TABLE `homerooms`
+  ADD CONSTRAINT `homerooms_classId_foreign` FOREIGN KEY (`classId`) REFERENCES `classes` (`id`),
+  ADD CONSTRAINT `homerooms_roomId_foreign` FOREIGN KEY (`roomId`) REFERENCES `rooms` (`id`),
+  ADD CONSTRAINT `homerooms_statusId_foreign` FOREIGN KEY (`statusId`) REFERENCES `statuss` (`id`),
+  ADD CONSTRAINT `homerooms_teacherId_foreign` FOREIGN KEY (`teacherId`) REFERENCES `teachers` (`id`);
 
 --
 -- Constraints for table `majors`
