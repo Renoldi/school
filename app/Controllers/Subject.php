@@ -305,7 +305,7 @@ class Subject extends ResourceController
         if (is_numeric($name)) {
             $this->model
                 ->where('id', $name);
-        } else if ($name != "") {
+        } else if ($name != "!") {
             $this->model
                 ->like('name', $name, 'both');
         }
