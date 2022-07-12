@@ -48,7 +48,7 @@ class Homerooms extends Migration
         $this->forge->addForeignKey('roomId', 'rooms', 'id');
         $this->forge->addForeignKey('classId', 'classes', 'id');
         $this->forge->addForeignKey('teacherId', 'teachers', 'id');
-        $this->forge->createTable('hoomrooms');
+        $this->forge->createTable('homerooms');
     }
 
     public function down()
