@@ -294,12 +294,12 @@ class Classs extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function where($name = '')
+    public function where($name = '!')
     {
         if (is_numeric($name)) {
             $this->model
                 ->where('id', $name);
-        } else if ($name != "") {
+        } else if ($name != "!") {
             $this->model
                 ->like('name', $name, 'both');
         }
