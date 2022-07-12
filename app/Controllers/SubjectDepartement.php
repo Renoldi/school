@@ -237,14 +237,24 @@ class SubjectDepartement extends ResourceController
 
         $entity = new EntitiesSubjectDepartement();
         $array = new StdobjeToArray($data);
-
         $entity->fill($array->get());
-        if (!$this->model->save($entity)) {
-            return $this->failValidationErrors($this->model->errors());
-        }
-        $record = $this->model->find($this->model->getInsertID());
+        $user = $this->model
+            ->where("departmentId", $entity->departmentId)
+            ->where("subjectId", $entity->subjectId)
+            ->first();
+        if ($user) {
+            return $this->fail([
+                "departmentId" => "departmentId " . $entity->departmentId . " is exist",
+                "subjectId" => "subjectId " .  $entity->subjectId . " is exist"
+            ]);
+        } else {
+            if (!$this->model->save($entity)) {
+                return $this->failValidationErrors($this->model->errors());
+            }
+            $record = $this->model->find($this->model->getInsertID());
 
-        return $this->respondCreated($record, 'post created');
+            return $this->respondCreated($record, 'post created');
+        }
     }
 
     /**
@@ -306,11 +316,21 @@ class SubjectDepartement extends ResourceController
         $entity = new EntitiesSubjectDepartement();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
-        if (!$this->model->update($id, $entity)) {
-            return $this->failValidationErrors($this->model->errors());
+        $user = $this->model
+            ->where("departmentId", $entity->departmentId)
+            ->where("subjectId", $entity->subjectId)
+            ->first();
+        if ($user) {
+            return $this->fail([
+                "departmentId" =>  $entity->departmentId . " is exist",
+                "subjectId" => $entity->subjectId . " is exist"
+            ]);
+        } else {
+            if (!$this->model->update($id, $entity)) {
+                return $this->failValidationErrors($this->model->errors());
+            }
+            return $this->respondUpdated($data, "updated");
         }
-
-        return $this->respondUpdated($data, "updated");
     }
 
     /**
