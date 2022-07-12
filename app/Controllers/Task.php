@@ -165,12 +165,14 @@ class Task extends ResourceController
             ->where('statusId', 1)
             ->limit(10)
             ->get()->getResult();
+
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',
                 $name
             ));
-        }
+        } else
+            return $this->respond($record);
     }
 
     /**
