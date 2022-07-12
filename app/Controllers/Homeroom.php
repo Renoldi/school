@@ -2,24 +2,26 @@
 
 namespace App\Controllers;
 
-use App\Entities\Hoomroom as EntitiesHoomroom;
+use App\Entities\Homeroom as EntitiesHomeroom;
 use OpenApi\Annotations as OA;
 use App\Libraries\StdobjeToArray;
-use App\Models\Hoomroom as ModelsHoomroom;
+use App\Models\Homeroom as ModelsHomeroom;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
-class Hoomroom extends ResourceController
+class Homeroom extends ResourceController
 {
-    protected $modelName = ModelsHoomroom::class;
+
+    // Homeroom
+    protected $modelName = ModelsHomeroom::class;
     protected $format    = 'json';
     use ResponseTrait;
     /**
      * @OA\Get(
-     *   path="/api/Hoomroom/paging/{status}/{perpage}/{page}",
-     *   summary="Hoomroom",
-     *   description="Hoomroom",
-     *   tags={"Hoomroom"},
+     *   path="/api/Homeroom/paging/{status}/{perpage}/{page}",
+     *   summary="Homeroom",
+     *   description="Homeroom",
+     *   tags={"Homeroom"},
      *   @OA\Parameter(
      *         name="status",
      *         in="path",
@@ -53,7 +55,7 @@ class Hoomroom extends ResourceController
   
      *   @OA\Response(
      *     response=200,description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Hoomroom")
+     *      @OA\JsonContent(ref="#/components/schemas/Homeroom")
      *   ),
      *   @OA\Response(
      *     response=400,description="Bad Request"
@@ -77,15 +79,15 @@ class Hoomroom extends ResourceController
         $model = $this->model;
         if ($status != 0) {
             $model = $this->model
-                ->where(['hoomrooms.statusId' => $status]);
+                ->where(['homerooms.statusId' => $status]);
         }
 
         $data = $model
-            ->select('hoomrooms.*,r.name roomName,c.name className,t.name teacherName, s.name statusName')
-            ->join('rooms r', 'r.id=hoomrooms.roomId')
-            ->join('classes c', 'c.id=hoomrooms.classId')
-            ->join('teachers t', 't.id=hoomrooms.teacherId')
-            ->join('statuss s', 's.id=hoomrooms.statusId')
+            ->select('homerooms.*,r.name roomName,c.name className,t.name teacherName, s.name statusName')
+            ->join('rooms r', 'r.id=homerooms.roomId')
+            ->join('classes c', 'c.id=homerooms.classId')
+            ->join('teachers t', 't.id=homerooms.teacherId')
+            ->join('statuss s', 's.id=homerooms.statusId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -125,15 +127,15 @@ class Hoomroom extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Hoomroom",
-     *   summary="Hoomroom",
-     *   description="Hoomroom",
-     *   tags={"Hoomroom"},
+     *   path="/api/Homeroom",
+     *   summary="Homeroom",
+     *   description="Homeroom",
+     *   tags={"Homeroom"},
      *   @OA\Response(
      *     response=200, description="ok",
      *     @OA\JsonContent(
      *      type="array",
-     *       @OA\Items(ref="#/components/schemas/Hoomroom")
+     *       @OA\Items(ref="#/components/schemas/Homeroom")
      *     ),
      *   ),
      *   @OA\Response(
@@ -145,12 +147,12 @@ class Hoomroom extends ResourceController
     public function index()
     {
         return $this->respond($this->model
-            ->select('hoomrooms.*,r.name roomName,c.name className,t.name teacherName, s.name statusName')
-            ->join('rooms r', 'r.id=hoomrooms.roomId')
-            ->join('classes c', 'c.id=hoomrooms.classId')
-            ->join('teachers t', 't.id=hoomrooms.teacherId')
-            ->join('statuss s', 's.id=hoomrooms.statusId')
-            ->where('hoomrooms.statusId', 1)->findAll());
+            ->select('homerooms.*,r.name roomName,c.name className,t.name teacherName, s.name statusName')
+            ->join('rooms r', 'r.id=homerooms.roomId')
+            ->join('classes c', 'c.id=homerooms.classId')
+            ->join('teachers t', 't.id=homerooms.teacherId')
+            ->join('statuss s', 's.id=homerooms.statusId')
+            ->where('homerooms.statusId', 1)->findAll());
     }
 
     /**
@@ -160,10 +162,10 @@ class Hoomroom extends ResourceController
      */
     /**
      * @OA\Get(
-     *   path="/api/Hoomroom/{id}",
-     *   summary="Hoomroom",
-     *   description="Hoomroom",
-     *   tags={"Hoomroom"},
+     *   path="/api/Homeroom/{id}",
+     *   summary="Homeroom",
+     *   description="Homeroom",
+     *   tags={"Homeroom"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -176,7 +178,7 @@ class Hoomroom extends ResourceController
      *   ), 
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Hoomroom")
+     *      @OA\JsonContent(ref="#/components/schemas/Homeroom")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -198,12 +200,12 @@ class Hoomroom extends ResourceController
     public function show($id = null)
     {
         $record = $this->model
-            ->select('hoomrooms.*,r.name roomName,c.name className,t.name teacherName, s.name statusName')
-            ->join('rooms r', 'r.id=hoomrooms.roomId')
-            ->join('classes c', 'c.id=hoomrooms.classId')
-            ->join('teachers t', 't.id=hoomrooms.teacherId')
-            ->join('statuss s', 's.id=hoomrooms.statusId')
-            ->where('hoomrooms.statusId', 1)->find($id);
+            ->select('homerooms.*,r.name roomName,c.name className,t.name teacherName, s.name statusName')
+            ->join('rooms r', 'r.id=homerooms.roomId')
+            ->join('classes c', 'c.id=homerooms.classId')
+            ->join('teachers t', 't.id=homerooms.teacherId')
+            ->join('statuss s', 's.id=homerooms.statusId')
+            ->where('homerooms.statusId', 1)->find($id);
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'user with id %d not found',
@@ -221,21 +223,21 @@ class Hoomroom extends ResourceController
      */
     /**
      * @OA\Post(
-     *   path="/api/Hoomroom",
-     *   summary="Hoomroom",
-     *   description="Hoomroom",
-     *   tags={"Hoomroom"},
+     *   path="/api/Homeroom",
+     *   summary="Homeroom",
+     *   description="Homeroom",
+     *   tags={"Homeroom"},
     
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Hoomroom"),
+     *      @OA\Schema(ref="#/components/schemas/Homeroom"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=201, description="created",
-     *      @OA\JsonContent(ref="#/components/schemas/Hoomroom")
+     *      @OA\JsonContent(ref="#/components/schemas/Homeroom")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Request error",
@@ -258,7 +260,7 @@ class Hoomroom extends ResourceController
             return $this->fail("data not valid");
         }
 
-        $entity = new EntitiesHoomroom();
+        $entity = new EntitiesHomeroom();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->save($entity)) {
@@ -274,10 +276,10 @@ class Hoomroom extends ResourceController
      */
     /**
      * @OA\Put(
-     *   path="/api/Hoomroom/{id}",
-     *   summary="Hoomroom",
-     *   description="Hoomroom",
-     *   tags={"Hoomroom"},
+     *   path="/api/Homeroom/{id}",
+     *   summary="Homeroom",
+     *   description="Homeroom",
+     *   tags={"Homeroom"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -292,12 +294,12 @@ class Hoomroom extends ResourceController
      *     required=true,
      *     @OA\MediaType(
      *       mediaType="application/json",
-     *      @OA\Schema(ref="#/components/schemas/Hoomroom"),
+     *      @OA\Schema(ref="#/components/schemas/Homeroom"),
      *     )
      *   ),
      *   @OA\Response(
      *     response=200, description="updated",
-     *      @OA\JsonContent(ref="#/components/schemas/Hoomroom")
+     *      @OA\JsonContent(ref="#/components/schemas/Homeroom")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -323,7 +325,7 @@ class Hoomroom extends ResourceController
             return $this->fail("data not valid");
         }
 
-        $entity = new EntitiesHoomroom();
+        $entity = new EntitiesHomeroom();
         $array = new StdobjeToArray($data);
         $entity->fill($array->get());
         if (!$this->model->update($id, $entity)) {
@@ -335,10 +337,10 @@ class Hoomroom extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Hoomroom/count",
-     *   summary="Hoomroom",
-     *   description="Hoomroom",
-     *   tags={"Hoomroom"},
+     *   path="/api/Homeroom/count",
+     *   summary="Homeroom",
+     *   description="Homeroom",
+     *   tags={"Homeroom"},
      * @OA\RequestBody(
      *     required=true,
      *     @OA\MediaType(
@@ -361,7 +363,7 @@ class Hoomroom extends ResourceController
      *   ),
      *   @OA\Response(
      *     response=200, description="ok",
-     *      @OA\JsonContent(ref="#/components/schemas/Hoomroom")
+     *      @OA\JsonContent(ref="#/components/schemas/Homeroom")
      *   ), 
      *   @OA\Response(
      *     response=400, description="Bad Request"
@@ -406,8 +408,8 @@ class Hoomroom extends ResourceController
 
         if ($where != null) {
             $record = $this->model
-                ->select('hoomrooms.*, s.name statusName')
-                ->join('statuss s', 's.id=hoomrooms.statusId')
+                ->select('homerooms.*, s.name statusName')
+                ->join('statuss s', 's.id=homerooms.statusId')
                 ->where((array)$where);
         }
 
@@ -443,10 +445,10 @@ class Hoomroom extends ResourceController
      */
     /**
      * @OA\Delete(
-     *   path="/api/Hoomroom/{id}",
-     *   summary="Hoomroom",
-     *   description="Hoomroom",
-     *   tags={"Hoomroom"},
+     *   path="/api/Homeroom/{id}",
+     *   summary="Homeroom",
+     *   description="Homeroom",
+     *   tags={"Homeroom"},
      *   @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -507,10 +509,10 @@ class Hoomroom extends ResourceController
 
     /**
      * @OA\Post(
-     *   path="/api/Hoomroom/fromFile",
-     *   summary="Hoomroom",
-     *   description="Hoomroom",
-     *   tags={"Hoomroom"},
+     *   path="/api/Homeroom/fromFile",
+     *   summary="Homeroom",
+     *   description="Homeroom",
+     *   tags={"Homeroom"},
      *   @OA\RequestBody(
      *     @OA\MediaType(
      *       mediaType="multipart/form-data",
@@ -578,7 +580,7 @@ class Hoomroom extends ResourceController
 
         $data =  $spreadsheet->getActiveSheet()->toArray();
 
-        $subjectEntity = new EntitiesHoomroom();
+        $subjectEntity = new EntitiesHomeroom();
         $this->model->transStart();
         foreach ($data as $x => $row) {
             if ($x == 0) {

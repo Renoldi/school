@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Hoomroom extends Model
+class Homeroom extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'hoomrooms';
+    protected $table            = 'homerooms';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = \App\Entities\Hoomroom::class;
+    protected $returnType       = \App\Entities\Homeroom::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [

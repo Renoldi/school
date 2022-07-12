@@ -7,14 +7,14 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
- *   schema="Hoomroom",
+ *   schema="Homeroom",
  * @OA\Property(
  *      property="id",
  *      type="integer",
  *    ),
  * )
  */
-class Hoomroom extends Entity
+class Homeroom extends Entity
 {
     protected $datamap = [];
     protected $dates   = ['createdAt', 'updatedAt', 'deletedAt'];

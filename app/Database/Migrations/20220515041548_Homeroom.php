@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Hoomrooms extends Migration
+class Homerooms extends Migration
 {
     public function up()
     {
@@ -53,6 +53,6 @@ class Hoomrooms extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('hoomrooms');
+        $this->forge->dropTable('homerooms');
     }
 }
