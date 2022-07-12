@@ -48,6 +48,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->get('Department/where/(:any)', 'Department::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->get('Teacher/where/(:any)', 'Teacher::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->get('Subject/where/(:any)', 'Subject::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
+    $routes->get('Classs/where/(:any)', 'Classs::where/$1', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     
     $routes->get('Exam/getExam/(:num)/(:num)/(:num)/(:num)/(:num)', 'Exam::getExam/$1/$2/$3/$4/$5', ['filter' => ['Role:Superadmin,Admin,Editor']]);
     $routes->get('Exam/getExamStudent/(:num)/(:num)/(:num)', 'Exam::getExamStudent/$1/$2/$3', ['filter' => ['Role:Student']]);
