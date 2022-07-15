@@ -165,12 +165,16 @@ class School extends ResourceController
             ->where('statusId', 1)
             ->limit(10)
             ->get()->getResult();
+
+        return  $this->respond([$this->model->getLastQuery()->getQuery()]);
+
         if (!$record) {
             return $this->failNotFound(sprintf(
                 'not found',
                 $name
             ));
-        }
+        } else
+            return $this->respond($record);
     }
 
     /**

@@ -114,7 +114,6 @@ class Room extends ResourceController
         }
     }
 
-
     /**
      * Return an array of resource objects, themselves in array format
      *
@@ -301,7 +300,7 @@ class Room extends ResourceController
      *   security={{"token": {}}},
      * )
      */
-    public function where($name = '')
+    public function where($name = '!')
     {
         if (is_numeric($name)) {
             $this->model
@@ -322,9 +321,8 @@ class Room extends ResourceController
                 'not found',
                 $name
             ));
-        }
-
-        return $this->respond($record);
+        } else
+            return $this->respond($record);
     }
 
     /**

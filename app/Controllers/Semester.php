@@ -169,7 +169,8 @@ class Semester extends ResourceController
                 'not found',
                 $name
             ));
-        }
+        } else
+            return $this->respond($record);
     }
 
     /**

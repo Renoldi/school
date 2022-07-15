@@ -170,9 +170,8 @@ class Major extends ResourceController
                 'not found',
                 $name
             ));
-        }
-
-        return $this->respond($record);
+        } else
+            return $this->respond($record);
     }
 
     /**

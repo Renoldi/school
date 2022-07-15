@@ -143,7 +143,7 @@ class Student extends ResourceController
         $model = $this->model;
         if ($status != 0) {
             $model = $this->model->where(['students.statusId' => $status]);
-        } 
+        }
 
         if ($classId != 0) {
             $model = $this->model->where(['students.classId' => $classId]);
@@ -254,7 +254,8 @@ class Student extends ResourceController
                 'not found',
                 $name
             ));
-        }
+        } else
+            return $this->respond($record);
     }
 
     /**
@@ -891,7 +892,7 @@ class Student extends ResourceController
             $subjectEntity->phoneFamily = ($row[20]);
             $subjectEntity->password = ($row[21]);
             $subjectEntity->statusId = ($row[22]);
-            $subjectEntity->privilegeId = ($row[23]); 
+            $subjectEntity->privilegeId = ($row[23]);
 
             if (!$this->model->save($subjectEntity)) {
 
