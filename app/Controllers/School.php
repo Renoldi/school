@@ -166,7 +166,7 @@ class School extends ResourceController
             ->limit(10)
             ->get()->getResult();
 
-        return  $this->respond([$this->model->getLastQuery()->getQuery()]);
+        // return  $this->respond([$this->model->getLastQuery()->getQuery()]);
 
         if (!$record) {
             return $this->failNotFound(sprintf(
