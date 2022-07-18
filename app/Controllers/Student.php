@@ -236,7 +236,6 @@ class Student extends ResourceController
      */
     public function where($name = '!')
     {
-
         if (is_numeric($name)) {
             $this->model
                 ->where('id', $name);
@@ -478,6 +477,67 @@ class Student extends ResourceController
         }
 
         return $this->respondCreated($entity, 'post created');
+    }
+    /**
+     * @OA\Post(
+     *   path="/api/Student/nop",
+     *   summary="Student",
+     *   description="Student",
+     *   tags={"Student"},
+     * @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="application/json",
+     *      @OA\Schema(ref="#/components/schemas/Student"),
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=201,description="created",
+     *      @OA\JsonContent(ref="#/components/schemas/Student")
+     *   ),
+     *   @OA\Response(
+     *     response=400,description="Request error",
+     *     @OA\JsonContent(  
+     *      @OA\Property(property="status",type="double",example = 400),
+     *      @OA\Property(property="error",type="double",example = 400),
+     *        @OA\Property(
+     *          property="messages",type="object",
+     *          @OA\Property(property="error",type="string",example = "not found"),
+     *       )
+     *     )
+     *   ),
+     *   security={{"token": {}}},
+     * )
+     */
+    public function nop()
+    {
+        $data = $this->request->getVar();
+        if ($data == null) {
+            return $this->fail("data not valid");
+        }
+
+        $rules = [
+            'email' => 'required|valid_email|is_unique[students.email,id,{id}]',
+            'name' => 'required',
+            'gender' => 'required',
+            'statusId' => 'required|integer',
+            'classId' => 'required|integer',
+            'roomId' => 'required|integer',
+            'privilegeId' => 'required|integer',
+            'schoolId' => 'required|integer',
+        ];
+
+        if (!$this->validate($rules)) {
+            return $this->failValidationErrors($this->model->errors());
+        } else {
+            $entity = new EntitiesStudent();
+            $array = new StdobjeToArray($data);
+            $entity->fill($array->get());
+            if (!$this->model->save($entity)) {
+                return $this->failValidationErrors($this->model->errors());
+            }
+            return $this->respondCreated($entity, 'post created');
+        }
     }
 
     /**

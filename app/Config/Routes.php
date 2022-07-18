@@ -91,6 +91,7 @@ $routes->group('api', ['filter' => 'Auth'], function ($routes) {
     $routes->get('Student/paging/(:any)/(:num)/(:num)/(:num)/(:num)', 'Student::paging/$1/$2/$3/$4/$5', ['filter' => ['Role:Superadmin,Admin,Editor']]);
 
     // count
+    $routes->post('Student/nop', 'Student::nop', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Employee/count', 'Employee::count', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Classs/count', 'Classs::count', ['filter' => ['Role:Superadmin,Admin']]);
     $routes->post('Department/count', 'Department::count', ['filter' => ['Role:Superadmin,Admin']]);
