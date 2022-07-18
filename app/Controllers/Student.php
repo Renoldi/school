@@ -160,12 +160,13 @@ class Student extends ResourceController
             s.id statusId, s.name statusName,
             p.id privilegeId, p.name privilegeName,
             students.roomId,r.name roomName,
+            students.schoolId,sc.name schoolName,
             students.createdAt,students.updatedAt,students.deletedAt')
             ->join('statuss s', 's.id=students.statusId')
             ->join('privileges p', 'p.id=students.privilegeId')
             ->join('classes c', 'c.id=students.classId')
             ->join('rooms r', 'r.id=students.roomId')
-
+            ->join('schools sc', 'sc.id=students.schoolId')
             ->paginate($perpage, 'default', $page);
         $countPage = $model->pager->getPageCount();
         $currentPage = $model->pager->getCurrentPage();
@@ -304,11 +305,13 @@ class Student extends ResourceController
                 s.id statusId, s.name statusName,
                 p.id privilegeId, p.name privilegeName,
                 students.roomId,r.name roomName,
+                students.schoolId,sc.name schoolName,
                 students.createdAt,students.updatedAt,students.deletedAt')
             ->join('statuss s', 's.id=students.statusId')
             ->join('privileges p', 'p.id=students.privilegeId')
             ->join('classes c', 'c.id=students.classId')
             ->join('rooms r', 'r.id=students.roomId')
+            ->join('schools sc', 'sc.id=students.schoolId')
             ->where('statusId', 1)
 
             ->find($id);
@@ -535,7 +538,7 @@ class Student extends ResourceController
             return $this->failValidationErrors($this->model->errors());
         }
 
-        return $this->respondUpdated($data, "updated");
+        return $this->respondUpdated($entity, "updated");
     }
 
     /**

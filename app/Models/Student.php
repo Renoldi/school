@@ -63,13 +63,14 @@ class Student extends Model
     protected $validationRules      = [
         // 'nisn' => 'required|min_length[10]|alpha_numeric|is_unique[students.nisn,id,{id}]',
         'email' => 'required|valid_email|is_unique[students.email,id,{id}]',
-        'name' => 'required|',
-        'gender' => 'required|',
+        'name' => 'required',
+        'gender' => 'required',
         'password' => 'required|min_length[5]',
         'statusId' => 'required|integer',
         'classId' => 'required|integer',
         'roomId' => 'required|integer',
         'privilegeId' => 'required|integer',
+        'schoolId' => 'required|integer',
         // 'ipAddress' => 'required',
         // 'about' => 'required',
 
